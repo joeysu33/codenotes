@@ -1,5 +1,9 @@
 /*!
  * 抽象工厂
+ * 涉及到的角色
+ * 1.产品
+ * 2.工厂
+ * 通过工厂类来创建产品
  */
 
 #include <string>
@@ -19,6 +23,7 @@ typedef struct Size {
  */
 class Product {
 public:
+  virtual ~Product() {}
   virtual string getName() const =0;
   virtual Size_t getSize() const =0;
   //....
@@ -41,6 +46,7 @@ public:
 
 class ProductFactory {
 public:
+  virtual ~ProductFactory() {}
   virtual Product* create() = 0;
 };
 
