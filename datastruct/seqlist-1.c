@@ -138,6 +138,8 @@ int main() {
     assert(get(seq, 4) == 600);
     dump(seq);
 
+    clear(&seq);
+    assert(seq == NULL);
     return 0;
 }
 
