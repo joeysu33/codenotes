@@ -1,5 +1,6 @@
 /*!
  * 设计模式 行为篇(命令模式)
+ * 别名:Action(或Transaction)
  * 角色
  * 1.抽象Command基类
  * 2.构造子类Command (构造的时候聚合一个Receiver)

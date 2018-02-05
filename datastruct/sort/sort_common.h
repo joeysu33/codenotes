@@ -11,5 +11,9 @@ typedef unsigned char bool;
 #define false 0
 
 void show(int *arr, int length);
+void init(int *arr, int length);
+void init_random(int *arr, int length);
+void init_left_sorted(int *arr, int length);
+void init_right_sorted(int *arr, int length);
 
 #endif

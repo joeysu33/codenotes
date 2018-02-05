@@ -1,5 +1,6 @@
 /*!
  * 设计模式-行为（迭代器)
+ * 别名:Cursor
  */
 #include <string>
 #include <cstdio>
