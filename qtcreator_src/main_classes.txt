@@ -1,4 +1,5 @@
 qtcreator_src中重要核心类的分析
+QtCreator版本 QtCreator4.3.0
 
 ExtensionSystem::
 -IPlugin QtCreator的插件接口类,只要是QtCreator的插件必须要派生，并重写接口
@@ -19,5 +20,59 @@ Core::
 -IWizardFactory 向导工厂的接口类
 -BaseFileWizardFactory 基本的文件向导工厂类(从IWizardFactory派生),在插件中注册该工厂，来创建项目
 -BaseFileWizard 基本的文件向导，从Utils::Wizard派生
+-MessageManager 消息管理器，单体类，用来增加输出消息
+    static void write(const QString& text, Core::MessageManager::PrintToOutputPaneFlags flags=NoModeSwitch);将文本写出到输出面板
+-OutputWindow 输出窗口，从QPlainTextEdit派生，对应QtCreator的输出窗口
+    void appendMessage(const QString& out, Utils::OutputFormat format); 在输出窗口中增加输出消息
+FileIconProvider:: 图标提供函数类，用来修改文件所对应的图标
+    void registerIconOverlayForSuffix(const QString& path, const QIcon &overlayIcon, const QSize& size);
+ProjectExplorer::
+-Node 项目树上的节点基类
+-FileNode 基于文件的节点，从ProjectExplorer::Node派生
+-FolderNode 基于目录的节点，从ProjectExporer::Node派生
+-VirtualFolderNode 基于虚拟目录的节点（例如include外部pri文件)，从ProjectExplorer::FolderNode派生
+-ProjectNode 项目节点，从ProjectExplorer::FolderNode派生
+-ContainerNode 容器节点（应该是基于加载依赖文件，而导入的文件和目录，例如在项目文件中加入外部的头文件)，
+ 从ProjectExploer::FolderNode派生
+-ProjectConfiguration 项目配置,主要存储项目配置选项
+    virtual bool fromMap(const QVariantMap& map); 从map中读取数据，写入到本配置中，该接口必须调用父类，可以将所有数据采集
+    virtual QVariantMap toMap() const ;将现有的配置返回到QVariantMap中，必须要调用父类，对所有数据进行采集
+-BuildConfiguration,编译配置，从ProjectConfiguration派生
+-DeployConfiguration,发布配置，从ProjectConfiguration派生
+-RunConfiguration,运行配置，从ProjectConfiguration派生
+ -CustomExecutableRunConfiguration 自定制可执行配置(对应QtLibrary项目)的运行配置
+ -DesktopQmakeRunConfiguration  对应Qmake项目Gui的运行配置，可以通过fromMap修改运行数据，通过QMetaObject的元调用来触发信号修改界面数据
+-BuildStep，编译步骤，从ProjectConfigration派生
+-Target 项目的生成目标（包含该项目的编译配置、运行配置、以及附属配置），对应项目菜单中的选项，
+ 从ProjectExplorer::ProjectConfiguration派生
+    QList<BuildConfiguration*> buildConfigurations() const; 编译配置,包含多组，有一个当前激活的
+    QList<DeployConfiguration*> deployConfigurations() const ;部署配置,包含多组，有一个当前激活的
+    QList<RunConfiguration*> runConfigurations() const; 运行配置，包含多组，有一个当前激活的
+-Project 项目基类
+    EditorConfiguration* editorConfiguration() const; 项目的编辑配置，针对某个项目设置特殊的编辑选项
+    void addTarget(ProjectExplorer::Target* );
+    bool removeTarget(ProjectExplorer::Target* target);
+    ProjectExplorer::Target* activeTarget() const ; 返回当前激活的目标配置
+
+QmakeProjectManager::
+-QmakePriFileNode,Pri文件节点，从ProjectExplorer::ProjectNode派生
+-QmakeProFileNode,pro文件节点，从QmakeProjectManager::QmakePriFileNode派生
+-QmakeProject,Qmake类型项目，从ProjectExplorer::Project派生
+    //QmakeProject的内部接口，但是有时候需要读取pro文件除QT内部变量之外的其他变量，需要创建一个进行读取，
+    //创建完成之后，需要对该对象进行删除
+    QtSupport::ProFileReader* createProFileReader(const QmakeProFile* qmakeProFile);
+    //获取Qmake的全局变量值
+    QMakeGlobals* qmakeGlobals();
+    //获取QmakeVfs
+    QMakeVfs* qmakeVfs();
+    //删除已经创建的FileReader
+    void destoryProFileReader(QtSupport::ProFileReader* reader);
+    =======信号======
+    void proFileUpdated(QmakeProjectManager::QmakeProFile *pro, bool,bool);pro文件发生修改更新后发出该信号
+    void proFilesEvaluated(); pro文件重新解析后发出该信号
+
+
+QtSupport::
+-ProFileReader Pro文件读取类，用来获取Pro文件中解析出来的数据
 
 
