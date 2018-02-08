@@ -26,7 +26,9 @@ Core::
     void appendMessage(const QString& out, Utils::OutputFormat format); 在输出窗口中增加输出消息
 FileIconProvider:: 图标提供函数类，用来修改文件所对应的图标
     void registerIconOverlayForSuffix(const QString& path, const QIcon &overlayIcon, const QSize& size);
-ProjectExplorer::
+-ActionManager QtCreator中用来维护Actions的管理器,单体类
+-DesignMode 设计模式,单体类，用来管理需要进行界面编辑的窗口，可以定制对某类型文件的编辑
+-ProjectExplorer::
 -Node 项目树上的节点基类
 -FileNode 基于文件的节点，从ProjectExplorer::Node派生
 -FolderNode 基于目录的节点，从ProjectExporer::Node派生
