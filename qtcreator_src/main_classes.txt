@@ -1,0 +1,23 @@
+qtcreator_src中重要核心类的分析
+
+ExtensionSystem::
+-IPlugin QtCreator的插件接口类,只要是QtCreator的插件必须要派生，并重写接口
+ 函数:
+ bool initialize(const QString& arg, QString *errorString);
+  插件初始化，将所有需要注册的对象在此进行初始化,arg是插件初始化传递的参数
+ void extensionInitialized() ;
+  插件以及依赖的扩展初始化完成
+ ShutdownFlags aboutToShutdown();
+  插件准备关闭，可以将某些资源进行释放等
+
+Utils::
+-Wizard 从QWizard派生，用于生成向导，项目创建
+-WizardPage 从QWizardPage派生，用于生成向导,项目创建
+-ProjectIntroPage 从WizardPage派生,用于生成向导，项目创建
+
+Core::
+-IWizardFactory 向导工厂的接口类
+-BaseFileWizardFactory 基本的文件向导工厂类(从IWizardFactory派生),在插件中注册该工厂，来创建项目
+-BaseFileWizard 基本的文件向导，从Utils::Wizard派生
+
+

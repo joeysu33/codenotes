@@ -1,0 +1,30 @@
+在QtCreator中扩展一个新建项目的功能
+参照例子(QtGui和QtLibrary项目的创建)
+在qmakeprojectmanager的插件中找到GuiAppWizard、LibraryWizard、SubdirsProjectWizard的使用方法
+
+涉及到的类
+QmakeProjectManager::Internal::
+-QtWizard 用来创建QT项目的基础类(Wizard数据类),从Core::BaseFileWizardFactory派生[非导出类，加入源文件进行编译]
+-BaseQmakeProjectWizardDialog Wizard对话框类,从ProjectExplorer::BaseProjectWizardDialog派生 [非导出类，加入源文件进行编译]
+
+Core::
+-IWizardFactory 向导工厂的基类
+-BaseFileWizardFactory 基本的基于文件的向导工厂类(从IWizardFactory派生)
+    -virtual BaseFileWizard* create(QWidget* parent, const WizardDialogParameters& parameters) const = 0; 创建一个QWizard的子类对象（向导对话框)
+    -virtual GeneratedFiles generatedFiles(const QWizard* w, QString *errorMessage) = 0; 将所有需要生成的文件在该接口中进行实现
+    -virtual bool postGeneratedFiles(const QWizard* w, const GeneratedFiles& l, QString *errorMessage); 后置文件生成操作，
+     会根据GeneratedFile的属性，来打开文件
+    -virtual bool writeFiles(const GeneratedFiles& files, QString *errorMessage); 将GeneratedFiles写入到磁盘
+    -Utils:Wizard *runWizardImpl(const QString& path, QWidget *parent, Id platform, const QVariantMap& extraValues) ; 运行向导对话框接口
+-BaseFileWizard 基本的文件向导(从Utils::Wizard派生)
+
+Utils::
+-Wizard QtCreator中的Wizard基类（从QWizard派生)
+-WizardPage QtCreator中QWizardPage基础类(从QWizardPage派生，创建后加入到QWizard中)
+-ProjectIntroPage QtCreator中的通用页(从WizardPage派生)
+
+ProjectExplorer::
+-BaseProjectWizardDialog 最基本的项目向导对话框类(从BaseFileWizard派生)
+
+
+

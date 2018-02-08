@@ -1,0 +1,7 @@
+创建一个QtCreator的插件
+1.下载QtCreator项目的源代码，源代码地址:http://download.qt.io/archive/qtcreator/
+2.使用QtCreator来创建一个QtCreator插件项目
+  Library -> QtCreator插件
+3.在新建项目对话框中指定QtCreator的源码位置
+4.在新建对话框中设置相关信息
+
