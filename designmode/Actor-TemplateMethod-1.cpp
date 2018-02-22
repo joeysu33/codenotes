@@ -3,7 +3,7 @@
  * 角色
  * 1.Abstract Class
  * 2.Concrete Class
- *
+ * 在接口类中建立类之间的关系，类的使用分别独立的进行继承后在进行聚合或组合操作
  */
 
 #include <string>
