@@ -1,1 +1,45 @@
 扩展，并自定制调试功能
+QtCreator调试功能的扩展
+
+涉及到的相关类
+QmakeProjectManager::
+-QmakeProject Qmake项目类，从ProjectExplorer::Project派生
+
+ProjectExplorer::
+-Project 项目
+-Kit 生成目标包，用来描述目标的机器类型等
+-ProjectConfiguration 项目配置
+-Target 目标配置,从ProjectExplorer::ProjectConfiguration派生
+    编译配置:
+    void addBuildConfiguration(BuildConfiguration *configuration);
+    bool removeBuildConfiguration(BuildConfiguration* configuration);
+    QList<BuildConfiguration*> buildConfigurations() const;
+    BuildConfiguration* activeBuildConfiguration() const;
+
+    部署配置
+    void addDeployConfiguration(DeployConfiguration* dc);
+    bool removeDeployConfiguration(DeployConfiguration* dc);
+
+    运行配置
+    QList<RunConfiguration*> runConfigurations() const;
+
+修改项目配置选项
+通过QmakeProjectManager::QmakeProject来获取相关的选项,例如
+ -文件的增删
+ -pro文件的解析和读写
+ -项目所对应的生成和运行目标
+    Target* activeTarget() const;
+    Target* target(Core::Id id) const;
+    Target* target(Kit* k) const;
+ -项目配置信息的读写
+    virtual RestoreResult fromMap(const QVariantMap& map, QString *errorMessage);
+    virtual QVariantMap toMap() const ;
+
+Qmake相关的运行配置
+-RunConfiguration,运行配置，从ProjectConfiguration派生
+ -CustomExecutableRunConfiguration 自定制可执行配置(对应QtLibrary项目)的运行配置
+ -DesktopQmakeRunConfiguration  对应Qmake项目Gui的运行配置，可以通过fromMap修改运行数据，通过QMetaObject的元调用来触发信号修改界面数据
+
+
+步骤：获取当前项目，并根据项目获取Target，修改Target的运行选项来控制调试功能
+
