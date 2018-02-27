@@ -1,11 +1,11 @@
 设计模式总结 (23种)
 
 创建型 (5种)
-Abstract Factory
-Factory
-Builder
-Prototype
-Singleton
+Abstract Factory 抽象工厂模式
+Factory 工厂模式
+Builder 构建者模式
+Prototype 原型模式
+Singleton 单体模式
 
 结构型 (7种)
 Adapter 电源适配器
@@ -14,7 +14,7 @@ Composite 组合(1+1)+2
 Decorator 给一副画加上画框
 Facade 外观10086
 Flyweight PSTN公用电话交换网络
-Proxy 代理
+Proxy 代理模式
 
 行为型 (11种)
 Chain Of Responsibility 责任链模式
@@ -27,4 +27,5 @@ Observer 观察者模式
 State 状态模式
 Strategy 策略模式（主要针对算法)
 Template Method 模板方法
-Vistor 访问者模式
+Visitor 访问者模式
+

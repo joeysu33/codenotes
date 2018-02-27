@@ -55,6 +55,19 @@ FileIconProvider:: 图标提供函数类，用来修改文件所对应的图标
     void addTarget(ProjectExplorer::Target* );
     bool removeTarget(ProjectExplorer::Target* target);
     ProjectExplorer::Target* activeTarget() const ; 返回当前激活的目标配置
+-EditManager 编辑器管理器(单体类)
+-IEditor 编辑器接口的基类，从IContext派生
+    virtual IDocument* document() = 0; 采用模板方法，构建编辑器和文档之间的关系，返回一个文档
+    virtual IEditor* duplicate() { return 0; } 原型方法，返回一个新的编辑器对象
+    bool duplicateSupported() const ; 编辑器是否支持拷贝
+    virtual QWidget* toolBar() = 0; 返回工具条widget
+    virtual bool isDesignModePrefered() const { return false; } 是否有限使用设计模式
+-IContext 上下文接口基类，IEditor从该接口派生
+-IDocument 文档对象基类，从QObject派生，主要用来管理编辑器的内容部分，以及文档内容的类型，操作方式等。
+    InfoBar* infoBar(); 返回文档的消息条，用于在编辑器打开的时候正上方进行显示
+-BaseTextDocument 基本的文本文档
+
+
 
 QmakeProjectManager::
 -QmakePriFileNode,Pri文件节点，从ProjectExplorer::ProjectNode派生
@@ -76,5 +89,10 @@ QmakeProjectManager::
 
 QtSupport::
 -ProFileReader Pro文件读取类，用来获取Pro文件中解析出来的数据
+
+TextEditor::
+-BaseTextEditor 从Core::IEditor派生，聚合了TextEditorWidget和TextDocument
+-TextDocument 从Core::BaseTextDocument派生
+-TextEditorWidget 文本编辑器的widget，从QPlainTextWidget派生
 
 
