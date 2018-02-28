@@ -1,1 +1,13 @@
 在QtCreator中添加一个新的设计器（例如用来以图形界面的方式来配置某些配置文件等)
+1.编写一个类，从QWidget派生，并通过DesignMode来进行注册
+2.编写一个槽函数，绑定DesignMode的信号:void actionsUpdated(Core::IEditor* editor);
+3.注册编辑器的时候，需要将mimetypes考虑进去
+  参见mimetype.txt,需要根据需要提前将mimetype注册好
+
+相关类
+Core::
+-DesignMode 设计模式单体，用来注册和解注册设计窗口
+    void registerDesignWidget(QWidget* widget, const QStringList& mimetypes,
+                                const Context& context);
+    void unregisterWidget(QWidget* w);
+
