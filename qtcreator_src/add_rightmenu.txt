@@ -1,5 +1,16 @@
 在QtCreator的某些项目中扩展右键菜单
+类似的代码功能请参见projectexplorer.cpp文件中action的注册和增加到右键菜单
 
 
 相关类
-1.
+ProjectExplorer::
+-ProjectExplorerPlugin 单体类
+
+Core::
+-ActionManager 行为管理器，用来注册Action，创建菜单等
+    static ActionContainer* createMenu(Id id);
+    static Command* registerAction(QAction* action, Id id, const Context& context=Context(Constants::C_GLOBAL),bool scriptable=false);
+    static void unregisterAction(QAction* action, Id id);
+    static ActionContainer* actionContainer(Id id); 获取Action容器，例如，获取文件上下文
+        ActionContainer *mfileContextMenu = ActionManager::actionContainer(Constants::M_FILECONTEXT);
+
