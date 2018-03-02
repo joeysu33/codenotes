@@ -13,7 +13,10 @@ enum StandardIcon {
     SI_SPLIT_HORIZONTAL,
     SI_SPLIT_VERTICAL,
     SI_CLOSE,
+    SI_CLOSE_SPLIT_TOP,
     SI_CLOSE_SPLIT_BOTTOM,
+    SI_CLOSE_SPLIT_LEFT,
+    SI_CLOSE_SPLIT_RIGHT,
 };
 
 class IconProvider

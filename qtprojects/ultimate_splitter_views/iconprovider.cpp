@@ -30,6 +30,9 @@ void IconProvider::init()
     m_stdIcon[SI_SPLIT_VERTICAL] = QIcon(":/utils/images/prev.png");
     m_stdIcon[SI_CLOSE] = QIcon(":/utils/images/close.png");
     m_stdIcon[SI_CLOSE_SPLIT_BOTTOM] = QIcon(":/utils/images/splitbutton_closebottom.png");
+    m_stdIcon[SI_CLOSE_SPLIT_TOP] = QIcon(":/utils/images/splitbutton_closetop.png");
+    m_stdIcon[SI_CLOSE_SPLIT_LEFT] = QIcon(":/utils/images/splitbutton_closeleft.png");
+    m_stdIcon[SI_CLOSE_SPLIT_RIGHT] = QIcon(":/utils/images/splitbutton_closeright.png");
 }
 
 bool IconProvider::isInitialized()
