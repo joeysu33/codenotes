@@ -20,7 +20,7 @@ public:
 
 //    virtual IDocument *document() = 0;
 
-    virtual IView *duplicate() { return 0; }
+    virtual IView *duplicate() { return Q_NULLPTR; }
     virtual QWidget* widget() const  { return m_widget; }
     virtual void setWidget(QWidget * widget) { m_widget = widget; }
 

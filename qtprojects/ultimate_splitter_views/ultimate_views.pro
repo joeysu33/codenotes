@@ -12,8 +12,8 @@ HEADERS += mainwindow.h \
             iview.h \
             iconprovider.h \
             qtcassert.h \
-    utils.h \
-    ultraviewmanager.h
+            utils.h \
+            ultraviewmanager.h
 
 SOURCES += main.cpp \
             mainwindow.cpp \
@@ -23,9 +23,9 @@ SOURCES += main.cpp \
             editortoolbar.cpp \
             ultimateviewstr.cpp \
             iview.cpp \
-    iconprovider.cpp \
-    utils.cpp \
-    ultraviewmanager.cpp
+            iconprovider.cpp \
+            utils.cpp \
+            ultraviewmanager.cpp
 
 RESOURCES += \
     utlis.qrc

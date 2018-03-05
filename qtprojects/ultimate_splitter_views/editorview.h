@@ -3,6 +3,7 @@
 
 //#include "coreplugin/id.h"
 //#include <utils/dropsupport.h>
+#include "iconprovider.h"
 
 #include <QMap>
 #include <QList>
@@ -50,7 +51,7 @@ class EditorView : public QWidget
     Q_OBJECT
 
 public:
-    explicit EditorView(SplitterOrView *parentSplitterOrView, QWidget *parent = 0);
+    explicit EditorView(SplitterOrView *parentSplitterOrView, QWidget *parent = Q_NULLPTR);
     virtual ~EditorView();
 
     SplitterOrView *parentSplitterOrView() const;
@@ -90,7 +91,7 @@ private:
     friend class SplitterOrView; // for setParentSplitterOrView
 
     void closeCurrentEditor();
-    void listSelectionActivated(int index);
+//    void listSelectionActivated(int index);
     void splitHorizontally();
     void splitVertically();
     void splitNewWindow();
@@ -145,7 +146,7 @@ class SplitterOrView  : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SplitterOrView(IView *editor = 0);
+    explicit SplitterOrView(IView *editor = Q_NULLPTR);
     explicit SplitterOrView(EditorView *view);
     ~SplitterOrView();
 
@@ -175,7 +176,8 @@ public:
     QSize minimumSizeHint() const;
 
     void unsplitAll();
-
+private:
+    QIcon icon(StandardIcon i);
 signals:
     void splitStateChanged();
 

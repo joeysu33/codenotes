@@ -2,6 +2,8 @@
 #include "iview.h"
 #include "editortoolbar.h"
 #include "qtcassert.h"
+#include "ultraviewmanager.h"
+#include "minisplitter.h"
 
 //#include "editormanager.h"
 //#include "editormanager_p.h"
@@ -58,8 +60,8 @@ EditorView::EditorView(SplitterOrView *parentSplitterOrView, QWidget *parent) :
         connect(m_toolBar, &EditorToolBar::goForwardClicked,
                 this, &EditorView::goForwardInNavigationHistory);
         connect(m_toolBar, &EditorToolBar::closeClicked, this, &EditorView::closeCurrentEditor);
-        connect(m_toolBar, &EditorToolBar::listSelectionActivated,
-                this, &EditorView::listSelectionActivated);
+//        connect(m_toolBar, &EditorToolBar::listSelectionActivated,
+//                this, &EditorView::listSelectionActivated);
 //        connect(m_toolBar, &EditorToolBar::currentDocumentMoved,
 //                this, &EditorView::closeCurrentEditor);
         connect(m_toolBar, &EditorToolBar::horizontalSplitClicked,
@@ -191,6 +193,8 @@ void EditorView::closeCurrentEditor()
 //    IView *editor = currentEditor();
 //    if (editor)
 //       EditorManagerPrivate::closeEditorOrDocument(editor);
+    if(IView *v = currentEditor())
+        UltraViewManager::instance()->closeView(v);
 }
 
 void EditorView::showEditorStatusBar(const QString &id,
@@ -292,6 +296,7 @@ void EditorView::focusInEvent(QFocusEvent *)
 {
     //TODO
 //    EditorManagerPrivate::setCurrentView(this);
+    UltraViewManager::instance()->setCurrentEditorView(this);
 }
 
 void EditorView::addEditor(IView *editor)
@@ -341,11 +346,11 @@ IView *EditorView::currentEditor() const
     return 0;
 }
 
-void EditorView::listSelectionActivated(int index)
-{
-    Q_UNUSED(index)
-//    EditorManagerPrivate::activateEditorForEntry(this, DocumentModel::entryAtRow(index));
-}
+//void EditorView::listSelectionActivated(int index)
+//{
+//    Q_UNUSED(index)
+////    EditorManagerPrivate::activateEditorForEntry(this, DocumentModel::entryAtRow(index));
+//}
 
 void EditorView::fillListContextMenu(QMenu *menu)
 {
@@ -375,10 +380,12 @@ void EditorView::splitVertically()
 void EditorView::splitNewWindow()
 {
 //    EditorManagerPrivate::splitNewWindow(this);
+    UltraViewManager::instance()->splitNewWindow(this);
 }
 
 void EditorView::closeSplit()
 {
+    UltraViewManager::instance()->closeEditorView(this);
 //    EditorManagerPrivate::closeView(this);
 //    EditorManagerPrivate::updateActions();
 }
@@ -624,6 +631,7 @@ SplitterOrView::~SplitterOrView()
     m_layout = 0;
     if (m_view) {
 //        EditorManagerPrivate::emptyView(m_view);
+        UltraViewManager::instance()->emptyEditorView(m_view);
     }
     delete m_view;
     m_view = 0;
@@ -702,27 +710,28 @@ EditorView *SplitterOrView::takeView()
 void SplitterOrView::split(Qt::Orientation orientation)
 {
     Q_UNUSED(orientation)
-    //TODO need to be reimplement
-//    Q_ASSERT(m_view && m_splitter == 0);
-//    m_splitter = new MiniSplitter(this);
-//    m_splitter->setOrientation(orientation);
-//    m_layout->addWidget(m_splitter);
-//    m_layout->removeWidget(m_view);
-//    EditorView *editorView = m_view;
-//    editorView->setCloseSplitEnabled(true); // might have been disabled for root view
-//    m_view = 0;
-//    IView *e = editorView->currentEditor();
+    Q_ASSERT(m_view && m_splitter == 0);
+    m_splitter = new MiniSplitter(this);
+    m_splitter->setOrientation(orientation);
+    m_layout->addWidget(m_splitter);
+    m_layout->removeWidget(m_view);
+    EditorView *editorView = m_view;
+    editorView->setCloseSplitEnabled(true); // might have been disabled for root view
+    m_view = 0;
+    IView *e = editorView->currentEditor();
 
-//    SplitterOrView *view = 0;
-//    SplitterOrView *otherView = 0;
+    SplitterOrView *view = 0;
+    SplitterOrView *otherView = 0;
 //    IView *duplicate = e && e->duplicateSupported() ? EditorManagerPrivate::duplicateEditor(e) : 0;
-//    m_splitter->addWidget((view = new SplitterOrView(duplicate)));
-//    m_splitter->addWidget((otherView = new SplitterOrView(editorView)));
+    IView *duplicate = e && e->duplicateSupported() ? UltraViewManager::duplicateView(e) : 0;
 
-//    m_layout->setCurrentWidget(m_splitter);
+    m_splitter->addWidget((view = new SplitterOrView(duplicate)));
+    m_splitter->addWidget((otherView = new SplitterOrView(editorView)));
+
+    m_layout->setCurrentWidget(m_splitter);
 
 //    view->view()->copyNavigationHistoryFrom(editorView);
-//    view->view()->setCurrentEditor(duplicate);
+    view->view()->setCurrentEditor(duplicate);
 
 //    if (orientation == Qt::Horizontal) {
 //        view->view()->setCloseSplitIcon(Utils::Icons::CLOSE_SPLIT_LEFT.icon());
@@ -731,110 +740,131 @@ void SplitterOrView::split(Qt::Orientation orientation)
 //        view->view()->setCloseSplitIcon(Utils::Icons::CLOSE_SPLIT_TOP.icon());
 //        otherView->view()->setCloseSplitIcon(Utils::Icons::CLOSE_SPLIT_BOTTOM.icon());
 //    }
+    if (orientation == Qt::Horizontal) {
+        view->view()->setCloseSplitIcon(icon(SI_CLOSE_SPLIT_LEFT));
+        otherView->view()->setCloseSplitIcon(icon(SI_CLOSE_SPLIT_RIGHT));
+    } else {
+        view->view()->setCloseSplitIcon(icon(SI_CLOSE_SPLIT_TOP));
+        otherView->view()->setCloseSplitIcon(icon(SI_CLOSE_SPLIT_BOTTOM));
+    }
+
 
 //    EditorManagerPrivate::activateView(otherView->view());
-//    emit splitStateChanged();
+    UltraViewManager::instance()->activateEditorView(otherView->view());
+    emit splitStateChanged();
 }
 
 void SplitterOrView::unsplitAll()
 {
-    //TODO need to be reimplement
-//    QTC_ASSERT(m_splitter, return);
-//    // avoid focus changes while unsplitting is in progress
-//    bool hadFocus = false;
-//    if (QWidget *w = focusWidget()) {
-//        if (w->hasFocus()) {
-//            w->clearFocus();
-//            hadFocus = true;
-//        }
-//    }
+    QTC_ASSERT(m_splitter, return);
+    // avoid focus changes while unsplitting is in progress
+    bool hadFocus = false;
+    if (QWidget *w = focusWidget()) {
+        if (w->hasFocus()) {
+            w->clearFocus();
+            hadFocus = true;
+        }
+    }
 
 //    EditorView *currentView = EditorManagerPrivate::currentEditorView();
-//    if (currentView) {
-//        currentView->parentSplitterOrView()->takeView();
-//        currentView->setParentSplitterOrView(this);
-//    } else {
-//        currentView = new EditorView(this);
-//    }
-//    m_splitter->hide();
-//    m_layout->removeWidget(m_splitter); // workaround Qt bug
-//    unsplitAll_helper();
-//    m_view = currentView;
-//    m_layout->addWidget(m_view);
-//    delete m_splitter;
-//    m_splitter = 0;
+    EditorView *currentView {UltraViewManager::instance()->currentEditorView() };
+    if (currentView) {
+        currentView->parentSplitterOrView()->takeView();
+        currentView->setParentSplitterOrView(this);
+    } else {
+        currentView = new EditorView(this);
+    }
+    m_splitter->hide();
+    m_layout->removeWidget(m_splitter); // workaround Qt bug
+    unsplitAll_helper();
+    m_view = currentView;
+    m_layout->addWidget(m_view);
+    delete m_splitter;
+    m_splitter = 0;
 
-//    // restore some focus
-//    if (hadFocus) {
-//        if (IView *editor = m_view->currentEditor())
-//            editor->widget()->setFocus();
-//        else
-//            m_view->setFocus();
-//    }
-//    emit splitStateChanged();
+    // restore some focus
+    if (hadFocus) {
+        if (IView *editor = m_view->currentEditor())
+            editor->widget()->setFocus();
+        else
+            m_view->setFocus();
+    }
+    emit splitStateChanged();
+}
+
+QIcon SplitterOrView::icon(StandardIcon i)
+{
+    return IconProvider::instance()->getIcon(i);
 }
 
 void SplitterOrView::unsplitAll_helper()
 {
-//    if (m_view)
+    if (m_view) {
 //        EditorManagerPrivate::emptyView(m_view);
-//    if (m_splitter) {
-//        for (int i = 0; i < m_splitter->count(); ++i) {
-//            if (SplitterOrView *splitterOrView = qobject_cast<SplitterOrView*>(m_splitter->widget(i)))
-//                splitterOrView->unsplitAll_helper();
-//        }
-//    }
+        UltraViewManager::emptyEditorView(m_view);
+    }
+    if (m_splitter) {
+        for (int i = 0; i < m_splitter->count(); ++i) {
+            if (SplitterOrView *splitterOrView = qobject_cast<SplitterOrView*>(m_splitter->widget(i)))
+                splitterOrView->unsplitAll_helper();
+        }
+    }
 }
 
 void SplitterOrView::unsplit()
 {
-//    if (!m_splitter)
-//        return;
+    if (!m_splitter)
+        return;
 
-//    Q_ASSERT(m_splitter->count() == 1);
-//    SplitterOrView *childSplitterOrView = qobject_cast<SplitterOrView*>(m_splitter->widget(0));
-//    QSplitter *oldSplitter = m_splitter;
-//    m_splitter = 0;
+    Q_ASSERT(m_splitter->count() == 1);
+    SplitterOrView *childSplitterOrView = qobject_cast<SplitterOrView*>(m_splitter->widget(0));
+    QSplitter *oldSplitter = m_splitter;
+    m_splitter = 0;
 
-//    if (childSplitterOrView->isSplitter()) {
-//        Q_ASSERT(childSplitterOrView->view() == 0);
-//        m_splitter = childSplitterOrView->takeSplitter();
-//        m_layout->addWidget(m_splitter);
-//        m_layout->setCurrentWidget(m_splitter);
-//    } else {
-//        EditorView *childView = childSplitterOrView->view();
-//        Q_ASSERT(childView);
-//        if (m_view) {
+    if (childSplitterOrView->isSplitter()) {
+        Q_ASSERT(childSplitterOrView->view() == 0);
+        m_splitter = childSplitterOrView->takeSplitter();
+        m_layout->addWidget(m_splitter);
+        m_layout->setCurrentWidget(m_splitter);
+    } else {
+        EditorView *childView = childSplitterOrView->view();
+        Q_ASSERT(childView);
+        if (m_view) {
 //            m_view->copyNavigationHistoryFrom(childView);
-//            if (IView *e = childView->currentEditor()) {
-//                childView->removeEditor(e);
-//                m_view->addEditor(e);
-//                m_view->setCurrentEditor(e);
-//            }
+            if (IView *e = childView->currentEditor()) {
+                childView->removeEditor(e);
+                m_view->addEditor(e);
+                m_view->setCurrentEditor(e);
+            }
 //            EditorManagerPrivate::emptyView(childView);
-//        } else {
-//            m_view = childSplitterOrView->takeView();
-//            m_view->setParentSplitterOrView(this);
-//            m_layout->addWidget(m_view);
-//            QSplitter *parentSplitter = qobject_cast<QSplitter *>(parentWidget());
-//            if (parentSplitter) { // not the toplevel splitterOrView
-//                if (parentSplitter->orientation() == Qt::Horizontal)
-//                    m_view->setCloseSplitIcon(parentSplitter->widget(0) == this ?
-//                                                  Utils::Icons::CLOSE_SPLIT_LEFT.icon()
-//                                                : Utils::Icons::CLOSE_SPLIT_RIGHT.icon());
-//                else
-//                    m_view->setCloseSplitIcon(parentSplitter->widget(0) == this ?
-//                                                  Utils::Icons::CLOSE_SPLIT_TOP.icon()
-//                                                : Utils::Icons::CLOSE_SPLIT_BOTTOM.icon());
-//            }
-//        }
-//        m_layout->setCurrentWidget(m_view);
-//    }
-//    delete oldSplitter;
-//    if (EditorView *newCurrent = findFirstView())
+            UltraViewManager::emptyEditorView(childView);
+        } else {
+            m_view = childSplitterOrView->takeView();
+            m_view->setParentSplitterOrView(this);
+            m_layout->addWidget(m_view);
+            QSplitter *parentSplitter = qobject_cast<QSplitter *>(parentWidget());
+            if (parentSplitter) { // not the toplevel splitterOrView
+                if (parentSplitter->orientation() == Qt::Horizontal)
+                    m_view->setCloseSplitIcon(parentSplitter->widget(0) == this ?
+                                                  icon(SI_CLOSE_SPLIT_LEFT)
+                                                : icon(SI_CLOSE_SPLIT_RIGHT));
+                else
+                    m_view->setCloseSplitIcon(parentSplitter->widget(0) == this ?
+                                                  icon(SI_CLOSE_SPLIT_TOP)
+                                                : icon(SI_CLOSE_SPLIT_BOTTOM));
+            }
+        }
+        m_layout->setCurrentWidget(m_view);
+    }
+    delete oldSplitter;
+    if (EditorView *newCurrent = findFirstView()) {
 //        EditorManagerPrivate::activateView(newCurrent);
-//    else
+        UltraViewManager::instance()->activateEditorView(newCurrent);
+    }
+    else {
 //        EditorManagerPrivate::setCurrentView(0);
+        UltraViewManager::instance()->setCurrentEditorView(0);
+    }
     emit splitStateChanged();
 }
 
