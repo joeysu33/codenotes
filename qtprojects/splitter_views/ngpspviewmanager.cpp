@@ -1,7 +1,6 @@
 #include "ngpspviewmanager.h"
 
-
-NgpSPViewManager::NGPSPViewManager()
+NGPSPViewManager::NGPSPViewManager()
 {
 
 }

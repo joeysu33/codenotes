@@ -18,7 +18,7 @@ class NGPSPView : public QWidget{
 public:
     ~NGPSPView();
 
-    ISPView* getContent() const ;
+    ISPView* getContentView() const ;
     QWidget* getContentAsWidget() const;
     NGPSPViewOrSplitter* getParentSplitterOrView() const;
 private:
@@ -57,31 +57,34 @@ public:
 
     //split操作
     NGPSPView* add(QWidget* content , SplitOrientation orentation=SO_RIGHT);
-    NGPSPView* addByDuplicate();
+    NGPSPView* add(ISPView* view,SplitOrientation orentation=SO_RIGHT);
+    NGPSPView* addByDuplicate(SplitOrientation orientation = SO_RIGHT);
     //unsplit操作
     bool remove(QWidget* content);
-    void removeByDuplicate();
+    bool remove(ISPView* view);
+    bool remove(NGPSPView* sview);
+    bool removeByDuplicate();
 
-    NGPSPViewOrSplitter* findParentViewOrSplitter() const;
+    NGPSPViewOrSplitter *findParentViewOrSplitter() const;
 
     bool isSplitter() const;
     bool isView() const;
 
-    NGPSPView* getView() const;
+    NGPSPView *getView() const;
     QSplitter* getSplitter() const;
     NGPSPView* findViewForSPView(ISPView *view) const;
     NGPSPView* findViewForQWidget(QWidget* content) const;
     NGPSPView* findViewForSPViewRecursively(ISPView *view) const;
     NGPSPView* findViewForQWidgetRecursively(QWidget* content) const;
 
+    Qt::Orientation getSplitOrientation() const;
+    void setSplitOrientation(Qt::Orientation orien);
+
     ISPView* getContentAsView() const ;
-    QList<ISPView*> getContentsAsSplitter() const;
-    QList<ISPView*> getContentsAsSplitterRecursively() const;
+    QString getError() const;
 private:
-    NGPSPView* add(ISPView* view,SplitOrientation orentation=SO_RIGHT);
-    bool remove(ISPView* view);
-    bool remove(NGPSPView* sview);
     void init(ISPView *iv);
+    NGPSPViewOrSplitter(NGPSPView* view, QWidget* parent=Q_NULLPTR);
 signals:
     void aboutToAdd(QWidget* content);
     void finishToAdd(NGPSPView* view);
@@ -89,6 +92,7 @@ signals:
     void finishToRemove(QWidget* content);
 private:
     NGPSPViewOrSplitterPrivate *m_d {Q_NULLPTR};
+    friend class NGPSPViewOrSplitterPrivate;
     Q_DISABLE_COPY(NGPSPViewOrSplitter)
 };
 
