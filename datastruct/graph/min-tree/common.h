@@ -3,6 +3,10 @@
 
 #include <stdio.h>
 
+#if !defined(NULL)
+#define NULL 0
+#endif
+
 #define N 6
 #if !defined(byte)
 #define byte unsigned char
@@ -22,22 +26,34 @@ typedef byte bool;
 
 typedef struct _Edge Edge;
 
-void init_graph();
-int graph_edge_count();
-Edge* graph_edges();
-byte get_value_from_graph(int i, int j);
-
-void print_graph(Edge *edge, int n);
-
 typedef struct _Edge {
     int i,j;
     byte value;
 } Edge;
 
 typedef struct _Graph {
-    int vertex[N];
-    Edge edges[N*N/2];
+    int *m_vertex;
+    int m_vertex_num;
+    Edge *m_edges;
+    int m_edges_num;
 } Graph;
+
+void g_init_graph(Graph *graph);
+void g_print_graph(Graph *graph);
+void g_init_graph_data(Graph *graph);
+void g_add_vertex(Graph *graph, int vertex);
+void g_delete_vertex(Graph *graph, int vertex);
+void g_add_edge(Graph* graph, Edge* edge);
+void g_delete_edge(Graph* graph, Edge*edge);
+void g_delege_edge2(Graph* graph, Edge edge);
+void g_delete(Graph *graph);
+int g_vertex_num(Graph *graph);
+int g_edge_num(Graph* graph);
+int g_contains_vertex(Graph* graph,int vertex);
+int g_contains_edge(Graph* graph, Edge* edge);
+Edge* g_find_edge(Graph* graph,Edge* edge);
+bool g_contains_edge_vertex(Graph* graph, Edge* edge);
+bool g_edge_contains_vertex(Graph* graph, int vertex);
 
 #endif //_MINTREE_COMMON_INCLUEDED_H
 

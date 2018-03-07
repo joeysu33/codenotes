@@ -13,6 +13,9 @@
 
 #include "common.h"
 
+static Graph s_graph;
+static Graph* s_gph = &s_graph;
+
 void qsort(Edge* first, Edge* end) {
     if(!first || !end) return ;
     if(first == end) return ;
@@ -54,18 +57,32 @@ void qsort(Edge* first, Edge* end) {
 }
 
 void kruskal_mintree() {
-    Edge* edges = graph_edges();
-    const int i=graph_edge_count();
-    int edge_count=0;
-    while(edge_count != N-1) {
-        qsort(edges, edges+i);
-        //print_graph(edges, i);
+    int n,i;
+    bool flag=false;
+    Graph result;
+    g_init_graph(s_gph);
+    g_init_graph_data(s_gph);
+    n = g_edge_num(s_gph);
+
+    g_init_graph(&result);
+    Edge* edges = s_graph.m_edges;
+    qsort(edges, edges+n);
+    /*!将简单最短的边加入进去*/
+    for(i=0; i<n; ++i) {
+        if(!g_contains_edge_vertex(&result, &edges[i])) {
+            g_add_edge(&result, &edges[i]);
+        }
     }
+    //可以直接使用递归的方法来进行计算
+    /*!将已经加入的边，连接起来*/
+    //while(g_edge_num(&result) != N-1) {
+        
+    //}
+    g_print_graph(&result);
 }
 
 
 int main() {
-    init_graph();
     kruskal_mintree();
     return 0;
 }
