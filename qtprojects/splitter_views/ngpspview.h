@@ -56,14 +56,15 @@ public:
     ~NGPSPViewOrSplitter();
 
     //split操作
-    NGPSPView* add(QWidget* content , SplitOrientation orentation=SO_RIGHT);
-    NGPSPView* add(ISPView* view,SplitOrientation orentation=SO_RIGHT);
-    NGPSPView* addByDuplicate(SplitOrientation orientation = SO_RIGHT);
+    NGPSPView* split(QWidget* content , SplitOrientation orentation=SO_RIGHT);
+    NGPSPView* split(ISPView* view,SplitOrientation orentation=SO_RIGHT);
+    NGPSPView* split(SplitOrientation orientation = SO_RIGHT);
     //unsplit操作
-    bool remove(QWidget* content);
-    bool remove(ISPView* view);
-    bool remove(NGPSPView* sview);
-    bool removeByDuplicate();
+    bool unsplit(QWidget* content);
+    bool unsplit(ISPView* view);
+    bool unsplit(NGPSPView* sview);
+    bool unsplit();
+    bool unsplitAll();
 
     NGPSPViewOrSplitter *findParentViewOrSplitter() const;
 
@@ -76,6 +77,7 @@ public:
     NGPSPView* findViewForQWidget(QWidget* content) const;
     NGPSPView* findViewForSPViewRecursively(ISPView *view) const;
     NGPSPView* findViewForQWidgetRecursively(QWidget* content) const;
+    NGPSPView* findFirstSPView() const;
 
     Qt::Orientation getSplitOrientation() const;
     void setSplitOrientation(Qt::Orientation orien);
@@ -88,7 +90,7 @@ private:
 signals:
     void aboutToAdd(QWidget* content);
     void finishToAdd(NGPSPView* view);
-    void aboutToRemove(NGPSPView* view);
+    void aboutToRemove(QWidget* content);
     void finishToRemove(QWidget* content);
 private:
     NGPSPViewOrSplitterPrivate *m_d {Q_NULLPTR};

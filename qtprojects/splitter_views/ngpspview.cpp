@@ -34,10 +34,10 @@ public:
             m_stack->removeWidget(current);
         }
         if(view->widget()) {
-//            view->widget()->setParent(m_obj);
             m_stack->addWidget(view->widget());
             m_stack->setCurrentWidget(view->widget());
         }
+        m_view = view;
         m_obj->update();
     }
 
@@ -174,12 +174,22 @@ public:
         }
         }
         for(NGPSPView*w : widgets) {
-            m_splitter->addWidget(new NGPSPViewOrSplitter(w, m_obj));
+            NGPSPViewOrSplitter *sp = new NGPSPViewOrSplitter(w, m_obj);
+            Q_ASSERT(sp);
+            m_splitter->addWidget(sp);
+//            QObject::connect(sp, SIGNAL(aboutToAdd(QWidget*)),m_obj,SIGNAL(aboutToAdd(QWidget*)));
+//            QObject::connect(sp, SIGNAL(finishToAdd(NGPSPView*)), m_obj, SIGNAL(finishToAdd(NGPSPView*)));
+//            QObject::connect(sp, SIGNAL(aboutToRemove(QWidget*)),m_obj, SIGNAL(aboutToRemove(QWidget*)));
+//            QObject::connect(sp, SIGNAL(finishToRemove(QWidget*)),m_obj, SIGNAL(finishToRemove(QWidget*)));
         }
         m_view = Q_NULLPTR;
         m_stack->addWidget(m_splitter);
         m_stack->setCurrentWidget(m_splitter);
         emit m_obj->finishToAdd(ret);
+        if(QWidget *w = ret->getContentAsWidget()) {
+            w->setFocus();
+        }
+
         return ret;
     }
 
@@ -214,7 +224,72 @@ public:
         return -1;
     }
 
+    bool unsplitByIndex(int index) {
+        if(!isSplitter()) return true;
+        Q_ASSERT(m_splitter && m_splitter->count() == 2);
+
+        NGPSPViewOrSplitter* m =
+            qobject_cast<NGPSPViewOrSplitter*>(m_splitter->widget(index));
+        NGPSPViewOrSplitter* s =
+            qobject_cast<NGPSPViewOrSplitter*>(m_splitter->widget(index?0:1));
+        Q_ASSERT(s);
+        Q_ASSERT(m);
+
+        ISPView *view {m->getContentAsView()};
+        QWidget *moveWidget{Q_NULLPTR};
+        if(view) {
+            moveWidget = view->widget();
+        }
+
+        if(moveWidget) {
+            emit m_obj->aboutToRemove(moveWidget);
+        }
+        m_splitter->hide();
+        m_stack->removeWidget(m_splitter);
+
+        s->hide();
+        s->setParent(Q_NULLPTR);
+        if(s->isView()) {
+            //consider s as a view
+            NGPSPView* v= s->getView();
+            s->m_d->m_view = Q_NULLPTR;
+            delete m_splitter;
+            m_splitter = Q_NULLPTR;
+            if(v)
+                v->setParentSplitterOrView(m_obj);
+            m_view = v;
+            m_stack->addWidget(m_view);
+            m_stack->setCurrentWidget(m_view);
+            m_view->show();
+        } else {
+            //consider s as a splitter
+           Q_ASSERT(!m_view);
+           NGPMiniSplitter * splitter = qobject_cast<NGPMiniSplitter*>(s->getSplitter());
+           splitter->hide();
+           Q_ASSERT(splitter);
+           QStackedLayout*childStack {s->m_d->m_stack};
+           Q_ASSERT(childStack);
+           childStack->removeWidget(splitter);
+           delete m_splitter;
+           m_splitter = splitter;
+           m_stack->addWidget(m_splitter);
+           m_stack->setCurrentWidget(m_splitter);
+           m_splitter->show();
+        }
+
+        if(NGPSPView *first = findFirstSPView()) {
+            if(QWidget* w = first->getContentAsWidget()) {
+                w->setFocus();
+            }
+        }
+        if(moveWidget) {
+            emit m_obj->finishToRemove(moveWidget);
+        }
+        return true;
+    }
+
     bool unsplitBySPView(NGPSPView *view) {
+        if(!isSplitter()) return true;
         Q_ASSERT(m_splitter && m_splitter->count() == 2);
         if(!isSplitter()) {
             m_err = NGPSPViewOrSplitter::tr("It's not splitter, can't split!");
@@ -230,65 +305,13 @@ public:
             return false;
         }
 
-        QWidget* moveWidget {view->getContentAsWidget()};
-
-        NGPSPViewOrSplitter* m =
-            qobject_cast<NGPSPViewOrSplitter*>(m_splitter->widget(index));
-        NGPSPViewOrSplitter* s =
-            qobject_cast<NGPSPViewOrSplitter*>(m_splitter->widget(index?0:1));
-        Q_ASSERT(s);
-        Q_ASSERT(m);
-        if(m->isSplitter() || s->isSplitter()) {
-            m_err = NGPSPViewOrSplitter::tr("There's some splitter is not unsplit.");
-            return false;
-        }
-//        if(s->isSplitter()) {
-//            //recusively process, always remove first one
-//            if(!s->removeByDuplicate()) {
-//                return false;
-//            }
-//        }
-
-        emit m_obj->aboutToRemove(view);
-        m_splitter->hide();
-        m_stack->removeWidget(m_splitter);
-        //record some focus
-        bool hadFocus = false;
-        if (QWidget *w = view->getContentAsWidget()) {
-            if (w && w->hasFocus()) {
-                w->clearFocus();
-                hadFocus = true;
-            }
-        }
-
-        s->hide();
-        s->setParent(Q_NULLPTR);
-        //TODO: consider s is a splitter
-        NGPSPView* v= s->getView();
-        s->m_d->m_view = Q_NULLPTR;
-        delete m_splitter;
-        m_splitter = Q_NULLPTR;
-        if(v)
-            v->setParentSplitterOrView(m_obj);
-        m_view = v;
-        m_stack->addWidget(m_view);
-        m_stack->setCurrentWidget(m_view);
-        m_view->show();
-
-         // restore some focus
-        if (hadFocus) {
-            if (QWidget* w= m_view->getContentAsWidget())
-                w->setFocus();
-            else
-                m_view->setFocus();
-        }
-
-        emit m_obj->finishToRemove(moveWidget);
-        return true;
+        return unsplitByIndex(index);
     }
 
     bool unsplitByDuplicate() {
-        return unsplitBySPView(qobject_cast<NGPSPView*>(m_splitter->widget(0)));
+        if(!isSplitter()) return true;
+        //Alwasys remove first one
+        return unsplitByIndex(0);
     }
 
     bool isSplitter() const { return m_splitter ;}
@@ -373,6 +396,55 @@ public:
         return Q_NULLPTR;
     }
 
+    NGPSPView* findFirstSPView() const {
+        if(isView()) return m_view;
+        for(NGPSPViewOrSplitter *s : splitterChild()) {
+            if(!s) continue;
+
+            //horizontal first, vertial follow
+            if(s->isView()) {
+                return s->m_d->m_view;
+            } else {
+                if(NGPSPView* r = s->m_d->findFirstSPView()) {
+                    return r;
+                }
+            }
+        }
+
+        return Q_NULLPTR;
+    }
+
+    bool unsplitAll() {
+        if(isView()) return true;
+        for(NGPSPViewOrSplitter *s : splitterChild()) {
+            if(s->isSplitter()) {
+                if(!s->unsplitAll()) {
+                    return false;
+                }
+            }else {
+                if(NGPSPViewOrSplitter *ps = s->findParentViewOrSplitter()) {
+                    if(!ps->unsplit()) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    QList<NGPSPViewOrSplitter*> splitterChild() const {
+        QList<NGPSPViewOrSplitter*> ret;
+        if(!isSplitter()) return QList<NGPSPViewOrSplitter*>();
+        for(int i=0; i<m_splitter->count(); ++i) {
+            if(NGPSPViewOrSplitter *s =
+                    qobject_cast<NGPSPViewOrSplitter*>(m_splitter->widget(i))) {
+                ret << s;
+            }
+        }
+
+        return ret;
+    }
 public:
     QString m_err;
     QStackedLayout *m_stack {Q_NULLPTR};
@@ -398,39 +470,44 @@ NGPSPViewOrSplitter::~NGPSPViewOrSplitter()
     delete m_d;
 }
 
-NGPSPView *NGPSPViewOrSplitter::add(QWidget *content, NGPSPViewOrSplitter::SplitOrientation orentation)
+NGPSPView *NGPSPViewOrSplitter::split(QWidget *content, NGPSPViewOrSplitter::SplitOrientation orentation)
 {
     return m_d->splitByWidget(content, orentation);
 }
 
-NGPSPView *NGPSPViewOrSplitter::add(ISPView *view, NGPSPViewOrSplitter::SplitOrientation orientation)
+NGPSPView *NGPSPViewOrSplitter::split(ISPView *view, NGPSPViewOrSplitter::SplitOrientation orientation)
 {
     return m_d->splitByView(view, orientation);
 }
 
-NGPSPView *NGPSPViewOrSplitter::addByDuplicate(NGPSPViewOrSplitter::SplitOrientation orientation)
+NGPSPView *NGPSPViewOrSplitter::split(NGPSPViewOrSplitter::SplitOrientation orientation)
 {
     return m_d->splitByDuplicate(orientation);
 }
 
-bool NGPSPViewOrSplitter::remove(QWidget *content)
+bool NGPSPViewOrSplitter::unsplit(QWidget *content)
 {
     return m_d->unsplitByWidget(content);
 }
 
-bool NGPSPViewOrSplitter::remove(ISPView *view)
+bool NGPSPViewOrSplitter::unsplit(ISPView *view)
 {
     return m_d->unsplitByView(view);
 }
 
-bool NGPSPViewOrSplitter::remove(NGPSPView *sview)
+bool NGPSPViewOrSplitter::unsplit(NGPSPView *sview)
 {
     return m_d->unsplitBySPView(sview);
 }
 
-bool NGPSPViewOrSplitter::removeByDuplicate()
+bool NGPSPViewOrSplitter::unsplit()
 {
     return m_d->unsplitByDuplicate();
+}
+
+bool NGPSPViewOrSplitter::unsplitAll()
+{
+    return m_d->unsplitAll();
 }
 
 NGPSPViewOrSplitter *NGPSPViewOrSplitter::findParentViewOrSplitter() const
@@ -484,6 +561,11 @@ NGPSPView *NGPSPViewOrSplitter::findViewForSPViewRecursively(ISPView *view) cons
 NGPSPView *NGPSPViewOrSplitter::findViewForQWidgetRecursively(QWidget *content) const
 {
     return m_d->findViewForQWidgetRecursively(content);
+}
+
+NGPSPView *NGPSPViewOrSplitter::findFirstSPView() const
+{
+    return m_d->findFirstSPView();
 }
 
 Qt::Orientation NGPSPViewOrSplitter::getSplitOrientation() const

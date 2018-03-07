@@ -35,12 +35,13 @@ void NGPMiniSplitterHandle::resizeEvent(QResizeEvent *event)
 
 void NGPMiniSplitterHandle::paintEvent(QPaintEvent *event)
 {
+    Q_UNUSED(event)
     QPainter painter(this);
-//    const QColor color = Utils::creatorTheme()->color(
-//                m_lightColored ? Utils::Theme::FancyToolBarSeparatorColor
-//                               : Utils::Theme::SplitterColor);
-    const QColor color(128, 128, 128);
-    painter.fillRect(event->rect(), color);
+    QColor color(128,128, 0);
+    if(NGPMiniSplitter* splitter = qobject_cast<NGPMiniSplitter*>(parentWidget())) {
+        color = splitter->m_handleColor;
+    }
+    painter.fillRect(rect(), color);
 }
 
 QSplitterHandle *NGPMiniSplitter::createHandle()
@@ -54,7 +55,7 @@ NGPMiniSplitter::NGPMiniSplitter(QWidget *parent, SplitterStyle style)
 {
     setHandleWidth(1);
     setChildrenCollapsible(false);
-    setProperty("minisplitter", true);
+    setHandleColorByStyle(style);
 }
 
 NGPMiniSplitter::NGPMiniSplitter(Qt::Orientation orientation, SplitterStyle style)
@@ -63,5 +64,24 @@ NGPMiniSplitter::NGPMiniSplitter(Qt::Orientation orientation, SplitterStyle styl
 {
     setHandleWidth(1);
     setChildrenCollapsible(false);
-    setProperty("minisplitter", true);
+    setHandleColorByStyle(style);
+}
+
+void NGPMiniSplitter::setHandleColor(const QColor &color)
+{
+    m_handleColor = color;
+}
+
+void NGPMiniSplitter::setHandleColorByStyle(NGPMiniSplitter::SplitterStyle style)
+{
+    if(style == Dark) {
+        m_handleColor = QColor(128, 128, 128);
+    } else {
+        m_handleColor = QColor(128,128, 0);
+    }
+}
+
+QColor NGPMiniSplitter::getHandleColor() const
+{
+    return m_handleColor;
 }
