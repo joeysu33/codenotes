@@ -1,0 +1,23 @@
+fileio
+Linux上的文件操作，主要函数
+int open(const char*, int flag, int mode);
+int read(int fd, char *buf, int len);
+int write(int fd, char *buf, int len);
+int fcntl(int fd, int cmd, ...);
+
+建议锁:需要用户自己去检测是否存在锁，内核仅给进程打上标签，不做强制限制
+fcntl:
+1.可以获取/修改文件的属性F_SETFL/F_GETFL，包含O_APPEND, O_*等,但有些非持久性属性并不保存，类似O_CREAT
+2.可以获取文件描述F_SETFD/F_GETFD
+3.可以给文件加建议锁，（不能从内核强制限制) F_SETLK/F_GETLK
+  锁类型 struct flock {
+      l_type, //F_RDLCK, F_WRLCK,这里的读写锁，需要和文件的打开类型保持一致, F_RDLCK是共享锁，F_WRLCK是排它锁，这里的锁默认都是建议锁，无法在内核上限制
+      l_start, //开始位置 相对whence
+      l_len, //锁文件的长度
+      l_whence,  //位置SEEK_SET SEEK_END SEEK_CUR
+      l_pid, //仅在GET的时候读取
+  }
+  需要注意的是fcntl的获取锁信息，只能在非本线程中进行调用，在本线程中调用无任何意义，调用F_GETLK可以获取当前占有锁的线程
+
+
+
