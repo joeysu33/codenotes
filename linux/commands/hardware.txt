@@ -1,0 +1,10 @@
+显示硬件信息
+lscpu :显示cpu信息
+lcipc :显示IPC的limit信息
+lsblk :显示磁盘块信息
+df    :显示磁盘使用信息
+du    :显示当前目录的磁盘占用信息
+ifconfig -a :显示网卡信息
+lspci :显示pci信息，即主板上pci插槽的所有信息
+dmidecode -t 0 :查看bios信息，可以通过这个基本上能得到所有的硬件信息
+
