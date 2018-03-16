@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
     j=0;
     if(st.m_isRead) {
         while(j!=st.m_len){
-            nReaded=read(fd, st.m_buf+j, st.m_len);
+            nReaded=read(fd, st.m_buf+j, st.m_len-nReaded);
             if(nReaded<0) {
                 close(fd);
                 free(st.m_buf);
@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
         fflush(stdout);
     } else {
         while(j!=st.m_len) {
-            nWritten=write(fd, st.m_buf+j, st.m_len);
+            nWritten=write(fd, st.m_buf+j, st.m_len-nWritten);
             if(nWritten<0) {
                 close(fd);
                 free(st.m_buf);
