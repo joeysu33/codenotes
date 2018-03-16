@@ -78,7 +78,9 @@ int main(int argc, char* argv[]) {
         if(index == IOV_CNT) { 
             break; 
         } else {
+            //重新设置base和len以及index
             vec[index].iov_len -= sz;
+            vec[index].iov_base = (char*)vec[index].iov_base + sz;
         }
     }
 
@@ -108,7 +110,9 @@ int main(int argc, char* argv[]) {
         if(index == IOV_CNT) {
             break;
         } else {
+            //重新设置iov_base iov_len和index
             vec[index].iov_len -= sz;
+            vec[index].iov_base = (char*)vec[index].iov_base +sz;
         }
     }
     printf("buffer:0~4:%s, N-5~N-1:%s\n", &buf[0], &buf[N-5]);

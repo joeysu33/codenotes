@@ -1,6 +1,7 @@
 fileio
 Linux上的文件操作，主要函数
-int open(const char*, int flag, int mode);
+int open(const char*, int flag);
+int open(const char*, int flag, int mode); //mode仅在创建文件的时候起作用
 int read(int fd, char *buf, int len);
 int write(int fd, char *buf, int len);
 int fcntl(int fd, int cmd, ...);
@@ -20,4 +21,7 @@ fcntl:
   需要注意的是fcntl的获取锁信息，只能在非本线程中进行调用，在本线程中调用无任何意义，调用F_GETLK可以获取当前占有锁的线程
 
 
+int open(const char*, int flag, int mode); 
+    mode仅在创建文件的时候起作用
+    mode的取值 S_IRWXU S_IRUSR S_IWUSR S_XUSR ...
 

@@ -151,12 +151,27 @@ int main(int argc, char *argv[])
     char *nptr;
     (void)argc;
     (void)argv;
-//    file_flags();
-    if(argc == 2) {
-        pid=strtol(argv[1], &nptr, 16);
+    size_t n=1.9*1024*1024*1024;
+    printf("size_t bytes=%d\n", sizeof(n));
+    void *p[5];
+    //malloc在linux64上，内核4.13.0，一次最大分配1.9G左右
+    memset(p, 0, sizeof(void*) * 5);
+    int k=0;
+    while(k != 5) {
+        p[k++]=malloc(n);
     }
-    pid=0x63a5;
-    lock_file();
+    k=0;
+    while(k != 5) {
+        free(p[k++]);
+    }
+
+
+//    file_flags();
+//    if(argc == 2) {
+//        pid=strtol(argv[1], &nptr, 16);
+//    }
+//    pid=0x63a5;
+//    lock_file();
 
     return 0;
 }
