@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include <limits.h> //PATH_MAX
 #include <unistd.h> //readlink
+#include <fcntl.h>  //fcntl
 
 /*!program_invocation_name,
  * program_invocation_short_name
@@ -33,10 +34,22 @@ extern char **environ;
 /*! 来自<limits.h> */
 static char buffer[PATH_MAX];
 
+/*!校验文件的有效性,有效返回1，否则返回0*/
+unsigned char is_valid_fd(int fd) {
+    /*! 
+     * F_GETFL读取文件描述符的打开标志
+     * F_SETFL写入文件描述符的打开标志
+     * F_GETFD 获取文件描述符
+     * F_SETFD 设置文件描述符
+     */
+    int flag = fcntl(fd, F_GETFL, 0);
+    return (flag == -1) ? 0 : 1;
+}
+
 char* get_filename_by_fd(int fd) {
     char link[PATH_MAX];
     ssize_t n;
-    if(fd < 0) return 0;
+    if(!is_valid_fd(fd)) return NULL;
     snprintf(link, PATH_MAX,"/proc/self/fd/%d", fd);
     n=readlink(link, buffer, sizeof(buffer)-1);
     if(n < 0) {
