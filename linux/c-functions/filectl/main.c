@@ -22,6 +22,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
+#include <limits.h>
 
 static const char * filename="test_flag.dat";
 static int pid=0;
@@ -139,7 +140,7 @@ void file_flags() {
     case O_WRONLY: printf("writeonly-");break;
     case O_RDWR: printf("readwrite-"); break;
     }
-    if(flag & O_CREAT) printf("creat-");
+    if(flag & O_CREAT) printf("creadt-");
     if(flag & O_APPEND) printf("append-");
 
     printf("\n");
@@ -148,22 +149,24 @@ void file_flags() {
 
 int main(int argc, char *argv[])
 {
-    char *nptr;
     (void)argc;
     (void)argv;
-    size_t n=1.9*1024*1024*1024;
-    printf("size_t bytes=%d\n", sizeof(n));
-    void *p[5];
-    //malloc在linux64上，内核4.13.0，一次最大分配1.9G左右
-    memset(p, 0, sizeof(void*) * 5);
-    int k=0;
-    while(k != 5) {
-        p[k++]=malloc(n);
-    }
-    k=0;
-    while(k != 5) {
-        free(p[k++]);
-    }
+    printf("sizeof(int)=%d \n", sizeof(int));
+    printf("sizeof(long):%d sizeof(long long)=%d \n", sizeof(long), sizeof(long long));
+    printf("ssize_t bytes:%d off_t bytes:%d \n", sizeof(ssize_t), sizeof(off_t) );
+//    size_t n=1.9*1024*1024*1024;
+//    printf("size_t bytes=%d\n", sizeof(n));
+//    void *p[5];
+//    //malloc在linux64上，内核4.13.0，一次最大分配1.9G左右
+//    memset(p, 0, sizeof(void*) * 5);
+//    int k=0;
+//    while(k != 5) {
+//        p[k++]=malloc(n);
+//    }
+//    k=0;
+//    while(k != 5) {
+//        free(p[k++]);
+//    }
 
 
 //    file_flags();
