@@ -8,8 +8,11 @@
 #filter 以pattern模式(%)来过滤text字符串中的单词，保留符合模式的单词
 #filter-out  反过滤函数，以pattern模式过滤<text>字符串中的单词，去除符合模式中的单词
 #call call <expression>, <param1>, <param2>... 使用param来占位表达式中的$(1) $(2)
-#subst 字符串替换 $(subst <from>,<to>,<text>)
-#patsubst
+#subst 字符串替换 $(subst <from>,<to>,<text>),将text中和from匹配的替换为to
+#patsubst 模式字符串天幻函数(pattern subst),
+#	$(patsubst <pattern>, <replacement>, <text>)
+#	eg: $(patsubst %.c,%.o, x.c.c bar.c)
+#	将x.c.c bar.c替换成x.c.o bar.o
 #
 #2.makefile中的转义字符 |，输出的时候需要使用\|转义
 #
@@ -61,6 +64,11 @@ all:
 	@echo $(call fmt0, "kk", "jj")
 	@echo $(subst "ee", "EE", "feet on the street") #将ee替换成EE
 	@echo $(subst 1,100, $(fmt0)); #将1替换成100
+	@echo "patsubst---"
+	@echo $(patsubst %.dat, %.o, $(wildcard src/file*))
+	$(newline)
+	@echo "strip---"
+	@echo ,$(strip " aa cc "),
 	$(newline)
 
 
