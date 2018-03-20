@@ -1,7 +1,7 @@
 #1.内置函数,函数参数使用,进行分割
 #warning
 #error
-#strip 
+#strip 会将的多个空格，转换成一个空格
 #addprefix
 #addsuffix
 #wildcard 野匹配，采用*来进行匹配
@@ -13,6 +13,17 @@
 #	$(patsubst <pattern>, <replacement>, <text>)
 #	eg: $(patsubst %.c,%.o, x.c.c bar.c)
 #	将x.c.c bar.c替换成x.c.o bar.o
+#findstring $(findstring <target>, <wordlist>) 找到返回target，否则返回null
+#sort 将<list>中的单词进行排序 $(sort foo bar lose) 返回bar foo lose
+#word 取单词函数$(word 2, foo bar baz) 返回第二个单词 bar,从1开始计数
+#words 单词个数统计 $(words , foo bar baz) 返回"3"
+#firstword 取第一个单词 $(firstword foo bar baz) 返回foo，等价$(word 1, foo bar baz)
+#wordlist 取单词串$(wordlist 2,3, foo bar baz) 返回第二个和第三个 bar baz
+#dir 取目录函数 $(dir src/foo.c hacks) 返回src/ ./
+#notdir 取文件函数 $(notdir src/foo.c hacks) 返回foo.c hacks
+#suffix 取后缀函数 $(suffix src/foo.c src-1.0/bar.c hacks) 返回".c .c"
+#basename 取base名称 $(basename src/foo.c src-10./bar.c hacks)返回src/foo src-1.0/bar hacks)
+#join 连接函数 $(join aa bb, 11 22 3)返回 "aa11 bb22 3"
 #
 #2.makefile中的转义字符 |，输出的时候需要使用\|转义
 #
@@ -29,7 +40,7 @@ $(warning builtin-warning func)
 #如果执行到error则会导致make停止执行
 #$(error builtin-in-error func)
 
-a = " xy bb "
+a = "      xy bb    "
 b = $(strip $(a)) #strip a
 #reverse 相当于变成了一个格式化字符串
 reverse = $(2) $(1)
@@ -67,9 +78,44 @@ all:
 	@echo "patsubst---"
 	@echo $(patsubst %.dat, %.o, $(wildcard src/file*))
 	$(newline)
-	@echo "strip---"
-	@echo ,$(strip " aa cc "),
+	@echo "strip---(将多个空格替换为一个空格)"
+	@echo ="     aa cc       ff       "= #?strip没有起作用
+	@echo =$(strip "     aa cc       ff       ")= #?strip没有起作用
+	@echo $(strip $(a))
 	$(newline)
+	@echo "sort---"
+	@echo $(sort foo bar zab)
+	$(newline)
+	@echo "word--"
+	@echo $(word 2, foo bar zab)
+	$(newline)
+	@echo "firstword---"
+	@echo $(firstword foo bar zab)
+	$(newline)
+	@echo "words---"
+	@echo $(words foo bar zab)
+	$(newline)
+	@echo "dir---"
+	@echo $(dir src/file1.c src-1.0-a/file2.c hacks)
+	$(newline)
+	@echo "notdir---"
+	@echo $(notdir src/file1.c src-1.0-a/file2.c hacks)
+	$(newline)
+	@echo "basename---"
+	@echo $(basename src/file1.c src-1.0-a/file2.c hacks)
+	$(newline)
+	@echo "join--"
+	@echo $(join aa bb cc, 11 22 44)
+	$(newline)
+	@echo "suffix--"
+	@echo $(suffix src/file1.c src-1.0-a/file2.c hacks.obj file.obj)
+	$(newline)
+	@echo "findstring--"
+	@echo $(findstring x, x y z)
+	@echo $(findstring x, y z)
+	$(newline)
+
+
 
 
 
