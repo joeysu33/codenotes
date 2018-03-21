@@ -1,2 +1,3 @@
 #chap04_io Makefile
-all:
+sources := $(wildcard *.c)
+objects := $(patsubst %.c, %.o, $(sources))
