@@ -18,7 +18,8 @@
 int main(int argc, char *argv[]) {
     int i,j, fd, rdlen, cnt;
     int oflags=0; //None read:1 write:2 rdwr:3
-    int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
+    //int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
+    int mode=0666;
     off_t oft;
     char *filename, *endptr;
     char buf[64];

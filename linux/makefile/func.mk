@@ -73,6 +73,7 @@ all:
 	@echo $(filter-out src/file%.dat, $(wildcard src/*))
 	$(newline)
 	@echo "call--"
+	@#call调用reverse (experssion)的时候,reverse除了$(1)之外其他的好像不行
 	@echo $(call reverse, "kk", "jj") #这里直接在call函数中写格式化字符串失败
 	@echo $(call fmt0, "kk", "jj")
 	@echo $(subst "ee", "EE", "feet on the street") #将ee替换成EE
