@@ -8,7 +8,7 @@ object: depends
 命令的执行中，变量必须实用$$来约束，进行转义
 
 single:
-    1.@表示不显示命令行
+    1.@表示不显示命令行,如果该行不是命令行，而是注释那么需要写成@#，否则仍然会显示注释行
     2.$(shell cmd) 执行shell命令
     3.`cmd`来执行命令
     4.$$i 对shell的变量名称进行转义
@@ -134,6 +134,21 @@ ifeq 'a' 'b'  #建议采用''或""，避免展开引起的问题
 
 9.include指令
 include defines.mk
+
+
+10.标准的make变量
+MAKE_VERSION makefile的版本编号
+CURDIR 正在执行make进程的当前工作目录
+MAKEFILE_LIST make所读取的各个makefile文件的名称所构成的列表
+MAKECMDGOALS 对当前所运行的make而言，make运行时命令行上指定了那些工作目标
+            此变量并不包含命令行选项或者变量的赋值。eg:
+            $make -f -FOO=bar -k goal <<< 'goal:;#$(MAKECMDGOALS)'
+            #goal
+.VARIABLES make从各个makefile文件中所读进的变量的名称所构成的列表
+
+
+10.流程控制函数
+$(if condition, then-part, else-part)
 
 
 

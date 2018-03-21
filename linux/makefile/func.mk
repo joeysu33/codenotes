@@ -24,6 +24,7 @@
 #suffix 取后缀函数 $(suffix src/foo.c src-1.0/bar.c hacks) 返回".c .c"
 #basename 取base名称 $(basename src/foo.c src-10./bar.c hacks)返回src/foo src-1.0/bar hacks)
 #join 连接函数 $(join aa bb, 11 22 3)返回 "aa11 bb22 3"
+#eval 赋值操作
 #
 #2.makefile中的转义字符 |，输出的时候需要使用\|转义
 #
@@ -33,6 +34,7 @@
 #
 #问题
 #1.能否直接在make命令中来修改变量值,如何修改
+#可以，通过eval函数来实现
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -114,8 +116,12 @@ all:
 	@echo $(findstring x, x y z)
 	@echo $(findstring x, y z)
 	$(newline)
-
-
-
+	@echo "eval---(修改变量的值)"
+	@$(show-ab)
+	@$(eval b=newval)
+	@$(show-ab)
+	@$(eval k:="mj")
+	@$(eval b=$(k))
+	@$(show-ab)
 
 
