@@ -150,9 +150,16 @@ MAKECMDGOALS 对当前所运行的make而言，make运行时命令行上指定�
 10.流程控制函数
 $(if condition, then-part, else-part)
 
+11.函数
+makefile中的函数和宏的定义一样，区别在于使用函数的使用我们可以通过$(call ...)来调用，并
+传递参数，而宏我们仅认为是不采用call调用来执行的式子
 
+12.命令修饰符
+@ 不要输出命令行,或者可以在make命令执行的时候加上-s(-slient)选项
+- 指示make应该忽略命令中的错误，默认情况下make执行命令的时候，会检查是否成功，如果失败，则结束执行
 
-
+13.项目管理
+参见project_manager.txt
 
 
 
