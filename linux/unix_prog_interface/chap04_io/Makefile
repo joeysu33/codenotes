@@ -17,7 +17,7 @@ $(targets): $(objects)
 	@gcc -o $@ $(join $(join $(OBJ_DIR), $(basename $(notdir $@))), .o) $(CLIBFLAGS)
 
 $(objects):$(sources)
-	gcc -c -o $@ $(join $(basename $(notdir $@)), .c)
+	gcc -c -g -o $@ $(join $(basename $(notdir $@)), .c)
 
 clean:
 	@rm -f $(objects) $(targets)
