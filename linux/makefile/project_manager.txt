@@ -1,0 +1,47 @@
+项目模板
+root
+ |
+ _makefile
+ |_include
+ |___db
+ |___codec
+ |___ui
+ |
+ |_lib
+ |___db
+ |___codec
+ |___ui
+ |
+ |_app
+ |__player
+ |_doc
+
+lib/db lib/codec lib/ui app/player中均包含源代码和一个makefile
+
+顶层makefile的设计
+--------------root.Makefile------------
+lib_codec := lib/codec
+lib_db := lib/db
+lib_ui := lib/ui
+libraries := $(lib_codec) $(lib_db) $(lib_codec)
+player := app/player
+
+.PHONY: all $(player) $(libraries)
+all: $(player)
+$(player) $(libraries):
+    $(MAKE) --directory=$@
+--------------root.Makefile------------
+上述的makefile代码不同与如下代码
+下面这个例子无法正确的将错误传送到上层的make，也
+无法让make以并行的方式对子目录进行编译的动作
+eg:
+all:
+    for d in $(player) $(libraries); do\
+        $(MAKE) --directory=$$d; \
+    done
+
+
+
+
+
+
