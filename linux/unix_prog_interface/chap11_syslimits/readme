@@ -1,0 +1,6 @@
+获取系统限制的选项
+shell命令getconf -a 获取linux系统上所有的限制条件
+SUSv3定义了是哪个系统限制选项函数
+1.sysconf()
+2.pathconf()
+3.fpathconf()
