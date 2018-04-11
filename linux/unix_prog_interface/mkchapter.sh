@@ -15,7 +15,7 @@ mkdir "$1"
 if [ $? -ne 0 ]; then
     exit 1
 else
-    cp Makefile_template.mk "$1"
+    cp Makefile_template.mk "$1/Makefile"
 fi
 
 exit 0
