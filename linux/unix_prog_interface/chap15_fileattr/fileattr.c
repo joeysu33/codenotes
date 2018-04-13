@@ -46,6 +46,7 @@ show_line(const char *msg, ...) {
 void
 show_stat(struct stat *s) {
     show_line("ID of device containing file: %lu", s->st_dev);
+    show_line("Major devID:%d Minor devID:%d", s->st_dev >> 20, s->st_dev << 12);
     show_line("inode number :%lu", s->st_ino);
     show_line("mode:%x", s->st_mode);
     show_line("number of hard links:%d", s->st_nlink);
