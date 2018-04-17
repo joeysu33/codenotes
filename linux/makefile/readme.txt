@@ -89,7 +89,7 @@ define free-space
 endef
 
 变量赋值操作
-定义     何时扩展a  合适扩展b
+定义     何时扩展a  何时扩展b
 a = b     立即       延后
 a := b    立即       立即
 a += b    立即       延后或立即
