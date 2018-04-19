@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <memory.h>
 #include <unistd.h>
+#include <string.h>
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -35,8 +36,24 @@ main(int argc, char* argv[])  {
     memset(&addr, 0, sizeof(struct sockaddr_in));
     addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(sc_port);
 
+    /*
+     * 可以给客户端本地指定一个端口
+     * 小于65536，这样本地的端口就被限定了
+     */
+    addr.sin_port = htons(54321);
+    if(bind(fd, (const struct sockaddr*)&addr, sizeof(addr)) == -1) {
+        close(fd);
+        perror("bind ");
+        return 1;
+    }
+
+    /*!
+     * 内核会记录该socket所对应的对端socket信息，直接进行读写
+     * 连接上去之后就可以直接读写了,连接到服务器，
+     * 端口改为服务器的
+     */
+    addr.sin_port = htons(sc_port);
     if(connect(fd, (const struct sockaddr*)&addr, sizeof(addr)) == -1) {
         close(fd);
         perror("bind ");
@@ -50,7 +67,6 @@ main(int argc, char* argv[])  {
      */
     for(i=1; i<argc; ++i) {
         nWritten = write(fd, argv[i], strlen(argv[i]));
-        //nWritten = sendto(fd, argv[i], strlen(argv[i]), 0, (const struct sockaddr*)&addr, sizeof(addr));
         if(nWritten < 0) {
             close(fd);
             perror("write ");

@@ -8,6 +8,11 @@
  * 客户端直接绑定即可read/write
  * 服务端不行，服务端需要有对端地址(端口)
  * 服务端必须要sento recvfrom，否则无法区分过来的客户端
+ *
+ * 严重警告:
+ * 1.绑定地址的时候需要注意三要素 1:IP地址 2:端口 3:地址协议
+ * 2.从socket上获取对端socket地址的时候，必须而且一定要注意，先
+ *   给socket的地址长度赋值
  */
 
 #include <stdio.h>
@@ -59,11 +64,15 @@ main() {
         return 2;
     }
 
-    socklen=0;
     memset(buf, 0, sizeof(buf));
 
     while(1) {
-        socklen=0;
+        /*!
+         * 严重警告
+         * 如果要获取对端的socket地址，这里必须要初始化socket的地址长度
+         * 否则会无法读取对端的socket地址
+         */
+        socklen=sizeof(caddr);
         memset(&caddr, 0, sizeof(caddr));
         nReaded = recvfrom(fd, buf, sizeof(buf)-1, 0, (struct sockaddr*)&caddr, &socklen);
         if(socklen != sizeof(struct sockaddr_in)) {
