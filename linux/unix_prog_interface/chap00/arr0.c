@@ -103,6 +103,13 @@ main() {
     printf("siezof(snull_t) = %lu\n", sizeof(struct snull));
     //printf("sizeof(snull2_t) = %lu\n", sizeof(struct snull2));
     printf("s1=%p, s2=%p\n", &s1, &s2);
+    *(char*)&s1 = 'a';
+    *(char*)&s2 = 'b';
+    printf("s1=%p, s2=%p, s1=%c s2=%c\n", &s1, &s2, *(char*)&s1, *(char*)&s2);
+
+    *(char*)&s1 = 'c';
+    *(char*)&s2 = 'd';
+    printf("s1=%p, s2=%p, s1=%c s2=%c\n", &s1, &s2, *(char*)&s1, *(char*)&s2);
 
     return 0;
 }
