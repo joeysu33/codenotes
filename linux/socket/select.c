@@ -1,9 +1,11 @@
 /*!
  * 使用select函数来实现I/O复用,select一般支持1024左右，实际的值是FD_SETSIZE
+ * select(或pselect)和poll(或ppoll)，判断可读写的条件都是socket非阻塞
  *
  * 文件描述符边界:
  * 特别注意:在Linux上FD_SETSIZE是对一个值的边界进行限制，也就是说如果我事先构建了
  * 1025个文件描述符(加入FD_SETSIZE是1024)的话，那么1025的描述符是不会处理的
+ * tv可能会修改
  *
  * 实际内核支持的更多
  * int select(int nfds, fd_set *readfd, fd_set* writefd, fd_set* exceptfd,
@@ -16,7 +18,7 @@
  *
  * return:
  * 0:超时
- * -1:错误
+ * -1:错误，错误类型EBADF,不合法的描述符 EINVAL,不合法的参数, EINTR，接收到中断信号, ENOMEM,没有足够的内存
  * select每次都需要重新设置
  *
  *  FD_ZERO(fd_set* s);
@@ -28,9 +30,6 @@
  *  select/poll 水平触发
  *  signal I/O  边缘触发
  *  epolll      水平触发、边缘触发
- *
- * 在使用IO多路复用的时候，一定要将socket设置为O_NONBLOCK，这样避免在操作socket的时候造成阻塞
- * 阻塞应该在select/poll的IO多路复用上发生
  *
  * 本例子实现一个chatroom的服务端，可以让服务端和客户端之间进行聊天
  * 客户端将所有的数据传送到服务器，服务器将所有的信息分发给其他客户端
@@ -45,6 +44,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include <fcntl.h>
 #include <arpa/inet.h> //inet_addr
 #include <netinet/in.h> //struct sockaddr
@@ -55,9 +55,9 @@
 
 
 #define MAX_CLINET 10
-#define PORT 8888
 #define BACKLOG 5
 #define QUEUE_SIZE 20
+//#define ENABLE_NONBLOCK
 
 void 
 maxSupport() {
@@ -72,6 +72,14 @@ static int sendoff[MAX_CLINET];
 static int recvoff[MAX_CLINET];
 static chatmsg_t msgQueue[QUEUE_SIZE];
 static int msgQueueIndex;
+/*!
+ * 每个客户端自己记录发送的消息索引，所有
+ * 要发送的消息均来自消息队列
+ * (clientMsgIndex+1) !=  msgQueue
+ * clientMsgIndex++;
+ * clientMsgIndex %= QUEUE_SIZE
+ */
+static int clientMsgIndex[MAX_CLINET];
 
 int
 getClientIndex(int fd) {
@@ -90,7 +98,7 @@ getClientIndex(int fd) {
 void
 recvChatMsg(int fd, chatmsg_t* msg) {
     int index = getClientIndex(fd);
-    int n = recv(fd, (char*)msg+recvoff[index], chatMsgLen-recvoff[index], 0);
+    ssize_t n = recv(fd, (char*)msg+recvoff[index], chatMsgLen-recvoff[index], 0);
     if(n <= 0) {
         perror("recv ");
         exit(1);
@@ -101,15 +109,18 @@ recvChatMsg(int fd, chatmsg_t* msg) {
          * 确定已经接收了一个完整的数据
          * 将该数据放到队列
          */
-        printf("received from:%d ,data=%d (bytes)\n", fd, n);
+        //printf("received from:%d ,data=%d (bytes)\n", fd, n);
         if(recvoff[index] == 0) {
+            msg->m_extra = fd;
             memcpy(&msgQueue[msgQueueIndex], msg, chatMsgLen);
-            printf("接收到了一个完整的消息，来自:%s,内容:%s, FD=%d\n", msg->m_name, msg->m_msg, fd);
+            printf("接收到了一个完整的消息，来自:%s,内容:%s, FD=%d\n", msgQueue[msgQueueIndex].m_name, msgQueue[msgQueueIndex].m_msg, fd);
             /*!
              * 数组循环队列*/
             msgQueueIndex++;
             msgQueueIndex %= QUEUE_SIZE;
             memset(msg, 0, chatMsgLen);
+        } else {
+            printf("----收到数据:%ld,来自:%d\n", n,fd);
         }
     }
 }
@@ -120,7 +131,9 @@ recvChatMsg(int fd, chatmsg_t* msg) {
 void 
 sendChatMsg(int fd, const chatmsg_t* msg) {
     int index = getClientIndex(fd);
-    int n= send(fd, (char*)msg+sendoff[index], chatMsgLen-sendoff[index], 0) ;
+    ssize_t n;
+    
+    n= send(fd, (char*)msg+sendoff[index], chatMsgLen-sendoff[index], 0) ;
     if(n <= 0) {
         perror("send ");
         exit(1);
@@ -130,9 +143,13 @@ sendChatMsg(int fd, const chatmsg_t* msg) {
         /*
          * 确定已经发送了一个完整的数据
          */
-        printf("send to:%d, data=%d (bytes)\n", fd, n);
+        //printf("send to:%d, data=%d (bytes)\n", fd, n);
         if(sendoff[index] == 0) {
             printf("发送了一个完整的消息给:%d, 消息来自:%s, 消息内容:%s\n", fd, msg->m_name, msg->m_msg);
+            /*!将该客户端的消息指向下一个*/
+            //clientMsgIndex[index]++;
+        } else {
+            printf("---发送数据:%ld,给:%d\n", n, fd);
         }
     }
 }
@@ -145,11 +162,13 @@ main(int argc, char* argv[]) {
     fd_set wfds, rfds;
     struct timeval tv;
 
-    tv.tv_sec = 1;
+    //1 second
+    tv.tv_sec = 30;
     tv.tv_usec = 0;
 
     /*!默认未连接的都是-1*/
     for(i=0; i<MAX_CLINET; ++i) client[i]=-1;
+    for(i=0; i<MAX_CLINET; ++i) clientMsgIndex[i]=-1;
     maxSupport();
     sfd = socket(AF_INET, SOCK_STREAM, 0);
     if(sfd == -1) {
@@ -159,10 +178,12 @@ main(int argc, char* argv[]) {
 
     /*!
      * 将server的socket设置为非阻塞*/
+#if defined(ENABLE_NONBLOCK)
     if(fcntl(sfd, F_SETFL, O_NONBLOCK) == -1) {
         perror("fcntl ");
         return 1;
     }
+#endif
 
     memset(&saddr, 0, sizeof(saddr));
     saddr.sin_family = AF_INET;
@@ -204,7 +225,11 @@ main(int argc, char* argv[]) {
                 caddrLen = sizeof(struct sockaddr_in);
                 if(i != MAX_CLINET) {
                     /*!在接收socket之后，直接将对等socekt设置为非阻塞，注意这里的标志位是SOCK_NONBLOCK，如果是fcntl的话是O_NONBLOCK*/
+#if defined(ENABLE_NONBLOCK)
                     client[i] = accept4(sfd, (struct sockaddr*)&caddr, &caddrLen, SOCK_NONBLOCK);
+#else
+                    client[i] = accept4(sfd, (struct sockaddr*)&caddr, &caddrLen, 0);
+#endif
                     if(client[i] == -1) {
                         perror("accept4 ");
                         return 1;
@@ -222,9 +247,45 @@ main(int argc, char* argv[]) {
                 if(FD_ISSET(client[i], &rfds)) {
                     printf("从客户端接收到数据:%d\n", client[i]);
                     recvChatMsg(client[i], &crmsg[i]);
-                } else if(FD_ISSET(client[i], &wfds)) {
-                    printf("可以将数据写入到客户:%d\n", client[i]);
-                    sendChatMsg(client[i], &csmsg[i]);
+                } 
+
+                if(FD_ISSET(client[i], &wfds)) {
+                    //printf("可以将数据写入到客户:%d\n", client[i]);
+                    for(i=0; i<MAX_CLINET; ++i) {
+                        /*!
+                         * 该消息队列中存在可以发送的数据
+                         * 如果有的消息阻塞太慢可能会丢失数据（循环队列)
+                         * 仅发送不是来自客户端自己的消息
+                         */
+                        //无任何消息可以发送
+                        if(((clientMsgIndex[i]+1) % QUEUE_SIZE) == msgQueueIndex) {
+                            continue;
+                        }
+
+                        clientMsgIndex[i]++;
+                        for(;;) {
+                            if(((clientMsgIndex[i]+1) % QUEUE_SIZE) == msgQueueIndex) {
+                                break;
+                            }
+
+                            if(msgQueue[clientMsgIndex[i]].m_extra == client[i]) {
+                                clientMsgIndex[i]++;
+                                clientMsgIndex[i] %= QUEUE_SIZE;
+                            } else {
+                                break;
+                            }
+                        }
+
+                        if(((clientMsgIndex[i]+1) % QUEUE_SIZE) != msgQueueIndex) {
+                            /*!第一次使用，进行初始化*/
+                            //if(clientMsgIndex[i] < 0) clientMsgIndex[i]=0;
+                            printf("clientMsgIndex[%d]=%d, msgQueueIndex=%d\n", i,clientMsgIndex[i], msgQueueIndex);
+                            //exit(1);
+                            memcpy(&csmsg[i], &msgQueue[clientMsgIndex[i]], sizeof(chatmsg_t));
+                            assert(strlen(csmsg[i].m_name) > 0);
+                            sendChatMsg(client[i], &csmsg[i]);
+                        } 
+                    }
                 }
             }
 
@@ -242,6 +303,8 @@ main(int argc, char* argv[]) {
             }
             FD_SET(sfd, &rfds);
             maxfd++;
+            tv.tv_sec = 30;
+            tv.tv_usec = 0;
         }
     }
 
