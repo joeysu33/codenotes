@@ -2,6 +2,8 @@
  * 针对select编写的chatroom
  * 所编写的客户端,客户端可以向服务器发送数据
  * 只接收来自服务器中其他人发送的消息
+ * 因为大部分情况始终可写，所以会导致CPU的占用非常高
+ * select调用立即返回
  */
 
 #include <unistd.h>  //STDIN_FILENO STDOUT_FILENO STDERR_FILENO
@@ -30,11 +32,13 @@ static char haveData;
 void
 recvChatMsg(int fd, chatmsg_t* msg) {
     ssize_t n;
-    memset(msg, 0, sizeof(chatmsg_t));
     n = recv(fd, (char*)msg+recvoff, chatMsgLen-recvoff, 0);
     if(n < 0) {
         perror("recv ");
         exit(200);
+    } else if(n==0){ 
+        perror("recv 0");
+        exit(100);
     } else {
         recvoff += n;
         recvoff %= chatMsgLen;
@@ -43,6 +47,7 @@ recvChatMsg(int fd, chatmsg_t* msg) {
          */
         if(recvoff == 0) {
             printf("%s:接收到了来自:%s，内容:%s\n", name, msg->m_name, msg->m_msg);
+            memset(msg, 0, sizeof(chatmsg_t));
         } else {
             printf("---收到数据:%ld\n", n);
         }
@@ -55,14 +60,17 @@ sendChatMsg(int fd, chatmsg_t* msg) {
     /*!可能msg并未发送完成*/
     if(!haveData) return ;
     memcpy(&msg->m_msg, buf, sizeof(buf));
-    memcpy(&msg->m_name, name, sizeof(buf));
+    memcpy(&msg->m_name, name, sizeof(name));
     memset(buf, 0, sizeof(buf));
     haveData = 0;
     n = send(fd, (char*)msg+sendoff, chatMsgLen-sendoff, 0);
     if(n < 0) {
         perror("send ");
         exit(2);
-    } else {
+    } else if(n==0) {
+        perror("send 0");
+        exit(100);
+    } else{
         sendoff += n;
         sendoff %= chatMsgLen;
         /*!发送完成一个完整的数据*/
@@ -122,6 +130,7 @@ readLine(int fd) {
         }
         haveData = 1;
     }
+
 }
 
 void
@@ -191,7 +200,9 @@ main(int argc, char* argv[]) {
 
     set1sec(&tv);
     for(;; ) {
-        n= select(maxfd, &rfds, &wfds, NULL, &tv);
+        //优化
+        //n= select(maxfd, &rfds, &wfds, NULL, &tv);
+        n= select(maxfd, &rfds, NULL, NULL, &tv);
         if(n < 0) {
             perror("select ");
             return 4;
@@ -201,24 +212,27 @@ main(int argc, char* argv[]) {
             if(FD_ISSET(fd, &rfds)) {
                 recvChatMsg(fd, &rcvMsg);
             }
-            if(FD_ISSET(fd, &wfds)) {
+            //为了降低CPU的资源，将发送移动到readLine中
+            /*if(FD_ISSET(fd, &wfds)) {
                 sendChatMsg(fd, &sndMsg);
-            }
+            }*/
             if(FD_ISSET(STDIN_FILENO, &rfds)) {
                 readLine(STDIN_FILENO);
+                sendChatMsg(fd, &sndMsg);
             }
 
-            /*!
-             * 重新组织select
-             */
-            FD_ZERO(&rfds);
-            FD_ZERO(&wfds);
-            FD_SET(STDIN_FILENO, &rfds);
-            FD_SET(fd, &rfds);
-            FD_SET(fd, &wfds);
-            maxfd = fd+1;
-            set1sec(&tv);
         }
+        /*!
+         * 重新组织select
+         */
+        FD_ZERO(&rfds);
+        FD_ZERO(&wfds);
+        FD_SET(STDIN_FILENO, &rfds);
+        FD_SET(fd, &rfds);
+        FD_SET(fd, &wfds);
+        maxfd = fd+1;
+        set1sec(&tv);
+
     }
 
     return 0;

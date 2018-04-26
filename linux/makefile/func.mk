@@ -4,7 +4,7 @@
 #strip 会将的多个空格，转换成一个空格
 #addprefix
 #addsuffix
-#wildcard 野匹配，采用*来进行匹配
+#wildcard 野匹配，采用*来进行匹配，可以用来筛选文件$(wildcard *.c) 筛选*.c的文件
 #filter 以pattern模式(%)来过滤text字符串中的单词，保留符合模式的单词
 #filter-out  反过滤函数，以pattern模式过滤<text>字符串中的单词，去除符合模式中的单词
 #call call <expression>, <param1>, <param2>... 使用param来占位表达式中的$(1) $(2)

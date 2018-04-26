@@ -20,6 +20,7 @@
  * 0:超时
  * -1:错误，错误类型EBADF,不合法的描述符 EINVAL,不合法的参数, EINTR，接收到中断信号, ENOMEM,没有足够的内存
  * select每次都需要重新设置
+ * socket recv返回0表示，对端的socket已经关闭了
  *
  *  FD_ZERO(fd_set* s);
  *  FD_SET(int fd, fd_set* s);
@@ -33,6 +34,7 @@
  *
  * 本例子实现一个chatroom的服务端，可以让服务端和客户端之间进行聊天
  * 客户端将所有的数据传送到服务器，服务器将所有的信息分发给其他客户端
+ * 如果监听可写，则非常占用CPU资源，因为只要对方有接收数据，本段就始终能写
  */
 
 #define _GNU_SOURCE
@@ -57,6 +59,7 @@
 #define MAX_CLINET 10
 #define BACKLOG 5
 #define QUEUE_SIZE 20
+#define LISTEN_WR
 //#define ENABLE_NONBLOCK
 
 void 
@@ -99,10 +102,13 @@ void
 recvChatMsg(int fd, chatmsg_t* msg) {
     int index = getClientIndex(fd);
     ssize_t n = recv(fd, (char*)msg+recvoff[index], chatMsgLen-recvoff[index], 0);
-    if(n <= 0) {
+    if(n < 0) {
         perror("recv ");
         exit(1);
-    }else {
+    }else if(n==0) {
+        printf("close client:%d\n",fd);
+        client[index]=-1;
+    } else{
         recvoff[index] += n;
         recvoff[index] %= chatMsgLen;
         /*!
@@ -134,10 +140,13 @@ sendChatMsg(int fd, const chatmsg_t* msg) {
     ssize_t n;
     
     n= send(fd, (char*)msg+sendoff[index], chatMsgLen-sendoff[index], 0) ;
-    if(n <= 0) {
+    if(n < 0) {
         perror("send ");
         exit(1);
-    } else {
+    } else if(n==0) {
+        perror("send0 ");
+        exit(1);
+    }else {
         sendoff[index] += n;
         sendoff[index] %= chatMsgLen;
         /*
@@ -207,7 +216,12 @@ main(int argc, char* argv[]) {
     FD_SET(sfd, &rfds);
     maxfd = sfd+1;
     for(;;) {
+#if defined(LISTEN_WR)
         n = select(maxfd, &rfds, &wfds, NULL, &tv);
+#else
+        //因为监听可写基本不阻塞，所以导致非常消耗CPU，故只监听可读
+        n = select(maxfd, &rfds, NULL, NULL, &tv);
+#endif
         if(n < 0) {
             perror("select ");
             return 2;
@@ -247,11 +261,21 @@ main(int argc, char* argv[]) {
                 if(FD_ISSET(client[i], &rfds)) {
                     printf("从客户端接收到数据:%d\n", client[i]);
                     recvChatMsg(client[i], &crmsg[i]);
+
+#if !defined(LISTEN_WR)
+                    for(j=0; j<MAX_CLINET; ++j) {
+                        if(client[j] < 0) continue;
+                        if(j == i) continue;
+                        memcpy(&csmsg[j], &crmsg[i], sizeof(chatmsg_t));
+                        sendChatMsg(client[i], &csmsg[j]);
+                    }
+#endif
                 } 
 
+#if defined(LISTEN_WR)
                 if(FD_ISSET(client[i], &wfds)) {
                     //printf("可以将数据写入到客户:%d\n", client[i]);
-                    for(i=0; i<MAX_CLINET; ++i) {
+                    //for(i=j; i<MAX_CLINET; ++j) {
                         /*!
                          * 该消息队列中存在可以发送的数据
                          * 如果有的消息阻塞太慢可能会丢失数据（循环队列)
@@ -263,49 +287,58 @@ main(int argc, char* argv[]) {
                         }
 
                         clientMsgIndex[i]++;
+                        clientMsgIndex[i] %= QUEUE_SIZE;
+
                         for(;;) {
-                            if(((clientMsgIndex[i]+1) % QUEUE_SIZE) == msgQueueIndex) {
-                                break;
-                            }
-
-                            if(msgQueue[clientMsgIndex[i]].m_extra == client[i]) {
-                                clientMsgIndex[i]++;
-                                clientMsgIndex[i] %= QUEUE_SIZE;
+                            if(msgQueue[clientMsgIndex[i]].m_extra != client[i]) {
+                                memcpy(&csmsg[i], &msgQueue[clientMsgIndex[i]], sizeof(chatmsg_t));
+                                assert(strlen(csmsg[i].m_name) > 0);
+                                sendChatMsg(client[i], &csmsg[i]);
+                                if(((clientMsgIndex[i]+1) % QUEUE_SIZE) != msgQueueIndex) {
+                                     clientMsgIndex[i]++;
+                                } else {
+                                    break;
+                                }
                             } else {
-                                break;
+                               if(((clientMsgIndex[i]+1) % QUEUE_SIZE) == msgQueueIndex) {
+                                   break;
+                               } else {
+                                  clientMsgIndex[i]++;
+                                  clientMsgIndex[i] %= QUEUE_SIZE;
+                               }
                             }
-                        }
+                       }
 
-                        if(((clientMsgIndex[i]+1) % QUEUE_SIZE) != msgQueueIndex) {
-                            /*!第一次使用，进行初始化*/
-                            //if(clientMsgIndex[i] < 0) clientMsgIndex[i]=0;
+                        /*if(((clientMsgIndex[i]+1) % QUEUE_SIZE) != msgQueueIndex) {
                             printf("clientMsgIndex[%d]=%d, msgQueueIndex=%d\n", i,clientMsgIndex[i], msgQueueIndex);
-                            //exit(1);
                             memcpy(&csmsg[i], &msgQueue[clientMsgIndex[i]], sizeof(chatmsg_t));
                             assert(strlen(csmsg[i].m_name) > 0);
                             sendChatMsg(client[i], &csmsg[i]);
-                        } 
-                    }
+                        } */
+                    //}
                 }
+#endif
             }
 
-            /*!重新组织fd_set*/
-            FD_ZERO(&rfds);
-            FD_ZERO(&wfds);
-            maxfd = sfd;
-            for(i=0; i<MAX_CLINET; ++i) {
-                if(client[i] < 0) continue;
-                if(maxfd < client[i]) {
-                    maxfd = client[i];
-                }
-                FD_SET(client[i], &rfds);
-                FD_SET(client[i], &wfds);
-            }
-            FD_SET(sfd, &rfds);
-            maxfd++;
-            tv.tv_sec = 30;
-            tv.tv_usec = 0;
         }
+        /*!重新组织fd_set*/
+        FD_ZERO(&rfds);
+        FD_ZERO(&wfds);
+        maxfd = sfd;
+        for(i=0; i<MAX_CLINET; ++i) {
+            if(client[i] < 0) continue;
+            if(maxfd < client[i]) {
+                maxfd = client[i];
+            }
+            FD_SET(client[i], &rfds);
+            FD_SET(client[i], &wfds);
+        }
+
+        FD_SET(sfd, &rfds);
+        maxfd++;
+        tv.tv_sec = 30;
+        tv.tv_usec = 0;
+
     }
 
     return 0;

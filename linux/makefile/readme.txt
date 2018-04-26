@@ -62,10 +62,10 @@ myjar: *.class
     $(create-jar)
 
 #格式
-#define [marco-name]
-#command1
-#command2
-#endef
+define [marco-name]
+command1
+command2
+endef
 
 define create-jar
     @echo Creating $@
@@ -168,6 +168,25 @@ all: aa \
 
 会自动在该目录下搜索aa bb cc 的源文件(*.c或*.cpp)，然后进行编译,构建成一个可执行文件
 
+例子
+SRCS = $(wildcard *.c)
+OBJS = $(patsubst %.c, %.o, $(SRCS))
+TARGETS = $(patsubst %.o, %, $(OBJS))
 
+all: $(TARGETS)
+
+#不会一一对应的，需要自己来实现
+#错误写法 gcc -o $@ $< 这样始终会使用第一个来进行编译
+#会造成很严重的错误
+$(TARGETS):$(OBJS)
+	gcc -o $@ $(join $@, .o)
+
+#模式匹配可以自动一一对应
+%.o : %.c
+	gcc -c -o $@ $<
+
+clean:
+	@$(RM) -f *.o
+	@find . -maxdepth 1 -type f  -executable -print0 -exec rm -f {} \;
 
 
