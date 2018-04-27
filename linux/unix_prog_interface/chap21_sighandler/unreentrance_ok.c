@@ -17,7 +17,7 @@
 static const char* sc_s1 = "oooo";
 static const char* sc_s2 = "xxxx";
 static const char* sc_salt =  "xx";
-static sig_atomic_t handled;
+static volatile sig_atomic_t handled;
 
 void
 handler_inter(int sig) {
