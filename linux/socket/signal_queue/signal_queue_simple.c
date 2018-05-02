@@ -112,6 +112,9 @@ main() {
         return 1;
     }
 
+    /*!
+     * 可以修改为sigwait或sigtimedwait
+     */
     for(;;) pause();
     return 0;
 }

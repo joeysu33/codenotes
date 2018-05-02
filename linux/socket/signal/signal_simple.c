@@ -29,6 +29,15 @@ void
 sigio_handler(int sig) {
     /*!设置获取信号的标志位*/
     gotSigIO = 1;
+
+}
+
+void
+sigio_sigaction(int sig, siginfo_t* si, void* ucontext) {
+    gotSigIO = 1;
+
+    /*!Unsafe in async IO */
+    printf("si->signo=%d si->fd=%d\n", si->si_signo, si->si_fd);
 }
 
 void setTimeVal(struct timeval* tv) {
@@ -45,8 +54,9 @@ main() {
     struct timeval tv;
     struct sigaction sa;
     sigemptyset(&sa.sa_mask);
-    sa.sa_flags = SA_RESTART;
-    sa.sa_handler = sigio_handler;
+    sa.sa_flags = SA_RESTART | SA_SIGINFO;
+    //sa.sa_handler = sigio_handler;
+    sa.sa_sigaction = sigio_sigaction; //SA_SIGINFO
 
     /*!
      * 设置信号的处理函数，要在fcntl之前
@@ -68,6 +78,17 @@ main() {
      * 设置文件描述符的标志位
      */
     if(fcntl(STDIN_FILENO, F_SETFL, O_ASYNC) < 0) {
+        perror("fcntl ");
+        return 1;
+    }
+
+    /*!
+     * 如果需要让siginfo_t中的 si_fd有效，必须要设置
+     * fcntl(fd, F_SETSIG, sig)
+     * 其中，如果希望能有序的处理信号，sig必须是
+     * 实时信号 31 < sig < 62
+     */
+    if(fcntl(STDIN_FILENO, F_SETSIG, SIGIO) < 0) {
         perror("fcntl ");
         return 1;
     }
@@ -116,6 +137,7 @@ main() {
                             if(buf[i] == 0) {
                                 printf("line:%s\n", line);
                                 bufPos=0;
+                                gotSigIO = 0;
                                 break;
                             }
                             i++;
@@ -125,7 +147,9 @@ main() {
                             line[sizeof(line)-1]=0;
                             printf("line=%s\n", line);
                             bufPos=0;
+                            gotSigIO = 0;
                         }
+                        break;
                     }
                 }
             }
