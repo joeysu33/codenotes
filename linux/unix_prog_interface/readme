@@ -28,3 +28,5 @@ int open(const char*, int flag, int mode);
     1.另外如果flag指定了O_CREAT，则必须指定mode,否则系统会随机给
     2.mode的最终有效值是mode & ~umask
     3.umask可以通过调用函数和shell命令获取
+
+Linux默认不生成核心转储文件，如果需要生成的话，使用ulimit命令来打开

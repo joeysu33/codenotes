@@ -19,3 +19,5 @@ https://github.com/lotabout/write-a-C-interpreter.git
 https://github.com/NullHypothesis/hping3.git
 https://github.com/libevent/libevent.git
 https://github.com/nmathewson/libevent-book.git
+https://github.com/secdev/scapy.git
+
