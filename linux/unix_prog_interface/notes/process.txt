@@ -1,0 +1,29 @@
+Linux的进程相关内容
+进程的几个基本状态：就绪(Ready)、阻塞(Block)、运行(Running)
+Linux的详细任务状态，可以通过ps -elf查看, 6中Linux进程状态(T,Z,R,D,S,X)
+
+T (TASK_STOPPED or TASK_TRACED), TASK_STOPPED和TASK_TRACED类似，
+  都是程序暂停，但是TASK_TRACED只能通过ptrace来恢复继续
+  而TASK_STOPED是可以通过SIGCONT来继续执行
+
+Z (TASK_DEAD or TASK_ZOMBIE), 退出状态，进程成为僵尸进程
+  僵尸进程的所有资源都被收回，仅仅存在一个task_struct，所以称为僵尸进程
+  父进程可以通过wait来等待僵尸进程，从而释放task_struct资源，task_struct
+  之所以没有删除，主要是为了方便其他进程来读取该退出信息，僵尸进程会给init (systemd)进程
+  进行托管(又称为1号进程)
+
+X (TASK_EXIT) 退出状态，进程即将被销毁
+
+R (TASK_RUNNING) 运行状态
+
+S (TASK_INTERRUPTABLE) 可中断的睡眠状态
+
+D (TASK_UNINTERRUPTABLE) 不可中断的睡眠状态
+
+
+
+
+
+
+
+
