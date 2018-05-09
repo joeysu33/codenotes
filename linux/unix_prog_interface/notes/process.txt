@@ -8,9 +8,7 @@ T (TASK_STOPPED or TASK_TRACED), TASK_STOPPED和TASK_TRACED类似，
 
 Z (TASK_DEAD or TASK_ZOMBIE), 退出状态，进程成为僵尸进程
   僵尸进程的所有资源都被收回，仅仅存在一个task_struct，所以称为僵尸进程
-  父进程可以通过wait来等待僵尸进程，从而释放task_struct资源，task_struct
-  之所以没有删除，主要是为了方便其他进程来读取该退出信息，僵尸进程会给init (systemd)进程
-  进行托管(又称为1号进程)
+  父进程可以通过wait来等待僵尸进程，从而释放task_struct资源
 
 X (TASK_EXIT) 退出状态，进程即将被销毁
 
