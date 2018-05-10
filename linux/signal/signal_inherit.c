@@ -6,8 +6,15 @@
  *
  * 2.掌握waitpid搞清楚进程退出的reason
  * 3.在SIGCHLD中调用 while( waitpid(-1, NULL, WNOHANG) > 0); 来清理僵尸进程(defunct)
+ * 4.在终端中直接Ctrl+C会给该进程组中的所有进程（包含子进程）发送SIGINT信号，
+ *   但是如果从外部调用kill -INT <pid>,则只是针对该进程发送信号，将<pid>修改为-<pgid>
+ *   进程组ID,则进程组中所有人都会收到该信号，
+ *   通过这个实验可以看出，直接在终端中键入Ctrl+C和kill -SIGINT <-pgid>是相同功能。
  *
  * 定时器不会从父进程继承
+ * 操作: kill -INT <parent-pid>
+ *       kill -INT <-parent-pid> (负号)
+ *       kill -QUIT <-parent-pid> (负号)
  */
 
 #define _GNU_SOURCE
@@ -50,6 +57,7 @@ sigaction_handler(int sig, siginfo_t* si, void* ucontext) {
         while((pid = waitpid(-1, &status, WNOHANG | WUNTRACED | WCONTINUED)) > 0) {
             //正常退出
             if(WIFEXITED(status)) {
+                quitNums += 1;
                 strcpy(s, "normal exit");
             } else if(WIFSTOPPED(status)) {
                 strcpy(s, "stopped");
@@ -70,8 +78,6 @@ sigaction_handler(int sig, siginfo_t* si, void* ucontext) {
     } 
 
     if(sig == SIGQUIT) {
-        /*! ********这个值是子进程收到的值*/
-        quitNums += 1;
         printf("I want to quit! [%d]\n", getpid());
         _exit(0);
     }
@@ -109,6 +115,7 @@ int main() {
     }
     sigaction(SIGQUIT, &sa, NULL) ;
     sigaction(SIGCHLD, &sa, NULL) ;
+    sigaction(SIGINT, &sa, NULL) ;
 
     showPidAndPPid("Initialize");
     for(i=0; i<5; ++i) {
@@ -135,8 +142,8 @@ int main() {
         if(quitNums == 5) exit(0);
     }*/
 
-    sleep(120);
 
+    for(;;) pause();
     return 0;
 }
 
