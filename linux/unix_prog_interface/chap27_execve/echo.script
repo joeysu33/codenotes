@@ -1,0 +1,11 @@
+#!./echo_argv aabbcc
+
+#comment line
+first line
+second line
+
+echo.script被执行的时候的操作
+
+#!执行脚本的解释器  解释器参数（打包成一个） 脚本的路径 脚本的参数列表
+#为了保证后续脚本路径的参数，解释器参数始终打包成一个
+
