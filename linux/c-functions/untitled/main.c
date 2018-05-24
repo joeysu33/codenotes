@@ -4,6 +4,9 @@
 #include <string.h>
 #include <malloc.h>
 #include <stdlib.h>
+#include <termio.h>
+#include <termios.h>
+#include <ncurses.h>
 
 int main(int argc, char *argv[]) {
     int flag=0;
