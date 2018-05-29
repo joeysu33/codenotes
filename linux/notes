@@ -1,0 +1,8 @@
+1.可以使用ldd来查看可执行文件的依赖关系,也可以直接使用ld.so来查看，
+  ld.so和libc.so以及pthread.so
+  可以使用find /lib -type f -iname "*ld*.so"来查找ld
+  ldd并不是一个二进制文件而是一个脚本文件
+2.linux系统的启动加载/etc/init.d /etc/rc{N}.d
+3.可以使用lsof来查看当前进程打开的文件描述符，包含socket
+  对于系统启动的需要加上sudo
+  例如sudo lsof -p $(pgrep syslog)
