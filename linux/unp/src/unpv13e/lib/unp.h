@@ -77,9 +77,9 @@
 # include	<pthread.h>
 #endif
 
-#ifdef HAVE_NET_IF_DL_H
-# include	<net/if_dl.h>
-#endif
+//#ifdef HAVE_NET_IF_DL_H
+//# include	<net/if_dl.h>
+//#endif
 
 #ifdef HAVE_NETINET_SCTP_H
 #include	<netinet/sctp.h>
