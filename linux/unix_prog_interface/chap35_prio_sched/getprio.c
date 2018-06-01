@@ -1,5 +1,5 @@
 /*!
- * 获取priority
+ * 获取priority,priority的值也就是nice的值
  * int getpriority(int which, id_t who);
  * int setpriority(int which , id_t who, int prio);
  */
