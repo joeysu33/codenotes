@@ -1,0 +1,5 @@
+PID=8686,PPID=8672 PGRP=8686, SID=8672
+PID=8687,PPID=8686 PGRP=8686, SID=8672
+child created!
+pid=8687, signalno:1, signalstr:Hangup.
+pid=8686, signalno:1, signalstr:Hangup.
