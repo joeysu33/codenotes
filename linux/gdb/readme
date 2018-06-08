@@ -1,0 +1,17 @@
+GDB 常用命令
+
+list [start,end] 列出代码 l
+print var        打印变量 p
+break [行号|函数名称] 设置断点 b
+continue [start,end] 继续运行 c
+info param 列出信息 i
+next 执行到下一行 n
+step 步进 S
+display var 显示变量 
+file filepath 加载文件
+run [args] 运行程序 r
+
+whatis:识别变量或数组的类型
+ptype : 打印类型
+set variable=value
+print variable 
