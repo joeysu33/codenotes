@@ -20,8 +20,26 @@ gcc -fPIC -shared -o libXX.so XX.c
    You can use this syntax to pass an argument to the option.  For example,
    -Wl,-Map,output.map passes -Map output.map to the linker.  When using the GNU linker, you can also get the same effect with -Wl,-Map=output.map.
 
-5.在共享库中设置LD_LIBRARY_PATH
+5.在共享库中设置运行目录，如果没有设置-rpath，可以在环境变量中设置LD_RUN_PATH
 -Wl,-rpath,/home/ds/Qt/Qt5.8.0/5.8/gcc_64/lib
+
+6.在共享库设置$ORIGIN,指定一个相对于当前目录的运行路径,参考ld_var_origin.txt
+-Wl,-z,origin '-Wl,-rpath,$$ORIGIN'  #这里需要注意的是ORIGIN需要使用"$$"来修饰,要使用''来标识，避免$ORIGIN转义
+或者
+-Wl,-rpath,'$$ORIGIN'
+上述两种方法的区别是，第一种会在dynamic段中生成一个FLAGS_1 ORIGIN，第二种方式不会,可以使用readelf -d XXX来输出查看
+
+
+7.动态库中几个重要的环境变量
+LD_LIBRARY_PATH 如果可执行文件是一个set-user-id或set-group-id程序，那么就会忽略LD_LIBRARY_PATH变量，这么做是为了防止用户欺骗动态链接器让其加载与可执行文件所需库同名的私有库,
+                否则私有的动态库就会获取可执行文件的特权（变相获取了用户特权，文件漏洞)
+LD_RUN_PATH (当没有设置-rpath的时候)
+
+8.控制动态库中函数的可见性
+动态库中默认符号的可见性是GLOBAL，可以通过readelf -s XXX来输出查看
+如果对函数增加attribte修饰，可以设置可见性为LOCAL，（类似static对文件外不可见)
+void __attribute__((visibility("hidden"))) function() { }
+
 
 参见qtcreator中libQmlDebug库的Makefile
 LFLAGS        = -Wl,-z,origin '-Wl,-rpath,$$ORIGIN:$$ORIGIN/..:$$ORIGIN/../lib/qtcreator' -Wl,-O1 -Wl,-rpath,/home/ds/Qt/Qt5.8.0/5.8/gcc_64/lib -shared -Wl,-soname,libQmlDebug.so.4

@@ -1,0 +1,90 @@
+动态库选项部分的$ORIGIN变量含义
+
+Exploring $ORIGIN
+
+Wed 21 September 2011
+
+Anyone who works with building something with a few libraries will quickly become familiar with rpath's; that is the ability to store a path inside a binary for finding dependencies at runtime. Slightly less well known is that the dynamic linker provides some options for this path specification; one in particular is a path with the special variable $ORIGIN. ld.so man page has the following to say about the an $ORIGIN appearing in the rpath:
+
+    ld.so understands the string $ORIGIN (or equivalently ${ORIGIN}) in an rpath specification to mean the directory containing the application executable. Thus, an application located in somedir/app could be compiled with gcc -Wl,-rpath,'$ORI‐ GIN/../lib' so that it finds an associated shared library in somedir/lib no matter where somedir is located in the directory hierarchy.
+
+As a way of a small example, consider the following:
+
+$ cat Makefile
+main: main.c lib/libfoo.so
+    gcc -g -Wall -o main -Wl,-rpath='$$ORIGIN/lib' -L ./lib -lfoo main.c
+
+lib/libfoo.so: lib/foo.c
+    gcc -g -Wall -fPIC -shared -o lib/libfoo.so lib/foo.c
+
+$ cat main.c
+void function(void);
+
+int main(void)
+{
+   function();
+   return 0;
+}
+
+$ cat lib/foo.c
+#include <stdio.h>
+
+void function(void)
+{
+   printf("called!\n");
+}
+
+$ make
+gcc -g -Wall -fPIC -shared -o lib/libfoo.so lib/foo.c
+gcc -g -Wall -o main -Wl,-rpath='$ORIGIN/lib' -L ./lib -lfoo main.c
+
+$ ./main
+called!
+
+Now, wherever you should choose to locate main, as long as the library is in the right relative location it will be found correctly. If you are wondering how this works, examining the back-trace from the linker function that expands it is helpful:
+
+$ gdb ./main
+(gdb) break _dl_get_origin
+Function "_dl_get_origin" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) y
+
+Breakpoint 1 (_dl_get_origin) pending.
+(gdb) r
+Starting program: /tmp/test-origin/main
+
+Breakpoint 1, _dl_get_origin () at ../sysdeps/unix/sysv/linux/dl-origin.c:37
+37  ../sysdeps/unix/sysv/linux/dl-origin.c: No such file or directory.
+    in ../sysdeps/unix/sysv/linux/dl-origin.c
+(gdb) bt
+#0  _dl_get_origin () at ../sysdeps/unix/sysv/linux/dl-origin.c:37
+#1  0x00007ffff7de61f4 in expand_dynamic_string_token (l=0x7ffff7ffe128,
+    s=<value optimized out>) at dl-load.c:331
+#2  0x00007ffff7de62ea in decompose_rpath (sps=0x7ffff7ffe440,
+    rpath=0xffffffc0 <Address 0xffffffc0 out of bounds>, l=0x0,
+    what=0x7ffff7df780a "RPATH") at dl-load.c:554
+#3  0x00007ffff7de7051 in _dl_init_paths (llp=0x0) at dl-load.c:722
+#4  0x00007ffff7de2124 in dl_main (phdr=0x7ffff7ffe6b8,
+    phnum=<value optimized out>, user_entry=0x7ffff7ffeb28) at rtld.c:1391
+#5  0x00007ffff7df3647 in _dl_sysdep_start (
+    start_argptr=<value optimized out>, dl_main=0x7ffff7de14e0 <dl_main>)
+    at ../elf/dl-sysdep.c:243
+#6  0x00007ffff7de0423 in _dl_start_final (arg=0x7fffffffe7c0) at rtld.c:338
+#7  _dl_start (arg=0x7fffffffe7c0) at rtld.c:564
+#8  0x00007ffff7ddfaf8 in _start () from /lib64/ld-linux-x86-64.so.2
+
+Just from a first look we can divine that this has found the RPATH header in the dynamic section and has decided to expand the string $ORIGIN.
+
+$ readelf --dynamic ./main
+
+Dynamic section at offset 0x7d8 contains 23 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libfoo.so]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x000000000000000f (RPATH)              Library rpath: [$ORIGIN/lib]
+ 0x000000000000000c (INIT)               0x4004d8
+ 0x000000000000000d (FINI)               0x4006f8
+
+At this point it proceeds to do a readlink on /proc/self/exe to get the path to the currently running binary, effectively does a basename on it and replaces the value of $ORIGIN. Interestingly, if this should fail, it will fall back on the environment variable LD_ORIGIN_PATH for unknown reasons. This might be useful if you were in a bad situation where /proc was not mounted and you still had to run your binary, although you could probably achieve the same thing via the use of LD_LIBRARY_PATH just as well.
+
+This feature should be used with some caution to avoid turning your application in a mess that can't be packaged in any standard manner. One common example of use is probably your java virtual machine to find its implementation libraries.
+
