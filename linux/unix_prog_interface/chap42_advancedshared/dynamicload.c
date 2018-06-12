@@ -36,5 +36,6 @@ main(int argc, char* argv[]) {
     (*func)();
 
     dlclose(handle);
+    printf("close module:%s\n", argv[1]);
     return 0;
 }

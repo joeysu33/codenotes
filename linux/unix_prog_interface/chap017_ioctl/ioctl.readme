@@ -1,0 +1,35 @@
+Ioctl的主要功能模块
+socket操作:
+    SIOCATMARK //sockatmark,sockatmark是使用ioctl(fd, SIOCATMARK,&i);来实现的
+    SIOCSPGRP 
+    SIOCGPGRP  //fcntl, SETOWN(SETOWN_EX)
+file操作:
+    FIOCNBIO   //fnctl, F_SETFL/F_GETFL O_NONBLOCK
+    FIOCASYNC  //fcntl, F_SETFL/F_GETFL O_ASYNC
+    FIOCNREAD  //recvmsg recvfrom flags=>MSG_PEEK，只针对socket
+    FIOCSETOWN //设置属主 fcntl, F_SETOWN(F_SETOWN_EX)
+    FIOCGETOWN //获取属主 fcntl, F_GETOWN(F_GETOWN_EX)
+if操作:
+    SIOCGIFCONF //接口配置IFCONF
+    SIOCSIFADDR //接口地址IFADDR
+    SIOCGIFADDR
+    SIOCSIFFLAGS //接口标志位 IFFLAGS
+    SIOCGIFFLAGS
+    SIOCGIFDSTADDR //接口对端地址IFDSTADDR
+    SIOCSIFDSTADDR
+    SIOCSIFBRDADDR //接口广播地址IFBRDADDR
+    SIOCGIFBRDADDR
+    SIOCGIFNETMASK //接口网络地址掩码IFNETMASK
+    SIOCSIFNETMASK
+    SIOCSIFMETRIC //接口度量IFMETRIC
+    SIOCGIFMETRIC
+    SIOCGIFMTU //接口IFMTU
+arp操作:
+    SIOCSARP
+    SIOCGARP
+    SIOCDARP
+route操作:
+    SIOCADDRT
+    SIOCDELRT
+流操作:
+
