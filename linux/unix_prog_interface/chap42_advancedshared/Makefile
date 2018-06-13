@@ -2,7 +2,7 @@
 #gcc -ldl -o dynload $< 这么书写失败,找不到-ldl选项
 #在执行的时候，如果动态库在本地，需要加上./
 
-all: exe mod1 mod2 exe2
+all: exe mod1 mod2 exe2 init_destroy_mod1
 
 exe:dynamicload.o
 	gcc -o dynload $< -ldl
@@ -12,6 +12,9 @@ exe2: dynamic_exec.o
 
 dynamic_exec.o: dynamic_exec.c
 	gcc -fPIC -g -c -o $@ $<
+
+init_destroy_mod1:init_destroy_mod1.c
+	gcc -shared -g -fPIC -o $@ $<
 
 mod1:mod1.o
 	gcc -shared -o libmod1.so.1.0 -Wl,-soname,libmod1.so.1 $<

@@ -1,6 +1,7 @@
 /*!
  * 根据posix的接口来获取网络接口的索引和名称
- * 主要函数
+ * 主要函数，获取所有的网络接口包含down掉的
+ * 而ioctl(fd, SIOCGIFCONF, ...)仅获取up的接口
  * struct if_nameindex* if_nameindex();
  * void if_freenameindex(struct if_nameindex);
  * if_indextoname()

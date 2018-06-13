@@ -15,5 +15,5 @@ module_destroy() {
 /*!模块卸载函数*/
 
 void m1() {
-    printf("mod1::m1() called.\n");
+    printf("init_destroy_mod1::m1() called.\n");
 }

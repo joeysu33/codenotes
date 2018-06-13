@@ -43,6 +43,7 @@ getIfCount() {
     return n;
 }
 
+
 int
 main(int argc, char*argv[]) {
     int sfd;
@@ -65,6 +66,7 @@ main(int argc, char*argv[]) {
     /*!表示struct ifreq的缓冲长度*/
     ifc.ifc_len = n;
 
+    /*!SIOCGIFCONF仅能获取up的网络接口，down掉的就不行*/
     i = ioctl(sfd, SIOCGIFCONF, &ifc);
     if(i < 0) handle_error("ioctl");
 
@@ -75,5 +77,6 @@ main(int argc, char*argv[]) {
     free(ifc.ifc_buf);
     return 0;
 }
+
 
 
