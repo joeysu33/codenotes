@@ -15,3 +15,6 @@ whatis:识别变量或数组的类型
 ptype : 打印类型
 set variable=value
 print variable 
+
+save breakpoints 保存断点
+source [文件] 加载断点
