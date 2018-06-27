@@ -16,12 +16,27 @@
  * 3.和二叉搜索树的操作基本相同，唯一区别在于操作完成之后需要进行调整(balance)
  *   和其他平衡树的形势相似,例如红黑树fixup
  * 4.AVL树是自底向上的来调整平衡
+ *
+ * 注意事项
+ * 1.空指针情况的处理，例如AVLTree的初始化必须是NULL
+ *   LL和RR操作的时候，如果子节点如空，则返回自身
+ * 2.元素数值比较要注意，方向不要搞错，最好将element作为比较的左值
+ *   这样避免出错
+ * 3.空树的高度为-1,（有的教材也作为0 这样直接返回0即可, 最后一层的高是1)
+ * 4.BST不支持重复数据（可以将重复数据单独用数据结构处理
+ * 5.LL和RR里面的数据操作一定要仔细
+ *   在写RR的时候将 
+     p->m_r = r->m_l;
+     写成
+     p->m_r = p->m_l; 
+     后果很严重
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <limits.h>
+#include <time.h>
 
 typedef int Type;
 
@@ -33,9 +48,7 @@ typedef struct _AVLNode {
     int m_h;
     struct _AVLNode *m_l, *m_r;
 } AVLNode, *AVLTree, *AVLPosition;
-
-int
-max(int a, int b) {
+int max(int a, int b) {
     return (a>b)?a:b;
 }
 
@@ -84,9 +97,9 @@ findMax(AVLTree t) {
 AVLPosition
 find(const Type e, AVLTree t) {
     if(!t) return NULL;
-    if(t->m_elem < e) {
+    if(e < t->m_elem ) {
         return find(e, t->m_l);
-    } else if(t->m_elem > e) {
+    } else if(e > t->m_elem) {
         return find(e, t->m_r);
     }
 
@@ -120,7 +133,7 @@ RR(AVLPosition p) {
     if(!p) return p;
     r = p->m_r;
     if(!r) return p;
-    p->m_r = p->m_l;
+    p->m_r = r->m_l;
     r->m_l = p;
 
     /*!更新高度p, r*/
@@ -145,17 +158,18 @@ RL(AVLPosition p) {
 
 AVLPosition
 balance(AVLPosition p) {
+    //return p;
     if(!p) return p;
     /*!p的左边子树不平衡*/
     if(getHeight(p->m_l) - getHeight(p->m_r) > ALLOWED_IMBALANCE) {
-        if(getHeight(p->m_l->m_l) > getHeight(p->m_l->m_r)) {
+        if(getHeight(p->m_l->m_l) >= getHeight(p->m_l->m_r)) {
             p = LL(p);
         } else {
             p = LR(p);
         }
     /*!p的右边子树不平衡*/
     } else if(getHeight(p->m_r) - getHeight(p->m_l) > ALLOWED_IMBALANCE) {
-        if(getHeight(p->m_r->m_r) > getHeight(p->m_r->m_l)) {
+        if(getHeight(p->m_r->m_r) >= getHeight(p->m_r->m_l)) {
             p = RR(p);
         } else {
             p = RL(p);
@@ -179,6 +193,9 @@ insert(const Type e, AVLTree t) {
         t->m_l = insert(e, t->m_l);
     } else if(e > t->m_elem) {
         t->m_r = insert(e, t->m_r);
+    } else {
+        /*! Find it, do nothing*/
+        ;
     }
 
     /*!make balance, after this, update t*/
@@ -195,23 +212,24 @@ delete(const Type e, AVLTree t) {
         t->m_l = delete(e, t->m_l);
     } else if( e > t->m_elem) {
         t->m_r = delete(e, t->m_r);
-    } 
-
-    /*!Ok, find it */
-    if(t->m_l && t->m_r) {
-        tmp = findMin(t->m_r);
-        t->m_elem = tmp->m_elem; /*!通过赋值已经将其删除*/
-        t->m_r = delete(tmp->m_elem, t->m_r);
+    /*!Ok, find it, 不能始终调用这个，在相等的时候才能调用 */
     } else {
-        tmp = t;
-        if(t->m_l) {
-            t = t->m_l;
-        } else if(t->m_r) {
-            t = t->m_r;
-        } else  {
-            t = NULL;
+        if(t->m_l && t->m_r) { /*!-------这里应该是else，不能是if，如果是if始终都会调用--------*/
+            tmp = findMin(t->m_r);
+            t->m_elem = tmp->m_elem; /*!通过赋值已经将其删除*/
+            t->m_r = delete(tmp->m_elem, t->m_r);
+        } else {
+            tmp = t;
+            if(t->m_l) {
+                t = t->m_l;
+            } else if(t->m_r) {
+                t = t->m_r;
+            } else  {
+                t = NULL;
+            }
+            printf("----delete:%d\n", tmp->m_elem);
+            free(tmp);
         }
-        free(tmp);
     }
 
     /*!make balance, after this, update t*/
@@ -260,10 +278,11 @@ dump3(int type, AVLTree t, const char *s) {
 void
 dump2(AVLTree t, const char* s) {
     dump3(1, t, s);
+    printf("\n");
 }
 
 int
-main(int argc, char *argv[]) {
+litte_test(int argc, char *argv[]) {
     int i, j, k;
     Type arr[] = {35, 40, 0, 12, 9, 36, 37, 39, -5, 10, 99, 121 };
     const int cnt = sizeof(arr)/sizeof(Type);
@@ -273,8 +292,77 @@ main(int argc, char *argv[]) {
         t = insert(j, t);
     }
     dump2(t, "init");
-
     return 0;
+}
+
+void
+random_shuffle(int *ip, int size) {
+    int i, j, k, m;
+    for(i=0; i<size*4; ++i) {
+        k = rand() % size;
+        j = rand() % size;
+        m = ip[k];
+        ip[k] = ip[j];
+        ip[j] = m;
+    }
+}
+
+int
+benchmark_test(int argc, char *argv[]) {
+    int i, j, k, m;
+    const int size = 2 * 10000;
+    const int maxnum = 99999;
+    int *ip;
+
+    srand(time(NULL));
+    ip = (int*)malloc(size *sizeof(int));
+    assert(ip);
+
+    AVLTree t = NULL;
+    /*!随机增加数据，不能有重复数据*/
+    for(i=0; i<size; ++i) {
+        ip[i]=i;
+    }
+
+    random_shuffle(ip, size);
+    for(i=0; i<size; ++i) {
+        j = ip[i];
+        if(find(j, t)) {
+            assert(0);
+        }
+        t = insert(j, t);
+        if(!find(j, t)) {
+            assert(0);
+        }
+    }
+    dump2(t, "init");
+
+    /*!随机删除数据*/
+    printf("random delete:");
+    random_shuffle(ip, size);
+    for(i=0; i<size; ++i) {
+        k = ip[i];
+        printf("[%d] ", k);
+        if(!find(k, t)) {
+            assert(0);
+        }
+        t = delete(k, t);
+        dump2(t, "delete");
+        if(find(k, t)) {
+            assert(0);
+        }
+    }
+    printf("\n");
+    fflush(stdout);
+
+    free(ip);
+}
+
+int
+main(int argc, char *argv[]) {
+    int (*ptest)(int, char *[]);
+    ptest = benchmark_test;
+    return (*ptest)(argc, argv);
 }
 
 

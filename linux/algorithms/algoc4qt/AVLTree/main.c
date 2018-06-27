@@ -33,7 +33,7 @@
 #include <time.h>
 
 typedef int Type;
-static const int size = 2* 10;
+static const int size = 9* 10;
 
 #define INVALID_VALUE INT_MIN
 #define ALLOWED_IMBALANCE 1  /*!允许的不平衡最大值*/
@@ -107,12 +107,14 @@ updateHeight(AVLPosition p) {
     return max(getHeight(p->m_l), getHeight(p->m_r)) + 1;
 }
 
+/*! LL和RR的书写要特别仔细*/
 AVLPosition
 LL(AVLPosition p) {
     AVLPosition l;
     if(!p) return p;
     l = p->m_l;
-    if(!l) return p;
+    //if(!l) return p;
+    assert(l);
     p->m_l = l->m_r;
     l->m_r = p;
 
@@ -127,8 +129,9 @@ RR(AVLPosition p) {
     AVLPosition r;
     if(!p) return p;
     r = p->m_r;
-    if(!r) return p;
-    p->m_r = p->m_l;
+    //if(!r) return p;
+    assert(r);
+    p->m_r = r->m_l;
     r->m_l = p;
 
     /*!更新高度p, r*/
@@ -157,14 +160,14 @@ balance(AVLPosition p) {
     if(!p) return p;
     /*!p的左边子树不平衡*/
     if(getHeight(p->m_l) - getHeight(p->m_r) > ALLOWED_IMBALANCE) {
-        if(getHeight(p->m_l->m_l) >= getHeight(p->m_l->m_r)) {
+        if(getHeight(p->m_l->m_l) > getHeight(p->m_l->m_r)) {
             p = LL(p);
         } else {
             p = LR(p);
         }
     /*!p的右边子树不平衡*/
     } else if(getHeight(p->m_r) - getHeight(p->m_l) > ALLOWED_IMBALANCE) {
-        if(getHeight(p->m_r->m_r) >= getHeight(p->m_r->m_l)) {
+        if(getHeight(p->m_r->m_r) > getHeight(p->m_r->m_l)) {
             p = RR(p);
         } else {
             p = RL(p);
