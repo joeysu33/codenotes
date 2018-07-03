@@ -120,6 +120,7 @@
                 {
                     if( Item < X->Left->Element )
                         X = SingleRotateWithLeft( X );
+                    /*!可以确定X节点及其右子树均大于Item(包含X节点)*/
                     if( X->Left == NullNode )
                         break;
                     /* Link right */

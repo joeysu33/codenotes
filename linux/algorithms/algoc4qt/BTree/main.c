@@ -15,24 +15,23 @@ typedef struct _Node {
 } Node, *BTree, *PNode;
 
 Node*
-insert(const char *inor, int in1, int in2,
-        const char *postor, int post1, int post2,
+insert(const char *inor,
+        const char *postor, int cnt,
         Node* n) {
     char c;
     int mid, i,j;
     if(!inor || !postor) return NULL;
-    if(in1 > in2) return NULL;
-    if(post1 > post2) return NULL;
+    if(cnt < 1) return NULL;
 
-    c = postor[post2];
+    c = postor[cnt-1];
     if(!n) {
         n = (Node*)malloc(sizeof(Node));
         n->m_l = n->m_r = NULL;
         n->m_val = c - '0';
-        printf("insert:%d, in=%s, post=%s, cnt=%d\n", n->m_val, inor+in1, postor+post1, in2-in1+1);
+        printf("insert:%d, cnt=%d\n", n->m_val, cnt);
     }
 
-    for(i=in1,mid=-1; i<=in2; ++i) {
+    for(i=0, mid=-1;i<cnt; ++i){
         if(c == inor[i]) {
             mid = i;
             break;
@@ -44,8 +43,10 @@ insert(const char *inor, int in1, int in2,
         return NULL;
     }
 
-    n->m_l = insert(inor, in1, mid-1, postor, post1, mid-1, n->m_l);
-    n->m_r = insert(inor, mid+1, in2, postor, mid, post2-1, n->m_r);
+    /*!左子树*/
+    n->m_l = insert(inor, postor, mid, n->m_l);
+    /*!右子树*/
+    n->m_r = insert(inor+mid+1, postor+mid, cnt-mid-1, n->m_r);
 
     return n;
 }
@@ -53,16 +54,16 @@ insert(const char *inor, int in1, int in2,
 void
 showInOrder(BTree t) {
     if(!t) return ;
-    showInOrder(t);
+    showInOrder(t->m_l);
     printf("%d ", t->m_val);
-    showInOrder(t);
+    showInOrder(t->m_r);
 }
 
 void
 showPostOrder(BTree t) {
     if(!t) return ;
-    showPostOrder(t);
-    showPostOrder(t);
+    showPostOrder(t->m_l);
+    showPostOrder(t->m_r);
     printf("%d ", t->m_val);
 }
 
@@ -70,8 +71,8 @@ void
 showPreOrder(BTree t) {
     if(!t) return ;
     printf("%d ", t->m_val);
-    showPreOrder(t);
-    showPreOrder(t);
+    showPreOrder(t->m_l);
+    showPreOrder(t->m_r);
 }
 
 void
@@ -95,8 +96,8 @@ main(int argc, char *argv[]) {
 
     cnt = strlen(inord);
     t = NULL;
-    t = insert(inord, 0, cnt-1,
-            postord, 0, cnt-1,
+    t = insert(inord,
+            postord, cnt,
             t);
 
     showBTree(t, 0, "PreOrder");
