@@ -49,4 +49,4 @@ RANLIB        =
 SED           = sed
 STRIP         = strip
 
-
+在QtCreator中可以直接给RPATH来设置依赖的库路径
