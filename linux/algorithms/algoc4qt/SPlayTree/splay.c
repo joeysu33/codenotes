@@ -119,7 +119,8 @@
             {
                 if( Item < X->Element )
                 {
-                    //原代码这里缺失，存在bug
+                    //原代码这里缺失，存在bug,不是源代码有bug，源代码
+                    //通过Null节点，来保证叶子节点的子节点一定不是NULL
                     if(X->Left == NullNode) break;
                     if( Item < X->Left->Element )
                         X = SingleRotateWithLeft( X );
@@ -127,13 +128,15 @@
                     if( X->Left == NullNode )
                         break;
                     /* Link right */
-                    RightTreeMin->Left = X;
+                    RightTreeMin->Left = X; //????
                     RightTreeMin = X;
                     X = X->Left;
                 }
                 else
                 {
-                    //源代码这里缺失，存在bug
+                    //源代码这里缺失，存在bug，
+                    //不是源代码有问题，源代码是通过NULL的叶子节点来保证
+                    //叶子节点的子节点一定不是NULL
                     if(X->Right == NullNode) break;
                     if( Item > X->Right->Element )
                         X = SingleRotateWithRight( X );

@@ -10,7 +10,7 @@ $(TARGETS):$(OBJS)
 
 #模式匹配可以自动一一对应
 %.o : %.c
-	gcc -c -o $@ $<
+	gcc -c -g -o $@ $<
 
 clean:
 	@$(RM) -f *.o

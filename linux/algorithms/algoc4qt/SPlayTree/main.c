@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <assert.h>
 #include "splay.h"
 
 #define DATASIZE 10
@@ -63,6 +64,7 @@ int main()
         t = Insert(d[i], t);
         snprintf(buf, sizeof(buf), "insert %d, SplayTree:", d[i]);
         show(1, t, buf);
+        assert(t->Element == d[i]);
     }
 
     return 0;
