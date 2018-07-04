@@ -1,0 +1,16 @@
+CMake和QMake的区别 (基于QT的IDE)
+
+cmake缺点:
+1.cmake项目是不包含pro文件的，仅包含CMakeList.txt
+3.cmake项目无法通过IDE来新增文件/类等
+4.cmake的项目配置比qmake要复杂
+6.cmake不支持Qt-GUI项目的创建，需要手动创建
+7.如果使用cmake的项目方案，则QtCreator-IDE插件则无法使用
+8.cmake在版本方面的兼容问题(qt3,qt4,qt5的编译)
+
+cmake优点:
+1.独立与Qt，可适配其他第三方库
+2.cmake编译过不仅自含qt的rpath,而且自含其编译结果的rpath,有利于程序的运行
+3.cmake支持多目标的生成（这里QtCreator4.5.1支持多目标的选择执行)
+
+
