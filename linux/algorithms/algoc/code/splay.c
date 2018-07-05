@@ -124,6 +124,14 @@
                     if( X->Left == NullNode )
                         break;
                     /* Link right */
+                    /*! 一直没有搞明白这部分代码的含义
+                     * 原来是这样的,起初RightTreeMin和LeftTreeMax都指向
+                     * Header，但是一旦RightTreeMin和LeftTreeMax被赋值以后
+                     * 就不再指向Header了Header能始终记住最开始的第一个加入
+                     * 到LeftTreeMax和RightTreeMin的节点，以后要做的事情就是
+                     * 向LeftTreeMax的右侧增加根节点(没有右子树)，以及向RightTreeMin的左侧
+                     * 增加根节点(没有左子树）
+                     * /
                     RightTreeMin->Left = X;
                     RightTreeMin = X;
                     X = X->Left;

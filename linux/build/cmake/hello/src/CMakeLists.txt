@@ -1,7 +1,7 @@
 set(SRC_FILES
     "main.c"
     )
-
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 #PROJECT_SOURCE_DIR应该是定义project的目录---
 include_directories(${PROJECT_SOURCE_DIR}/libhello)
 link_directories(${CMAKE_INSTALL_PREFIX}/lib)
