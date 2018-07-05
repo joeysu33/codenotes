@@ -113,6 +113,7 @@
 
             Header.Left = Header.Right = NullNode;
             LeftTreeMax = RightTreeMin = &Header;
+            show(1, X, "Splay");
 //            NullNode->Element = Item;
 
             while( Item != X->Element )
@@ -128,9 +129,11 @@
                     if( X->Left == NullNode )
                         break;
                     /* Link right */
-                    RightTreeMin->Left = X; //????
+                    show(1, RightTreeMin, "A->RightTreeMin");
+                    RightTreeMin->Left = X; //???? 设置Header.Left
                     RightTreeMin = X;
                     X = X->Left;
+                    show(1, RightTreeMin, "B->RightTreeMin");
                 }
                 else
                 {
@@ -143,9 +146,11 @@
                     if( X->Right == NullNode )
                         break;
                     /* Link left */
-                    LeftTreeMax->Right = X;
+                    show(1, LeftTreeMax, "A->LeftTreeMax");
+                    LeftTreeMax->Right = X; //????设置Header.Right
                     LeftTreeMax = X;
                     X = X->Right;
+                    show(1, LeftTreeMax, "B->LeftTreeMax");
                 }
             }  /* while Item != X->Element */
 
@@ -244,3 +249,47 @@
         {
             return T->Element;
         }
+
+
+        void
+random_shuffle(int *d, int cnt) {
+    int i, j, k, t;
+    for(i=0; i <cnt * 4; ++i) {
+        j=rand() % cnt;
+        k= rand() % cnt;
+        if(j == k) continue;
+
+        t = d[j];
+        d[j] = d[k];
+        d[k] = t;
+    }
+}
+
+void
+showTree(const int mode, SplayTree t) {
+    if(!t) return ;
+    if(mode == 0)
+        printf("%d ", t->Element);
+    showTree(mode, t->Left);
+    if(mode == 1)
+        printf("%d ", t->Element);
+    showTree(mode, t->Right);
+    if(mode == 2)
+        printf("%d ", t->Element);
+}
+
+void
+destroyTree(SplayTree t) {
+    if(!t) return ;
+    destroyTree(t->Left);
+    destroyTree(t->Right);
+    free(t);
+}
+
+void
+show(int mode, SplayTree t, const char *s) {
+    printf("%s:", s);
+    showTree(mode, t);
+    printf("\n");
+}
+

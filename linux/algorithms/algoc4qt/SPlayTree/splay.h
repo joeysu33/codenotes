@@ -27,5 +27,9 @@
         SplayTree Remove( ElementType X, SplayTree T );
         ElementType Retrieve( SplayTree T );  /* Gets root item */
 
+        void random_shuffle(int *d, int cnt) ;
+        void  showTree(const int mode, SplayTree t) ;
+        void   destroyTree(SplayTree t) ;
+        void   show(int mode, SplayTree t, const char *s) ;
         #endif  /* _Splay_H */
 /* END */
