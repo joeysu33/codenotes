@@ -7,8 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
-#define NUMS 10
+#define NUMS 1000
 
 typedef struct _Node {
     int m_val;
@@ -158,6 +159,7 @@ SplayTree
 splay_topdown(int k, SplayTree t) {
     Node l, r;
     PNode tmp, tmp2;
+    l.m_val = r.m_val = 0;
     l.m_l = l.m_r = NULL;
     r.m_l = r.m_r = NULL;
 
@@ -170,7 +172,8 @@ splay_topdown(int k, SplayTree t) {
             break;
         } else if(k < t->m_val) {
             if(t->m_l == NULL) break;
-            if(k < t->m_l->m_val) {
+            /*!L(右旋)*/
+            if(k < t->m_l->m_val) { 
                 tmp = t->m_l;
                 t->m_l = tmp->m_r;
                 tmp->m_r = t;
@@ -189,13 +192,15 @@ splay_topdown(int k, SplayTree t) {
                 tmp->m_l = t;
             } else {
                 /*!将树移动到右侧*/
+                t->m_l = NULL;
                 r.m_r = t;
             }
             t = tmp2; /*!mid树变成左子树*/
             r.m_l = NULL;
         } else if(k > t->m_val) {
             if(t->m_r == NULL) break;
-            if(k > t->m_val) {
+            /*!R(左旋)*/
+            if(k > t->m_r->m_val) {
                 tmp = t->m_r;
                 t->m_r = tmp->m_l;
                 tmp->m_l = t;
@@ -214,6 +219,7 @@ splay_topdown(int k, SplayTree t) {
                 tmp->m_r = t;
             } else {
                 /*!将树移动到左侧*/
+                t->m_r = NULL;
                 l.m_l = t;
             }
             t = tmp2;
@@ -223,11 +229,25 @@ splay_topdown(int k, SplayTree t) {
 
     /*!重新组织 reasemembl*/
     if(l.m_l) {
-        l.m_l->m_r = t->m_l;
+        //需要将t->m_l加入到l.m_l的最右子树上
+        //l.m_l->m_r = t->m_l;
+        //t->m_l = l.m_l;
+        tmp = l.m_l;
+        while(tmp->m_r) {
+            tmp = tmp->m_r;
+        }
+        tmp->m_r = t->m_l;
         t->m_l = l.m_l;
     }
     if(r.m_r) {
-        r.m_r->m_l = t->m_r;
+        //需要将t->m_r加入到l.m_l的最左子树上
+        //r.m_r->m_l = t->m_r;
+        //t->m_r = r.m_r;
+        tmp = r.m_r;
+        while(tmp->m_l) {
+            tmp = tmp->m_l;
+        }
+        tmp->m_l = t->m_r;
         t->m_r = r.m_r;
     }
 
@@ -316,21 +336,34 @@ emptyTree(SplayTree t) {
     return NULL;
 }
 
+//#define USE_INITDATA
+
 int
 main(int argc, char *argv[]) {
     int i, j;
     int data[NUMS];
+    int initdata[NUMS] = {9, 8, 6, 7, 4, 2, 1, 5, 3, 10 };
     SplayTree t ;
+    char buf[64];
 
     (void)argc;
     (void)argv;
+
+#if defined(USE_INITDATA)
+    assert(sizeof(initdata) == sizeof(data));
+    memcpy(data, initdata, sizeof(data));
+#else
     for(i=0; i<NUMS; ++i) data[i] = i+1;
     random_data(data, NUMS);
+#endif
 
     t = NULL;
     for(i=0; i<NUMS; ++i) {
-        t = insert(data[i], t);
-        show(t, "SplayTree");
+        j = data[i];
+        t = insert(j, t);
+        snprintf(buf, sizeof(buf), "[SplayTree]insert:[%-4d] ", j);
+        show(t, buf);
+        assert(t->m_val == j);
     }
 
     t = emptyTree(t);
