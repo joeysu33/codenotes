@@ -1,1 +1,0 @@
-/usr/bin/cc     CMakeFiles/searchtree.dir/searchtree.c.o  -o bin/searchtree -rdynamic 

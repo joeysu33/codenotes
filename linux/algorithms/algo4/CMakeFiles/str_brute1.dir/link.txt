@@ -1,1 +1,0 @@
-/usr/bin/cc     CMakeFiles/str_brute1.dir/str_brute1.c.o  -o bin/str_brute1 -rdynamic 
