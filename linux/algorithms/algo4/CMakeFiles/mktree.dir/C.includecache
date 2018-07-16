@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ds/github.com/codenotes/linux/algorithms/algo4/btree_mktree_byorder.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+assert.h
+-
+

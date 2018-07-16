@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/splaytree.dir/splaytree.c.o  -o bin/splaytree -rdynamic 

@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/mktree.dir/btree_mktree_byorder.c.o  -o bin/mktree -rdynamic 

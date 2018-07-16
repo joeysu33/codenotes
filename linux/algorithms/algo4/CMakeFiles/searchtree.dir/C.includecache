@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ds/github.com/codenotes/linux/algorithms/algo4/searchtree.c
+stdio.h
+-
+memory.h
+-
+stdlib.h
+-
+assert.h
+-
+time.h
+-
+

@@ -1,0 +1,9 @@
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/rebuild_cache.dir
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/kmp.dir
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/str_brute1.dir
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/edit_cache.dir
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/str_brute2.dir
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/mktree.dir
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/avltree.dir
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/searchtree.dir
+/home/ds/github.com/codenotes/linux/algorithms/algo4/CMakeFiles/splaytree.dir

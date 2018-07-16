@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/kmp.dir/kmp.c.o  -o bin/kmp -rdynamic 

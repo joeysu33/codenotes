@@ -14,7 +14,7 @@ targets := $(foreach i, $(tmp_tar), $(join $(BIN_DIR),$(i)))
 all:$(targets)
 
 $(targets): $(objects)
-	@gcc -o $@ $(join $(join $(OBJ_DIR), $(basename $(notdir $@))), .o) $(CLIBFLAGS)
+	@gcc -o $@ $(join $(join $(OBJ_DIR), $(basename $(notdir $@))), .o) $(CLIBFLAGS) -lpthread
 
 $(objects):$(sources)
 	gcc -c -g -o $@ $(join $(basename $(notdir $@)), .c)
