@@ -1,0 +1,2 @@
+关于Qt::OddEventFill和Qt::WindingFill的区别和关系
+参见qpainter例子程序
