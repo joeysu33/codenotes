@@ -1,0 +1,33 @@
+#list，列表的操作有
+#LENGTH 求长度
+#REVERSE 翻转
+#FIND 查找
+#APPEND 增加
+#GET 获取
+
+#list(LENGTH list_name result_val)
+#list(REVERSE list_name)
+#list(FIND list_name  result_val)
+#list(APPEND list_name new_val)
+#list(GET list_name tmp_val)
+
+set(lst a b c d kk jj ss)
+list(LENGTH lst len)
+message("list: ${lst}")
+message("length of list: ${len}")
+
+list(REVERSE lst)
+message("After reverse: ${lst}")
+
+list(FIND lst "kk" res)
+message("Find kk in ${res}")
+
+list(GET lst 0 res)
+message("Get position 0 , element: ${res}")
+list(GET lst 1 res)
+message("Get position 0 , element: ${res}")
+list(GET lst 5 res)
+message("Get position 0 , element: ${res}")
+
+list(APPEND lst "geoeast")
+message("After add geoeast, list: ${lst}")

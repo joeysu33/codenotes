@@ -9,4 +9,5 @@ add_executable(splaytree splaytree.c)
 add_executable(searchtree searchtree.c)
 add_executable(mktree btree_mktree_byorder.c)
 add_executable(kmp kmp.c)
-
+add_executable(leftheap leftheap.c)
+add_executable(heap heap.c)

@@ -1,0 +1,29 @@
+#foreach(var list) ...
+#endforeach()
+
+set (list "a" "b" "c" "d")
+
+message("list elements:")
+foreach( i ${list})
+    message("i=${i}")
+endforeach()
+
+message("")
+
+#RANGE
+#foreach(loop_var RANGE start end [step])
+foreach(i RANGE 0 10 2)
+    message("i=${i}")
+endforeach()
+
+#使用math计算从0到100
+#设置结果默认为0
+set(res 0)
+foreach(i RANGE 0 100 1)
+    math(EXPR res "${res}+${i}")
+endforeach()
+message("from 0 to 100, res=${res}")
+
+#求length
+list(LENGTH list llen)
+message("list length: ${llen}")

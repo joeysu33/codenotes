@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/ds/github.com/codenotes/linux/algorithms/algo4
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,69 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named kmp
+# Target rules for targets named splaytree
 
 # Build rule for target.
-kmp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 kmp
-.PHONY : kmp
+splaytree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 splaytree
+.PHONY : splaytree
 
 # fast build rule for target.
-kmp/fast:
-	$(MAKE) -f CMakeFiles/kmp.dir/build.make CMakeFiles/kmp.dir/build
-.PHONY : kmp/fast
-
-#=============================================================================
-# Target rules for targets named str_brute1
-
-# Build rule for target.
-str_brute1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 str_brute1
-.PHONY : str_brute1
-
-# fast build rule for target.
-str_brute1/fast:
-	$(MAKE) -f CMakeFiles/str_brute1.dir/build.make CMakeFiles/str_brute1.dir/build
-.PHONY : str_brute1/fast
-
-#=============================================================================
-# Target rules for targets named str_brute2
-
-# Build rule for target.
-str_brute2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 str_brute2
-.PHONY : str_brute2
-
-# fast build rule for target.
-str_brute2/fast:
-	$(MAKE) -f CMakeFiles/str_brute2.dir/build.make CMakeFiles/str_brute2.dir/build
-.PHONY : str_brute2/fast
-
-#=============================================================================
-# Target rules for targets named mktree
-
-# Build rule for target.
-mktree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mktree
-.PHONY : mktree
-
-# fast build rule for target.
-mktree/fast:
-	$(MAKE) -f CMakeFiles/mktree.dir/build.make CMakeFiles/mktree.dir/build
-.PHONY : mktree/fast
-
-#=============================================================================
-# Target rules for targets named avltree
-
-# Build rule for target.
-avltree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 avltree
-.PHONY : avltree
-
-# fast build rule for target.
-avltree/fast:
-	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/build
-.PHONY : avltree/fast
+splaytree/fast:
+	$(MAKE) -f CMakeFiles/splaytree.dir/build.make CMakeFiles/splaytree.dir/build
+.PHONY : splaytree/fast
 
 #=============================================================================
 # Target rules for targets named searchtree
@@ -189,17 +137,95 @@ searchtree/fast:
 .PHONY : searchtree/fast
 
 #=============================================================================
-# Target rules for targets named splaytree
+# Target rules for targets named leftheap
 
 # Build rule for target.
-splaytree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 splaytree
-.PHONY : splaytree
+leftheap: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 leftheap
+.PHONY : leftheap
 
 # fast build rule for target.
-splaytree/fast:
-	$(MAKE) -f CMakeFiles/splaytree.dir/build.make CMakeFiles/splaytree.dir/build
-.PHONY : splaytree/fast
+leftheap/fast:
+	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/build
+.PHONY : leftheap/fast
+
+#=============================================================================
+# Target rules for targets named avltree
+
+# Build rule for target.
+avltree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 avltree
+.PHONY : avltree
+
+# fast build rule for target.
+avltree/fast:
+	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/build
+.PHONY : avltree/fast
+
+#=============================================================================
+# Target rules for targets named mktree
+
+# Build rule for target.
+mktree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mktree
+.PHONY : mktree
+
+# fast build rule for target.
+mktree/fast:
+	$(MAKE) -f CMakeFiles/mktree.dir/build.make CMakeFiles/mktree.dir/build
+.PHONY : mktree/fast
+
+#=============================================================================
+# Target rules for targets named str_brute2
+
+# Build rule for target.
+str_brute2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 str_brute2
+.PHONY : str_brute2
+
+# fast build rule for target.
+str_brute2/fast:
+	$(MAKE) -f CMakeFiles/str_brute2.dir/build.make CMakeFiles/str_brute2.dir/build
+.PHONY : str_brute2/fast
+
+#=============================================================================
+# Target rules for targets named str_brute1
+
+# Build rule for target.
+str_brute1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 str_brute1
+.PHONY : str_brute1
+
+# fast build rule for target.
+str_brute1/fast:
+	$(MAKE) -f CMakeFiles/str_brute1.dir/build.make CMakeFiles/str_brute1.dir/build
+.PHONY : str_brute1/fast
+
+#=============================================================================
+# Target rules for targets named kmp
+
+# Build rule for target.
+kmp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kmp
+.PHONY : kmp
+
+# fast build rule for target.
+kmp/fast:
+	$(MAKE) -f CMakeFiles/kmp.dir/build.make CMakeFiles/kmp.dir/build
+.PHONY : kmp/fast
+
+#=============================================================================
+# Target rules for targets named heap
+
+# Build rule for target.
+heap: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 heap
+.PHONY : heap
+
+# fast build rule for target.
+heap/fast:
+	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/build
+.PHONY : heap/fast
 
 avltree.o: avltree.c.o
 
@@ -255,6 +281,33 @@ btree_mktree_byorder.c.s:
 	$(MAKE) -f CMakeFiles/mktree.dir/build.make CMakeFiles/mktree.dir/btree_mktree_byorder.c.s
 .PHONY : btree_mktree_byorder.c.s
 
+heap.o: heap.c.o
+
+.PHONY : heap.o
+
+# target to build an object file
+heap.c.o:
+	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/heap.c.o
+.PHONY : heap.c.o
+
+heap.i: heap.c.i
+
+.PHONY : heap.i
+
+# target to preprocess a source file
+heap.c.i:
+	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/heap.c.i
+.PHONY : heap.c.i
+
+heap.s: heap.c.s
+
+.PHONY : heap.s
+
+# target to generate assembly for a file
+heap.c.s:
+	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/heap.c.s
+.PHONY : heap.c.s
+
 kmp.o: kmp.c.o
 
 .PHONY : kmp.o
@@ -281,6 +334,33 @@ kmp.s: kmp.c.s
 kmp.c.s:
 	$(MAKE) -f CMakeFiles/kmp.dir/build.make CMakeFiles/kmp.dir/kmp.c.s
 .PHONY : kmp.c.s
+
+leftheap.o: leftheap.c.o
+
+.PHONY : leftheap.o
+
+# target to build an object file
+leftheap.c.o:
+	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/leftheap.c.o
+.PHONY : leftheap.c.o
+
+leftheap.i: leftheap.c.i
+
+.PHONY : leftheap.i
+
+# target to preprocess a source file
+leftheap.c.i:
+	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/leftheap.c.i
+.PHONY : leftheap.c.i
+
+leftheap.s: leftheap.c.s
+
+.PHONY : leftheap.s
+
+# target to generate assembly for a file
+leftheap.c.s:
+	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/leftheap.c.s
+.PHONY : leftheap.c.s
 
 searchtree.o: searchtree.c.o
 
@@ -396,24 +476,32 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... kmp"
-	@echo "... str_brute1"
 	@echo "... edit_cache"
-	@echo "... str_brute2"
-	@echo "... mktree"
-	@echo "... avltree"
-	@echo "... searchtree"
 	@echo "... splaytree"
+	@echo "... searchtree"
+	@echo "... leftheap"
+	@echo "... avltree"
+	@echo "... mktree"
+	@echo "... str_brute2"
+	@echo "... str_brute1"
+	@echo "... kmp"
+	@echo "... heap"
+	@echo "... rebuild_cache"
 	@echo "... avltree.o"
 	@echo "... avltree.i"
 	@echo "... avltree.s"
 	@echo "... btree_mktree_byorder.o"
 	@echo "... btree_mktree_byorder.i"
 	@echo "... btree_mktree_byorder.s"
+	@echo "... heap.o"
+	@echo "... heap.i"
+	@echo "... heap.s"
 	@echo "... kmp.o"
 	@echo "... kmp.i"
 	@echo "... kmp.s"
+	@echo "... leftheap.o"
+	@echo "... leftheap.i"
+	@echo "... leftheap.s"
 	@echo "... searchtree.o"
 	@echo "... searchtree.i"
 	@echo "... searchtree.s"
