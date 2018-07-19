@@ -8,14 +8,14 @@
 
 #pragma once
 
-template <typename T> //±éÀúQuadlist£¬¶Ô¸÷½ÚµãÒÀ´ÎÊµÊ©visit²Ù×÷
-void Quadlist<T>::traverse ( void ( *visit ) ( T& ) ) { //ÀûÓÃº¯ÊıÖ¸Õë»úÖÆ£¬Ö»¶Á»ò¾Ö²¿ĞÔĞŞ¸Ä
+template <typename T> //éå†Quadlistï¼Œå¯¹å„èŠ‚ç‚¹ä¾æ¬¡å®æ–½visitæ“ä½œ
+void Quadlist<T>::traverse ( void ( *visit ) ( T& ) ) { //åˆ©ç”¨å‡½æ•°æŒ‡é’ˆæœºåˆ¶ï¼Œåªè¯»æˆ–å±€éƒ¨æ€§ä¿®æ”¹
    QlistNodePosi(T) p = header;
    while ( ( p = p->succ ) != trailer ) visit ( p->data );
 }
 
-template <typename T> template <typename VST> //±éÀúQuadlist£¬¶Ô¸÷½ÚµãÒÀ´ÎÊµÊ©visit²Ù×÷
-void Quadlist<T>::traverse ( VST& visit ) { //ÀûÓÃº¯Êı¶ÔÏó»úÖÆ£¬¿ÉÈ«¾ÖĞÔĞŞ¸Ä
+template <typename T> template <typename VST> //éå†Quadlistï¼Œå¯¹å„èŠ‚ç‚¹ä¾æ¬¡å®æ–½visitæ“ä½œ
+void Quadlist<T>::traverse ( VST& visit ) { //åˆ©ç”¨å‡½æ•°å¯¹è±¡æœºåˆ¶ï¼Œå¯å…¨å±€æ€§ä¿®æ”¹
    QlistNodePosi(T) p = header;
    while ( ( p = p->succ ) != trailer ) visit ( p->data );
 }

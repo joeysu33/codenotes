@@ -8,16 +8,16 @@
 
 /*DSA*/#include "PFC.h"
 
-int encode ( PFCTable* table, Bitmap& codeString, char* s ) { //PFC±àÂëËã·¨
+int encode ( PFCTable* table, Bitmap& codeString, char* s ) { //PFCç¼–ç ç®—æ³•
    int n = 0;
-   for ( size_t m = strlen ( s ), i = 0; i < m; i++ ) { //¶ÔÓÚÃ÷ÎÄs[]ÖĞµÄÃ¿¸ö×Ö·û
-      char** pCharCode = table->get ( s[i] ); //È¡³öÆä¶ÔÓ¦µÄ±àÂë´®
-      if ( !pCharCode ) pCharCode = table->get ( s[i] + 'A' - 'a' ); //Ğ¡Ğ´×ÖÄ¸×ªÎª´óĞ´
-      if ( !pCharCode ) pCharCode = table->get ( ' ' ); //ÎŞ·¨Ê¶±ğµÄ×Ö·ûÍ³Ò»ÊÓ×÷¿Õ¸ñ
-      printf ( "%s", *pCharCode ); //Êä³öµ±Ç°×Ö·ûµÄ±àÂë
-      for ( size_t m = strlen ( *pCharCode ), j = 0; j < m; j++ ) //½«µ±Ç°×Ö·ûµÄ±àÂë½ÓÈë±àÂë´®
+   for ( size_t m = strlen ( s ), i = 0; i < m; i++ ) { //å¯¹äºæ˜æ–‡s[]ä¸­çš„æ¯ä¸ªå­—ç¬¦
+      char** pCharCode = table->get ( s[i] ); //å–å‡ºå…¶å¯¹åº”çš„ç¼–ç ä¸²
+      if ( !pCharCode ) pCharCode = table->get ( s[i] + 'A' - 'a' ); //å°å†™å­—æ¯è½¬ä¸ºå¤§å†™
+      if ( !pCharCode ) pCharCode = table->get ( ' ' ); //æ— æ³•è¯†åˆ«çš„å­—ç¬¦ç»Ÿä¸€è§†ä½œç©ºæ ¼
+      printf ( "%s", *pCharCode ); //è¾“å‡ºå½“å‰å­—ç¬¦çš„ç¼–ç 
+      for ( size_t m = strlen ( *pCharCode ), j = 0; j < m; j++ ) //å°†å½“å‰å­—ç¬¦çš„ç¼–ç æ¥å…¥ç¼–ç ä¸²
          '1' == * ( *pCharCode + j ) ? codeString.set ( n++ ) : codeString.clear ( n++ );
    }
    /*DSA*/printf ( "\n" );
-   return n; //¶ş½øÖÆ±àÂë´®¼ÇÂ¼ÓÚcodeStringÖĞ£¬·µ»Ø±àÂë´®×Ü³¤
+   return n; //äºŒè¿›åˆ¶ç¼–ç ä¸²è®°å½•äºcodeStringä¸­ï¼Œè¿”å›ç¼–ç ä¸²æ€»é•¿
 }

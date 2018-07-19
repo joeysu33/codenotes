@@ -7,10 +7,10 @@
  ******************************************************************************************/
 
 /******************************************************************************************
- * Ö§³ÖHuffman±àÂëµÄÊı¾İ½á¹¹
+ * æ”¯æŒHuffmanç¼–ç çš„æ•°æ®ç»“æ„
  ******************************************************************************************
- * ²ÉÓÃÍ³Ò»µÄ½Ó¿Ú£¬ÎªHuffman_PQ_ComplHeapºÍHuffman_PQ_LeftHeap¹²ÓÃ
- * ±àÒëÖ®Ç°£¬¿ÉÍ¨¹ıÔÚ¶ÔÓ¦µÄ¹¤³ÌÖĞÉèÖÃDSA_PQ_ComplHeap»òDSA_PQ_LeftHeapÑ¡Ôñ
+ * é‡‡ç”¨ç»Ÿä¸€çš„æ¥å£ï¼Œä¸ºHuffman_PQ_ComplHeapå’ŒHuffman_PQ_LeftHeapå…±ç”¨
+ * ç¼–è¯‘ä¹‹å‰ï¼Œå¯é€šè¿‡åœ¨å¯¹åº”çš„å·¥ç¨‹ä¸­è®¾ç½®DSA_PQ_ComplHeapæˆ–DSA_PQ_LeftHeapé€‰æ‹©
  ******************************************************************************************/
 #pragma once
 
@@ -19,19 +19,19 @@ using namespace std;
 
 /*DSA*/#include "../UniPrint/print.h"
 
-//HuffmanÊ÷
-#include "../Huffman/HuffChar.h" //ÒıÈëHuffman£¨³¬£©×Ö·û
-#include "../Huffman/HuffTree.h" //ÒıÈëHuffmanÊ÷
-#include "../Huffman/HuffTable.h" //ÒıÈëHuffman±àÂë±í
-#include "../Huffman/HuffCode.h" //ÒıÈëHuffCode¶ş½øÖÆ±àÂë
+//Huffmanæ ‘
+#include "../Huffman/HuffChar.h" //å¼•å…¥Huffmanï¼ˆè¶…ï¼‰å­—ç¬¦
+#include "../Huffman/HuffTree.h" //å¼•å…¥Huffmanæ ‘
+#include "../Huffman/HuffTable.h" //å¼•å…¥Huffmanç¼–ç è¡¨
+#include "../Huffman/HuffCode.h" //å¼•å…¥HuffCodeäºŒè¿›åˆ¶ç¼–ç 
 
-// HuffmanÉ­ÁÖ
+// Huffmanæ£®æ—
 #if defined(DSA_PQ_LIST)
 #include "../Huffman/Huffman_Forest_PQ_List.h"
 #elif defined(DSA_PQ_COMPLHEAP)
 #include "../Huffman/Huffman_Forest_PQ_ComplHeap.h"
 #elif defined(DSA_PQ_LEFTHEAP)
 #include "../Huffman/Huffman_Forest_PQ_LeftHeap.h"
-#else //ÆÓËØ·½°¸£ºÖ±½ÓÓÃListÊµÏÖµÄHuffmanÉ­ÁÖ
+#else //æœ´ç´ æ–¹æ¡ˆï¼šç›´æ¥ç”¨Listå®ç°çš„Huffmanæ£®æ—
 #include "../Huffman/Huffman_Forest_List.h"
 #endif

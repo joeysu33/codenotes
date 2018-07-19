@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> struct Double //º¯Êı¶ÔÏó£º±¶ÔöÒ»¸öTÀà¶ÔÏó
-   {  virtual void operator() ( T& e ) { e *= 2; }  }; //¼ÙÉèT¿ÉÖ±½Ó±¶Ôö
+template <typename T> struct Double //å‡½æ•°å¯¹è±¡ï¼šå€å¢ä¸€ä¸ªTç±»å¯¹è±¡
+   {  virtual void operator() ( T& e ) { e *= 2; }  }; //å‡è®¾Tå¯ç›´æ¥å€å¢

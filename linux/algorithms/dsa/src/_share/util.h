@@ -13,7 +13,7 @@
 using namespace std;
 
 /******************************************************************************************
- * ²âÊÔ¡¢ÑİÊ¾ÓÃĞ¡¹¤¾ß
+ * æµ‹è¯•ã€æ¼”ç¤ºç”¨å°å·¥å…·
  ******************************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,10 +36,10 @@ using namespace std;
 #include "crc_list.h"
 #include "crc_vector.h"
 
-#include "rand.h" //Ëæ»úÊı
+#include "rand.h" //éšæœºæ•°
 
-#if defined(DSA_DEBUG) //±àÒë¿ª¹Ø£¬¿ØÖÆµ÷ÊÔÊä³ö
-#define DSA(x)  { x } //Êä³ö
+#if defined(DSA_DEBUG) //ç¼–è¯‘å¼€å…³ï¼Œæ§åˆ¶è°ƒè¯•è¾“å‡º
+#define DSA(x)  { x } //è¾“å‡º
 #else
-#define DSA(x) //²»Êä³ö
+#define DSA(x) //ä¸è¾“å‡º
 #endif

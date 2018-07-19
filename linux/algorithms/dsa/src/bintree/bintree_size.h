@@ -8,6 +8,6 @@
 
 #pragma once
 
-template <typename T> //Í³¼Æ¶ş²æÊ÷×ÓÊ÷¹æÄ£
-int BinTree<T>::size ( BinNodePosi(T) x ) //assert: xÎª¶ş²æÊ÷ÖĞµÄºÏ·¨Î»ÖÃ
+template <typename T> //ç»Ÿè®¡äºŒå‰æ ‘å­æ ‘è§„æ¨¡
+int BinTree<T>::size ( BinNodePosi(T) x ) //assert: xä¸ºäºŒå‰æ ‘ä¸­çš„åˆæ³•ä½ç½®
 {  return x ? size ( x->lc ) + size ( x->RChild ) : 0;  }

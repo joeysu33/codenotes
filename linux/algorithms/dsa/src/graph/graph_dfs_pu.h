@@ -8,13 +8,13 @@
 
 #pragma once
 
-template <typename Tv, typename Te> struct DfsPU { //Õë¶ÔDFSËã·¨µÄ¶¥µãÓÅÏÈ¼¶¸üĞÂÆ÷
+template <typename Tv, typename Te> struct DfsPU { //é’ˆå¯¹DFSç®—æ³•çš„é¡¶ç‚¹ä¼˜å…ˆçº§æ›´æ–°å™¨
    virtual void operator() ( Graph<Tv, Te>* g, int uk, int v ) {
-      if ( g->status ( v ) == UNDISCOVERED ) //¶ÔÓÚukÃ¿Ò»ÉĞÎ´±»·¢ÏÖµÄÁÚ½Ó¶¥µãv
-         if ( g->priority ( v ) > g->priority ( uk ) - 1 ) { //½«Æäµ½Æğµã¾àÀëµÄ¸ºÊı×÷ÎªÓÅÏÈ¼¶Êı
-            g->priority ( v ) = g->priority ( uk ) - 1; //¸üĞÂÓÅÏÈ¼¶£¨Êı£©
-            g->parent ( v ) = uk; //¸üĞÂ¸¸½Úµã
-            return; //×¢Òâ£ºÓëBfsPU()²»Í¬£¬ÕâÀïÖ»ÒªÓĞÒ»¸öÁÚ½Ó¶¥µã¿É¸üĞÂ£¬¼´¿ÉÁ¢¼´·µ»Ø
-         } //Èç´ËĞ§¹ûµÈÍ¬ÓÚ£¬ºó±»·¢ÏÖÕßÓÅÏÈ
+      if ( g->status ( v ) == UNDISCOVERED ) //å¯¹äºukæ¯ä¸€å°šæœªè¢«å‘ç°çš„é‚»æ¥é¡¶ç‚¹v
+         if ( g->priority ( v ) > g->priority ( uk ) - 1 ) { //å°†å…¶åˆ°èµ·ç‚¹è·ç¦»çš„è´Ÿæ•°ä½œä¸ºä¼˜å…ˆçº§æ•°
+            g->priority ( v ) = g->priority ( uk ) - 1; //æ›´æ–°ä¼˜å…ˆçº§ï¼ˆæ•°ï¼‰
+            g->parent ( v ) = uk; //æ›´æ–°çˆ¶èŠ‚ç‚¹
+            return; //æ³¨æ„ï¼šä¸BfsPU()ä¸åŒï¼Œè¿™é‡Œåªè¦æœ‰ä¸€ä¸ªé‚»æ¥é¡¶ç‚¹å¯æ›´æ–°ï¼Œå³å¯ç«‹å³è¿”å›
+         } //å¦‚æ­¤æ•ˆæœç­‰åŒäºï¼Œåè¢«å‘ç°è€…ä¼˜å…ˆ
    }
 };

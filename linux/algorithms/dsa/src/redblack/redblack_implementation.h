@@ -9,12 +9,12 @@
 #pragma once
 
 /******************************************************************************************
-* 将BST各方法的实现部分，简洁地引入BST.h
-* 效果等同于将这些实现直接汇入BST.h
-* 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
+* 灏咮ST鍚勬柟娉曠殑瀹炵幇閮ㄥ垎锛岀畝娲佸湴寮曞叆BST.h
+* 鏁堟灉绛夊悓浜庡皢杩欎簺瀹炵幇鐩存帴姹囧叆BST.h
+* 鍦╡xport灏氭湭琚紪璇戝櫒鏀寔鍓嶏紝濡傛鍙皢瀹氫箟涓庡疄鐜板垎绂伙紝浠ヤ究璇剧▼璁茶В
 ******************************************************************************************/
-#include "RedBlack_insert.h" //插入
-#include "RedBlack_remove.h" //删除
-#include "RedBlack_updateHeight.h" //更新高度
-#include "RedBlack_solveDoubleRed.h" //双红修正
-#include "RedBlack_solveDoubleBlack.h" //双黑修正
+#include "RedBlack_insert.h" //鎻掑叆
+#include "RedBlack_remove.h" //鍒犻櫎
+#include "RedBlack_updateHeight.h" //鏇存柊楂樺害
+#include "RedBlack_solveDoubleRed.h" //鍙岀孩淇
+#include "RedBlack_solveDoubleBlack.h" //鍙岄粦淇

@@ -20,9 +20,9 @@ using namespace std;
 
 typedef enum {Continuous, Step} RunMode;
 
-extern RunMode runMode; //ÔËĞĞÄ£Ê½
-extern int nSolu; //½âµÄ×ÜÊı
-extern int nCheck; //³¢ÊÔµÄ×Ü´ÎÊı
+extern RunMode runMode; //è¿è¡Œæ¨¡å¼
+extern int nSolu; //è§£çš„æ€»æ•°
+extern int nCheck; //å°è¯•çš„æ€»æ¬¡æ•°
 
 void place5Queens_BruteForce();
 void displaySolution ( int* solu, int n );

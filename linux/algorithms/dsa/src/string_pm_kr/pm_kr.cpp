@@ -9,19 +9,19 @@
 /*DSA*/#include "../string_pm/string_pm_test.h"
 /*DSA*/#include "pm_kr.h"
 
-int match ( char* P, char* T ) { //´®Æ¥ÅäËã·¨£¨Karp-Rabin£©
+int match ( char* P, char* T ) { //ä¸²åŒ¹é…ç®—æ³•ï¼ˆKarp-Rabinï¼‰
    size_t m = strlen ( P ), n = strlen ( T ); //assert: m <= n
    HashCode Dm = prepareDm ( m ), hashP = 0, hashT = 0;
-   for ( size_t i = 0; i < m; i++ ) { //³õÊ¼»¯
-      hashP = ( hashP * R + DIGIT ( P, i ) ) % M; //¼ÆËãÄ£Ê½´®¶ÔÓ¦µÄÉ¢ÁĞÖµ
-      hashT = ( hashT * R + DIGIT ( T, i ) ) % M; //¼ÆËãÎÄ±¾´®£¨Ç°mÎ»£©µÄ³õÊ¼É¢ÁĞÖµ
+   for ( size_t i = 0; i < m; i++ ) { //åˆå§‹åŒ–
+      hashP = ( hashP * R + DIGIT ( P, i ) ) % M; //è®¡ç®—æ¨¡å¼ä¸²å¯¹åº”çš„æ•£åˆ—å€¼
+      hashT = ( hashT * R + DIGIT ( T, i ) ) % M; //è®¡ç®—æ–‡æœ¬ä¸²ï¼ˆå‰mä½ï¼‰çš„åˆå§‹æ•£åˆ—å€¼
    } /*DSA*/printf ( "hashP = %I64d", hashP ); getchar();
-   for ( size_t k = 0; ; ) { //²éÕÒ
+   for ( size_t k = 0; ; ) { //æŸ¥æ‰¾
       /*DSA*/showProgressOfKR ( T, P, k );
       if ( hashT == hashP ) /*DSA*/{ printf ( "Hash matched\n" );
          if ( check1by1 ( P, T, k ) ) return k;
       /*DSA*/}
-      if ( ++k > n - m ) return k; //assert: k > n - m£¬±íÊ¾ÎŞÆ¥Åä
-      else updateHash ( hashT, T, m, k, Dm ); //·ñÔò£¬¸üĞÂ×Ó´®É¢ÁĞÂë£¬¼ÌĞø²éÕÒ
+      if ( ++k > n - m ) return k; //assert: k > n - mï¼Œè¡¨ç¤ºæ— åŒ¹é…
+      else updateHash ( hashT, T, m, k, Dm ); //å¦åˆ™ï¼Œæ›´æ–°å­ä¸²æ•£åˆ—ç ï¼Œç»§ç»­æŸ¥æ‰¾
    }
 }

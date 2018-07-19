@@ -8,19 +8,19 @@
 
 #pragma once
 
-#include "../BinTree/BinTree.h" //ÒıÈëBinTree
+#include "../BinTree/BinTree.h" //å¼•å…¥BinTree
 
-template <typename T> class BST : public BinTree<T> { //ÓÉBinTreeÅÉÉúBSTÄ£°åÀà
+template <typename T> class BST : public BinTree<T> { //ç”±BinTreeæ´¾ç”ŸBSTæ¨¡æ¿ç±»
 protected:
-   BinNodePosi(T) _hot; //¡°ÃüÖĞ¡±½ÚµãµÄ¸¸Ç×
-   BinNodePosi(T) connect34 ( //°´ÕÕ¡°3 + 4¡±½á¹¹£¬Áª½Ó3¸ö½Úµã¼°ËÄ¿Ã×ÓÊ÷
+   BinNodePosi(T) _hot; //â€œå‘½ä¸­â€èŠ‚ç‚¹çš„çˆ¶äº²
+   BinNodePosi(T) connect34 ( //æŒ‰ç…§â€œ3 + 4â€ç»“æ„ï¼Œè”æ¥3ä¸ªèŠ‚ç‚¹åŠå››æ£µå­æ ‘
       BinNodePosi(T), BinNodePosi(T), BinNodePosi(T),
       BinNodePosi(T), BinNodePosi(T), BinNodePosi(T), BinNodePosi(T) );
-   BinNodePosi(T) rotateAt ( BinNodePosi(T) x ); //¶Ôx¼°Æä¸¸Ç×¡¢×æ¸¸×öÍ³Ò»Ğı×ªµ÷Õû
-public: //»ù±¾½Ó¿Ú£ºÒÔvirtualĞŞÊÎ£¬Ç¿ÖÆÒªÇóËùÓĞÅÉÉúÀà£¨BST±äÖÖ£©¸ù¾İ¸÷×ÔµÄ¹æÔò¶ÔÆäÖØĞ´
-   virtual BinNodePosi(T) & search ( const T& e ); //²éÕÒ
-   virtual BinNodePosi(T) insert ( const T& e ); //²åÈë
-   virtual bool remove ( const T& e ); //É¾³ı
+   BinNodePosi(T) rotateAt ( BinNodePosi(T) x ); //å¯¹xåŠå…¶çˆ¶äº²ã€ç¥–çˆ¶åšç»Ÿä¸€æ—‹è½¬è°ƒæ•´
+public: //åŸºæœ¬æ¥å£ï¼šä»¥virtualä¿®é¥°ï¼Œå¼ºåˆ¶è¦æ±‚æ‰€æœ‰æ´¾ç”Ÿç±»ï¼ˆBSTå˜ç§ï¼‰æ ¹æ®å„è‡ªçš„è§„åˆ™å¯¹å…¶é‡å†™
+   virtual BinNodePosi(T) & search ( const T& e ); //æŸ¥æ‰¾
+   virtual BinNodePosi(T) insert ( const T& e ); //æ’å…¥
+   virtual bool remove ( const T& e ); //åˆ é™¤
 };
 
 #include "BST_implementation.h"

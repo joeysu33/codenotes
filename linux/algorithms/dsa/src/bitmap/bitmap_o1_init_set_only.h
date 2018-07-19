@@ -14,24 +14,24 @@
 #include <memory.h>
 #include "../_share/release.h"
 
-class Bitmap { //Î»Í¼BitmapÀà£ºÒÔ¿Õ¼ä×÷Îª²¹³¥£¬½ÚÊ¡³õÊ¼»¯Ê±¼ä£¨½öÔÊĞí²åÈë£¬²»Ö§³ÖÉ¾³ı£©
+class Bitmap { //ä½å›¾Bitmapç±»ï¼šä»¥ç©ºé—´ä½œä¸ºè¡¥å¿ï¼ŒèŠ‚çœåˆå§‹åŒ–æ—¶é—´ï¼ˆä»…å…è®¸æ’å…¥ï¼Œä¸æ”¯æŒåˆ é™¤ï¼‰
 private:
-   Rank* F; Rank N; //¹æÄ£ÎªNµÄÏòÁ¿F£¬¼ÇÂ¼[k]±»±ê¼ÇµÄ´ÎĞò£¨¼´ÆäÔÚÕ»T[]ÖĞµÄÖÈ£©
-   Rank* T; Rank top; //ÈİÁ¿ÎªNµÄÕ»T£¬¼ÇÂ¼±»±ê¼Ç¸÷Î»ÖÈµÄÕ»£¬ÒÔ¼°Õ»¶¥Ö¸Õë
+   Rank* F; Rank N; //è§„æ¨¡ä¸ºNçš„å‘é‡Fï¼Œè®°å½•[k]è¢«æ ‡è®°çš„æ¬¡åºï¼ˆå³å…¶åœ¨æ ˆT[]ä¸­çš„ç§©ï¼‰
+   Rank* T; Rank top; //å®¹é‡ä¸ºNçš„æ ˆTï¼Œè®°å½•è¢«æ ‡è®°å„ä½ç§©çš„æ ˆï¼Œä»¥åŠæ ˆé¡¶æŒ‡é’ˆ
 
 protected:
    inline bool valid ( Rank r ) { return ( 0 <= r ) && ( r < top ); }
 
 public:
-   Bitmap ( Rank n = 8 ) //°´Ö¸¶¨£¨»òÄ¬ÈÏ£©¹æÄ£´´½¨±ÈÌØÍ¼£¨Îª²âÊÔÔİÊ±Ñ¡ÓÃ½ÏĞ¡µÄÄ¬ÈÏÖµ£©
-   { N = n; F = new Rank[N]; T = new Rank[N]; top = 0; } //ÔÚO(1)Ê±¼äÄÚÒşÊ½µØ³õÊ¼»¯
-   ~Bitmap() { delete [] F; delete [] T; } //Îö¹¹Ê±ÊÍ·Å¿Õ¼ä
+   Bitmap ( Rank n = 8 ) //æŒ‰æŒ‡å®šï¼ˆæˆ–é»˜è®¤ï¼‰è§„æ¨¡åˆ›å»ºæ¯”ç‰¹å›¾ï¼ˆä¸ºæµ‹è¯•æš‚æ—¶é€‰ç”¨è¾ƒå°çš„é»˜è®¤å€¼ï¼‰
+   { N = n; F = new Rank[N]; T = new Rank[N]; top = 0; } //åœ¨O(1)æ—¶é—´å†…éšå¼åœ°åˆå§‹åŒ–
+   ~Bitmap() { delete [] F; delete [] T; } //ææ„æ—¶é‡Šæ”¾ç©ºé—´
 
-// ½Ó¿Ú
-   inline void set ( Rank k ) { //²åÈë
-      if ( test ( k ) ) return; //ºöÂÔÒÑ´ø±ê¼ÇµÄÎ»
-      F[k] = top++; T[ F[k] ] = k; //½¨Á¢Ğ£Ñé»·
+// æ¥å£
+   inline void set ( Rank k ) { //æ’å…¥
+      if ( test ( k ) ) return; //å¿½ç•¥å·²å¸¦æ ‡è®°çš„ä½
+      F[k] = top++; T[ F[k] ] = k; //å»ºç«‹æ ¡éªŒç¯
    }
-   inline bool test ( Rank k ) //²âÊÔ
+   inline bool test ( Rank k ) //æµ‹è¯•
    {  return valid ( F[k] ) && ( k == T[ F[k] ] );  }
 };

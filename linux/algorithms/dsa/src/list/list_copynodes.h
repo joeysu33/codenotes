@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename T> //ÁÐ±íÄÚ²¿·½·¨£º¸´ÖÆÁÐ±íÖÐ×ÔÎ»ÖÃpÆðµÄnÏî
-void List<T>::copyNodes ( ListNodePosi(T) p, int n ) { //pºÏ·¨£¬ÇÒÖÁÉÙÓÐn-1¸öÕæºó¼Ì½Úµã
-   init(); //´´½¨Í·¡¢Î²ÉÚ±ø½Úµã²¢×ö³õÊ¼»¯
-   while ( n-- ) { insertAsLast ( p->data ); p = p->succ; } //½«Æð×ÔpµÄnÏîÒÀ´Î×÷ÎªÄ©½Úµã²åÈë
+template <typename T> //åˆ—è¡¨å†…éƒ¨æ–¹æ³•ï¼šå¤åˆ¶åˆ—è¡¨ä¸­è‡ªä½ç½®pèµ·çš„né¡¹
+void List<T>::copyNodes ( ListNodePosi(T) p, int n ) { //påˆæ³•ï¼Œä¸”è‡³å°‘æœ‰n-1ä¸ªçœŸåŽç»§èŠ‚ç‚¹
+   init(); //åˆ›å»ºå¤´ã€å°¾å“¨å…µèŠ‚ç‚¹å¹¶åšåˆå§‹åŒ–
+   while ( n-- ) { insertAsLast ( p->data ); p = p->succ; } //å°†èµ·è‡ªpçš„né¡¹ä¾æ¬¡ä½œä¸ºæœ«èŠ‚ç‚¹æ’å…¥
 }

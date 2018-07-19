@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> BinNodePosi(T) & BST<T>::search ( const T& e ) //ÔÚBSTÖĞ²éÕÒ¹Ø¼üÂëe
-{ return searchIn ( _root, e, _hot = NULL ); } //·µ»ØÄ¿±ê½ÚµãÎ»ÖÃµÄÒıÓÃ£¬ÒÔ±ãºóĞø²åÈë¡¢É¾³ı²Ù×÷
+template <typename T> BinNodePosi(T) & BST<T>::search ( const T& e ) //åœ¨BSTä¸­æŸ¥æ‰¾å…³é”®ç e
+{ return searchIn ( _root, e, _hot = NULL ); } //è¿”å›ç›®æ ‡èŠ‚ç‚¹ä½ç½®çš„å¼•ç”¨ï¼Œä»¥ä¾¿åç»­æ’å…¥ã€åˆ é™¤æ“ä½œ

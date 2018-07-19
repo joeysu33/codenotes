@@ -8,25 +8,25 @@
 
 #pragma once
 
-template <typename K, typename V> bool Skiplist<K, V>::put ( K k, V v ) { //Ìø×ª±í´ÊÌõ²åÈëËã·¨
-   Entry<K, V> e = Entry<K, V> ( k, v ); //´ı²åÈëµÄ´ÊÌõ£¨½«±»Ëæ»úµØ²åÈë¶à¸ö¸±±¾£©
-   if ( empty() ) insertAsFirst ( new Quadlist<Entry<K, V>> ); //²åÈëÊ×¸öEntry
-   ListNode<Quadlist<Entry<K, V>>*>* qlist = first(); //´Ó¶¥²ãËÄÁª±íµÄ
-   QuadlistNode<Entry<K, V>>* p = qlist->data->first(); //Ê×½Úµã³ö·¢
-   if ( skipSearch ( qlist, p, k ) ) //²éÕÒÊÊµ±µÄ²åÈëÎ»ÖÃ£¨²»´óÓÚ¹Ø¼üÂëkµÄ×îºóÒ»¸ö½Úµãp£©
-      while ( p->below ) p = p->below; //ÈôÒÑÓĞÀ×Í¬´ÊÌõ£¬ÔòĞèÇ¿ÖÆ×ªµ½Ëşµ×
-   qlist = last(); //ÒÔÏÂ£¬½ôÁÚÓÚpµÄÓÒ²à£¬Ò»×ùĞÂËş½«×Ôµ×¶øÉÏÖğ²ãÉú³¤
-   QuadlistNode<Entry<K, V>>* b = qlist->data->insertAfterAbove ( e, p ); //ĞÂ½Úµãb¼´ĞÂËş»ù×ù
-   while ( rand() & 1 ) { //¾­Í¶ÖÀÓ²±Ò£¬ÈôÈ·¶¨ĞÂËşĞèÒªÔÙ³¤¸ßÒ»²ã£¬Ôò
-      while ( qlist->data->valid ( p ) && !p->above ) p = p->pred; //ÕÒ³ö²»µÍÓÚ´Ë¸ß¶ÈµÄ×î½üÇ°Çı
-      if ( !qlist->data->valid ( p ) ) { //Èô¸ÃÇ°ÇıÊÇheader
-         if ( qlist == first() ) //ÇÒµ±Ç°ÒÑÊÇ×î¶¥²ã£¬ÔòÒâÎ¶×Å±ØĞë
-            insertAsFirst ( new Quadlist<Entry<K, V>> ); //Ê×ÏÈ´´½¨ĞÂµÄÒ»²ã£¬È»ºó
-         p = qlist->pred->data->first()->pred; //½«p×ªÖÁÉÏÒ»²ãSkiplistµÄheader
-      } else //·ñÔò£¬¿É¾¶×Ô
-         p = p->above; //½«pÌáÉıÖÁ¸Ã¸ß¶È
-      qlist = qlist->pred; //ÉÏÉıÒ»²ã£¬²¢ÔÚ¸Ã²ã
-      b = qlist->data->insertAfterAbove ( e, p, b ); //½«ĞÂ½Úµã²åÈëpÖ®ºó¡¢bÖ®ÉÏ
-   }//¿Îºó£ºµ÷ÕûËæ»ú²ÎÊı£¬¹Û²ì×ÜÌå²ã¸ßµÄÏàÓ¦±ä»¯
-   return true; //DictionaryÔÊĞíÖØ¸´ÔªËØ£¬¹Ê²åÈë±Ø³É¹¦¡ª¡ªÕâÓëHashtableµÈMapÂÔÓĞ²îÒì
+template <typename K, typename V> bool Skiplist<K, V>::put ( K k, V v ) { //è·³è½¬è¡¨è¯æ¡æ’å…¥ç®—æ³•
+   Entry<K, V> e = Entry<K, V> ( k, v ); //å¾…æ’å…¥çš„è¯æ¡ï¼ˆå°†è¢«éšæœºåœ°æ’å…¥å¤šä¸ªå‰¯æœ¬ï¼‰
+   if ( empty() ) insertAsFirst ( new Quadlist<Entry<K, V>> ); //æ’å…¥é¦–ä¸ªEntry
+   ListNode<Quadlist<Entry<K, V>>*>* qlist = first(); //ä»é¡¶å±‚å››è”è¡¨çš„
+   QuadlistNode<Entry<K, V>>* p = qlist->data->first(); //é¦–èŠ‚ç‚¹å‡ºå‘
+   if ( skipSearch ( qlist, p, k ) ) //æŸ¥æ‰¾é€‚å½“çš„æ’å…¥ä½ç½®ï¼ˆä¸å¤§äºå…³é”®ç kçš„æœ€åä¸€ä¸ªèŠ‚ç‚¹pï¼‰
+      while ( p->below ) p = p->below; //è‹¥å·²æœ‰é›·åŒè¯æ¡ï¼Œåˆ™éœ€å¼ºåˆ¶è½¬åˆ°å¡”åº•
+   qlist = last(); //ä»¥ä¸‹ï¼Œç´§é‚»äºpçš„å³ä¾§ï¼Œä¸€åº§æ–°å¡”å°†è‡ªåº•è€Œä¸Šé€å±‚ç”Ÿé•¿
+   QuadlistNode<Entry<K, V>>* b = qlist->data->insertAfterAbove ( e, p ); //æ–°èŠ‚ç‚¹bå³æ–°å¡”åŸºåº§
+   while ( rand() & 1 ) { //ç»æŠ•æ·ç¡¬å¸ï¼Œè‹¥ç¡®å®šæ–°å¡”éœ€è¦å†é•¿é«˜ä¸€å±‚ï¼Œåˆ™
+      while ( qlist->data->valid ( p ) && !p->above ) p = p->pred; //æ‰¾å‡ºä¸ä½äºæ­¤é«˜åº¦çš„æœ€è¿‘å‰é©±
+      if ( !qlist->data->valid ( p ) ) { //è‹¥è¯¥å‰é©±æ˜¯header
+         if ( qlist == first() ) //ä¸”å½“å‰å·²æ˜¯æœ€é¡¶å±‚ï¼Œåˆ™æ„å‘³ç€å¿…é¡»
+            insertAsFirst ( new Quadlist<Entry<K, V>> ); //é¦–å…ˆåˆ›å»ºæ–°çš„ä¸€å±‚ï¼Œç„¶å
+         p = qlist->pred->data->first()->pred; //å°†pè½¬è‡³ä¸Šä¸€å±‚Skiplistçš„header
+      } else //å¦åˆ™ï¼Œå¯å¾„è‡ª
+         p = p->above; //å°†pæå‡è‡³è¯¥é«˜åº¦
+      qlist = qlist->pred; //ä¸Šå‡ä¸€å±‚ï¼Œå¹¶åœ¨è¯¥å±‚
+      b = qlist->data->insertAfterAbove ( e, p, b ); //å°†æ–°èŠ‚ç‚¹æ’å…¥pä¹‹åã€bä¹‹ä¸Š
+   }//è¯¾åï¼šè°ƒæ•´éšæœºå‚æ•°ï¼Œè§‚å¯Ÿæ€»ä½“å±‚é«˜çš„ç›¸åº”å˜åŒ–
+   return true; //Dictionaryå…è®¸é‡å¤å…ƒç´ ï¼Œæ•…æ’å…¥å¿…æˆåŠŸâ€”â€”è¿™ä¸Hashtableç­‰Mapç•¥æœ‰å·®å¼‚
 }

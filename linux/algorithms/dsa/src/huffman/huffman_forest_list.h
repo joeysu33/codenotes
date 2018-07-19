@@ -8,5 +8,5 @@
 
 #pragma once
 
-#include "../List/List.h" //用List实现
-typedef List<HuffTree*> HuffForest; //Huffman森林
+#include "../List/List.h" //鐢↙ist瀹炵幇
+typedef List<HuffTree*> HuffForest; //Huffman妫灄

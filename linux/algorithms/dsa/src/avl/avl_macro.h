@@ -9,13 +9,13 @@
 #pragma once
 
 /******************************************************************************************
- * ÔÚ×ó¡¢ÓÒº¢×ÓÖÐÈ¡¸ü¸ßÕß
- * ÔÚAVLÆ½ºâµ÷ÕûÇ°£¬½è´ËÈ·¶¨ÖØ¹¹·½°¸
+ * åœ¨å·¦ã€å³å­©å­ä¸­å–æ›´é«˜è€…
+ * åœ¨AVLå¹³è¡¡è°ƒæ•´å‰ï¼Œå€Ÿæ­¤ç¡®å®šé‡æž„æ–¹æ¡ˆ
  ******************************************************************************************/
 #define tallerChild(x) ( \
-   stature( (x)->lc ) > stature( (x)->rc ) ? (x)->lc : ( /*×ó¸ß*/ \
-   stature( (x)->lc ) < stature( (x)->rc ) ? (x)->rc : ( /*ÓÒ¸ß*/ \
-   IsLChild( * (x) ) ? (x)->lc : (x)->rc /*µÈ¸ß£ºÓë¸¸Ç×xÍ¬²àÕß£¨zIg-zIg»òzAg-zAg£©ÓÅÏÈ*/ \
+   stature( (x)->lc ) > stature( (x)->rc ) ? (x)->lc : ( /*å·¦é«˜*/ \
+   stature( (x)->lc ) < stature( (x)->rc ) ? (x)->rc : ( /*å³é«˜*/ \
+   IsLChild( * (x) ) ? (x)->lc : (x)->rc /*ç­‰é«˜ï¼šä¸Žçˆ¶äº²xåŒä¾§è€…ï¼ˆzIg-zIgæˆ–zAg-zAgï¼‰ä¼˜å…ˆ*/ \
    ) \
    ) \
 )

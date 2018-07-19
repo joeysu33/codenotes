@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> void decrease ( List<T> & L ) //Í³Ò»µİ¼õÁĞ±íÖĞµÄ¸÷ÔªËØ
-{  L.traverse ( Decrease<T>() );  } //ÒÔDecrease<T>()Îª»ù±¾²Ù×÷½øĞĞ±éÀú
+template <typename T> void decrease ( List<T> & L ) //ç»Ÿä¸€é€’å‡åˆ—è¡¨ä¸­çš„å„å…ƒç´ 
+{  L.traverse ( Decrease<T>() );  } //ä»¥Decrease<T>()ä¸ºåŸºæœ¬æ“ä½œè¿›è¡Œéå†

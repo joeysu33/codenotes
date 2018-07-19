@@ -17,14 +17,14 @@ __int64 power2BF ( int );
 __int64 power2 ( int );
 
 /******************************************************************************************
- * ²âÊÔPower
+ * æµ‹è¯•Power
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    __int64 a; int r;
-   if ( 3 > argc ) {  cout << "Usage: " << argv[0] << "<base><exponent>" << endl; return 1;  } //¼ì²é²ÎÊý
-   a = _atoi64 ( argv[1] ); r = atoi ( argv[2] ); //»ñÈ¡ÊäÈë
-   printf ( "\n2 ^ %d  =  %I64d  =  %I64d\n\n", r, power2BF_I ( r ), power2_I ( r ) ); //µü´ú°æ
-   printf ( "\n2 ^ %d  =  %I64d  =  %I64d\n\n", r, power2BF ( r ), power2 ( r ) ); //µÝ¹é°æ
-   printf ( "\n%I64d ^ %d  =  %I64d  =  %I64d\n\n", a, r, powerBF ( a, r ), power ( a, r ) ); //Í¨ÓÃËã·¨µü´ú°æ
+   if ( 3 > argc ) {  cout << "Usage: " << argv[0] << "<base><exponent>" << endl; return 1;  } //æ£€æŸ¥å‚æ•°
+   a = _atoi64 ( argv[1] ); r = atoi ( argv[2] ); //èŽ·å–è¾“å…¥
+   printf ( "\n2 ^ %d  =  %I64d  =  %I64d\n\n", r, power2BF_I ( r ), power2_I ( r ) ); //è¿­ä»£ç‰ˆ
+   printf ( "\n2 ^ %d  =  %I64d  =  %I64d\n\n", r, power2BF ( r ), power2 ( r ) ); //é€’å½’ç‰ˆ
+   printf ( "\n%I64d ^ %d  =  %I64d  =  %I64d\n\n", a, r, powerBF ( a, r ), power ( a, r ) ); //é€šç”¨ç®—æ³•è¿­ä»£ç‰ˆ
    return 0;
 }

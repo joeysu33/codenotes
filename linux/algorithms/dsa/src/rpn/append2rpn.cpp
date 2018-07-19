@@ -8,17 +8,17 @@
 
 /*DSA*/#include "rpn.h"
 
-void append ( char*& rpn, float opnd ) { //½«²Ù×÷Êı½ÓÖÁRPNÄ©Î²
-   int n = strlen ( rpn ); //RPNµ±Ç°³¤¶È£¨ÒÔ'\0'½áÎ²£¬³¤¶Èn + 1£©
+void append ( char*& rpn, float opnd ) { //å°†æ“ä½œæ•°æ¥è‡³RPNæœ«å°¾
+   int n = strlen ( rpn ); //RPNå½“å‰é•¿åº¦ï¼ˆä»¥'\0'ç»“å°¾ï¼Œé•¿åº¦n + 1ï¼‰
    char buf[64];
-   if ( opnd != ( float ) ( int ) opnd ) sprintf ( buf, "%.2f \0", opnd ); //¸¡µã¸ñÊ½£¬»ò
-   else                          sprintf ( buf, "%d \0", ( int ) opnd ); //ÕûÊı¸ñÊ½
-   rpn = ( char* ) realloc ( rpn, sizeof ( char ) * ( n + strlen ( buf ) + 1 ) ); //À©Õ¹¿Õ¼ä
-   strcat ( rpn, buf ); //RPN¼Ó³¤
+   if ( opnd != ( float ) ( int ) opnd ) sprintf ( buf, "%.2f \0", opnd ); //æµ®ç‚¹æ ¼å¼ï¼Œæˆ–
+   else                          sprintf ( buf, "%d \0", ( int ) opnd ); //æ•´æ•°æ ¼å¼
+   rpn = ( char* ) realloc ( rpn, sizeof ( char ) * ( n + strlen ( buf ) + 1 ) ); //æ‰©å±•ç©ºé—´
+   strcat ( rpn, buf ); //RPNåŠ é•¿
 }
 
-void append ( char*& rpn, char optr ) { //½«ÔËËã·û½ÓÖÁRPNÄ©Î²
-   int n = strlen ( rpn ); //RPNµ±Ç°³¤¶È£¨ÒÔ'\0'½áÎ²£¬³¤¶Èn + 1£©
-   rpn = ( char* ) realloc ( rpn, sizeof ( char ) * ( n + 3 ) ); //À©Õ¹¿Õ¼ä
-   sprintf ( rpn + n, "%c ", optr ); rpn[n + 2] = '\0'; //½ÓÈëÖ¸¶¨µÄÔËËã·û
+void append ( char*& rpn, char optr ) { //å°†è¿ç®—ç¬¦æ¥è‡³RPNæœ«å°¾
+   int n = strlen ( rpn ); //RPNå½“å‰é•¿åº¦ï¼ˆä»¥'\0'ç»“å°¾ï¼Œé•¿åº¦n + 1ï¼‰
+   rpn = ( char* ) realloc ( rpn, sizeof ( char ) * ( n + 3 ) ); //æ‰©å±•ç©ºé—´
+   sprintf ( rpn + n, "%c ", optr ); rpn[n + 2] = '\0'; //æ¥å…¥æŒ‡å®šçš„è¿ç®—ç¬¦
 }

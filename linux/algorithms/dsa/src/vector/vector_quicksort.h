@@ -8,11 +8,11 @@
 
 #pragma once
 
-template <typename T> //ÏòÁ¿¿ìËÙÅÅĞò
+template <typename T> //å‘é‡å¿«é€Ÿæ’åº
 void Vector<T>::quickSort ( Rank lo, Rank hi ) { //0 <= lo < hi <= size
    /*DSA*/printf ( "\tQUICKsort [%3d, %3d)\n", lo, hi );
-   if ( hi - lo < 2 ) return; //µ¥ÔªËØÇø¼ä×ÔÈ»ÓĞĞò£¬·ñÔò...
-   Rank mi = partition ( lo, hi - 1 ); //ÔÚ[lo, hi - 1]ÄÚ¹¹ÔìÖáµã
-   quickSort ( lo, mi ); //¶ÔÇ°×ºµİ¹éÅÅĞò
-   quickSort ( mi + 1, hi ); //¶Ôºó×ºµİ¹éÅÅĞò
+   if ( hi - lo < 2 ) return; //å•å…ƒç´ åŒºé—´è‡ªç„¶æœ‰åºï¼Œå¦åˆ™...
+   Rank mi = partition ( lo, hi - 1 ); //åœ¨[lo, hi - 1]å†…æ„é€ è½´ç‚¹
+   quickSort ( lo, mi ); //å¯¹å‰ç¼€é€’å½’æ’åº
+   quickSort ( mi + 1, hi ); //å¯¹åç¼€é€’å½’æ’åº
 }

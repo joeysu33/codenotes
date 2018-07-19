@@ -8,5 +8,5 @@
 
 #pragma once
 
-void shuffle ( int A[], int n ); //随机置乱整数数组A[0, n)
-void shuffle ( int A[], int lo, int hi ); //随机置乱整数数组区间A[lo, hi)
+void shuffle ( int A[], int n ); //闅忔満缃贡鏁存暟鏁扮粍A[0, n)
+void shuffle ( int A[], int lo, int hi ); //闅忔満缃贡鏁存暟鏁扮粍鍖洪棿A[lo, hi)

@@ -8,7 +8,7 @@
 
 #pragma once
 
-template <typename T> bool majority ( Vector<T> A, T& maj ) { //ÖÚÊı²éÕÒËã·¨£ºT¿É±È½Ï¿ÉÅĞµÈ
-   maj = majEleCandidate ( A ); //±ØÒªĞÔ£ºÑ¡³öºòÑ¡Õßmaj
-   return majEleCheck ( A, maj ); //³ä·ÖĞÔ£ºÑéÖ¤majÊÇ·ñµÄÈ·µ±Ñ¡
+template <typename T> bool majority ( Vector<T> A, T& maj ) { //ä¼—æ•°æŸ¥æ‰¾ç®—æ³•ï¼šTå¯æ¯”è¾ƒå¯åˆ¤ç­‰
+   maj = majEleCandidate ( A ); //å¿…è¦æ€§ï¼šé€‰å‡ºå€™é€‰è€…maj
+   return majEleCheck ( A, maj ); //å……åˆ†æ€§ï¼šéªŒè¯majæ˜¯å¦çš„ç¡®å½“é€‰
 }

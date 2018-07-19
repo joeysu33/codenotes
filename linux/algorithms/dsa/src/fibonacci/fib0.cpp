@@ -6,8 +6,8 @@
  * Copyright (c) 2006-2013. All rights reserved.
  ******************************************************************************************/
 
-__int64 fibI ( int n ) { //计算Fibonacci数列的第n项（迭代版）：O(n)
-   __int64 f = 1, g = 0; //初始化：fib(-1)、fib(0)
-   while ( 0 < n-- ) { g += f; f = g - f; } //依据原始定义，通过n次加法和减法计算fib(n)
-   return g; //返回
+__int64 fibI ( int n ) { //璁＄畻Fibonacci鏁板垪鐨勭n椤癸紙杩唬鐗堬級锛歄(n)
+   __int64 f = 1, g = 0; //鍒濆鍖栵細fib(-1)銆乫ib(0)
+   while ( 0 < n-- ) { g += f; f = g - f; } //渚濇嵁鍘熷瀹氫箟锛岄�氳繃n娆″姞娉曞拰鍑忔硶璁＄畻fib(n)
+   return g; //杩斿洖
 }

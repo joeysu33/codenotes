@@ -11,7 +11,7 @@
 #include "../vector/vector.h"
 
 /******************************************************************************************
- * 生成长度为n的随机有序向量，元素取值来自[min, max]
+ * 鐢熸垚闀垮害涓簄鐨勯殢鏈烘湁搴忓悜閲忥紝鍏冪礌鍙栧�兼潵鑷猍min, max]
  * The Art of Computer Programming, Vol.2, Algorithm S
  ******************************************************************************************/
 Vector<int> randomSortedVector ( int n, int min, int max );

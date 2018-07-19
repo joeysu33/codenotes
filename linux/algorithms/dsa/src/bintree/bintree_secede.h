@@ -8,10 +8,10 @@
 
 #pragma once
 
-template <typename T> //¶ş²æÊ÷×ÓÊ÷·ÖÀëËã·¨£º½«×ÓÊ÷x´Óµ±Ç°Ê÷ÖĞÕª³ı£¬½«Æä·â×°ÎªÒ»¿Ã¶ÀÁ¢×ÓÊ÷·µ»Ø
-BinTree<T>* BinTree<T>::secede ( BinNodePosi(T) x ) { //assert: xÎª¶ş²æÊ÷ÖĞµÄºÏ·¨Î»ÖÃ
-   FromParentTo ( *x ) = NULL; //ÇĞ¶ÏÀ´×Ô¸¸½ÚµãµÄÖ¸Õë
-   updateHeightAbove ( x->parent ); //¸üĞÂÔ­Ê÷ÖĞËùÓĞ×æÏÈµÄ¸ß¶È
-   BinTree<T>* S = new BinTree<T>; S->_root = x; x->parent = NULL; //ĞÂÊ÷ÒÔxÎª¸ù
-   S->_size = x->size(); _size -= S->_size; return S; //¸üĞÂ¹æÄ££¬·µ»Ø·ÖÀë³öÀ´µÄ×ÓÊ÷
+template <typename T> //äºŒå‰æ ‘å­æ ‘åˆ†ç¦»ç®—æ³•ï¼šå°†å­æ ‘xä»å½“å‰æ ‘ä¸­æ‘˜é™¤ï¼Œå°†å…¶å°è£…ä¸ºä¸€æ£µç‹¬ç«‹å­æ ‘è¿”å›
+BinTree<T>* BinTree<T>::secede ( BinNodePosi(T) x ) { //assert: xä¸ºäºŒå‰æ ‘ä¸­çš„åˆæ³•ä½ç½®
+   FromParentTo ( *x ) = NULL; //åˆ‡æ–­æ¥è‡ªçˆ¶èŠ‚ç‚¹çš„æŒ‡é’ˆ
+   updateHeightAbove ( x->parent ); //æ›´æ–°åŸæ ‘ä¸­æ‰€æœ‰ç¥–å…ˆçš„é«˜åº¦
+   BinTree<T>* S = new BinTree<T>; S->_root = x; x->parent = NULL; //æ–°æ ‘ä»¥xä¸ºæ ¹
+   S->_size = x->size(); _size -= S->_size; return S; //æ›´æ–°è§„æ¨¡ï¼Œè¿”å›åˆ†ç¦»å‡ºæ¥çš„å­æ ‘
 }

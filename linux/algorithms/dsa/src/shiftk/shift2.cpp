@@ -9,13 +9,13 @@
 /*DSA*/#include "../reverse/reverse.h"
 /*DSA*/#include "../UniPrint/print_int_array.h"
 
-int shift2 ( int* A, int n, int k ) { //½èÖúµ¹ÖÃËã·¨£¬½«Êı×éÑ­»·×óÒÆkÎ»£¬O(3n)
-   k %= n; //È·±£k <= n
-   reverse ( A, k ); //½«Çø¼äA[0, k)µ¹ÖÃ£ºO(3k/2)´Î²Ù×÷
+int shift2 ( int* A, int n, int k ) { //å€ŸåŠ©å€’ç½®ç®—æ³•ï¼Œå°†æ•°ç»„å¾ªç¯å·¦ç§»kä½ï¼ŒO(3n)
+   k %= n; //ç¡®ä¿k <= n
+   reverse ( A, k ); //å°†åŒºé—´A[0, k)å€’ç½®ï¼šO(3k/2)æ¬¡æ“ä½œ
    /*DSA*/print ( A, n, 0, k );
-   reverse ( A + k, n - k ); //½«Çø¼äA[k, n)µ¹ÖÃ£ºO(3(n - k)/2)´Î²Ù×÷
+   reverse ( A + k, n - k ); //å°†åŒºé—´A[k, n)å€’ç½®ï¼šO(3(n - k)/2)æ¬¡æ“ä½œ
    /*DSA*/print ( A, n, k, n );
-   reverse ( A, n ); //µ¹ÖÃÕû¸öÊı×éA[0, n)£ºO(3n/2)´Î²Ù×÷
+   reverse ( A, n ); //å€’ç½®æ•´ä¸ªæ•°ç»„A[0, n)ï¼šO(3n/2)æ¬¡æ“ä½œ
    /*DSA*/print ( A, n );
-   return 3 * n; //·µ»ØÀÛ¼Æ²Ù×÷´ÎÊı£¬ÒÔ±ãÓëÆäËüËã·¨±È½Ï£º3/2 * (k + (n - k) + n) = 3n
+   return 3 * n; //è¿”å›ç´¯è®¡æ“ä½œæ¬¡æ•°ï¼Œä»¥ä¾¿ä¸å…¶å®ƒç®—æ³•æ¯”è¾ƒï¼š3/2 * (k + (n - k) + n) = 3n
 }

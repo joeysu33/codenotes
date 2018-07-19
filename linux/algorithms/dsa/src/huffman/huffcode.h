@@ -8,5 +8,5 @@
 
 #pragma once
 
-#include "../Bitmap/Bitmap.h" //»ùÓÚBitmapÊµÏÖ
-typedef Bitmap HuffCode; //Huffman¶ş½øÖÆ±àÂë
+#include "../Bitmap/Bitmap.h" //åŸºäºBitmapå®ç°
+typedef Bitmap HuffCode; //HuffmanäºŒè¿›åˆ¶ç¼–ç 

@@ -9,20 +9,20 @@
 /*DSA*/#include "../_share/util.h"
 /*DSA*/#include "../UniPrint/print_int_array.h"
 
-void bubblesort1A ( int A[], int n ) { //ÆðÅÝÅÅÐòËã·¨£¨°æ±¾1A£©£º0 <= n
+void bubblesort1A ( int A[], int n ) { //èµ·æ³¡æŽ’åºç®—æ³•ï¼ˆç‰ˆæœ¬1Aï¼‰ï¼š0 <= n
    /*DSA*/int cmp = 0, swp = 0;
-   bool sorted = false; //ÕûÌåÅÅÐò±êÖ¾£¬Ê×ÏÈ¼Ù¶¨ÉÐÎ´ÅÅÐò
-   while ( !sorted ) { //ÔÚÉÐÎ´È·ÈÏÒÑÈ«¾ÖÅÅÐòÖ®Ç°£¬ÖðÌË½øÐÐÉ¨Ãè½»»»
-      sorted = true; //¼Ù¶¨ÒÑ¾­ÅÅÐò
-      for ( int i = 1; i < n; i++ ) { //×Ô×óÏòÓÒÖð¶Ô¼ì²éµ±Ç°·¶Î§A[0, n)ÄÚµÄ¸÷ÏàÁÚÔªËØ
-         if ( A[i - 1] > A[i] ) { //Ò»µ©A[i - 1]ÓëA[i]ÄæÐò£¬Ôò
-            swap ( A[i - 1], A[i] ); //½»»»Ö®£¬²¢
-            sorted = false; //ÒòÕûÌåÅÅÐò²»ÄÜ±£Ö¤£¬ÐèÒªÇå³ýÅÅÐò±êÖ¾
+   bool sorted = false; //æ•´ä½“æŽ’åºæ ‡å¿—ï¼Œé¦–å…ˆå‡å®šå°šæœªæŽ’åº
+   while ( !sorted ) { //åœ¨å°šæœªç¡®è®¤å·²å…¨å±€æŽ’åºä¹‹å‰ï¼Œé€è¶Ÿè¿›è¡Œæ‰«æäº¤æ¢
+      sorted = true; //å‡å®šå·²ç»æŽ’åº
+      for ( int i = 1; i < n; i++ ) { //è‡ªå·¦å‘å³é€å¯¹æ£€æŸ¥å½“å‰èŒƒå›´A[0, n)å†…çš„å„ç›¸é‚»å…ƒç´ 
+         if ( A[i - 1] > A[i] ) { //ä¸€æ—¦A[i - 1]ä¸ŽA[i]é€†åºï¼Œåˆ™
+            swap ( A[i - 1], A[i] ); //äº¤æ¢ä¹‹ï¼Œå¹¶
+            sorted = false; //å› æ•´ä½“æŽ’åºä¸èƒ½ä¿è¯ï¼Œéœ€è¦æ¸…é™¤æŽ’åºæ ‡å¿—
             /*DSA*/swp++; printf ( "%3d: ", n ); print ( A, n, i - 1, i + 1 );
          }
          /*DSA*/cmp++;
       }
-      n--; //ÖÁ´ËÄ©ÔªËØ±ØÈ»¾ÍÎ»£¬¹Ê¿ÉÒÔËõ¶Ì´ýÅÅÐòÐòÁÐµÄÓÐÐ§³¤¶È
+      n--; //è‡³æ­¤æœ«å…ƒç´ å¿…ç„¶å°±ä½ï¼Œæ•…å¯ä»¥ç¼©çŸ­å¾…æŽ’åºåºåˆ—çš„æœ‰æ•ˆé•¿åº¦
    }
    /*DSA*/printf ( "#comparison = %d, #swap = %d\n", cmp, swp );
-} //½èÖú²¼¶ûÐÍ±êÖ¾Î»sorted£¬¿É¼°Ê±ÌáÇ°ÍË³ö£¬¶ø²»ÖÂ×ÜÊÇÂùÁ¦µØ×ön - 1ÌËÉ¨Ãè½»»»
+} //å€ŸåŠ©å¸ƒå°”åž‹æ ‡å¿—ä½sortedï¼Œå¯åŠæ—¶æå‰é€€å‡ºï¼Œè€Œä¸è‡´æ€»æ˜¯è›®åŠ›åœ°åšn - 1è¶Ÿæ‰«æäº¤æ¢

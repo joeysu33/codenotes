@@ -9,9 +9,9 @@
 #pragma once
 
 /******************************************************************************************
- * °´ÕÕ¡°3 + 4¡±½á¹¹Áª½Ó3¸ö½Úµã¼°ÆäËÄ¿Ã×ÓÊ÷£¬·µ»ØÖØ×éÖ®ºóµÄ¾Ö²¿×ÓÊ÷¸ù½ÚµãÎ»ÖÃ£¨¼´b£©
- * ×ÓÊ÷¸ù½ÚµãÓëÉÏ²ã½ÚµãÖ®¼äµÄË«ÏòÁª½Ó£¬¾ùÐëÓÉÉÏ²ãµ÷ÓÃÕßÍê³É
- * ¿ÉÓÃÓÚAVLºÍRedBlackµÄ¾Ö²¿Æ½ºâµ÷Õû
+ * æŒ‰ç…§â€œ3 + 4â€ç»“æž„è”æŽ¥3ä¸ªèŠ‚ç‚¹åŠå…¶å››æ£µå­æ ‘ï¼Œè¿”å›žé‡ç»„ä¹‹åŽçš„å±€éƒ¨å­æ ‘æ ¹èŠ‚ç‚¹ä½ç½®ï¼ˆå³bï¼‰
+ * å­æ ‘æ ¹èŠ‚ç‚¹ä¸Žä¸Šå±‚èŠ‚ç‚¹ä¹‹é—´çš„åŒå‘è”æŽ¥ï¼Œå‡é¡»ç”±ä¸Šå±‚è°ƒç”¨è€…å®Œæˆ
+ * å¯ç”¨äºŽAVLå’ŒRedBlackçš„å±€éƒ¨å¹³è¡¡è°ƒæ•´
  ******************************************************************************************/
 template <typename T> BinNodePosi(T) BST<T>::connect34 (
    BinNodePosi(T) a, BinNodePosi(T) b, BinNodePosi(T) c,
@@ -24,5 +24,5 @@ template <typename T> BinNodePosi(T) BST<T>::connect34 (
    c->rc = T3; if ( T3 ) T3->parent = c; updateHeight ( c );
    b->lc = a; a->parent = b;
    b->rc = c; c->parent = b; updateHeight ( b );
-   return b; //¸Ã×ÓÊ÷ÐÂµÄ¸ù½Úµã
+   return b; //è¯¥å­æ ‘æ–°çš„æ ¹èŠ‚ç‚¹
 }

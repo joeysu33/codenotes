@@ -10,9 +10,9 @@
 
 #include "..\vector\vector.h"
 
-template <typename T> void checkOrder ( Vector<T> & V ) { //ÅĞ¶ÏÏòÁ¿ÊÇ·ñÕûÌåÓĞĞò
-   int unsorted = 0; //ÄæĞò¼ÆÊıÆ÷
-   V.traverse ( CheckOrder<T> ( unsorted, V[0] ) ); //½øĞĞ±éÀú
+template <typename T> void checkOrder ( Vector<T> & V ) { //åˆ¤æ–­å‘é‡æ˜¯å¦æ•´ä½“æœ‰åº
+   int unsorted = 0; //é€†åºè®¡æ•°å™¨
+   V.traverse ( CheckOrder<T> ( unsorted, V[0] ) ); //è¿›è¡Œéå†
    if ( 0 < unsorted )
       printf ( "Unsorted with %d adjacent disordered pair(s)\n", unsorted );
    else

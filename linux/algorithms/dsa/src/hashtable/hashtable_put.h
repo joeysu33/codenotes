@@ -8,10 +8,10 @@
 
 #pragma once
 
-template <typename K, typename V> bool Hashtable<K, V>::put ( K k, V v ) { //É¢ÁĞ±í´ÊÌõ²åÈë
-   if ( ht[probe4Hit ( k ) ] ) return false; //À×Í¬ÔªËØ²»±ØÖØ¸´²åÈë
-   int r = probe4Free ( k ); //ÎªĞÂ´ÊÌõÕÒ¸ö¿ÕÍ°£¨Ö»Òª×°ÌîÒò×Ó¿ØÖÆµÃµ±£¬±ØÈ»³É¹¦£©
-   ht[r] = new Entry<K, V> ( k, v ); ++N; //²åÈë£¨×¢Òâ£ºÀÁ¶èÉ¾³ı±ê¼ÇÎŞĞè¸´Î»£©
-   if ( N * 2 > M ) rehash(); //×°ÌîÒò×Ó¸ßÓÚ50%ºóÖØÉ¢ÁĞ
+template <typename K, typename V> bool Hashtable<K, V>::put ( K k, V v ) { //æ•£åˆ—è¡¨è¯æ¡æ’å…¥
+   if ( ht[probe4Hit ( k ) ] ) return false; //é›·åŒå…ƒç´ ä¸å¿…é‡å¤æ’å…¥
+   int r = probe4Free ( k ); //ä¸ºæ–°è¯æ¡æ‰¾ä¸ªç©ºæ¡¶ï¼ˆåªè¦è£…å¡«å› å­æ§åˆ¶å¾—å½“ï¼Œå¿…ç„¶æˆåŠŸï¼‰
+   ht[r] = new Entry<K, V> ( k, v ); ++N; //æ’å…¥ï¼ˆæ³¨æ„ï¼šæ‡’æƒ°åˆ é™¤æ ‡è®°æ— éœ€å¤ä½ï¼‰
+   if ( N * 2 > M ) rehash(); //è£…å¡«å› å­é«˜äº50%åé‡æ•£åˆ—
    return true;
 }

@@ -9,19 +9,19 @@
 #pragma once
 
 #include "../vector/vector.h"
-#define BTNodePosi(T) BTNode<T>* //B-Ê÷½ÚµãÎ»ÖÃ
+#define BTNodePosi(T) BTNode<T>* //B-æ ‘èŠ‚ç‚¹ä½ç½®
 
-template <typename T> struct BTNode { //B-Ê÷½ÚµãÄ£°åÀà
-// ³ÉÔ±£¨Îª¼ò»¯ÃèÊöÆğ¼ûÍ³Ò»¿ª·Å£¬¶ÁÕß¿É¸ù¾İĞèÒª½øÒ»²½·â×°£©
-   BTNodePosi(T) parent; //¸¸½Úµã
-   Vector<T> key; //¹Ø¼üÂëÏòÁ¿
-   Vector<BTNodePosi(T)> child; //º¢×ÓÏòÁ¿£¨Æä³¤¶È×Ü±Èkey¶àÒ»£©
-// ¹¹Ôìº¯Êı£¨×¢Òâ£ºBTNodeÖ»ÄÜ×÷Îª¸ù½Úµã´´½¨£¬¶øÇÒ³õÊ¼Ê±ÓĞ0¸ö¹Ø¼üÂëºÍ1¸ö¿Õº¢×ÓÖ¸Õë£©
+template <typename T> struct BTNode { //B-æ ‘èŠ‚ç‚¹æ¨¡æ¿ç±»
+// æˆå‘˜ï¼ˆä¸ºç®€åŒ–æè¿°èµ·è§ç»Ÿä¸€å¼€æ”¾ï¼Œè¯»è€…å¯æ ¹æ®éœ€è¦è¿›ä¸€æ­¥å°è£…ï¼‰
+   BTNodePosi(T) parent; //çˆ¶èŠ‚ç‚¹
+   Vector<T> key; //å…³é”®ç å‘é‡
+   Vector<BTNodePosi(T)> child; //å­©å­å‘é‡ï¼ˆå…¶é•¿åº¦æ€»æ¯”keyå¤šä¸€ï¼‰
+// æ„é€ å‡½æ•°ï¼ˆæ³¨æ„ï¼šBTNodeåªèƒ½ä½œä¸ºæ ¹èŠ‚ç‚¹åˆ›å»ºï¼Œè€Œä¸”åˆå§‹æ—¶æœ‰0ä¸ªå…³é”®ç å’Œ1ä¸ªç©ºå­©å­æŒ‡é’ˆï¼‰
    BTNode() { parent = NULL; child.insert ( 0, NULL ); }
    BTNode ( T e, BTNodePosi(T) lc = NULL, BTNodePosi(T) rc = NULL ) {
-      parent = NULL; //×÷Îª¸ù½Úµã£¬¶øÇÒ³õÊ¼Ê±
-      key.insert ( 0, e ); //Ö»ÓĞÒ»¸ö¹Ø¼üÂë£¬ÒÔ¼°
-      child.insert ( 0, lc ); child.insert ( 1, rc ); //Á½¸öº¢×Ó
+      parent = NULL; //ä½œä¸ºæ ¹èŠ‚ç‚¹ï¼Œè€Œä¸”åˆå§‹æ—¶
+      key.insert ( 0, e ); //åªæœ‰ä¸€ä¸ªå…³é”®ç ï¼Œä»¥åŠ
+      child.insert ( 0, lc ); child.insert ( 1, rc ); //ä¸¤ä¸ªå­©å­
       if ( lc ) lc->parent = this; if ( rc ) rc->parent = this;
    }
 };

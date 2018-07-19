@@ -8,9 +8,9 @@
 
 #pragma once
 
-template <typename T> int Vector<T>::disordered() const { //·µ»ØÏòÁ¿ÖĞÄæĞòÏàÁÚÔªËØ¶ÔµÄ×ÜÊı
-   int n = 0; //¼ÆÊıÆ÷
-   for ( int i = 1; i < _size; i++ ) //ÖğÒ»¼ì²é_size - 1¶ÔÏàÁÚÔªËØ
-      if ( _elem[i - 1] > _elem[i] ) n++; //ÄæĞòÔò¼ÆÊı
-   return n; //ÏòÁ¿ÓĞĞòµ±ÇÒ½öµ±n = 0
+template <typename T> int Vector<T>::disordered() const { //è¿”å›å‘é‡ä¸­é€†åºç›¸é‚»å…ƒç´ å¯¹çš„æ€»æ•°
+   int n = 0; //è®¡æ•°å™¨
+   for ( int i = 1; i < _size; i++ ) //é€ä¸€æ£€æŸ¥_size - 1å¯¹ç›¸é‚»å…ƒç´ 
+      if ( _elem[i - 1] > _elem[i] ) n++; //é€†åºåˆ™è®¡æ•°
+   return n; //å‘é‡æœ‰åºå½“ä¸”ä»…å½“n = 0
 }

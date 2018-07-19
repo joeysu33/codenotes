@@ -12,20 +12,20 @@
  * Hashtable
  ******************************************************************************************/
 
-template <typename K, typename V> //e¡¢value
-void UniPrint::p ( Hashtable<K, V>& ht ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d/%d:\n", typeid ( ht ).name(), &ht, ht.N, ht.M ); //»ù±¾ĞÅÏ¢
-   for ( int i = 0; i < ht.M; i++ ) //Êä³öÍ°±àºÅ
+template <typename K, typename V> //eã€value
+void UniPrint::p ( Hashtable<K, V>& ht ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d/%d:\n", typeid ( ht ).name(), &ht, ht.N, ht.M ); //åŸºæœ¬ä¿¡æ¯
+   for ( int i = 0; i < ht.M; i++ ) //è¾“å‡ºæ¡¶ç¼–å·
       printf ( "  %4d  ", i );
    printf ( "\n" );
-   for ( int i = 0; i < ht.M; i++ ) //Êä³öËùÓĞÔªËØ
-      if ( ht.ht[i] ) printf ( "-<%04d>-", ht.ht[i]->key ); //ÑİÊ¾ÓÃ£¬½öÊÊÓÃÓÚint
+   for ( int i = 0; i < ht.M; i++ ) //è¾“å‡ºæ‰€æœ‰å…ƒç´ 
+      if ( ht.ht[i] ) printf ( "-<%04d>-", ht.ht[i]->key ); //æ¼”ç¤ºç”¨ï¼Œä»…é€‚ç”¨äºint
       else if ( ht.lazyRemoval->test ( i ) ) printf ( "-<xxxx>-" );
       else printf ( "--------" );
    printf ( "\n" );
-   for ( int i = 0; i < ht.M; i++ ) //Êä³öËùÓĞÔªËØ
-      if ( ht.ht[i] ) printf ( "    %c   ", ht.ht[i]->value ); //ÑİÊ¾ÓÃ£¬½öÊÊÓÃÓÚchar
-//      if (ht.ht[i]) printf("%8s", ht.ht[i]->value); //Õë¶ÔHuffman±àÂëÖĞÊ¹ÓÃµÄÉ¢ÁĞ±í
+   for ( int i = 0; i < ht.M; i++ ) //è¾“å‡ºæ‰€æœ‰å…ƒç´ 
+      if ( ht.ht[i] ) printf ( "    %c   ", ht.ht[i]->value ); //æ¼”ç¤ºç”¨ï¼Œä»…é€‚ç”¨äºchar
+//      if (ht.ht[i]) printf("%8s", ht.ht[i]->value); //é’ˆå¯¹Huffmanç¼–ç ä¸­ä½¿ç”¨çš„æ•£åˆ—è¡¨
       else if ( ht.lazyRemoval->test ( i ) ) printf ( " <xxxx> " );
       else printf ( "        " );
    printf ( "\n" );

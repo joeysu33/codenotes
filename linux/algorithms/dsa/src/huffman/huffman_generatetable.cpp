@@ -8,9 +8,9 @@
 
 /*DSA*/#include "Huffman_PQ.h"
 
-static void //Í¨¹ý±éÀú»ñÈ¡¸÷×Ö·ûµÄ±àÂë
+static void //é€šè¿‡éåŽ†èŽ·å–å„å­—ç¬¦çš„ç¼–ç 
 generateCT ( Bitmap* code, int length, HuffTable* table, BinNodePosi ( HuffChar ) v ) {
-   if ( IsLeaf ( *v ) ) //ÈôÊÇÒ¶½Úµã£¨»¹ÓÐ¶àÖÖ·½·¨¿ÉÒÔÅÐ¶Ï£©
+   if ( IsLeaf ( *v ) ) //è‹¥æ˜¯å¶èŠ‚ç‚¹ï¼ˆè¿˜æœ‰å¤šç§æ–¹æ³•å¯ä»¥åˆ¤æ–­ï¼‰
       {  table->put ( v->data.ch, code->bits2string ( length ) ); return;  }
    if ( HasLChild ( *v ) ) //Left = 0
       { code->clear ( length ); generateCT ( code, length + 1, table, v->lc ); }
@@ -18,7 +18,7 @@ generateCT ( Bitmap* code, int length, HuffTable* table, BinNodePosi ( HuffChar 
       { code->set ( length ); generateCT ( code, length + 1, table, v->rc ); }
 }
 
-HuffTable* generateTable ( HuffTree* tree ) { //½«¸÷×Ö·û±àÂëÍ³Ò»´æÈëÒÔÉ¢ÁÐ±íÊµÏÖµÄ±àÂë±íÖÐ
+HuffTable* generateTable ( HuffTree* tree ) { //å°†å„å­—ç¬¦ç¼–ç ç»Ÿä¸€å­˜å…¥ä»¥æ•£åˆ—è¡¨å®žçŽ°çš„ç¼–ç è¡¨ä¸­
    HuffTable* table = new HuffTable; Bitmap* code = new Bitmap;
    generateCT ( code, 0, table, tree->root() ); release ( code ); return table;
 };

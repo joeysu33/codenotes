@@ -7,8 +7,8 @@
  ******************************************************************************************/
 
 #include "../_share/util.h"
-#include "../stack/stack.h" //Ê¹ÓÃÕ»
-#include "Cell.h" //ÃÔ¹¬¸ñµãÀà
+#include "../stack/stack.h" //ä½¿ç”¨æ ˆ
+#include "Cell.h" //è¿·å®«æ ¼ç‚¹ç±»
 
 int labySize;
 Cell* startCell;
@@ -24,12 +24,12 @@ Cell* goalCell;
 #include "readLaby.h"
 
 /******************************************************************************************
- * ÃÔ¹¬Ñ°¾¶
+ * è¿·å®«å¯»å¾„
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
-   srand ( ( unsigned int ) time ( NULL ) ); //ÉèÖÃËæ»úÖÖ×Ó
-   ( 1 < argc ) ? readLaby ( argv[1] ) : randLaby(); //Ê¹ÓÃÖ¸¶¨ÃÔ¹¬ÎÄ¼þ£¬»òËæ»úÉú³É
-   labyrinth ( laby, startCell, goalCell ) ? //Æô¶¯Ëã·¨
+   srand ( ( unsigned int ) time ( NULL ) ); //è®¾ç½®éšæœºç§å­
+   ( 1 < argc ) ? readLaby ( argv[1] ) : randLaby(); //ä½¿ç”¨æŒ‡å®šè¿·å®«æ–‡ä»¶ï¼Œæˆ–éšæœºç”Ÿæˆ
+   labyrinth ( laby, startCell, goalCell ) ? //å¯åŠ¨ç®—æ³•
    printf ( "\nRoute found\a\n" ) :
    printf ( "\nNo route found\a\n" );
    getchar();

@@ -9,10 +9,10 @@
 #pragma once
 
 //////////////////////////////////////////////////////////////////////////
-// Boyer-MooreËã·¨
+// Boyer-Mooreç®—æ³•
 //////////////////////////////////////////////////////////////////////////
 void     ShowProgress ( String, String,  int,  int );
 #define  CARD_CHAR_SET     256   //Cardinality of charactor set
-int*     BuildBC ( String ); //¹¹ÔìBad Charactor Shift±í
+int*     BuildBC ( String ); //æž„é€ Bad Charactor Shiftè¡¨
 int*     suffixes ( String );
-int*     BuildGS ( String ); //¹¹ÔìGood Suffix Shift±í
+int*     BuildGS ( String ); //æž„é€ Good Suffix Shiftè¡¨

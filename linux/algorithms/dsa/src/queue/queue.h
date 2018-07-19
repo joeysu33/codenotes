@@ -8,12 +8,12 @@
 
 #pragma once
 
-#include "../List/List.h" //ÒÔListÎª»ùÀà
-template <typename T> class Queue: public List<T> { //¶ÓÁĞÄ£°åÀà£¨¼Ì³ĞListÔ­ÓĞ½Ó¿Ú£©
-public: //size()¡¢empty()ÒÔ¼°ÆäËü¿ª·Å½Ó¿Ú¾ù¿ÉÖ±½ÓÑØÓÃ
-   void enqueue ( T const& e ) { insertAsLast ( e ); } //Èë¶Ó£ºÎ²²¿²åÈë
-   T dequeue() { return remove ( first() ); } //³ö¶Ó£ºÊ×²¿É¾³ı
-   T& front() { return first()->data; } //¶ÓÊ×
+#include "../List/List.h" //ä»¥Listä¸ºåŸºç±»
+template <typename T> class Queue: public List<T> { //é˜Ÿåˆ—æ¨¡æ¿ç±»ï¼ˆç»§æ‰¿ListåŸæœ‰æ¥å£ï¼‰
+public: //size()ã€empty()ä»¥åŠå…¶å®ƒå¼€æ”¾æ¥å£å‡å¯ç›´æ¥æ²¿ç”¨
+   void enqueue ( T const& e ) { insertAsLast ( e ); } //å…¥é˜Ÿï¼šå°¾éƒ¨æ’å…¥
+   T dequeue() { return remove ( first() ); } //å‡ºé˜Ÿï¼šé¦–éƒ¨åˆ é™¤
+   T& front() { return first()->data; } //é˜Ÿé¦–
 };
 
 #include "queue_implementation.h"

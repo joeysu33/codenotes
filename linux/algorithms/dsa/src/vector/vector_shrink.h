@@ -8,10 +8,10 @@
 
 #pragma once
 
-template <typename T> void Vector<T>::shrink() { //×°ÌîÒò×Ó¹ıĞ¡Ê±Ñ¹ËõÏòÁ¿ËùÕ¼¿Õ¼ä
-   if ( _capacity < DEFAULT_CAPACITY << 1 ) return; //²»ÖÂÊÕËõµ½DEFAULT_CAPACITYÒÔÏÂ
-   if ( _size << 2 > _capacity ) return; //ÒÔ25%Îª½ç
-   T* oldElem = _elem;  _elem = new T[_capacity >>= 1]; //ÈİÁ¿¼õ°ë
-   for ( int i = 0; i < _size; i++ ) _elem[i] = oldElem[i]; //¸´ÖÆÔ­ÏòÁ¿ÄÚÈİ
-   delete [] oldElem; //ÊÍ·ÅÔ­¿Õ¼ä
+template <typename T> void Vector<T>::shrink() { //è£…å¡«å› å­è¿‡å°æ—¶å‹ç¼©å‘é‡æ‰€å ç©ºé—´
+   if ( _capacity < DEFAULT_CAPACITY << 1 ) return; //ä¸è‡´æ”¶ç¼©åˆ°DEFAULT_CAPACITYä»¥ä¸‹
+   if ( _size << 2 > _capacity ) return; //ä»¥25%ä¸ºç•Œ
+   T* oldElem = _elem;  _elem = new T[_capacity >>= 1]; //å®¹é‡å‡åŠ
+   for ( int i = 0; i < _size; i++ ) _elem[i] = oldElem[i]; //å¤åˆ¶åŸå‘é‡å†…å®¹
+   delete [] oldElem; //é‡Šæ”¾åŸç©ºé—´
 }

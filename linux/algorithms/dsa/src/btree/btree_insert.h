@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename T> bool BTree<T>::insert ( const T& e ) { //½«¹Ø¼üÂëe²åÈëBÊ÷ÖĞ
-   BTNodePosi(T) v = search ( e ); if ( v ) return false; //È·ÈÏÄ¿±ê½Úµã²»´æÔÚ
-   Rank r = _hot->key.search ( e ); //ÔÚ½Úµã_hotµÄÓĞĞò¹Ø¼üÂëÏòÁ¿ÖĞ²éÕÒºÏÊÊµÄ²åÈëÎ»ÖÃ
-   _hot->key.insert ( r + 1, e ); //½«ĞÂ¹Ø¼üÂë²åÖÁ¶ÔÓ¦µÄÎ»ÖÃ
-   _hot->child.insert ( r + 2, NULL ); //´´½¨Ò»¸ö¿Õ×ÓÊ÷Ö¸Õë
-   _size++; //¸üĞÂÈ«Ê÷¹æÄ£
-   solveOverflow ( _hot ); //ÈçÓĞ±ØÒª£¬Ğè×ö·ÖÁÑ
-   return true; //²åÈë³É¹¦
+template <typename T> bool BTree<T>::insert ( const T& e ) { //å°†å…³é”®ç eæ’å…¥Bæ ‘ä¸­
+   BTNodePosi(T) v = search ( e ); if ( v ) return false; //ç¡®è®¤ç›®æ ‡èŠ‚ç‚¹ä¸å­˜åœ¨
+   Rank r = _hot->key.search ( e ); //åœ¨èŠ‚ç‚¹_hotçš„æœ‰åºå…³é”®ç å‘é‡ä¸­æŸ¥æ‰¾åˆé€‚çš„æ’å…¥ä½ç½®
+   _hot->key.insert ( r + 1, e ); //å°†æ–°å…³é”®ç æ’è‡³å¯¹åº”çš„ä½ç½®
+   _hot->child.insert ( r + 2, NULL ); //åˆ›å»ºä¸€ä¸ªç©ºå­æ ‘æŒ‡é’ˆ
+   _size++; //æ›´æ–°å…¨æ ‘è§„æ¨¡
+   solveOverflow ( _hot ); //å¦‚æœ‰å¿…è¦ï¼Œéœ€åšåˆ†è£‚
+   return true; //æ’å…¥æˆåŠŸ
 }

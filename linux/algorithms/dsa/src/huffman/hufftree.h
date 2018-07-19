@@ -8,5 +8,5 @@
 
 #pragma once
 
-/*DSA*///typedef BinTree<HuffChar> HuffTree; //Huffman树，由BinTree派生，节点类型为HuffChar
-#define HuffTree BinTree<HuffChar> //Huffman树，由BinTree派生，节点类型为HuffChar
+/*DSA*///typedef BinTree<HuffChar> HuffTree; //Huffman鏍戯紝鐢盉inTree娲剧敓锛岃妭鐐圭被鍨嬩负HuffChar
+#define HuffTree BinTree<HuffChar> //Huffman鏍戯紝鐢盉inTree娲剧敓锛岃妭鐐圭被鍨嬩负HuffChar

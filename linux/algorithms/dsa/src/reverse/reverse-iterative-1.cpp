@@ -9,7 +9,7 @@
 /*DSA*/#include "../_share/util.h"
 /*DSA*/#include "../UniPrint/print_int_array.h"
 
-void reverse ( int* A, int lo, int hi ) { //Êı×éµ¹ÖÃ£¨¹æ·¶ÕûÀíÖ®ºóµÄµü´ú°æ£©
-   while ( lo < hi ) //ÓÃwhileÌæ»»Ìø×ª±êÖ¾ºÍif£¬ÍêÈ«µÈĞ§
-      swap ( A[lo++], A[hi--] ); //½»»»A[lo]ºÍA[hi]£¬ÊÕËõ´ıµ¹ÖÃÇø¼ä
+void reverse ( int* A, int lo, int hi ) { //æ•°ç»„å€’ç½®ï¼ˆè§„èŒƒæ•´ç†ä¹‹åçš„è¿­ä»£ç‰ˆï¼‰
+   while ( lo < hi ) //ç”¨whileæ›¿æ¢è·³è½¬æ ‡å¿—å’Œifï¼Œå®Œå…¨ç­‰æ•ˆ
+      swap ( A[lo++], A[hi--] ); //äº¤æ¢A[lo]å’ŒA[hi]ï¼Œæ”¶ç¼©å¾…å€’ç½®åŒºé—´
 } //O(hi - lo + 1)

@@ -14,7 +14,7 @@
 /******************************************************************************************
  * Test a RedBlack
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
+template <typename T> //å…ƒç´ ç±»å‹
 void  testRedBlack ( int n ) {
    RedBlack<T> rb;
    //for ( int i = 0; i < 256; i++ ) {
@@ -26,9 +26,9 @@ void  testRedBlack ( int n ) {
    //}
    //return;
    while ( rb.size() < n ) {
-      T e = dice ( ( T ) n * 3 ); //[0, 3n)·¶Î§ÄÚµÄe
+      T e = dice ( ( T ) n * 3 ); //[0, 3n)èŒƒå›´å†…çš„e
       switch ( dice ( 6 ) ) {
-         case 0: { //²éÕÒ£¨¸ÅÂÊ = 1/6£©
+         case 0: { //æŸ¥æ‰¾ï¼ˆæ¦‚ç‡ = 1/6ï¼‰
             printf ( "Searching for " ); print ( e ); printf ( " ...\n" );
             BinNodePosi(T) p = rb.search ( e );
             p ?
@@ -37,12 +37,12 @@ void  testRedBlack ( int n ) {
             break;
          }
          case 1:
-         case 2: { //É¾³ı£¨¸ÅÂÊ = 2/6)
+         case 2: { //åˆ é™¤ï¼ˆæ¦‚ç‡ = 2/6)
             printf ( "Removing " ); print ( e ); printf ( " ...\n" );
             rb.remove ( e ) ? printf ( "Done\n" ), print ( rb ) : printf ( "Not exists\n" );
             break;
          }
-         default: { //²åÈë£¨¸ÅÂÊ = 3/6)
+         default: { //æ’å…¥ï¼ˆæ¦‚ç‡ = 3/6)
             printf ( "Inserting " ); print ( e ); printf ( " ...\n" );
             BinNodePosi(T) p = rb.insert ( e );
             if ( p->data != e ) { print ( p->data ); printf ( " <> " ); print ( e ); printf ( "\n" ); }
@@ -52,18 +52,18 @@ void  testRedBlack ( int n ) {
       }
    }
    while ( rb.size() > 0 ) {
-      T e = dice ( ( T ) n * 3 ); //[0, 3n)·¶Î§ÄÚµÄe
+      T e = dice ( ( T ) n * 3 ); //[0, 3n)èŒƒå›´å†…çš„e
       printf ( "Removing " ); print ( e ); printf ( " ...\n" );
       rb.remove ( e ) ? printf ( "Done\n" ), print ( rb ) : printf ( "Not exists\n" );
    }
 }
 
 /******************************************************************************************
- * ²âÊÔÖ÷Èë¿Ú
+ * æµ‹è¯•ä¸»å…¥å£
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    if ( 2 > argc ) { printf ( "Usage: %s <size of test>\a\a\n", argv[0] ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
-   testRedBlack<int> ( atoi ( argv[1] ) ); //ÔªËØÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testRedBlack<int> ( atoi ( argv[1] ) ); //å…ƒç´ ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
    return 0;
 }

@@ -13,19 +13,19 @@
 #include "primeNLT.h"
 
 /******************************************************************************************
- * Ö÷º¯Êı
+ * ä¸»å‡½æ•°
  ******************************************************************************************/
-#define PRIMEFILE "prime-bitmap.txt" //ÓÃÓÚ¼ÇÂ¼Ö¸¶¨Çø¼äÄÚËØÊı·Ö²¼µÄ±ÈÌØÍ¼ÎÄ¼ş
+#define PRIMEFILE "prime-bitmap.txt" //ç”¨äºè®°å½•æŒ‡å®šåŒºé—´å†…ç´ æ•°åˆ†å¸ƒçš„æ¯”ç‰¹å›¾æ–‡ä»¶
 int main ( int argc, char* argv[] ) {
-   srand ( ( unsigned int ) time ( NULL ) ); //ÉèÖÃËæ»úÖÖ×Ó
+   srand ( ( unsigned int ) time ( NULL ) ); //è®¾ç½®éšæœºç§å­
    if ( 2 > argc ) { printf ( "Usage: %s <maxInt>\n", argv[0] ); return -1; }
-   int n = atoi ( argv[1] ); //¼ò»¯Æğ¼û£¬²»¿¼ÂÇ·ÇÕıµÄÇé¿ö
+   int n = atoi ( argv[1] ); //ç®€åŒ–èµ·è§ï¼Œä¸è€ƒè™‘éæ­£çš„æƒ…å†µ
    Eratosthenes ( n, PRIMEFILE );
-   for ( int i = 0; i < 13; i++ ) { //×ö13´ÎËæ»ú²âÊÔ£¨ÏŞÓÚMAX_RAND£¬¸²¸Ç·¶Î§²»³¬¹ı0x7FFF£©
+   for ( int i = 0; i < 13; i++ ) { //åš13æ¬¡éšæœºæµ‹è¯•ï¼ˆé™äºMAX_RANDï¼Œè¦†ç›–èŒƒå›´ä¸è¶…è¿‡0x7FFFï¼‰
       int low = dice ( n );
       printf ( "The smallest prime number no less than %8d (%05X) is %8d\n", low, low, primeNLT ( low, n, PRIMEFILE ) );
    }
-   for ( int i = 0; i < 13; i++ ) { //×ö13´ÎµÈ¼ä¾à²âÊÔ
+   for ( int i = 0; i < 13; i++ ) { //åš13æ¬¡ç­‰é—´è·æµ‹è¯•
       printf ( "The smallest prime number no less than %8d (%05X) is %8d\n", n * i / 13, n * i / 13, primeNLT ( n * i / 13, n, PRIMEFILE ) );
    }
    return 0;

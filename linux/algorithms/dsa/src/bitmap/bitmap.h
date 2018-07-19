@@ -14,36 +14,36 @@
 #include <memory.h>
 #include "../_share/release.h"
 
-class Bitmap { //Î»Í¼BitmapÀà
+class Bitmap { //ä½å›¾Bitmapç±»
 private:
-   char* M; int N; //±ÈÌØÍ¼Ëù´æ·ÅµÄ¿Õ¼äM[]£¬ÈİÁ¿ÎªN*sizeof(char)*8±ÈÌØ
+   char* M; int N; //æ¯”ç‰¹å›¾æ‰€å­˜æ”¾çš„ç©ºé—´M[]ï¼Œå®¹é‡ä¸ºN*sizeof(char)*8æ¯”ç‰¹
 protected:
    void init ( int n ) { M = new char[N = ( n + 7 ) / 8]; memset ( M, 0, N ); }
 public:
-   Bitmap ( int n = 8 ) { init ( n ); } //°´Ö¸¶¨»òÄ¬ÈÏ¹æÄ£´´½¨±ÈÌØÍ¼£¨Îª²âÊÔÔİÊ±Ñ¡ÓÃ½ÏĞ¡µÄÄ¬ÈÏÖµ£©
-   Bitmap ( char* file, int n = 8 ) //°´Ö¸¶¨»òÄ¬ÈÏ¹æÄ££¬´ÓÖ¸¶¨ÎÄ¼şÖĞ¶ÁÈ¡±ÈÌØÍ¼
+   Bitmap ( int n = 8 ) { init ( n ); } //æŒ‰æŒ‡å®šæˆ–é»˜è®¤è§„æ¨¡åˆ›å»ºæ¯”ç‰¹å›¾ï¼ˆä¸ºæµ‹è¯•æš‚æ—¶é€‰ç”¨è¾ƒå°çš„é»˜è®¤å€¼ï¼‰
+   Bitmap ( char* file, int n = 8 ) //æŒ‰æŒ‡å®šæˆ–é»˜è®¤è§„æ¨¡ï¼Œä»æŒ‡å®šæ–‡ä»¶ä¸­è¯»å–æ¯”ç‰¹å›¾
    {  init ( n ); FILE* fp = fopen ( file, "r" ); fread ( M, sizeof ( char ), N, fp ); fclose ( fp );  }
-   ~Bitmap() { delete [] M; M = NULL; } //Îö¹¹Ê±ÊÍ·Å±ÈÌØÍ¼¿Õ¼ä
+   ~Bitmap() { delete [] M; M = NULL; } //ææ„æ—¶é‡Šæ”¾æ¯”ç‰¹å›¾ç©ºé—´
 
    void set   ( int k ) { expand ( k );        M[k >> 3] |=   ( 0x80 >> ( k & 0x07 ) ); }
    void clear ( int k ) { expand ( k );        M[k >> 3] &= ~ ( 0x80 >> ( k & 0x07 ) ); }
    bool test  ( int k ) { expand ( k ); return M[k >> 3] &    ( 0x80 >> ( k & 0x07 ) ); }
 
-   void dump ( char* file ) //½«Î»Í¼ÕûÌåµ¼³öÖÁÖ¸¶¨µÄÎÄ¼ş£¬ÒÔ±ã¶Ô´ËºóµÄĞÂÎ»Í¼ÅúÁ¿³õÊ¼»¯
+   void dump ( char* file ) //å°†ä½å›¾æ•´ä½“å¯¼å‡ºè‡³æŒ‡å®šçš„æ–‡ä»¶ï¼Œä»¥ä¾¿å¯¹æ­¤åçš„æ–°ä½å›¾æ‰¹é‡åˆå§‹åŒ–
    {  FILE* fp = fopen ( file, "w" ); fwrite ( M, sizeof ( char ), N, fp ); fclose ( fp );  }
-   char* bits2string ( int n ) { //½«Ç°nÎ»×ª»»Îª×Ö·û´®¡ª¡ª
-      expand ( n - 1 ); //´ËÊ±¿ÉÄÜ±»·ÃÎÊµÄ×î¸ßÎ»Îªbitmap[n - 1]
-      char* s = new char[n + 1]; s[n] = '\0'; //×Ö·û´®ËùÕ¼¿Õ¼ä£¬ÓÉÉÏ²ãµ÷ÓÃÕß¸ºÔğÊÍ·Å
+   char* bits2string ( int n ) { //å°†å‰nä½è½¬æ¢ä¸ºå­—ç¬¦ä¸²â€”â€”
+      expand ( n - 1 ); //æ­¤æ—¶å¯èƒ½è¢«è®¿é—®çš„æœ€é«˜ä½ä¸ºbitmap[n - 1]
+      char* s = new char[n + 1]; s[n] = '\0'; //å­—ç¬¦ä¸²æ‰€å ç©ºé—´ï¼Œç”±ä¸Šå±‚è°ƒç”¨è€…è´Ÿè´£é‡Šæ”¾
       for ( int i = 0; i < n; i++ ) s[i] = test ( i ) ? '1' : '0';
-      return s; //·µ»Ø×Ö·û´®Î»ÖÃ
+      return s; //è¿”å›å­—ç¬¦ä¸²ä½ç½®
    }
-   void expand ( int k ) { //Èô±»·ÃÎÊµÄBitmap[k]ÒÑ³ö½ç£¬ÔòĞèÀ©Èİ
-      if ( k < 8 * N ) return; //ÈÔÔÚ½çÄÚ£¬ÎŞĞèÀ©Èİ
+   void expand ( int k ) { //è‹¥è¢«è®¿é—®çš„Bitmap[k]å·²å‡ºç•Œï¼Œåˆ™éœ€æ‰©å®¹
+      if ( k < 8 * N ) return; //ä»åœ¨ç•Œå†…ï¼Œæ— éœ€æ‰©å®¹
       int oldN = N; char* oldM = M;
-      init ( 2 * k ); //ÓëÏòÁ¿ÀàËÆ£¬¼Ó±¶²ßÂÔ
-      memcpy_s ( M, N, oldM, oldN ); delete [] oldM; //Ô­Êı¾İ×ªÒÆÖÁĞÂ¿Õ¼ä
+      init ( 2 * k ); //ä¸å‘é‡ç±»ä¼¼ï¼ŒåŠ å€ç­–ç•¥
+      memcpy_s ( M, N, oldM, oldN ); delete [] oldM; //åŸæ•°æ®è½¬ç§»è‡³æ–°ç©ºé—´
    }
    /*DSA*/
-   /*DSA*/   void print ( int n ) //ÖğÎ»´òÓ¡ÒÔ¼ìÑéÎ»Í¼ÄÚÈİ£¬·Ç±ØĞè½Ó¿Ú
+   /*DSA*/   void print ( int n ) //é€ä½æ‰“å°ä»¥æ£€éªŒä½å›¾å†…å®¹ï¼Œéå¿…éœ€æ¥å£
    /*DSA*/   {  expand ( n ); for ( int i = 0; i < n; i++ ) printf ( test ( i ) ? "1" : "0" );  }
 };

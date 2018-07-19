@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename Tv, typename Te> struct DijkstraPU { //Õë¶ÔDijkstraËã·¨µÄ¶¥µãÓÅÏÈ¼¶¸üĞÂÆ÷
+template <typename Tv, typename Te> struct DijkstraPU { //é’ˆå¯¹Dijkstraç®—æ³•çš„é¡¶ç‚¹ä¼˜å…ˆçº§æ›´æ–°å™¨
    virtual void operator() ( Graph<Tv, Te>* g, int uk, int v ) {
-      if ( UNDISCOVERED == g->status ( v ) ) //¶ÔÓÚukÃ¿Ò»ÉĞÎ´±»·¢ÏÖµÄÁÚ½Ó¶¥µãv£¬°´Dijkstra²ßÂÔ
-         if ( g->priority ( v ) > g->priority ( uk ) + g->weight ( uk, v ) ) { //×öËÉ³Ú
-            g->priority ( v ) = g->priority ( uk ) + g->weight ( uk, v ); //¸üĞÂÓÅÏÈ¼¶£¨Êı£©
-            g->parent ( v ) = uk; //²¢Í¬Ê±¸üĞÂ¸¸½Úµã
+      if ( UNDISCOVERED == g->status ( v ) ) //å¯¹äºukæ¯ä¸€å°šæœªè¢«å‘ç°çš„é‚»æ¥é¡¶ç‚¹vï¼ŒæŒ‰Dijkstraç­–ç•¥
+         if ( g->priority ( v ) > g->priority ( uk ) + g->weight ( uk, v ) ) { //åšæ¾å¼›
+            g->priority ( v ) = g->priority ( uk ) + g->weight ( uk, v ); //æ›´æ–°ä¼˜å…ˆçº§ï¼ˆæ•°ï¼‰
+            g->parent ( v ) = uk; //å¹¶åŒæ—¶æ›´æ–°çˆ¶èŠ‚ç‚¹
          }
    }
 };

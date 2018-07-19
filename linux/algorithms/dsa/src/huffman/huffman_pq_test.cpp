@@ -9,27 +9,27 @@
 /*DSA*/#include "Huffman_PQ_test.h"
 
 /******************************************************************************************
- * ÎŞÂÛ±àÂëÉ­ÁÖÓÉÁĞ±í¡¢ÍêÈ«¶Ñ»¹ÊÇ×óÊ½¶ÑÊµÏÖ£¬±¾²âÊÔ¹ı³Ì¶¼¿ÉÊÊÓÃ
- * ±àÂëÉ­ÁÖµÄÊµÏÖ·½Ê½²ÉÓÃÓÅÏÈ¼¶¶ÓÁĞÊ±£¬±àÒëÇ°¶ÔÓ¦µÄ¹¤³ÌÖ»ĞèÉèÖÃÏàÓ¦±êÖ¾£º
- *    DSA_PQ_List¡¢DSA_PQ_ComplHeap»òDSA_PQ_LeftHeap
+ * æ— è®ºç¼–ç æ£®æ—ç”±åˆ—è¡¨ã€å®Œå…¨å †è¿˜æ˜¯å·¦å¼å †å®ç°ï¼Œæœ¬æµ‹è¯•è¿‡ç¨‹éƒ½å¯é€‚ç”¨
+ * ç¼–ç æ£®æ—çš„å®ç°æ–¹å¼é‡‡ç”¨ä¼˜å…ˆçº§é˜Ÿåˆ—æ—¶ï¼Œç¼–è¯‘å‰å¯¹åº”çš„å·¥ç¨‹åªéœ€è®¾ç½®ç›¸åº”æ ‡å¿—ï¼š
+ *    DSA_PQ_Listã€DSA_PQ_ComplHeapæˆ–DSA_PQ_LeftHeap
  ******************************************************************************************/
-int main ( int argc, char* argv[] ) { //Huffman±àÂëËã·¨Í³Ò»²âÊÔ
+int main ( int argc, char* argv[] ) { //Huffmanç¼–ç ç®—æ³•ç»Ÿä¸€æµ‹è¯•
    /*DSA*/if ( 3 > argc ) { printf ( "Usage: %s <sample-text-file> <message#1> [message#2] ...\a\n", argv[0] ); return -1; }
-   int* freq = statistics ( argv[1] ); //¸ù¾İÑù±¾ÎÄ¼ş£¬Í³¼Æ¸÷×Ö·ûµÄ³öÏÖÆµÂÊ
-   HuffForest* forest = initForest ( freq ); release ( freq ); //´´½¨HuffmanÉ­ÁÖ
-   HuffTree* tree = generateTree ( forest ); release ( forest ); //Éú³ÉHuffman±àÂëÊ÷
-   /*DSA*/print ( tree ); //Êä³ö±àÂëÊ÷
-   HuffTable* table = generateTable ( tree ); //½«Huffman±àÂëÊ÷×ª»»Îª±àÂë±í
-   /*DSA*/for ( int i = 0; i < N_CHAR; i++ ) //Êä³ö±àÂë±í
+   int* freq = statistics ( argv[1] ); //æ ¹æ®æ ·æœ¬æ–‡ä»¶ï¼Œç»Ÿè®¡å„å­—ç¬¦çš„å‡ºç°é¢‘ç‡
+   HuffForest* forest = initForest ( freq ); release ( freq ); //åˆ›å»ºHuffmanæ£®æ—
+   HuffTree* tree = generateTree ( forest ); release ( forest ); //ç”ŸæˆHuffmanç¼–ç æ ‘
+   /*DSA*/print ( tree ); //è¾“å‡ºç¼–ç æ ‘
+   HuffTable* table = generateTable ( tree ); //å°†Huffmanç¼–ç æ ‘è½¬æ¢ä¸ºç¼–ç è¡¨
+   /*DSA*/for ( int i = 0; i < N_CHAR; i++ ) //è¾“å‡ºç¼–ç è¡¨
       /*DSA*/printf ( " %c: %s\n", i + 0x20, * ( table->get ( i + 0x20 ) ) );
-   for ( int i = 2; i < argc; i++ ) { //¶ÔÓÚÃüÁîĞĞ´«ÈëµÄÃ¿Ò»Ã÷ÎÄ´®
-      /*DSA*/printf ( "\nEncoding: %s\n", argv[i] ); //ÒÔÏÂ²âÊÔ±àÂë
-      Bitmap* codeString = new Bitmap; //¶ş½øÖÆ±àÂë´®
-      int n = encode ( table, codeString, argv[i] ); //½«¸ù¾İ±àÂë±íÉú³É£¨³¤¶ÈÎªn£©
-      /*DSA*/printf ( "%s\n", codeString->bits2string ( n ) ); //Êä³ö¸Ã±àÂë´®
-      /*DSA*/printf ( "Decoding: " ); //ÒÔÏÂ²âÊÔ½âÂë
-      decode ( tree, codeString, n ); //ÀûÓÃHuffman±àÂëÊ÷£¬¶Ô³¤¶ÈÎªnµÄ¶ş½øÖÆ±àÂë´®½âÂë
+   for ( int i = 2; i < argc; i++ ) { //å¯¹äºå‘½ä»¤è¡Œä¼ å…¥çš„æ¯ä¸€æ˜æ–‡ä¸²
+      /*DSA*/printf ( "\nEncoding: %s\n", argv[i] ); //ä»¥ä¸‹æµ‹è¯•ç¼–ç 
+      Bitmap* codeString = new Bitmap; //äºŒè¿›åˆ¶ç¼–ç ä¸²
+      int n = encode ( table, codeString, argv[i] ); //å°†æ ¹æ®ç¼–ç è¡¨ç”Ÿæˆï¼ˆé•¿åº¦ä¸ºnï¼‰
+      /*DSA*/printf ( "%s\n", codeString->bits2string ( n ) ); //è¾“å‡ºè¯¥ç¼–ç ä¸²
+      /*DSA*/printf ( "Decoding: " ); //ä»¥ä¸‹æµ‹è¯•è§£ç 
+      decode ( tree, codeString, n ); //åˆ©ç”¨Huffmanç¼–ç æ ‘ï¼Œå¯¹é•¿åº¦ä¸ºnçš„äºŒè¿›åˆ¶ç¼–ç ä¸²è§£ç 
       release ( codeString );
    }
-   release ( table ); release ( tree ); return 0; //ÊÍ·Å±àÂë±í¡¢±àÂëÊ÷
+   release ( table ); release ( tree ); return 0; //é‡Šæ”¾ç¼–ç è¡¨ã€ç¼–ç æ ‘
 }

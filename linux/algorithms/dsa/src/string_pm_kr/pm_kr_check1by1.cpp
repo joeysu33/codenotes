@@ -8,8 +8,8 @@
 
 /*DSA*/#include "pm_kr.h"
 
-bool check1by1 ( char* P, char* T, size_t i ) { //÷∏Œ∆œ‡Õ¨ ±£¨÷Œª±»∂‘“‘»∑»œ «∑Ò’Ê’˝∆•≈‰
-   for ( size_t m = strlen ( P ), j = 0; j < m; j++, i++ ) //æ°π‹–Ë“™O(m) ±º‰
-      if ( P[j] != T[i] ) return false; //µ´÷ª“™…¢¡–µ√µ±£¨µ˜”√±æ¿˝≥Ã≤¢∑µªÿfalseµƒ∏≈¬ Ω´º´µÕ
+bool check1by1 ( char* P, char* T, size_t i ) { //ÊåáÁ∫πÁõ∏ÂêåÊó∂ÔºåÈÄê‰ΩçÊØîÂØπ‰ª•Á°ÆËÆ§ÊòØÂê¶ÁúüÊ≠£ÂåπÈÖç
+   for ( size_t m = strlen ( P ), j = 0; j < m; j++, i++ ) //Â∞ΩÁÆ°ÈúÄË¶ÅO(m)Êó∂Èó¥
+      if ( P[j] != T[i] ) return false; //‰ΩÜÂè™Ë¶ÅÊï£ÂàóÂæóÂΩìÔºåË∞ÉÁî®Êú¨‰æãÁ®ãÂπ∂ËøîÂõûfalseÁöÑÊ¶ÇÁéáÂ∞ÜÊûÅ‰Ωé
    return true;
 }

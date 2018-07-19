@@ -8,7 +8,7 @@
 
 /*DSA*/#include "fac.h"
 
-int main ( int argc, char* argv[] ) { //½×³ËÔËËã²âÊÔ
+int main ( int argc, char* argv[] ) { //é˜¶ä¹˜è¿ç®—æµ‹è¯•
    for ( int i = 0; i < 25; i++ )
       printf ( "\t%d\t%22I64d\t%22I64d\n", i, facI ( i ), facR ( i ) );
    return 0;

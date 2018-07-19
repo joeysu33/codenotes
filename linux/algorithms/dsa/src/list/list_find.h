@@ -8,9 +8,9 @@
 
 #pragma once
 
-template <typename T> //ÔÚÎŞĞòÁĞ±íÄÚ½Úµãp£¨¿ÉÄÜÊÇtrailer£©µÄn¸ö£¨Õæ£©Ç°ÇıÖĞ£¬ÕÒµ½µÈÓÚeµÄ×îºóÕß
+template <typename T> //åœ¨æ— åºåˆ—è¡¨å†…èŠ‚ç‚¹pï¼ˆå¯èƒ½æ˜¯trailerï¼‰çš„nä¸ªï¼ˆçœŸï¼‰å‰é©±ä¸­ï¼Œæ‰¾åˆ°ç­‰äºeçš„æœ€åè€…
 ListNodePosi(T) List<T>::find ( T const& e, int n, ListNodePosi(T) p ) const {
-   while ( 0 < n-- ) //£¨0 <= n <= rank(p) < _size£©¶ÔÓÚpµÄ×î½üµÄn¸öÇ°Çı£¬´ÓÓÒÏò×ó
-      if ( e == ( p = p->pred )->data ) return p; //Öğ¸ö±È¶Ô£¬Ö±ÖÁÃüÖĞ»ò·¶Î§Ô½½ç
-   return NULL; //pÔ½³ö×ó±ß½çÒâÎ¶×ÅÇø¼äÄÚ²»º¬e£¬²éÕÒÊ§°Ü
-} //Ê§°ÜÊ±£¬·µ»ØNULL
+   while ( 0 < n-- ) //ï¼ˆ0 <= n <= rank(p) < _sizeï¼‰å¯¹äºpçš„æœ€è¿‘çš„nä¸ªå‰é©±ï¼Œä»å³å‘å·¦
+      if ( e == ( p = p->pred )->data ) return p; //é€ä¸ªæ¯”å¯¹ï¼Œç›´è‡³å‘½ä¸­æˆ–èŒƒå›´è¶Šç•Œ
+   return NULL; //pè¶Šå‡ºå·¦è¾¹ç•Œæ„å‘³ç€åŒºé—´å†…ä¸å«eï¼ŒæŸ¥æ‰¾å¤±è´¥
+} //å¤±è´¥æ—¶ï¼Œè¿”å›NULL

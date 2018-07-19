@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename Tv, typename Te> struct BfsPU { //Õë¶ÔBFSËã·¨µÄ¶¥µãÓÅÏÈ¼¶¸üĞÂÆ÷
+template <typename Tv, typename Te> struct BfsPU { //é’ˆå¯¹BFSç®—æ³•çš„é¡¶ç‚¹ä¼˜å…ˆçº§æ›´æ–°å™¨
    virtual void operator() ( Graph<Tv, Te>* g, int uk, int v ) {
-      if ( g->status ( v ) == UNDISCOVERED ) //¶ÔÓÚukÃ¿Ò»ÉĞÎ´±»·¢ÏÖµÄÁÚ½Ó¶¥µãv
-         if ( g->priority ( v ) > g->priority ( uk ) + 1 ) { //½«Æäµ½ÆğµãµÄ¾àÀë×÷ÎªÓÅÏÈ¼¶Êı
-            g->priority ( v ) = g->priority ( uk ) + 1; //¸üĞÂÓÅÏÈ¼¶£¨Êı£©
-            g->parent ( v ) = uk; //¸üĞÂ¸¸½Úµã
-         } //Èç´ËĞ§¹ûµÈÍ¬ÓÚ£¬ÏÈ±»·¢ÏÖÕßÓÅÏÈ
+      if ( g->status ( v ) == UNDISCOVERED ) //å¯¹äºukæ¯ä¸€å°šæœªè¢«å‘ç°çš„é‚»æ¥é¡¶ç‚¹v
+         if ( g->priority ( v ) > g->priority ( uk ) + 1 ) { //å°†å…¶åˆ°èµ·ç‚¹çš„è·ç¦»ä½œä¸ºä¼˜å…ˆçº§æ•°
+            g->priority ( v ) = g->priority ( uk ) + 1; //æ›´æ–°ä¼˜å…ˆçº§ï¼ˆæ•°ï¼‰
+            g->parent ( v ) = uk; //æ›´æ–°çˆ¶èŠ‚ç‚¹
+         } //å¦‚æ­¤æ•ˆæœç­‰åŒäºï¼Œå…ˆè¢«å‘ç°è€…ä¼˜å…ˆ
    }
 };

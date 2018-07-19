@@ -8,19 +8,19 @@
 
 #pragma once
 
-#include "../PQ/PQ.h" //ÒıÈëÓÅÏÈ¼¶¶ÓÁĞADT
-#include "../BinTree/BinTree.h" //ÒıÈë¶ş²æÊ÷½ÚµãÄ£°åÀà
+#include "../PQ/PQ.h" //å¼•å…¥ä¼˜å…ˆçº§é˜Ÿåˆ—ADT
+#include "../BinTree/BinTree.h" //å¼•å…¥äºŒå‰æ ‘èŠ‚ç‚¹æ¨¡æ¿ç±»
 
 template <typename T>
-class PQ_LeftHeap : public PQ<T>, public BinTree<T> { //»ùÓÚ¶ş²æÊ÷£¬ÒÔ×óÊ½¶ÑĞÎÊ½ÊµÏÖµÄPQ
-   /*DSA*/friend class UniPrint; //ÑİÊ¾Êä³öÊ¹ÓÃ£¬·ñÔò²»±ØÉèÖÃÓÑÀà
+class PQ_LeftHeap : public PQ<T>, public BinTree<T> { //åŸºäºäºŒå‰æ ‘ï¼Œä»¥å·¦å¼å †å½¢å¼å®ç°çš„PQ
+   /*DSA*/friend class UniPrint; //æ¼”ç¤ºè¾“å‡ºä½¿ç”¨ï¼Œå¦åˆ™ä¸å¿…è®¾ç½®å‹ç±»
 public:
-   PQ_LeftHeap() { } //Ä¬ÈÏ¹¹Ôì
-   PQ_LeftHeap ( T* E, int n ) //ÅúÁ¿¹¹Ôì£º¿É¸Ä½øÎªFloyd½¨¶ÑËã·¨
+   PQ_LeftHeap() { } //é»˜è®¤æ„é€ 
+   PQ_LeftHeap ( T* E, int n ) //æ‰¹é‡æ„é€ ï¼šå¯æ”¹è¿›ä¸ºFloydå»ºå †ç®—æ³•
    {  for ( int i = 0; i < n; i++ ) insert ( E[i] );  }
-   void insert ( T ); //°´ÕÕ±È½ÏÆ÷È·¶¨µÄÓÅÏÈ¼¶´ÎĞò²åÈëÔªËØ
-   T getMax(); //È¡³öÓÅÏÈ¼¶×î¸ßµÄÔªËØ
-   T delMax(); //É¾³ıÓÅÏÈ¼¶×î¸ßµÄÔªËØ
+   void insert ( T ); //æŒ‰ç…§æ¯”è¾ƒå™¨ç¡®å®šçš„ä¼˜å…ˆçº§æ¬¡åºæ’å…¥å…ƒç´ 
+   T getMax(); //å–å‡ºä¼˜å…ˆçº§æœ€é«˜çš„å…ƒç´ 
+   T delMax(); //åˆ é™¤ä¼˜å…ˆçº§æœ€é«˜çš„å…ƒç´ 
 }; //PQ_LeftHeap
 
 #include "PQ_LeftHeap_implementation.h"

@@ -23,13 +23,13 @@ __int64 gcd ( __int64 a, __int64 b ) {
 }
 
 /******************************************************************************************
- * ²âÊÔGCD
+ * æµ‹è¯•GCD
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
-// ¼ì²é²ÎÊý
+// æ£€æŸ¥å‚æ•°
    if ( 3 > argc ) { fprintf ( stderr, "Usage: %s <a> <b>\n", argv[0] ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
-// ¼ÆËãGCD
+// è®¡ç®—GCD
    do {
       __int64 a = _atoi64 ( argv[1] ), b = _atoi64 ( argv[2] );
       printf ( "Chinese:   GCD(%22I64d, %22I64d) = %22I64d\n",   a, b, gcdCN ( ABS ( a ), ABS ( b ) ) );
@@ -37,10 +37,10 @@ int main ( int argc, char* argv[] ) {
       printf ( "Random:    GCD(%22I64d, %22I64d) = %22I64d = %22I64d\n\n",   a, b, gcd ( a, b ), gcd ( a, b ) );
       argc -= 2; argv += 2;
    } while ( 2 < argc );
-// Ëæ»ú¼ÆËãGCD
+// éšæœºè®¡ç®—GCD
    for ( int i = 0; i < 9; i++ ) {
       __int64 a = 1, b = 1;
-      for ( int k = 0; k < 4; k++ ) { //Ëæ»úÉú³ÉÕýÕûÊýaºÍb
+      for ( int k = 0; k < 4; k++ ) { //éšæœºç”Ÿæˆæ­£æ•´æ•°aå’Œb
          ( rand() & 1 ) ? a *= ( 1 + rand() ) : a += rand();
          ( rand() & 1 ) ? b *= ( 1 + rand() ) : b += rand();
       }

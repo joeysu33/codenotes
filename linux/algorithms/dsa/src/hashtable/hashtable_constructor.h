@@ -10,10 +10,10 @@
 
 /*DSA*/#include "../prime/primeNLT.h"
 
-template <typename K, typename V> Hashtable<K, V>::Hashtable ( int c ) { //´´½¨É¢ÁĞ±í£¬ÈİÁ¿Îª
-   M = primeNLT ( c, 1048576, "../../_input/prime-1048576-bitmap.txt" ); //²»Ğ¡ÓÚcµÄËØÊıM
-   N = 0; ht = new Entry<K, V>*[M]; //¿ª±ÙÍ°Êı×é£¨»¹ĞèºË¶ÔÉêÇë³É¹¦£©£¬³õÊ¼×°ÌîÒò×ÓÎªN/M = 0%
-   memset ( ht, 0, sizeof ( Entry<K, V>* ) *M ); //³õÊ¼»¯¸÷Í°
-   lazyRemoval = new Bitmap ( M ); //ÀÁ¶èÉ¾³ı±ê¼Ç±ÈÌØÍ¼
+template <typename K, typename V> Hashtable<K, V>::Hashtable ( int c ) { //åˆ›å»ºæ•£åˆ—è¡¨ï¼Œå®¹é‡ä¸º
+   M = primeNLT ( c, 1048576, "../../_input/prime-1048576-bitmap.txt" ); //ä¸å°äºcçš„ç´ æ•°M
+   N = 0; ht = new Entry<K, V>*[M]; //å¼€è¾Ÿæ¡¶æ•°ç»„ï¼ˆè¿˜éœ€æ ¸å¯¹ç”³è¯·æˆåŠŸï¼‰ï¼Œåˆå§‹è£…å¡«å› å­ä¸ºN/M = 0%
+   memset ( ht, 0, sizeof ( Entry<K, V>* ) *M ); //åˆå§‹åŒ–å„æ¡¶
+   lazyRemoval = new Bitmap ( M ); //æ‡’æƒ°åˆ é™¤æ ‡è®°æ¯”ç‰¹å›¾
    //*DSA*/printf("A bucket array has been created with capacity = %d\n\n", M);
 }

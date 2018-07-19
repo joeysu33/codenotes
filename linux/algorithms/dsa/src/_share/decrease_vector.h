@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> void decrease ( Vector<T> & V ) //Í³Ò»µİ¼õÏòÁ¿ÖĞµÄ¸÷ÔªËØ
-{  V.traverse ( Decrease<T>() );  } //ÒÔDecrease<T>()Îª»ù±¾²Ù×÷½øĞĞ±éÀú
+template <typename T> void decrease ( Vector<T> & V ) //ç»Ÿä¸€é€’å‡å‘é‡ä¸­çš„å„å…ƒç´ 
+{  V.traverse ( Decrease<T>() );  } //ä»¥Decrease<T>()ä¸ºåŸºæœ¬æ“ä½œè¿›è¡Œéå†

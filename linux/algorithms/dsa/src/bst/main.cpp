@@ -16,16 +16,16 @@
  ******************************************************************************************/
 template <typename T> void  testBST ( int n ) {
    BST<T> bst;
-   while ( bst.size() < n ) bst.insert ( dice ( ( T ) n * 3 ) ); print ( bst ); //Ëæ»ú´´½¨
-   bst.stretchToLPath(); print ( bst ); //ÉìÖ±³ÉÆ²
-   while ( !bst.empty() ) bst.remove ( bst.root()->data ); //Çå¿Õ
-   while ( bst.size() < n ) bst.insert ( dice ( ( T ) n * 3 ) ); print ( bst ); //Ëæ»ú´´½¨
-   bst.stretchToRPath(); print ( bst ); //ÉìÖ±³ÉŞà
-   while ( !bst.empty() ) bst.remove ( bst.root()->data ); //Çå¿Õ
-   while ( bst.size() < n ) { //Ëæ»ú²åÈë¡¢²éÑ¯¡¢É¾³ı
-      T e = dice ( ( T ) n * 3 ); //[0, 3n)·¶Î§ÄÚµÄe
+   while ( bst.size() < n ) bst.insert ( dice ( ( T ) n * 3 ) ); print ( bst ); //éšæœºåˆ›å»º
+   bst.stretchToLPath(); print ( bst ); //ä¼¸ç›´æˆæ’‡
+   while ( !bst.empty() ) bst.remove ( bst.root()->data ); //æ¸…ç©º
+   while ( bst.size() < n ) bst.insert ( dice ( ( T ) n * 3 ) ); print ( bst ); //éšæœºåˆ›å»º
+   bst.stretchToRPath(); print ( bst ); //ä¼¸ç›´æˆæº
+   while ( !bst.empty() ) bst.remove ( bst.root()->data ); //æ¸…ç©º
+   while ( bst.size() < n ) { //éšæœºæ’å…¥ã€æŸ¥è¯¢ã€åˆ é™¤
+      T e = dice ( ( T ) n * 3 ); //[0, 3n)èŒƒå›´å†…çš„e
       switch ( dice ( 3 ) ) {
-         case 0: { //²éÕÒ£¬³É¹¦ÂÊ <= 33.3%
+         case 0: { //æŸ¥æ‰¾ï¼ŒæˆåŠŸç‡ <= 33.3%
             printf ( "Searching for " ); print ( e ); printf ( " ... " );
             BinNodePosi(T) & p = bst.search ( e );
             p ?
@@ -33,33 +33,33 @@ template <typename T> void  testBST ( int n ) {
             printf ( "not found\n" );
             break;
          }
-         case 1: { //É¾³ı£¬³É¹¦ÂÊ <= 33.3%
+         case 1: { //åˆ é™¤ï¼ŒæˆåŠŸç‡ <= 33.3%
             printf ( "Removing " ); print ( e ); printf ( " ... " );
             bst.remove ( e ) ?
             printf ( "Done\n" ), print ( bst ) :
             printf ( "not exists\n" );
             break;
          }
-         default: {//²åÈë£¬³É¹¦ÂÊ == 100%
+         default: {//æ’å…¥ï¼ŒæˆåŠŸç‡ == 100%
             printf ( "Inserting " ); print ( e ); printf ( " ... " );
             printf ( "Done with" ), print ( bst.insert ( e )->data ), printf ( "\n" ), print ( bst );
             break;
          }
       }
    }
-   while ( bst.size() > 0 ) { //Çå¿Õ
-      T e = dice ( ( T ) n * 3 ); //[0, 3n)·¶Î§ÄÚµÄe
+   while ( bst.size() > 0 ) { //æ¸…ç©º
+      T e = dice ( ( T ) n * 3 ); //[0, 3n)èŒƒå›´å†…çš„e
       printf ( "Removing " ); print ( e ); printf ( " ... " );
       bst.remove ( e ) ? printf ( "Done\n" ), print ( bst ) : printf ( "not exists\n" );
    }
 }
 
 /******************************************************************************************
- * ²âÊÔÖ÷Èë¿Ú
+ * æµ‹è¯•ä¸»å…¥å£
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    if ( 2 > argc ) { printf ( "Usage: %s <size of test>\a\a\n", argv[0] ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
-   testBST<int> ( atoi ( argv[1] ) ); //ÔªËØÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testBST<int> ( atoi ( argv[1] ) ); //å…ƒç´ ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
    return 0;
 }

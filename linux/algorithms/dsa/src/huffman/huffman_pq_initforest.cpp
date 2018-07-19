@@ -9,19 +9,19 @@
 /*DSA*/#include "Huffman_PQ.h"
 
 /******************************************************************************************
- * ³õÊ¼»¯HuffmanÉ­ÁÖ£º¸ù¾İ´«ÈëµÄÆµÂÊÍ³¼Æ±ífreq£¬ÎªÃ¿¸ö×Ö·û´´½¨Ò»¿ÃÊ÷
+ * åˆå§‹åŒ–Huffmanæ£®æ—ï¼šæ ¹æ®ä¼ å…¥çš„é¢‘ç‡ç»Ÿè®¡è¡¨freqï¼Œä¸ºæ¯ä¸ªå­—ç¬¦åˆ›å»ºä¸€æ£µæ ‘
  ******************************************************************************************
- * forest»ùÓÚÓÅÏÈ¼¶¶ÓÁĞÊµÏÖ£¬´ËËã·¨ÊÊÓÃÓÚ·ûºÏPQ½Ó¿ÚµÄÈÎºÎÊµÏÖ·½Ê½
- * ÎªHuffman_PQ_List¡¢Huffman_PQ_ComplHeapºÍHuffman_PQ_LeftHeap¹²ÓÃ
- * ±àÒëÇ°¶ÔÓ¦¹¤³ÌÖ»ĞèÉèÖÃÏàÓ¦±êÖ¾£ºDSA_PQ_List¡¢DSA_PQ_ComplHeap»òDSA_PQ_LeftHeap
+ * foreståŸºäºä¼˜å…ˆçº§é˜Ÿåˆ—å®ç°ï¼Œæ­¤ç®—æ³•é€‚ç”¨äºç¬¦åˆPQæ¥å£çš„ä»»ä½•å®ç°æ–¹å¼
+ * ä¸ºHuffman_PQ_Listã€Huffman_PQ_ComplHeapå’ŒHuffman_PQ_LeftHeapå…±ç”¨
+ * ç¼–è¯‘å‰å¯¹åº”å·¥ç¨‹åªéœ€è®¾ç½®ç›¸åº”æ ‡å¿—ï¼šDSA_PQ_Listã€DSA_PQ_ComplHeapæˆ–DSA_PQ_LeftHeap
  ******************************************************************************************/
 HuffForest* initForest ( int* freq ) {
-   HuffForest* forest = new HuffForest; //ÒÔPQÊµÏÖµÄHuffmanÉ­ÁÖ
-   for ( int i = 0; i < N_CHAR; i++ ) { //ÎªÃ¿¸ö×Ö·û
-      BinTree<HuffChar>* tree = new BinTree<HuffChar>(); //Éú³ÉÒ»¿ÃÊ÷£¬²¢½«×Ö·û¼¯ÆµÂÊ
-      tree->insertAsRoot ( HuffChar ( 0x20 + i, rand() % 123 ) ); //´æÈëÆäÖĞ
-      forest->insert ( tree ); //ÔÙ½«ĞÂÊ÷²åÈëÉ­ÁÖ
+   HuffForest* forest = new HuffForest; //ä»¥PQå®ç°çš„Huffmanæ£®æ—
+   for ( int i = 0; i < N_CHAR; i++ ) { //ä¸ºæ¯ä¸ªå­—ç¬¦
+      BinTree<HuffChar>* tree = new BinTree<HuffChar>(); //ç”Ÿæˆä¸€æ£µæ ‘ï¼Œå¹¶å°†å­—ç¬¦é›†é¢‘ç‡
+      tree->insertAsRoot ( HuffChar ( 0x20 + i, rand() % 123 ) ); //å­˜å…¥å…¶ä¸­
+      forest->insert ( tree ); //å†å°†æ–°æ ‘æ’å…¥æ£®æ—
    }
    return forest;
 }
-/*DSA*///¿Îºó£ºÊµÏÖPQ_ComplHeapºÍPQ_LeftHeapµÄRobert FloydËã·¨£¬½«±¾Ëã·¨µÄĞ§ÂÊÌá¸ßÖÁO(n)
+/*DSA*///è¯¾åï¼šå®ç°PQ_ComplHeapå’ŒPQ_LeftHeapçš„Robert Floydç®—æ³•ï¼Œå°†æœ¬ç®—æ³•çš„æ•ˆç‡æé«˜è‡³O(n)

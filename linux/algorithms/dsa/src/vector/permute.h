@@ -8,7 +8,7 @@
 
 #pragma once
 
-template <typename T> void permute ( Vector<T>& V ) { //随机置乱向量，使各元素等概率出现于各位置
-   for ( int i = V.size(); i > 0; i-- ) //自后向前
-      swap ( V[i - 1], V[rand() % i] ); //V[i - 1]与V[0, i)中某一随机元素交换
+template <typename T> void permute ( Vector<T>& V ) { //闅忔満缃贡鍚戦噺锛屼娇鍚勫厓绱犵瓑姒傜巼鍑虹幇浜庡悇浣嶇疆
+   for ( int i = V.size(); i > 0; i-- ) //鑷悗鍚戝墠
+      swap ( V[i - 1], V[rand() % i] ); //V[i - 1]涓嶸[0, i)涓煇涓�闅忔満鍏冪礌浜ゆ崲
 }

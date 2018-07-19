@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename T> //ÔÚÓĞĞòÏòÁ¿µÄÇø¼ä[lo, hi)ÄÚ£¬È·¶¨²»´óÓÚeµÄ×îºóÒ»¸ö½ÚµãµÄÖÈ
+template <typename T> //åœ¨æœ‰åºå‘é‡çš„åŒºé—´[lo, hi)å†…ï¼Œç¡®å®šä¸å¤§äºeçš„æœ€åä¸€ä¸ªèŠ‚ç‚¹çš„ç§©
 Rank Vector<T>::search ( T const& e, Rank lo, Rank hi ) const { //assert: 0 <= lo < hi <= _size
-   return ( rand() % 2 ) ? //°´¸÷50%µÄ¸ÅÂÊËæ»úÊ¹ÓÃ¶ş·Ö²éÕÒ»òFibonacci²éÕÒ
+   return ( rand() % 2 ) ? //æŒ‰å„50%çš„æ¦‚ç‡éšæœºä½¿ç”¨äºŒåˆ†æŸ¥æ‰¾æˆ–FibonacciæŸ¥æ‰¾
           binSearch ( _elem, e, lo, hi ) : fibSearch ( _elem, e, lo, hi );
 }

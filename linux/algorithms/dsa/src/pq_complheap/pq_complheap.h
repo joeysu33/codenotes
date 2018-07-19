@@ -8,20 +8,20 @@
 
 #pragma once
 
-#include "../Vector/Vector.h" //½èÖú¶àÖØ¼Ì³Ğ»úÖÆ£¬»ùÓÚÏòÁ¿
-#include "../PQ/PQ.h" //°´ÕÕÓÅÏÈ¼¶¶ÓÁĞADTÊµÏÖµÄ
-template <typename T> class PQ_ComplHeap : public PQ<T>, public Vector<T> { //ÍêÈ«¶ş²æ¶Ñ
-   /*DSA*/friend class UniPrint; //ÑİÊ¾Êä³öÊ¹ÓÃ£¬·ñÔò²»±ØÉèÖÃÓÑÀà
+#include "../Vector/Vector.h" //å€ŸåŠ©å¤šé‡ç»§æ‰¿æœºåˆ¶ï¼ŒåŸºäºå‘é‡
+#include "../PQ/PQ.h" //æŒ‰ç…§ä¼˜å…ˆçº§é˜Ÿåˆ—ADTå®ç°çš„
+template <typename T> class PQ_ComplHeap : public PQ<T>, public Vector<T> { //å®Œå…¨äºŒå‰å †
+   /*DSA*/friend class UniPrint; //æ¼”ç¤ºè¾“å‡ºä½¿ç”¨ï¼Œå¦åˆ™ä¸å¿…è®¾ç½®å‹ç±»
 protected:
-   Rank percolateDown ( Rank n, Rank i ); //ÏÂÂË
-   Rank percolateUp ( Rank i ); //ÉÏÂË
-   void heapify ( Rank n ); //Floyd½¨¶ÑËã·¨
+   Rank percolateDown ( Rank n, Rank i ); //ä¸‹æ»¤
+   Rank percolateUp ( Rank i ); //ä¸Šæ»¤
+   void heapify ( Rank n ); //Floydå»ºå †ç®—æ³•
 public:
-   PQ_ComplHeap() { } //Ä¬ÈÏ¹¹Ôì
-   PQ_ComplHeap ( T* A, Rank n ) { copyFrom ( A, 0, n ); heapify ( n ); } //ÅúÁ¿¹¹Ôì
-   void insert ( T ); //°´ÕÕ±È½ÏÆ÷È·¶¨µÄÓÅÏÈ¼¶´ÎĞò£¬²åÈë´ÊÌõ
-   T getMax(); //¶ÁÈ¡ÓÅÏÈ¼¶×î¸ßµÄ´ÊÌõ
-   T delMax(); //É¾³ıÓÅÏÈ¼¶×î¸ßµÄ´ÊÌõ
+   PQ_ComplHeap() { } //é»˜è®¤æ„é€ 
+   PQ_ComplHeap ( T* A, Rank n ) { copyFrom ( A, 0, n ); heapify ( n ); } //æ‰¹é‡æ„é€ 
+   void insert ( T ); //æŒ‰ç…§æ¯”è¾ƒå™¨ç¡®å®šçš„ä¼˜å…ˆçº§æ¬¡åºï¼Œæ’å…¥è¯æ¡
+   T getMax(); //è¯»å–ä¼˜å…ˆçº§æœ€é«˜çš„è¯æ¡
+   T delMax(); //åˆ é™¤ä¼˜å…ˆçº§æœ€é«˜çš„è¯æ¡
 }; //PQ_ComplHeap
 /*DSA*/#include "PQ_ComplHeap_macro.h"
 

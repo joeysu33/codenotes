@@ -8,18 +8,18 @@
 
 #pragma once
 
-//Í¨¹ýzagÐý×ªµ÷Õû£¬½«×ÓÊ÷xÀ­Éì³É×î×ó²àÍ¨Â·
+//é€šè¿‡zagæ—‹è½¬è°ƒæ•´ï¼Œå°†å­æ ‘xæ‹‰ä¼¸æˆæœ€å·¦ä¾§é€šè·¯
 template <typename T> void stretchByZag ( BinNodePosi(T) & x ) {
-   /*DSA*/   int c = 0; //¼ÇÂ¼Ðý×ª´ÎÊý
+   /*DSA*/   int c = 0; //è®°å½•æ—‹è½¬æ¬¡æ•°
    int h = 0;
-   BinNodePosi(T) p = x; while ( p->rc ) p = p->rc; //×î´ó½Úµã£¬±ØÊÇ×ÓÊ÷×îÖÕµÄ¸ù
-   while ( x->lc ) x = x->lc; x->height = h++; //×ªÖÁ³õÊ¼×î×ó²àÍ¨Â·µÄÄ©¶Ë
-   for ( ; x != p; x = x->parent, x->height = h++ ) { //ÈôxÓÒ×ÓÊ÷ÒÑ¿Õ£¬ÔòÉÏÉýÒ»²ã
-      while ( x->rc ) //·ñÔò£¬·´¸´µØ
+   BinNodePosi(T) p = x; while ( p->rc ) p = p->rc; //æœ€å¤§èŠ‚ç‚¹ï¼Œå¿…æ˜¯å­æ ‘æœ€ç»ˆçš„æ ¹
+   while ( x->lc ) x = x->lc; x->height = h++; //è½¬è‡³åˆå§‹æœ€å·¦ä¾§é€šè·¯çš„æœ«ç«¯
+   for ( ; x != p; x = x->parent, x->height = h++ ) { //è‹¥xå³å­æ ‘å·²ç©ºï¼Œåˆ™ä¸Šå‡ä¸€å±‚
+      while ( x->rc ) //å¦åˆ™ï¼Œåå¤åœ°
          /*DSA*/{
-         x->zag(); //ÒÔxÎªÖá×özagÐý×ª
+         x->zag(); //ä»¥xä¸ºè½´åšzagæ—‹è½¬
          /*DSA*/c++;
          /*DSA*/}
-   } //Ö±µ½µÖ´ï×ÓÊ÷µÄ¸ù
+   } //ç›´åˆ°æŠµè¾¾å­æ ‘çš„æ ¹
    /*DSA*/printf ( "\nh = %d, c = %d\n\n", h, c );
 }

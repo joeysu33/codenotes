@@ -8,12 +8,12 @@
 
 #pragma once
 
-#include "../BST/BST.h" //»ùÓÚBSTÊµÏÖAVLÊ÷
-template <typename T> class AVL : public BST<T> { //ÓÉBSTÅÉÉúAVLÊ÷Ä£°åÀà
+#include "../BST/BST.h" //åŸºäºBSTå®ç°AVLæ ‘
+template <typename T> class AVL : public BST<T> { //ç”±BSTæ´¾ç”ŸAVLæ ‘æ¨¡æ¿ç±»
 public:
-   BinNodePosi(T) insert ( const T& e ); //²åÈë£¨ÖØĞ´£©
-   bool remove ( const T& e ); //É¾³ı£¨ÖØĞ´£©
-// BST::search()µÈÆäÓà½Ó¿Ú¿ÉÖ±½ÓÑØÓÃ
+   BinNodePosi(T) insert ( const T& e ); //æ’å…¥ï¼ˆé‡å†™ï¼‰
+   bool remove ( const T& e ); //åˆ é™¤ï¼ˆé‡å†™ï¼‰
+// BST::search()ç­‰å…¶ä½™æ¥å£å¯ç›´æ¥æ²¿ç”¨
 };
 
 #include "AVL_implementation.h"

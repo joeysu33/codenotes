@@ -8,8 +8,8 @@
 
 /*DSA*/#include "pm_kr.h"
 
-HashCode prepareDm ( size_t m ) { //Ô¤´¦Àí£º¼ÆËãR^(m - 1) % M £¨½öĞèµ÷ÓÃÒ»´Î£¬²»±ØÓÅ»¯£©
+HashCode prepareDm ( size_t m ) { //é¢„å¤„ç†ï¼šè®¡ç®—R^(m - 1) % M ï¼ˆä»…éœ€è°ƒç”¨ä¸€æ¬¡ï¼Œä¸å¿…ä¼˜åŒ–ï¼‰
    HashCode  Dm = 1;
-   for ( size_t i = 1; i < m; i++ ) Dm = ( R * Dm ) % M; //Ö±½ÓÀÛ³Ëm - 1´Î£¬²¢È¡Ä£
+   for ( size_t i = 1; i < m; i++ ) Dm = ( R * Dm ) % M; //ç›´æ¥ç´¯ä¹˜m - 1æ¬¡ï¼Œå¹¶å–æ¨¡
    return Dm;
 }

@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename Tv, typename Te> struct PrimPU { //Õë¶ÔPrimËã·¨µÄ¶¥µãÓÅÏÈ¼¶¸üĞÂÆ÷
+template <typename Tv, typename Te> struct PrimPU { //é’ˆå¯¹Primç®—æ³•çš„é¡¶ç‚¹ä¼˜å…ˆçº§æ›´æ–°å™¨
    virtual void operator() ( Graph<Tv, Te>* g, int uk, int v ) {
-      if ( UNDISCOVERED == g->status ( v ) ) //¶ÔÓÚukÃ¿Ò»ÉĞÎ´±»·¢ÏÖµÄÁÚ½Ó¶¥µãv
-         if ( g->priority ( v ) > g->weight ( uk, v ) ) { //°´Prim²ßÂÔ×öËÉ³Ú
-            g->priority ( v ) = g->weight ( uk, v ); //¸üĞÂÓÅÏÈ¼¶£¨Êı£©
-            g->parent ( v ) = uk; //¸üĞÂ¸¸½Úµã
+      if ( UNDISCOVERED == g->status ( v ) ) //å¯¹äºukæ¯ä¸€å°šæœªè¢«å‘ç°çš„é‚»æ¥é¡¶ç‚¹v
+         if ( g->priority ( v ) > g->weight ( uk, v ) ) { //æŒ‰Primç­–ç•¥åšæ¾å¼›
+            g->priority ( v ) = g->weight ( uk, v ); //æ›´æ–°ä¼˜å…ˆçº§ï¼ˆæ•°ï¼‰
+            g->parent ( v ) = uk; //æ›´æ–°çˆ¶èŠ‚ç‚¹
          }
    }
 };

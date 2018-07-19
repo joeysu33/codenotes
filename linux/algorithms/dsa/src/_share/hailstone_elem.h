@@ -8,13 +8,13 @@
 
 #pragma once
 
-template <typename T> struct Hailstone { //º¯Êı¶ÔÏó£º°´ÕÕHailstone¹æÔò×ª»¯Ò»¸öTÀà¶ÔÏó
-   virtual void operator() ( T& e ) { //¼ÙÉèT¿ÉÖ±½Ó×öËãÊõÔËËã
-      int step = 0; //×ª»»ËùĞè²½Êı
-      while ( 1 != e ) { //°´Ææ¡¢Å¼Öğ²½×ª»»£¬Ö±ÖÁÎª1
+template <typename T> struct Hailstone { //å‡½æ•°å¯¹è±¡ï¼šæŒ‰ç…§Hailstoneè§„åˆ™è½¬åŒ–ä¸€ä¸ªTç±»å¯¹è±¡
+   virtual void operator() ( T& e ) { //å‡è®¾Tå¯ç›´æ¥åšç®—æœ¯è¿ç®—
+      int step = 0; //è½¬æ¢æ‰€éœ€æ­¥æ•°
+      while ( 1 != e ) { //æŒ‰å¥‡ã€å¶é€æ­¥è½¬æ¢ï¼Œç›´è‡³ä¸º1
          ( e % 2 ) ? e = 3 * e + 1 : e /= 2;
          step++;
       }
-      e = step; //·µ»Ø×ª»»Ëù¾­²½Êı
+      e = step; //è¿”å›è½¬æ¢æ‰€ç»æ­¥æ•°
    }
 };

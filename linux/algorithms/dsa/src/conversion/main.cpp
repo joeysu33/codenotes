@@ -9,23 +9,23 @@
 #include "convert.h"
 
 /******************************************************************************************
- * ½øÖÆ×ª»»
+ * è¿›åˆ¶è½¬æ¢
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
-   /*DSA*/if ( argc < 3 ) //²ÎÊı¼ì²é
+   /*DSA*/if ( argc < 3 ) //å‚æ•°æ£€æŸ¥
       /*DSA*/{ cout << "Usage: " << argv[0] << " <integer> <base>" << endl; return -1; }
    for ( int i = 1; i < argc; i += 2 ) {
       /*DSA*/system ( "cls" );
-      __int64 n = _atoi64 ( argv[i] ); //´ı×ª»»µÄÊ®½øÖÆÊı
-      /*DSA*/if ( 0 >= n ) //²ÎÊı¼ì²é
+      __int64 n = _atoi64 ( argv[i] ); //å¾…è½¬æ¢çš„åè¿›åˆ¶æ•°
+      /*DSA*/if ( 0 >= n ) //å‚æ•°æ£€æŸ¥
          /*DSA*/{ cout << "But " << n << " is not a positive integer" << endl;   return -2; }
-      int base = atoi ( argv[i+1] ); //Ä¿±ê½øÖÆ
-      /*DSA*/if ( 2 > base || base > 16 ) //²ÎÊı¼ì²é
+      int base = atoi ( argv[i+1] ); //ç›®æ ‡è¿›åˆ¶
+      /*DSA*/if ( 2 > base || base > 16 ) //å‚æ•°æ£€æŸ¥
          /*DSA*/{ cout << "But " << base << " is not between 2 and 16" << endl; return -2; }
-      Stack<char> S; //ÓÃÕ»¼ÇÂ¼×ª»»µÃµ½µÄ¸÷ÊıÎ»
-      convert ( S, n, base ); //½øÖÆ×ª»»
+      Stack<char> S; //ç”¨æ ˆè®°å½•è½¬æ¢å¾—åˆ°çš„å„æ•°ä½
+      convert ( S, n, base ); //è¿›åˆ¶è½¬æ¢
       /*DSA*/printf ( "%20I64d_(10) = ", n );
-      while ( !S.empty() ) printf ( "%c", ( S.pop() ) ); //ÄæĞòÊä³öÕ»ÄÚÊıÎ»£¬¼´ÕıÈ·½á¹û
+      while ( !S.empty() ) printf ( "%c", ( S.pop() ) ); //é€†åºè¾“å‡ºæ ˆå†…æ•°ä½ï¼Œå³æ­£ç¡®ç»“æœ
       /*DSA*/printf ( "_(%d)\a\n", base ); getchar();
    }
    return 0;

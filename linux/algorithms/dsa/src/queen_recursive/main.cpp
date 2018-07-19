@@ -9,27 +9,27 @@
 #include   "../queen_brute_force_1/queen.h"
 
 /******************************************************************************************
- * È«¾Ö±äÁ¿
+ * å…¨å±€å˜é‡
  ******************************************************************************************/
-RunMode runMode; //ÑİÊ¾Ä£Ê½
-int nSolu = 0; //½âµÄ×ÜÊı
-int nCheck = 0; //³¢ÊÔµÄ×Ü´ÎÊı
+RunMode runMode; //æ¼”ç¤ºæ¨¡å¼
+int nSolu = 0; //è§£çš„æ€»æ•°
+int nCheck = 0; //å°è¯•çš„æ€»æ¬¡æ•°
 
 /******************************************************************************************
- * n»Êºó£¨µİ¹é°æ£©
+ * nçš‡åï¼ˆé€’å½’ç‰ˆï¼‰
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
-   if ( argc < 3 ) //¼ì²éÃüÁîĞĞ¸ñÊ½
+   if ( argc < 3 ) //æ£€æŸ¥å‘½ä»¤è¡Œæ ¼å¼
       { cout << "Usage: " << argv[0] << " <-step | -cont> <#Queen>" << endl; return -1; }
-   if ( !strcmp ( "-step", argv[1] ) ) runMode = Step; //Éè¶¨Îªµ¥²½ÑİÊ¾Ä£Ê½
-   else if ( !strcmp ( "-cont", argv[1] ) ) runMode = Continuous; //Éè¶¨ÎªÁ¬ĞøÑİÊ¾Ä£Ê½
+   if ( !strcmp ( "-step", argv[1] ) ) runMode = Step; //è®¾å®šä¸ºå•æ­¥æ¼”ç¤ºæ¨¡å¼
+   else if ( !strcmp ( "-cont", argv[1] ) ) runMode = Continuous; //è®¾å®šä¸ºè¿ç»­æ¼”ç¤ºæ¨¡å¼
    else { cout << "Unrecognizable running mode" << endl; return -2; }
    int nQueen = atoi ( argv[2] ); //#queens
    if ( 1 > nQueen || nQueen > QUEEN_MAX )
       { cout << "Make sure 1 <= #queen <= " << QUEEN_MAX << endl; return -2; }
-   placeQueens ( nQueen, 0 ); //Æô¶¯Ëã·¨
+   placeQueens ( nQueen, 0 ); //å¯åŠ¨ç®—æ³•
    cout  << nSolu << " solution(s) found after "
          << nCheck << " check(s) for "
-         << nQueen << " queen(s)\n"; //Êä³ö½âµÄ×ÜÊı
+         << nQueen << " queen(s)\n"; //è¾“å‡ºè§£çš„æ€»æ•°
    return 0;
 }

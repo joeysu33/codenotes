@@ -9,45 +9,45 @@
 #pragma once
 
 /******************************************************************************************
- * BTreeÊä³ö´òÓ¡
+ * BTreeè¾“å‡ºæ‰“å°
  ******************************************************************************************/
-#include "../Bitmap/Bitmap.h" //Ê¹ÓÃÎ»Í¼¼ÇÂ¼·ÖÖ§×ªÏò
+#include "../Bitmap/Bitmap.h" //ä½¿ç”¨ä½å›¾è®°å½•åˆ†æ”¯è½¬å‘
 
 /******************************************************************************************
- * BTree´òÓ¡£¨Èë¿Ú£©
+ * BTreeæ‰“å°ï¼ˆå…¥å£ï¼‰
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
-void UniPrint::p ( BTree<T> & bt ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d:\n", typeid ( bt ).name(), &bt, bt.size() ); //»ù±¾ĞÅÏ¢
-   Bitmap* leftmosts = new Bitmap; //¼ÇÂ¼µ±Ç°½Úµã×æÏÈµÄ·½Ïò
-   Bitmap* rightmosts = new Bitmap; //¼ÇÂ¼µ±Ç°½Úµã×æÏÈµÄ·½Ïò
-   printBTree ( bt.root(), 0, true, true, leftmosts, rightmosts ); //Êä³öÊ÷×´½á¹¹
+template <typename T> //å…ƒç´ ç±»å‹
+void UniPrint::p ( BTree<T> & bt ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d:\n", typeid ( bt ).name(), &bt, bt.size() ); //åŸºæœ¬ä¿¡æ¯
+   Bitmap* leftmosts = new Bitmap; //è®°å½•å½“å‰èŠ‚ç‚¹ç¥–å…ˆçš„æ–¹å‘
+   Bitmap* rightmosts = new Bitmap; //è®°å½•å½“å‰èŠ‚ç‚¹ç¥–å…ˆçš„æ–¹å‘
+   printBTree ( bt.root(), 0, true, true, leftmosts, rightmosts ); //è¾“å‡ºæ ‘çŠ¶ç»“æ„
    release ( leftmosts ); release ( rightmosts ); printf ( "\n" );
 }
 
 /******************************************************************************************
- * BTree´òÓ¡£¨µİ¹é£©
+ * BTreeæ‰“å°ï¼ˆé€’å½’ï¼‰
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
+template <typename T> //å…ƒç´ ç±»å‹
 static void printBTree ( BTNodePosi(T) bt, int depth, bool isLeftmost, bool isRightmost, Bitmap* leftmosts, Bitmap* rightmosts ) {
    if ( !bt ) return;
-   isLeftmost ? leftmosts->set ( depth ) : leftmosts->clear ( depth ); //ÉèÖÃ»òÇå³ıµ±Ç°²ãµÄ¹ÕÏò±êÖ¾
-   isRightmost ? rightmosts->set ( depth ) : rightmosts->clear ( depth ); //ÉèÖÃ»òÇå³ıµ±Ç°²ãµÄ¹ÕÏò±êÖ¾
-   int k = bt->child.size() - 1; //ÕÒµ½µ±Ç°½ÚµãµÄ×îÓÒ²àº¢×Ó£¬²¢
-   printBTree ( bt->child[k], depth + 1, false, true, leftmosts, rightmosts ); //µİ¹éÊä³öÖ®
+   isLeftmost ? leftmosts->set ( depth ) : leftmosts->clear ( depth ); //è®¾ç½®æˆ–æ¸…é™¤å½“å‰å±‚çš„æ‹å‘æ ‡å¿—
+   isRightmost ? rightmosts->set ( depth ) : rightmosts->clear ( depth ); //è®¾ç½®æˆ–æ¸…é™¤å½“å‰å±‚çš„æ‹å‘æ ‡å¿—
+   int k = bt->child.size() - 1; //æ‰¾åˆ°å½“å‰èŠ‚ç‚¹çš„æœ€å³ä¾§å­©å­ï¼Œå¹¶
+   printBTree ( bt->child[k], depth + 1, false, true, leftmosts, rightmosts ); //é€’å½’è¾“å‡ºä¹‹
    /*DSA*/bool parentOK = false; BTNodePosi(T) p = bt->parent;
    /*DSA*/if ( !p ) parentOK = true;
    /*DSA*/else for ( int i = 0; i < p->child.size(); i++ ) if ( p->child[i] == bt ) parentOK = true;
-   while ( 0 < k-- ) { //×ÔÓÒÏò×ó£¬Êä³ö¸÷×ÓÊ÷¼°ÆäÓÒ²àµÄ¹Ø¼üÂë
+   while ( 0 < k-- ) { //è‡ªå³å‘å·¦ï¼Œè¾“å‡ºå„å­æ ‘åŠå…¶å³ä¾§çš„å…³é”®ç 
       /*DSA*/printf ( parentOK ? " " : "X" );
       print ( bt->key[k] ); printf ( " *>" );
-      for ( int i = 0; i < depth; i++ ) //¸ù¾İÏàÁÚ¸÷²ã
-         ( leftmosts->test ( i ) && leftmosts->test ( i + 1 ) || rightmosts->test ( i ) && rightmosts->test ( i + 1 ) ) ? //µÄ¹ÕÏòÊÇ·ñÒ»ÖÂ£¬¼´¿ÉÈ·¶¨
-         printf ( "      " ) : printf ( "©¦    " ); //ÊÇ·ñÓ¦¸Ã´òÓ¡ºáÏòÁª½ÓÏß
-      if ( ( ( 0 == depth && 1 < bt->key.size() ) || !isLeftmost && isRightmost ) && bt->key.size() - 1 == k ) printf ( "©°©¤" );
-      else if ( ( ( 0 == depth && 1 < bt->key.size() ) || isLeftmost && !isRightmost ) && 0 == k )            printf ( "©¸©¤" );
-      else                                                                                               printf ( "©À©¤" );
+      for ( int i = 0; i < depth; i++ ) //æ ¹æ®ç›¸é‚»å„å±‚
+         ( leftmosts->test ( i ) && leftmosts->test ( i + 1 ) || rightmosts->test ( i ) && rightmosts->test ( i + 1 ) ) ? //çš„æ‹å‘æ˜¯å¦ä¸€è‡´ï¼Œå³å¯ç¡®å®š
+         printf ( "      " ) : printf ( "â”‚    " ); //æ˜¯å¦åº”è¯¥æ‰“å°æ¨ªå‘è”æ¥çº¿
+      if ( ( ( 0 == depth && 1 < bt->key.size() ) || !isLeftmost && isRightmost ) && bt->key.size() - 1 == k ) printf ( "â”Œâ”€" );
+      else if ( ( ( 0 == depth && 1 < bt->key.size() ) || isLeftmost && !isRightmost ) && 0 == k )            printf ( "â””â”€" );
+      else                                                                                               printf ( "â”œâ”€" );
       print ( bt->key[k] ); printf ( "\n" );
-      printBTree ( bt->child[k], depth + 1, 0 == k, false, leftmosts, rightmosts ); //µİ¹éÊä³ö×ÓÊ÷
+      printBTree ( bt->child[k], depth + 1, 0 == k, false, leftmosts, rightmosts ); //é€’å½’è¾“å‡ºå­æ ‘
    }
 }

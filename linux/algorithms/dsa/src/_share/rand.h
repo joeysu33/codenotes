@@ -9,13 +9,13 @@
 #pragma once
 
 #include <stdlib.h>
-#include <time.h> //Í¨³£ÓÃµ±Ç°Ê±¿ÌÉèÖÃËæ»úÖÖ×Ó
+#include <time.h> //é€šå¸¸ç”¨å½“å‰æ—¶åˆ»è®¾ç½®éšæœºç§å­
 
 /******************************************************************************************
- * ÔÚ[0, range)ÄÚËæ»úÉú³ÉÒ»¸öÊı
+ * åœ¨[0, range)å†…éšæœºç”Ÿæˆä¸€ä¸ªæ•°
  ******************************************************************************************/
-static int dice ( int range ) { return rand() % range; } //È¡[0, range)ÖĞµÄËæ»úÕûÊı
-static int dice ( int lo, int hi ) { return lo + rand() % ( hi - lo ); } //È¡[lo, hi)ÖĞµÄËæ»úÕûÊı
+static int dice ( int range ) { return rand() % range; } //å–[0, range)ä¸­çš„éšæœºæ•´æ•°
+static int dice ( int lo, int hi ) { return lo + rand() % ( hi - lo ); } //å–[lo, hi)ä¸­çš„éšæœºæ•´æ•°
 static float dice ( float range ) { return rand() % ( 1000 * ( int ) range ) / ( float ) 1000.; }
 static double dice ( double range ) { return rand() % ( 1000 * ( int ) range ) / ( double ) 1000.; }
 static char dice ( char range ) { return ( char ) ( 32 + rand() % 96 ); }

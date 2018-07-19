@@ -12,14 +12,14 @@
 using namespace std;
 #include <stdio.h>
 #include <stdlib.h>
-#include "../stack/stack.h" //Õ»
-#include "queen.h" //ÒıÈë»ÊºóÀà
+#include "../stack/stack.h" //æ ˆ
+#include "queen.h" //å¼•å…¥çš‡åç±»
 
 typedef enum {Continuous, Step} RunMode;
 
-extern RunMode runMode; //ÔËĞĞÄ£Ê½
-extern int nSolu; //½âµÄ×ÜÊı
-extern int nCheck; //³¢ÊÔµÄ×Ü´ÎÊı
+extern RunMode runMode; //è¿è¡Œæ¨¡å¼
+extern int nSolu; //è§£çš„æ€»æ•°
+extern int nCheck; //å°è¯•çš„æ€»æ¬¡æ•°
 
 void placeQueens ( int );
 void displayRow ( Queen& q, int );

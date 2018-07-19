@@ -9,9 +9,9 @@
 #pragma once
 
 /******************************************************************************************
- * 打印输出PQ_LeftHeap
+ * 鎵撳嵃杈撳嚭PQ_LeftHeap
  ******************************************************************************************/
-template <typename T> //元素类型
-void UniPrint::p ( PQ_LeftHeap<T> & lh ) { //引用
+template <typename T> //鍏冪礌绫诲瀷
+void UniPrint::p ( PQ_LeftHeap<T> & lh ) { //寮曠敤
    p ( ( BinTree<T>& ) lh );
 }

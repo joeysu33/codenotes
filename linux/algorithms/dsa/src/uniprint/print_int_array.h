@@ -9,5 +9,5 @@
 #pragma once
 
 #include <stdio.h>
-void print ( int A[], int n ); //输出整数数组A[0, n)
-void print ( int A[], int n, int lo, int hi ); //输出整数数组区间A[lo, hi)
+void print ( int A[], int n ); //杈撳嚭鏁存暟鏁扮粍A[0, n)
+void print ( int A[], int n, int lo, int hi ); //杈撳嚭鏁存暟鏁扮粍鍖洪棿A[lo, hi)

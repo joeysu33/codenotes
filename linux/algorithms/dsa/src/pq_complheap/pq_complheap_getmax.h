@@ -8,4 +8,4 @@
 
 #pragma once
 
-template <typename T> T PQ_ComplHeap<T>::getMax() {  return _elem[0];  } //取优先级最高的词条
+template <typename T> T PQ_ComplHeap<T>::getMax() {  return _elem[0];  } //鍙栦紭鍏堢骇鏈�楂樼殑璇嶆潯

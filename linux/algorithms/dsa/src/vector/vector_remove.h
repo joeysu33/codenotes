@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename T> T Vector<T>::remove ( Rank r ) { //É¾³ıÏòÁ¿ÖĞÖÈÎªrµÄÔªËØ£¬0 <= r < size
-   T e = _elem[r]; //±¸·İ±»É¾³ıÔªËØ
-   remove ( r, r + 1 ); //µ÷ÓÃÇø¼äÉ¾³ıËã·¨£¬µÈĞ§ÓÚ¶ÔÇø¼ä[r, r + 1)µÄÉ¾³ı
-   return e; //·µ»Ø±»É¾³ıÔªËØ
+template <typename T> T Vector<T>::remove ( Rank r ) { //åˆ é™¤å‘é‡ä¸­ç§©ä¸ºrçš„å…ƒç´ ï¼Œ0 <= r < size
+   T e = _elem[r]; //å¤‡ä»½è¢«åˆ é™¤å…ƒç´ 
+   remove ( r, r + 1 ); //è°ƒç”¨åŒºé—´åˆ é™¤ç®—æ³•ï¼Œç­‰æ•ˆäºå¯¹åŒºé—´[r, r + 1)çš„åˆ é™¤
+   return e; //è¿”å›è¢«åˆ é™¤å…ƒç´ 
 }

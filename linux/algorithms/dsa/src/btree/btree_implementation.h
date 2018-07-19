@@ -9,12 +9,12 @@
 #pragma once
 
 /******************************************************************************************
- * 将BTree各方法的实现部分，简洁地引入BTree.h
- * 效果等同于将这些实现直接汇入BTree.h
- * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
+ * 灏咮Tree鍚勬柟娉曠殑瀹炵幇閮ㄥ垎锛岀畝娲佸湴寮曞叆BTree.h
+ * 鏁堟灉绛夊悓浜庡皢杩欎簺瀹炵幇鐩存帴姹囧叆BTree.h
+ * 鍦╡xport灏氭湭琚紪璇戝櫒鏀寔鍓嶏紝濡傛鍙皢瀹氫箟涓庡疄鐜板垎绂伙紝浠ヤ究璇剧▼璁茶В
  ******************************************************************************************/
-#include "BTree_search.h" //查找
-#include "BTree_insert.h" //插入
-#include "BTree_remove.h" //删除
-#include "BTree_solveOverflow.h" //节点上溢处理
-#include "BTree_solveUnderflow.h" //节点下溢处理
+#include "BTree_search.h" //鏌ユ壘
+#include "BTree_insert.h" //鎻掑叆
+#include "BTree_remove.h" //鍒犻櫎
+#include "BTree_solveOverflow.h" //鑺傜偣涓婃孩澶勭悊
+#include "BTree_solveUnderflow.h" //鑺傜偣涓嬫孩澶勭悊

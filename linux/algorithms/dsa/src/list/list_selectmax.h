@@ -8,11 +8,11 @@
 
 #pragma once
 
-template <typename T> //´ÓÆğÊ¼ÓÚÎ»ÖÃpµÄn¸öÔªËØÖĞÑ¡³ö×î´óÕß
+template <typename T> //ä»èµ·å§‹äºä½ç½®pçš„nä¸ªå…ƒç´ ä¸­é€‰å‡ºæœ€å¤§è€…
 ListNodePosi(T) List<T>::selectMax ( ListNodePosi(T) p, int n ) {
-   ListNodePosi(T) max = p; //×î´óÕßÔİ¶¨ÎªÊ×½Úµãp
-   for ( ListNodePosi(T) cur = p; 1 < n; n-- ) //´ÓÊ×½Úµãp³ö·¢£¬½«ºóĞø½ÚµãÖğÒ»Óëmax±È½Ï
-      if ( !lt ( ( cur = cur->succ )->data, max->data ) ) //Èôµ±Ç°ÔªËØ²»Ğ¡ÓÚmax£¬Ôò
-         max = cur; //¸üĞÂ×î´óÔªËØÎ»ÖÃ¼ÇÂ¼
-   return max; //·µ»Ø×î´ó½ÚµãÎ»ÖÃ
+   ListNodePosi(T) max = p; //æœ€å¤§è€…æš‚å®šä¸ºé¦–èŠ‚ç‚¹p
+   for ( ListNodePosi(T) cur = p; 1 < n; n-- ) //ä»é¦–èŠ‚ç‚¹på‡ºå‘ï¼Œå°†åç»­èŠ‚ç‚¹é€ä¸€ä¸maxæ¯”è¾ƒ
+      if ( !lt ( ( cur = cur->succ )->data, max->data ) ) //è‹¥å½“å‰å…ƒç´ ä¸å°äºmaxï¼Œåˆ™
+         max = cur; //æ›´æ–°æœ€å¤§å…ƒç´ ä½ç½®è®°å½•
+   return max; //è¿”å›æœ€å¤§èŠ‚ç‚¹ä½ç½®
 }

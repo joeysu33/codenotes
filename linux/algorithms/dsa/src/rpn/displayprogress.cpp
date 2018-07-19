@@ -10,13 +10,13 @@
 #include "../UniPrint/print.h"
 
 /******************************************************************************************
- * Êä³öÔËËã·û
+ * è¾“å‡ºè¿ç®—ç¬¦
  ******************************************************************************************/
 void printChar ( char& p )
 { ( '\0' == p ) ? printf ( "\\0 " ) : printf ( "%c  ", p ); }
 
 /******************************************************************************************
- * ÏÔÊ¾±í´ïÊ½´¦Àí½øÕ¹
+ * æ˜¾ç¤ºè¡¨è¾¾å¼å¤„ç†è¿›å±•
  ******************************************************************************************/
 void displayProgress ( char* expr, char* pCh, Stack<float>& opndStk, Stack<char>& optrStk, char* rpn ) {
    system ( "cls" );
@@ -29,6 +29,6 @@ void displayProgress ( char* expr, char* pCh, Stack<float>& opndStk, Stack<char>
    for ( char* p = expr; p < pCh; p++ ) printf ( "--" ); printf ( " ^\n\n" );
    print ( optrStk ); printf ( "\n" );
    print ( opndStk ); printf ( "\n" );
-   printf ( "RPN:\n %s\n\n", rpn ); //Êä³öRPN
+   printf ( "RPN:\n %s\n\n", rpn ); //è¾“å‡ºRPN
    getchar();
 }

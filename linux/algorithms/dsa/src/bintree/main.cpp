@@ -8,19 +8,19 @@
 
 #include "binTree_test.h"
 
-int testID = 0; //²âÊÔ±àºÅ
+int testID = 0; //æµ‹è¯•ç¼–å·
 
-// Ëæ»úÉú³ÉÆÚÍû¸ß¶ÈÎªhµÄ¶ş²æÊ÷
+// éšæœºç”ŸæˆæœŸæœ›é«˜åº¦ä¸ºhçš„äºŒå‰æ ‘
 template <typename T> bool randomBinTree ( BinTree<T> & bt, BinNodePosi(T) x, int h ) {
-   if ( 0 >= h ) return false; //ÖÁ¶àh²ã
-   if ( 0 < dice ( h ) ) //ÒÔ1/hµÄ¸ÅÂÊÖÕÖ¹µ±Ç°·ÖÖ§µÄÉú³¤
+   if ( 0 >= h ) return false; //è‡³å¤šhå±‚
+   if ( 0 < dice ( h ) ) //ä»¥1/hçš„æ¦‚ç‡ç»ˆæ­¢å½“å‰åˆ†æ”¯çš„ç”Ÿé•¿
       randomBinTree ( bt, bt.insertAsLC ( x, dice ( ( T ) h * h * h ) ), h - 1 );
-   if ( 0 < dice ( h ) ) //ÒÔ1/hµÄ¸ÅÂÊÖÕÖ¹µ±Ç°·ÖÖ§µÄÉú³¤
+   if ( 0 < dice ( h ) ) //ä»¥1/hçš„æ¦‚ç‡ç»ˆæ­¢å½“å‰åˆ†æ”¯çš„ç”Ÿé•¿
       randomBinTree ( bt, bt.insertAsRC ( x, dice ( ( T ) h * h * h ) ), h - 1 );
    return true;
 }
 
-// ÔÚ¶ş²æÊ÷ÖĞËæ»úÈ·¶¨Ò»¸ö½ÚµãÎ»ÖÃ
+// åœ¨äºŒå‰æ ‘ä¸­éšæœºç¡®å®šä¸€ä¸ªèŠ‚ç‚¹ä½ç½®
 template <typename T> BinNodePosi(T) randomPosiInBinTree ( BinNodePosi(T) root ) {
    if ( !HasChild ( *root ) ) return root;
    if ( !HasLChild ( *root ) )
@@ -32,7 +32,7 @@ template <typename T> BinNodePosi(T) randomPosiInBinTree ( BinNodePosi(T) root )
           randomPosiInBinTree ( root->rc ) ;
 }
 
-template <typename T> void   testBinTree ( int h ) { //²âÊÔ¶ş²æÊ÷
+template <typename T> void   testBinTree ( int h ) { //æµ‹è¯•äºŒå‰æ ‘
    printf ( "\n  ==== Test %2d. Generate a binTree of height <= %d \n", testID++, h );
    BinTree<T> bt; print ( bt );
    bt.insertAsRoot ( dice ( ( T ) h * h * h ) ); print ( bt );
@@ -45,7 +45,7 @@ template <typename T> void   testBinTree ( int h ) { //²âÊÔ¶ş²æÊ÷
    Hailstone<T> he; bt.travIn ( he ); print ( bt );
    printf ( "\n  ==== Test %2d. Remove/release subtrees in the Tree\n", testID++ );
    while ( !bt.empty() ) {
-      BinNodePosi(T) p = randomPosiInBinTree ( bt.root() ); //Ëæ»úÑ¡ÔñÒ»¸ö½Úµã
+      BinNodePosi(T) p = randomPosiInBinTree ( bt.root() ); //éšæœºé€‰æ‹©ä¸€ä¸ªèŠ‚ç‚¹
       if ( dice ( 2 ) ) {
          printf ( "removing " ); print ( p->data ); printf ( " ...\n" );
          printf ( "%d node(s) removed\n", bt.remove ( p ) ); print ( bt );
@@ -57,9 +57,9 @@ template <typename T> void   testBinTree ( int h ) { //²âÊÔ¶ş²æÊ÷
    }
 }
 
-int main ( int argc, char* argv[] ) { //²âÊÔ¶ş²æÊ÷
+int main ( int argc, char* argv[] ) { //æµ‹è¯•äºŒå‰æ ‘
    if ( 2 > argc ) { printf ( "Usage: %s <size of test>\a\a\n", argv[0] ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
-   testBinTree<int> ( atoi ( argv[1] ) ); //ÔªËØÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testBinTree<int> ( atoi ( argv[1] ) ); //å…ƒç´ ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
    return 0;
 }

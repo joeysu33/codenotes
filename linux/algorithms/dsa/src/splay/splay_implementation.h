@@ -9,11 +9,11 @@
 #pragma once
 
 /******************************************************************************************
-* 将BST各方法的实现部分，简洁地引入BST.h
-* 效果等同于将这些实现直接汇入BST.h
-* 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
+* 灏咮ST鍚勬柟娉曠殑瀹炵幇閮ㄥ垎锛岀畝娲佸湴寮曞叆BST.h
+* 鏁堟灉绛夊悓浜庡皢杩欎簺瀹炵幇鐩存帴姹囧叆BST.h
+* 鍦╡xport灏氭湭琚紪璇戝櫒鏀寔鍓嶏紝濡傛鍙皢瀹氫箟涓庡疄鐜板垎绂伙紝浠ヤ究璇剧▼璁茶В
 ******************************************************************************************/
-#include "Splay_search.h" //查找
-#include "Splay_insert.h" //插入
-#include "Splay_remove.h" //删除
-#include "Splay_splay.h" //伸展调整
+#include "Splay_search.h" //鏌ユ壘
+#include "Splay_insert.h" //鎻掑叆
+#include "Splay_remove.h" //鍒犻櫎
+#include "Splay_splay.h" //浼稿睍璋冩暣

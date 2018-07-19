@@ -7,11 +7,11 @@
  ******************************************************************************************/
 
 /*DSA*/#include "hanoi.h"
-// ����Hanoi���򣬽�����Sx�ϵ�nֻ���ӣ���������Sy��ת���Ƶ�����Sz��
+// 按照Hanoi规则，将柱子Sx上的n只盘子，借助柱子Sy中转，移到柱子Sz上
 void hanoi ( int n, Stack<Disk>& Sx, Stack<Disk>& Sy, Stack<Disk>& Sz ) {
-   if ( n > 0 )   { //û������ʣ��ʱ�����ٵݹ�
-      hanoi ( n - 1, Sx, Sz, Sy ); //�ݹ飺��Sx�ϵ�n - 1ֻ���ӣ�����Sz��ת���Ƶ�Sy��
-      move ( Sx, Sz ); //ֱ�ӣ���Sx�����һֻ���ӣ��Ƶ�Sz��
-      hanoi ( n - 1, Sy, Sx, Sz ); //�ݹ飺��Sy�ϵ�n - 1ֻ���ӣ�����Sx��ת���Ƶ�Sz��
+   if ( n > 0 )   { //没有盘子剩余时，不再递归
+      hanoi ( n - 1, Sx, Sz, Sy ); //递归：将Sx上的n - 1只盘子，借助Sz中转，移到Sy上
+      move ( Sx, Sz ); //直接：将Sx上最后一只盘子，移到Sz上
+      hanoi ( n - 1, Sy, Sx, Sz ); //递归：将Sy上的n - 1只盘子，借助Sx中转，移到Sz上
    }
 }

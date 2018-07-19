@@ -8,14 +8,14 @@
 
 #pragma once
 
-template <typename T> //ÁĞ±íµÄÑ¡ÔñÅÅĞòËã·¨£º¶ÔÆğÊ¼ÓÚÎ»ÖÃpµÄn¸öÔªËØÅÅĞò
+template <typename T> //åˆ—è¡¨çš„é€‰æ‹©æ’åºç®—æ³•ï¼šå¯¹èµ·å§‹äºä½ç½®pçš„nä¸ªå…ƒç´ æ’åº
 void List<T>::selectionSort ( ListNodePosi(T) p, int n ) { //valid(p) && rank(p) + n <= size
    /*DSA*/printf ( "SelectionSort ...\n" );
    ListNodePosi(T) head = p->pred; ListNodePosi(T) tail = p;
-   for ( int i = 0; i < n; i++ ) tail = tail->succ; //´ıÅÅĞòÇø¼äÎª(head, tail)
-   while ( 1 < n ) { //ÔÚÖÁÉÙ»¹Ê£Á½¸ö½ÚµãÖ®Ç°£¬ÔÚ´ıÅÅĞòÇø¼äÄÚ
-      ListNodePosi(T) max = selectMax ( head->succ, n ); //ÕÒ³ö×î´óÕß£¨ÆçÒåÊ±ºóÕßÓÅÏÈ£©
-      insertB ( tail, remove ( max ) ); //½«ÆäÒÆÖÁÎŞĞòÇø¼äÄ©Î²£¨×÷ÎªÓĞĞòÇø¼äĞÂµÄÊ×ÔªËØ£©
+   for ( int i = 0; i < n; i++ ) tail = tail->succ; //å¾…æ’åºåŒºé—´ä¸º(head, tail)
+   while ( 1 < n ) { //åœ¨è‡³å°‘è¿˜å‰©ä¸¤ä¸ªèŠ‚ç‚¹ä¹‹å‰ï¼Œåœ¨å¾…æ’åºåŒºé—´å†…
+      ListNodePosi(T) max = selectMax ( head->succ, n ); //æ‰¾å‡ºæœ€å¤§è€…ï¼ˆæ­§ä¹‰æ—¶åè€…ä¼˜å…ˆï¼‰
+      insertB ( tail, remove ( max ) ); //å°†å…¶ç§»è‡³æ— åºåŒºé—´æœ«å°¾ï¼ˆä½œä¸ºæœ‰åºåŒºé—´æ–°çš„é¦–å…ƒç´ ï¼‰
       /*DSA*///swap(tail->pred->data, selectMax( head->succ, n )->data );
       tail = tail->pred; n--;
    }

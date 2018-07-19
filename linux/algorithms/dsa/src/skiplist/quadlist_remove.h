@@ -8,15 +8,15 @@
 
 #pragma once
 
-template <typename T> //É¾³ıQuadlistÄÚÎ»ÖÃp´¦µÄ½Úµã£¬·µ»ØÆäÖĞ´æ·ÅµÄ´ÊÌõ
-T Quadlist<T>::remove ( QlistNodePosi(T) p ) { //assert: pÎªQuadlistÖĞµÄºÏ·¨Î»ÖÃ
-   p->pred->succ = p->succ; p->succ->pred = p->pred; _size--;//Õª³ı½Úµã
-   T e = p->entry; delete p; //±¸·İ´ÊÌõ£¬ÊÍ·Å½Úµã
-   return e; //·µ»Ø´ÊÌõ
+template <typename T> //åˆ é™¤Quadlistå†…ä½ç½®på¤„çš„èŠ‚ç‚¹ï¼Œè¿”å›å…¶ä¸­å­˜æ”¾çš„è¯æ¡
+T Quadlist<T>::remove ( QlistNodePosi(T) p ) { //assert: pä¸ºQuadlistä¸­çš„åˆæ³•ä½ç½®
+   p->pred->succ = p->succ; p->succ->pred = p->pred; _size--;//æ‘˜é™¤èŠ‚ç‚¹
+   T e = p->entry; delete p; //å¤‡ä»½è¯æ¡ï¼Œé‡Šæ”¾èŠ‚ç‚¹
+   return e; //è¿”å›è¯æ¡
 }
 
-template <typename T> int Quadlist<T>::clear() { //Çå¿ÕQuadlist
+template <typename T> int Quadlist<T>::clear() { //æ¸…ç©ºQuadlist
    int oldSize = _size;
-   while ( 0 < _size ) remove ( header->succ ); //Öğ¸öÉ¾³ıËùÓĞ½Úµã
+   while ( 0 < _size ) remove ( header->succ ); //é€ä¸ªåˆ é™¤æ‰€æœ‰èŠ‚ç‚¹
    return oldSize;
 }

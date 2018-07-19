@@ -8,11 +8,11 @@
 
 /*DSA*/#include "Huffman_PQ.h"
 
-int* statistics ( char* sample_text_file ) { //Í³¼Æ×Ö·û³öÏÖÆµÂÊ
-   int* freq = new int[N_CHAR];  //ÒÔÏÂÍ³¼ÆĞèËæ»ú·ÃÎÊ£¬¹ÊÒÔÊı×é¼ÇÂ¼¸÷×Ö·û³öÏÖ´ÎÊı
-   memset ( freq, 0, sizeof ( int ) * N_CHAR ); //ÇåÁã
-   FILE* fp = fopen ( sample_text_file, "r" ); //assert: ÎÄ¼ş´æÔÚÇÒ¿ÉÕıÈ·´ò¿ª
-   for ( char ch; 0 < fscanf ( fp, "%c", &ch ); ) //Öğ¸öÉ¨ÃèÑù±¾ÎÄ¼şÖĞµÄÃ¿¸ö×Ö·û
-      if ( ch >= 0x20 ) freq[ch - 0x20]++; //ÀÛ¼Æ¶ÔÓ¦µÄ³öÏÖ´ÎÊı
+int* statistics ( char* sample_text_file ) { //ç»Ÿè®¡å­—ç¬¦å‡ºç°é¢‘ç‡
+   int* freq = new int[N_CHAR];  //ä»¥ä¸‹ç»Ÿè®¡éœ€éšæœºè®¿é—®ï¼Œæ•…ä»¥æ•°ç»„è®°å½•å„å­—ç¬¦å‡ºç°æ¬¡æ•°
+   memset ( freq, 0, sizeof ( int ) * N_CHAR ); //æ¸…é›¶
+   FILE* fp = fopen ( sample_text_file, "r" ); //assert: æ–‡ä»¶å­˜åœ¨ä¸”å¯æ­£ç¡®æ‰“å¼€
+   for ( char ch; 0 < fscanf ( fp, "%c", &ch ); ) //é€ä¸ªæ‰«ææ ·æœ¬æ–‡ä»¶ä¸­çš„æ¯ä¸ªå­—ç¬¦
+      if ( ch >= 0x20 ) freq[ch - 0x20]++; //ç´¯è®¡å¯¹åº”çš„å‡ºç°æ¬¡æ•°
    fclose ( fp ); return freq;
 }

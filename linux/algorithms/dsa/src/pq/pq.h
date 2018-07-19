@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename T> struct PQ { //ÓÅÏÈ¼¶¶ÓÁĞPQÄ£°åÀà
-   virtual void insert ( T ) = 0; //°´ÕÕ±È½ÏÆ÷È·¶¨µÄÓÅÏÈ¼¶´ÎĞò²åÈë´ÊÌõ
-   virtual T getMax() = 0; //È¡³öÓÅÏÈ¼¶×î¸ßµÄ´ÊÌõ
-   virtual T delMax() = 0; //É¾³ıÓÅÏÈ¼¶×î¸ßµÄ´ÊÌõ
+template <typename T> struct PQ { //ä¼˜å…ˆçº§é˜Ÿåˆ—PQæ¨¡æ¿ç±»
+   virtual void insert ( T ) = 0; //æŒ‰ç…§æ¯”è¾ƒå™¨ç¡®å®šçš„ä¼˜å…ˆçº§æ¬¡åºæ’å…¥è¯æ¡
+   virtual T getMax() = 0; //å–å‡ºä¼˜å…ˆçº§æœ€é«˜çš„è¯æ¡
+   virtual T delMax() = 0; //åˆ é™¤ä¼˜å…ˆçº§æœ€é«˜çš„è¯æ¡
 };

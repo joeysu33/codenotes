@@ -8,17 +8,17 @@
 
 #pragma once
 
-template <typename K, typename V> bool Skiplist<K, V>::remove ( K k ) { //Ìø×ª±í´ÊÌõÉ¾³ıËã·¨
-   if ( empty() ) return false; //¿Õ±íÇé¿ö
-   ListNode<Quadlist<Entry<K, V>>*>* qlist = first(); //´Ó¶¥²ãQuadlistµÄ
-   QuadlistNode<Entry<K, V>>* p = qlist->data->first(); //Ê×½Úµã¿ªÊ¼
-   if ( !skipSearch ( qlist, p, k ) ) return false; //Ä¿±ê´ÊÌõ²»´æÔÚ£¬Ö±½Ó·µ»Ø
-   do { //ÈôÄ¿±ê´ÊÌõ´æÔÚ£¬ÔòÖğ²ã²ğ³ıÓëÖ®¶ÔÓ¦µÄËş
-      QuadlistNode<Entry<K, V>>* lower = p->below; //¼Ç×¡ÏÂÒ»²ã½Úµã£¬²¢
-      qlist->data->remove ( p ); //É¾³ıµ±Ç°²ã½Úµã£¬ÔÙ
-      p = lower; qlist = qlist->succ; //×ªÈëÏÂÒ»²ã
-   } while ( qlist->succ ); //ÈçÉÏ²»¶ÏÖØ¸´£¬Ö±µ½Ëş»ù
-   while ( !empty() && first()->data->empty() ) //ÖğÒ»µØ
-      List::remove ( first() ); //Çå³ıÒÑ¿ÉÄÜ²»º¬´ÊÌõµÄ¶¥²ãQuadlist
-   return true; //É¾³ı²Ù×÷³É¹¦Íê³É
+template <typename K, typename V> bool Skiplist<K, V>::remove ( K k ) { //è·³è½¬è¡¨è¯æ¡åˆ é™¤ç®—æ³•
+   if ( empty() ) return false; //ç©ºè¡¨æƒ…å†µ
+   ListNode<Quadlist<Entry<K, V>>*>* qlist = first(); //ä»é¡¶å±‚Quadlistçš„
+   QuadlistNode<Entry<K, V>>* p = qlist->data->first(); //é¦–èŠ‚ç‚¹å¼€å§‹
+   if ( !skipSearch ( qlist, p, k ) ) return false; //ç›®æ ‡è¯æ¡ä¸å­˜åœ¨ï¼Œç›´æ¥è¿”å›
+   do { //è‹¥ç›®æ ‡è¯æ¡å­˜åœ¨ï¼Œåˆ™é€å±‚æ‹†é™¤ä¸ä¹‹å¯¹åº”çš„å¡”
+      QuadlistNode<Entry<K, V>>* lower = p->below; //è®°ä½ä¸‹ä¸€å±‚èŠ‚ç‚¹ï¼Œå¹¶
+      qlist->data->remove ( p ); //åˆ é™¤å½“å‰å±‚èŠ‚ç‚¹ï¼Œå†
+      p = lower; qlist = qlist->succ; //è½¬å…¥ä¸‹ä¸€å±‚
+   } while ( qlist->succ ); //å¦‚ä¸Šä¸æ–­é‡å¤ï¼Œç›´åˆ°å¡”åŸº
+   while ( !empty() && first()->data->empty() ) //é€ä¸€åœ°
+      List::remove ( first() ); //æ¸…é™¤å·²å¯èƒ½ä¸å«è¯æ¡çš„é¡¶å±‚Quadlist
+   return true; //åˆ é™¤æ“ä½œæˆåŠŸå®Œæˆ
 }

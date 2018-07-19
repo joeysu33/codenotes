@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> void double ( Vector<T> & V ) //Í³Ò»¼Ó±¶ÏòÁ¿ÖĞµÄ¸÷ÔªËØ
-{  V.traverse ( Double<T>() );  } //ÒÔDouble<T>()Îª»ù±¾²Ù×÷½øĞĞ±éÀú
+template <typename T> void double ( Vector<T> & V ) //ç»Ÿä¸€åŠ å€å‘é‡ä¸­çš„å„å…ƒç´ 
+{  V.traverse ( Double<T>() );  } //ä»¥Double<T>()ä¸ºåŸºæœ¬æ“ä½œè¿›è¡Œéå†

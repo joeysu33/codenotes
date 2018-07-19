@@ -8,17 +8,17 @@
 
 #pragma once
 
-template <typename T, typename VST> //ÔªËØÀàĞÍ¡¢²Ù×÷Æ÷
-void travIn_I2 ( BinNodePosi(T) x, VST& visit ) { //¶ş²æÊ÷ÖĞĞò±éÀúËã·¨£¨µü´ú°æ#2£©
-   Stack<BinNodePosi(T)> S; //¸¨ÖúÕ»
+template <typename T, typename VST> //å…ƒç´ ç±»å‹ã€æ“ä½œå™¨
+void travIn_I2 ( BinNodePosi(T) x, VST& visit ) { //äºŒå‰æ ‘ä¸­åºéå†ç®—æ³•ï¼ˆè¿­ä»£ç‰ˆ#2ï¼‰
+   Stack<BinNodePosi(T)> S; //è¾…åŠ©æ ˆ
    while ( true )
       if ( x ) {
-         S.push ( x ); //¸ù½Úµã½øÕ»
-         x = x->lc; //ÉîÈë±éÀú×ó×ÓÊ÷
+         S.push ( x ); //æ ¹èŠ‚ç‚¹è¿›æ ˆ
+         x = x->lc; //æ·±å…¥éå†å·¦å­æ ‘
       } else if ( !S.empty() ) {
-         x = S.pop(); //ÉĞÎ´·ÃÎÊµÄ×îµÍ×æÏÈ½ÚµãÍËÕ»
-         visit ( x->data ); //·ÃÎÊ¸Ã×æÏÈ½Úµã
-         x = x->rc; //±éÀú×æÏÈµÄÓÒ×ÓÊ÷
+         x = S.pop(); //å°šæœªè®¿é—®çš„æœ€ä½ç¥–å…ˆèŠ‚ç‚¹é€€æ ˆ
+         visit ( x->data ); //è®¿é—®è¯¥ç¥–å…ˆèŠ‚ç‚¹
+         x = x->rc; //éå†ç¥–å…ˆçš„å³å­æ ‘
       } else
-         break; //±éÀúÍê³É
+         break; //éå†å®Œæˆ
 }

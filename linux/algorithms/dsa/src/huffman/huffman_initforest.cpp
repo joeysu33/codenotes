@@ -8,11 +8,11 @@
 
 /*DSA*/#include "Huffman_PQ.h"
 
-HuffForest* initForest ( int* freq ) { //¸ù¾İÆµÂÊÍ³¼Æ±í£¬ÎªÃ¿¸ö×Ö·û´´½¨Ò»¿ÃÊ÷
-   HuffForest* forest = new HuffForest; //ÒÔListÊµÏÖµÄHuffmanÉ­ÁÖ
-   for ( int i = 0; i < N_CHAR; i++ ) { //ÎªÃ¿¸ö×Ö·û
-      forest->insertAsLast ( new HuffTree ); //Éú³ÉÒ»¿ÃÊ÷£¬²¢½«×Ö·û¼°ÆäÆµÂÊ
-      forest->last()->data->insertAsRoot ( HuffChar ( 0x20 + i, freq[i] ) ); //´æÈëÆäÖĞ
+HuffForest* initForest ( int* freq ) { //æ ¹æ®é¢‘ç‡ç»Ÿè®¡è¡¨ï¼Œä¸ºæ¯ä¸ªå­—ç¬¦åˆ›å»ºä¸€æ£µæ ‘
+   HuffForest* forest = new HuffForest; //ä»¥Listå®ç°çš„Huffmanæ£®æ—
+   for ( int i = 0; i < N_CHAR; i++ ) { //ä¸ºæ¯ä¸ªå­—ç¬¦
+      forest->insertAsLast ( new HuffTree ); //ç”Ÿæˆä¸€æ£µæ ‘ï¼Œå¹¶å°†å­—ç¬¦åŠå…¶é¢‘ç‡
+      forest->last()->data->insertAsRoot ( HuffChar ( 0x20 + i, freq[i] ) ); //å­˜å…¥å…¶ä¸­
    }
    return forest;
 }

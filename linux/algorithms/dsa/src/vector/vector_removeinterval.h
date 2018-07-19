@@ -8,10 +8,10 @@
 
 #pragma once
 
-template <typename T> int Vector<T>::remove ( Rank lo, Rank hi ) { //É¾³ıÇø¼ä[lo, hi)
-   if ( lo == hi ) return 0; //³öÓÚĞ§ÂÊ¿¼ÂÇ£¬µ¥¶À´¦ÀíÍË»¯Çé¿ö£¬±ÈÈçremove(0, 0)
-   while ( hi < _size ) _elem[lo++] = _elem[hi++]; //[hi, _size)Ë³´ÎÇ°ÒÆhi - lo¸öµ¥Ôª
-   _size = lo; //¸üĞÂ¹æÄ££¬Ö±½Ó¶ªÆúÎ²²¿[lo, _size = hi)Çø¼ä
-   shrink(); //ÈôÓĞ±ØÒª£¬ÔòËõÈİ
-   return hi - lo; //·µ»Ø±»É¾³ıÔªËØµÄÊıÄ¿
+template <typename T> int Vector<T>::remove ( Rank lo, Rank hi ) { //åˆ é™¤åŒºé—´[lo, hi)
+   if ( lo == hi ) return 0; //å‡ºäºæ•ˆç‡è€ƒè™‘ï¼Œå•ç‹¬å¤„ç†é€€åŒ–æƒ…å†µï¼Œæ¯”å¦‚remove(0, 0)
+   while ( hi < _size ) _elem[lo++] = _elem[hi++]; //[hi, _size)é¡ºæ¬¡å‰ç§»hi - loä¸ªå•å…ƒ
+   _size = lo; //æ›´æ–°è§„æ¨¡ï¼Œç›´æ¥ä¸¢å¼ƒå°¾éƒ¨[lo, _size = hi)åŒºé—´
+   shrink(); //è‹¥æœ‰å¿…è¦ï¼Œåˆ™ç¼©å®¹
+   return hi - lo; //è¿”å›è¢«åˆ é™¤å…ƒç´ çš„æ•°ç›®
 }

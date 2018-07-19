@@ -12,15 +12,15 @@ using namespace std;
 
 #include "Fib.h"
 
-__int64  fibI ( int n ); //µü´ú°æ
-__int64  fib ( int n ); //¶ş·Öµİ¹é°æ
-__int64  fib ( int n, __int64& f ); //ÏßĞÔµİ¹é°æ
+__int64  fibI ( int n ); //è¿­ä»£ç‰ˆ
+__int64  fib ( int n ); //äºŒåˆ†é€’å½’ç‰ˆ
+__int64  fib ( int n, __int64& f ); //çº¿æ€§é€’å½’ç‰ˆ
 
-int main ( int argc, char* argv[] ) { //²âÊÔFIB
-// ¼ì²é²ÎÊı
+int main ( int argc, char* argv[] ) { //æµ‹è¯•FIB
+// æ£€æŸ¥å‚æ•°
    if ( 2 > argc ) { fprintf ( stderr, "Usage: %s <rank>\n", argv[0] ); return 1; }
    int n = atoi ( argv[1] );
-// ÒÀ´Î¼ÆËãFibonacciÊıÁĞ¸÷Ïî
+// ä¾æ¬¡è®¡ç®—Fibonacciæ•°åˆ—å„é¡¹
    printf ( "\n------------- class Fib -------------\n" );
    Fib f ( 0 );
    for ( int i = 0; i < n; i++, f.next() )

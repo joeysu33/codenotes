@@ -9,25 +9,25 @@
 #pragma once
 
 /******************************************************************************************
- * BST�ڵ�ɾ���㷨��ɾ��λ��x��ָ�Ľڵ㣨ȫ�־�̬ģ�庯����������AVL��Splay��RedBlack�ȸ���BST��
- * Ŀ��x�ڴ�ǰ�����Ҷ�λ����ȷ�Ϸ�NULL���ʱ�ɾ���ɹ�����searchIn��ͬ������֮ǰ���ؽ�hot�ÿ�
- * ����ֵָ��ʵ�ʱ�ɾ���ڵ�Ľ����ߣ�hotָ��ʵ�ʱ�ɾ���ڵ�ĸ��ס������߾��п�����NULL
+ * BST节点删除算法：删除位置x所指的节点（全局静态模板函数，适用于AVL、Splay、RedBlack等各种BST）
+ * 目标x在此前经查找定位，并确认非NULL，故必删除成功；与searchIn不同，调用之前不必将hot置空
+ * 返回值指向实际被删除节点的接替者，hot指向实际被删除节点的父亲——二者均有可能是NULL
  ******************************************************************************************/
 template <typename T>
 static BinNodePosi(T) removeAt ( BinNodePosi(T) & x, BinNodePosi(T) & hot ) {
-   BinNodePosi(T) w = x; //ʵ�ʱ�ժ���Ľڵ㣬��ֵͬx
-   BinNodePosi(T) succ = NULL; //ʵ�ʱ�ɾ���ڵ�Ľ�����
-   if ( !HasLChild ( *x ) ) //��*x��������Ϊ�գ����
-      succ = x = x->rc; //ֱ�ӽ�*x�滻Ϊ��������
-   else if ( !HasRChild ( *x ) ) //��������Ϊ�գ����
-      succ = x = x->lc; //�ԳƵش�������ע�⣺��ʱsucc != NULL
-   else { //���������������ڣ���ѡ��x��ֱ�Ӻ����Ϊʵ�ʱ�ժ���ڵ㣬Ϊ����Ҫ
-      w = w->succ(); //�����������У��ҵ�*x��ֱ�Ӻ��*w
-      swap ( x->data, w->data ); //����*x��*w������Ԫ��
+   BinNodePosi(T) w = x; //实际被摘除的节点，初值同x
+   BinNodePosi(T) succ = NULL; //实际被删除节点的接替者
+   if ( !HasLChild ( *x ) ) //若*x的左子树为空，则可
+      succ = x = x->rc; //直接将*x替换为其右子树
+   else if ( !HasRChild ( *x ) ) //若右子树为空，则可
+      succ = x = x->lc; //对称地处理——注意：此时succ != NULL
+   else { //若左右子树均存在，则选择x的直接后继作为实际被摘除节点，为此需要
+      w = w->succ(); //（在右子树中）找到*x的直接后继*w
+      swap ( x->data, w->data ); //交换*x和*w的数据元素
       BinNodePosi(T) u = w->parent;
-      ( ( u == x ) ? u->rc : u->lc ) = succ = w->rc; //����ڵ�*w
+      ( ( u == x ) ? u->rc : u->lc ) = succ = w->rc; //隔离节点*w
    }
-   hot = w->parent; //��¼ʵ�ʱ�ɾ���ڵ�ĸ���
-   if ( succ ) succ->parent = hot; //������ɾ���ڵ�Ľ�������hot����
-   release ( w->data ); release ( w ); return succ; //�ͷű�ժ���ڵ㣬���ؽ�����
+   hot = w->parent; //记录实际被删除节点的父亲
+   if ( succ ) succ->parent = hot; //并将被删除节点的接替者与hot相联
+   release ( w->data ); release ( w ); return succ; //释放被摘除节点，返回接替者
 }

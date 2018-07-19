@@ -8,16 +8,16 @@
 
 #pragma once
 
-template <typename T> //ÓĞĞòÁĞ±íµÄ¹é²¢£ºµ±Ç°ÁĞ±íÖĞ×ÔpÆğµÄn¸öÔªËØ£¬ÓëÁĞ±íLÖĞ×ÔqÆğµÄm¸öÔªËØ¹é²¢
+template <typename T> //æœ‰åºåˆ—è¡¨çš„å½’å¹¶ï¼šå½“å‰åˆ—è¡¨ä¸­è‡ªpèµ·çš„nä¸ªå…ƒç´ ï¼Œä¸åˆ—è¡¨Lä¸­è‡ªqèµ·çš„mä¸ªå…ƒç´ å½’å¹¶
 void List<T>::merge ( ListNodePosi(T) & p, int n, List<T>& L, ListNodePosi(T) q, int m ) {
 // assert:  this.valid(p) && rank(p) + n <= size && this.sorted(p, n)
 //          L.valid(q) && rank(q) + m <= L._size && L.sorted(q, m)
-// ×¢Òâ£ºÔÚ¹é²¢ÅÅĞòÖ®ÀàµÄ³¡ºÏ£¬ÓĞ¿ÉÄÜ this == L && rank(p) + n = rank(q)
-   ListNodePosi(T) pp = p->pred; //½èÖúÇ°Çı£¨¿ÉÄÜÊÇheader£©£¬ÒÔ±ã·µ»ØÇ° ...
-   while ( 0 < m ) //ÔÚqÉĞÎ´ÒÆ³öÇø¼äÖ®Ç°
-      if ( ( 0 < n ) && ( p->data <= q->data ) ) //ÈôpÈÔÔÚÇø¼äÄÚÇÒv(p) <= v(q)£¬Ôò
-         { if ( q == ( p = p->succ ) ) break; n--; } //p¹éÈëºÏ²¢µÄÁĞ±í£¬²¢Ìæ»»ÎªÆäÖ±½Óºó¼Ì
-      else //ÈôpÒÑ³¬³öÓÒ½ç»òv(q) < v(p)£¬Ôò
-         { insertB ( p, L.remove ( ( q = q->succ )->pred ) ); m--; } //½«q×ªÒÆÖÁpÖ®Ç°
-   p = pp->succ; //È·¶¨¹é²¢ºóÇø¼äµÄ£¨ĞÂ£©Æğµã
+// æ³¨æ„ï¼šåœ¨å½’å¹¶æ’åºä¹‹ç±»çš„åœºåˆï¼Œæœ‰å¯èƒ½ this == L && rank(p) + n = rank(q)
+   ListNodePosi(T) pp = p->pred; //å€ŸåŠ©å‰é©±ï¼ˆå¯èƒ½æ˜¯headerï¼‰ï¼Œä»¥ä¾¿è¿”å›å‰ ...
+   while ( 0 < m ) //åœ¨qå°šæœªç§»å‡ºåŒºé—´ä¹‹å‰
+      if ( ( 0 < n ) && ( p->data <= q->data ) ) //è‹¥pä»åœ¨åŒºé—´å†…ä¸”v(p) <= v(q)ï¼Œåˆ™
+         { if ( q == ( p = p->succ ) ) break; n--; } //på½’å…¥åˆå¹¶çš„åˆ—è¡¨ï¼Œå¹¶æ›¿æ¢ä¸ºå…¶ç›´æ¥åç»§
+      else //è‹¥på·²è¶…å‡ºå³ç•Œæˆ–v(q) < v(p)ï¼Œåˆ™
+         { insertB ( p, L.remove ( ( q = q->succ )->pred ) ); m--; } //å°†qè½¬ç§»è‡³pä¹‹å‰
+   p = pp->succ; //ç¡®å®šå½’å¹¶ååŒºé—´çš„ï¼ˆæ–°ï¼‰èµ·ç‚¹
 }

@@ -8,9 +8,9 @@
 
 #pragma once
 
-template <typename T> //ÔªËØÀàĞÍ
-void Vector<T>::copyFrom ( T const* A, Rank lo, Rank hi ) { //ÒÔÊı×éÇø¼äA[lo, hi)ÎªÀ¶±¾¸´ÖÆÏòÁ¿
-   _elem = new T[_capacity = 2 * ( hi - lo ) ]; _size = 0; //·ÖÅä¿Õ¼ä£¬¹æÄ£ÇåÁã
-   while ( lo < hi ) //A[lo, hi)ÄÚµÄÔªËØÖğÒ»
-      _elem[_size++] = A[lo++]; //¸´ÖÆÖÁ_elem[0, hi - lo)
+template <typename T> //å…ƒç´ ç±»å‹
+void Vector<T>::copyFrom ( T const* A, Rank lo, Rank hi ) { //ä»¥æ•°ç»„åŒºé—´A[lo, hi)ä¸ºè“æœ¬å¤åˆ¶å‘é‡
+   _elem = new T[_capacity = 2 * ( hi - lo ) ]; _size = 0; //åˆ†é…ç©ºé—´ï¼Œè§„æ¨¡æ¸…é›¶
+   while ( lo < hi ) //A[lo, hi)å†…çš„å…ƒç´ é€ä¸€
+      _elem[_size++] = A[lo++]; //å¤åˆ¶è‡³_elem[0, hi - lo)
 }

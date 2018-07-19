@@ -8,38 +8,38 @@
 
 #pragma once
 
-template <typename Tv, typename Te> //»ùÓÚDFSµÄÍØÆËÅÅĞòËã·¨
+template <typename Tv, typename Te> //åŸºäºDFSçš„æ‹“æ‰‘æ’åºç®—æ³•
 Stack<Tv>* Graph<Tv, Te>::tSort ( int s ) { //assert: 0 <= s < n
    reset(); int clock = 0; int v = s;
-   Stack<Tv>* S = new Stack<Tv>; //ÓÃÕ»¼ÇÂ¼ÅÅĞò¶¥µã
+   Stack<Tv>* S = new Stack<Tv>; //ç”¨æ ˆè®°å½•æ’åºé¡¶ç‚¹
    do {
       if ( UNDISCOVERED == status ( v ) )
-         if ( !TSort ( v, clock, S ) ) { //clock²¢·Ç±ØĞè
+         if ( !TSort ( v, clock, S ) ) { //clockå¹¶éå¿…éœ€
             /*DSA*/print ( S );
-            while ( !S->empty() ) //ÈÎÒ»Á¬Í¨Óò£¨Òà¼´ÕûÍ¼£©·ÇDAG
-               S->pop(); break; //Ôò²»±Ø¼ÌĞø¼ÆËã£¬¹ÊÖ±½Ó·µ»Ø
+            while ( !S->empty() ) //ä»»ä¸€è¿é€šåŸŸï¼ˆäº¦å³æ•´å›¾ï¼‰éDAG
+               S->pop(); break; //åˆ™ä¸å¿…ç»§ç»­è®¡ç®—ï¼Œæ•…ç›´æ¥è¿”å›
          }
    } while ( s != ( v = ( ++v % n ) ) );
-   return S; //ÈôÊäÈëÎªDAG£¬ÔòSÄÚ¸÷¶¥µã×Ô¶¥Ïòµ×ÅÅĞò£»·ñÔò£¨²»´æÔÚÍØÆËÅÅĞò£©£¬S¿Õ
+   return S; //è‹¥è¾“å…¥ä¸ºDAGï¼Œåˆ™Så†…å„é¡¶ç‚¹è‡ªé¡¶å‘åº•æ’åºï¼›å¦åˆ™ï¼ˆä¸å­˜åœ¨æ‹“æ‰‘æ’åºï¼‰ï¼ŒSç©º
 }
 
-template <typename Tv, typename Te> //»ùÓÚDFSµÄÍØÆËÅÅĞòËã·¨£¨µ¥ÌË£©
+template <typename Tv, typename Te> //åŸºäºDFSçš„æ‹“æ‰‘æ’åºç®—æ³•ï¼ˆå•è¶Ÿï¼‰
 bool Graph<Tv, Te>::TSort ( int v, int& clock, Stack<Tv>* S ) { //assert: 0 <= v < n
-   dTime ( v ) = ++clock; status ( v ) = DISCOVERED; //·¢ÏÖ¶¥µãv
-   for ( int u = firstNbr ( v ); -1 < u; u = nextNbr ( v, u ) ) //Ã¶¾ÙvµÄËùÓĞÁÚ¾Óu
-      switch ( status ( u ) ) { //²¢ÊÓuµÄ×´Ì¬·Ö±ğ´¦Àí
+   dTime ( v ) = ++clock; status ( v ) = DISCOVERED; //å‘ç°é¡¶ç‚¹v
+   for ( int u = firstNbr ( v ); -1 < u; u = nextNbr ( v, u ) ) //æšä¸¾vçš„æ‰€æœ‰é‚»å±…u
+      switch ( status ( u ) ) { //å¹¶è§†uçš„çŠ¶æ€åˆ†åˆ«å¤„ç†
          case UNDISCOVERED:
             parent ( u ) = v; type ( v, u ) = TREE;
-            if ( !TSort ( u, clock, S ) ) //´Ó¶¥µãu´¦³ö·¢ÉîÈëËÑË÷
-               return false; //Èôu¼°Æäºó´ú²»ÄÜÍØÆËÅÅĞò£¨ÔòÈ«Í¼Òà±ØÈç´Ë£©£¬¹Ê·µ»Ø²¢±¨¸æ
+            if ( !TSort ( u, clock, S ) ) //ä»é¡¶ç‚¹uå¤„å‡ºå‘æ·±å…¥æœç´¢
+               return false; //è‹¥uåŠå…¶åä»£ä¸èƒ½æ‹“æ‰‘æ’åºï¼ˆåˆ™å…¨å›¾äº¦å¿…å¦‚æ­¤ï¼‰ï¼Œæ•…è¿”å›å¹¶æŠ¥å‘Š
             break;
          case DISCOVERED:
-            type ( v, u ) = BACKWARD; //Ò»µ©·¢ÏÖºóÏò±ß£¨·ÇDAG£©£¬Ôò
-            return false; //²»±ØÉîÈë£¬¹Ê·µ»Ø²¢±¨¸æ
+            type ( v, u ) = BACKWARD; //ä¸€æ—¦å‘ç°åå‘è¾¹ï¼ˆéDAGï¼‰ï¼Œåˆ™
+            return false; //ä¸å¿…æ·±å…¥ï¼Œæ•…è¿”å›å¹¶æŠ¥å‘Š
          default: //VISITED (digraphs only)
             type ( v, u ) = ( dTime ( v ) < dTime ( u ) ) ? FORWARD : CROSS;
             break;
       }
-   status ( v ) = VISITED; S->push ( vertex ( v ) ); //¶¥µã±»±ê¼ÇÎªVISITEDÊ±£¬Ëæ¼´ÈëÕ»
-   return true; //v¼°Æäºó´ú¿ÉÒÔÍØÆËÅÅĞò
+   status ( v ) = VISITED; S->push ( vertex ( v ) ); //é¡¶ç‚¹è¢«æ ‡è®°ä¸ºVISITEDæ—¶ï¼Œéšå³å…¥æ ˆ
+   return true; //våŠå…¶åä»£å¯ä»¥æ‹“æ‰‘æ’åº
 }

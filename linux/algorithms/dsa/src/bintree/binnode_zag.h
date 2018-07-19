@@ -8,7 +8,7 @@
 
 #pragma once
 
-template <typename T> BinNodePosi(T) BinNode<T>::zag() { //ÄæÊ±ÕëĞı×ª
+template <typename T> BinNodePosi(T) BinNode<T>::zag() { //é€†æ—¶é’ˆæ—‹è½¬
    BinNodePosi(T) rChild = rc;
    rChild->parent = this->parent;
    if ( rChild->parent )

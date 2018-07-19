@@ -8,17 +8,17 @@
 
 #pragma once
 
-template <typename T> //ĞòÁĞS1[lo1, lo1 + n)ºÍS2[lo2, lo2 + n)·Ö±ğÓĞĞò£¬n > 0£¬Êı¾İÏî¿ÉÄÜÖØ¸´
-T median ( Vector<T>& S1, int lo1, Vector<T>& S2, int lo2, int n ) { //ÖĞÎ»ÊıËã·¨£¨¸ßĞ§°æ£©
+template <typename T> //åºåˆ—S1[lo1, lo1 + n)å’ŒS2[lo2, lo2 + n)åˆ†åˆ«æœ‰åºï¼Œn > 0ï¼Œæ•°æ®é¡¹å¯èƒ½é‡å¤
+T median ( Vector<T>& S1, int lo1, Vector<T>& S2, int lo2, int n ) { //ä¸­ä½æ•°ç®—æ³•ï¼ˆé«˜æ•ˆç‰ˆï¼‰
    /*DSA*/printf ( "median\n" );
    /*DSA*/for ( int i = 0; i < lo1; i++ ) printf ( "    ." ); for ( int i = 0; i < n; i++ ) print ( S1[lo1+i] ); for ( int i = lo1 + n; i < S1.size(); i++ ) printf ( "    ." ); printf ( "\n" );
    /*DSA*/for ( int i = 0; i < lo2; i++ ) printf ( "    ." ); for ( int i = 0; i < n; i++ ) print ( S2[lo2+i] ); for ( int i = lo2 + n; i < S2.size(); i++ ) printf ( "    ." );  printf ( "\n--\n" );
-   if ( n < 3 ) return trivialMedian ( S1, lo1, n, S2, lo2, n ); //µİ¹é»ù
-   int mi1 = lo1 + n / 2, mi2 = lo2 + ( n - 1 ) / 2; //³¤¶È£¨½Ó½ü£©¼õ°ë
+   if ( n < 3 ) return trivialMedian ( S1, lo1, n, S2, lo2, n ); //é€’å½’åŸº
+   int mi1 = lo1 + n / 2, mi2 = lo2 + ( n - 1 ) / 2; //é•¿åº¦ï¼ˆæ¥è¿‘ï¼‰å‡åŠ
    if ( S1[mi1] < S2[mi2] )
-      return median ( S1, mi1, S2, lo2, n + lo1 - mi1 ); //È¡S1ÓÒ°ë¡¢S2×ó°ë
+      return median ( S1, mi1, S2, lo2, n + lo1 - mi1 ); //å–S1å³åŠã€S2å·¦åŠ
    else if ( S1[mi1] > S2[mi2] )
-      return median ( S1, lo1, S2, mi2, n + lo2 - mi2 ); //È¡S1×ó°ë¡¢S2ÓÒ°ë
+      return median ( S1, lo1, S2, mi2, n + lo2 - mi2 ); //å–S1å·¦åŠã€S2å³åŠ
    else
       return S1[mi1];
 }

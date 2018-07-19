@@ -8,13 +8,13 @@
 
 #pragma once
 
-inline Cell* advance ( Cell* cell ) { //´Óµ±Ç°Î»ÖÃ×ªÈëÏàÁÚ¸ñµã
+inline Cell* advance ( Cell* cell ) { //ä»å½“å‰ä½ç½®è½¬å…¥ç›¸é‚»æ ¼ç‚¹
    Cell* next;
    switch ( cell->outgoing ) {
-      case EAST:  next = cell + LABY_MAX; next->incoming = WEST;  break; //Ïò¶«
-      case SOUTH: next = cell + 1;        next->incoming = NORTH; break; //ÏòÄÏ
-      case WEST:  next = cell - LABY_MAX; next->incoming = EAST;  break; //ÏòÎ÷
-      case NORTH: next = cell - 1;        next->incoming = SOUTH; break; //Ïò±±
+      case EAST:  next = cell + LABY_MAX; next->incoming = WEST;  break; //å‘ä¸œ
+      case SOUTH: next = cell + 1;        next->incoming = NORTH; break; //å‘å—
+      case WEST:  next = cell - LABY_MAX; next->incoming = EAST;  break; //å‘è¥¿
+      case NORTH: next = cell - 1;        next->incoming = SOUTH; break; //å‘åŒ—
       default : exit ( -1 );
    }
    return next;

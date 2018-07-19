@@ -8,9 +8,9 @@
 
 #pragma once
 
-template <typename K, typename V> V* Skiplist<K, V>::get ( K k ) { //Ìø×ª±í´ÊÌõ²éÕÒËã·¨
+template <typename K, typename V> V* Skiplist<K, V>::get ( K k ) { //è·³è½¬è¡¨è¯æ¡æŸ¥æ‰¾ç®—æ³•
    if ( empty() ) return NULL;
-   ListNode<Quadlist<Entry<K, V>>*>* qlist = first(); //´Ó¶¥²ãQuadlistµÄ
-   QuadlistNode<Entry<K, V>>* p = qlist->data->first(); //Ê×½Úµã¿ªÊ¼
-   return skipSearch ( qlist, p, k ) ? & ( p->entry.value ) : NULL; //²éÕÒ²¢±¨¸æ
-} //ÓĞ¶à¸öÃüÖĞÊ±¿¿ºóÕßÓÅÏÈ
+   ListNode<Quadlist<Entry<K, V>>*>* qlist = first(); //ä»é¡¶å±‚Quadlistçš„
+   QuadlistNode<Entry<K, V>>* p = qlist->data->first(); //é¦–èŠ‚ç‚¹å¼€å§‹
+   return skipSearch ( qlist, p, k ) ? & ( p->entry.value ) : NULL; //æŸ¥æ‰¾å¹¶æŠ¥å‘Š
+} //æœ‰å¤šä¸ªå‘½ä¸­æ—¶é åè€…ä¼˜å…ˆ

@@ -12,21 +12,21 @@
  * Quadlist
  ******************************************************************************************/
 
-template <typename T> //ÔªËØÀàĞÍ
-void UniPrint::p ( Quadlist<T>& q ) { //ÒıÓÃ
-   printf ( "%s[%d]*%03d: ", typeid ( q ).name(), &q, q.size() ); //»ù±¾ĞÅÏ¢
+template <typename T> //å…ƒç´ ç±»å‹
+void UniPrint::p ( Quadlist<T>& q ) { //å¼•ç”¨
+   printf ( "%s[%d]*%03d: ", typeid ( q ).name(), &q, q.size() ); //åŸºæœ¬ä¿¡æ¯
    if ( q.size() <= 0 ) {  printf ( "\n" ); return;  }
-   QuadlistNode<T>* curr = q.first()->pred; //µ±Ç°²ãÖ®header
-   QuadlistNode<T>* base = q.first(); //µ±Ç°½ÚµãËùÔÚ
-   while ( base->below ) base = base->below; //Ëşµ×
-   while ( base->pred ) base = base->pred; //µ×²ãÖ®header
-   for ( int i = 0; i < q.size(); i++ ) { //¶ÔÓÚµ±Ç°²ãµÄÃ¿Ò»½Úµã
+   QuadlistNode<T>* curr = q.first()->pred; //å½“å‰å±‚ä¹‹header
+   QuadlistNode<T>* base = q.first(); //å½“å‰èŠ‚ç‚¹æ‰€åœ¨
+   while ( base->below ) base = base->below; //å¡”åº•
+   while ( base->pred ) base = base->pred; //åº•å±‚ä¹‹header
+   for ( int i = 0; i < q.size(); i++ ) { //å¯¹äºå½“å‰å±‚çš„æ¯ä¸€èŠ‚ç‚¹
       curr = curr->succ; //curr
-      QuadlistNode<T>* proj = curr; //ÕÒµ½Óëcurr¶ÔÓ¦µÄ
-      while ( proj->below ) proj = proj->below; //Ëşµ×½Úµã£¨Í¶Ó°£©
-      while ( ( base = base->succ ) != proj ) //ÒÆ¶¯baseÖ±µ½proj£¬ÆÚ¼ä²»¶Ï
-         printf ( "------------" ); //ÑÓ³¤Ë®Æ½Áª½ÓÏß
-      print ( curr->entry ); //×îºó£¬Êä³öµ±Ç°²ãµÄµ±Ç°´ÊÌõ
+      QuadlistNode<T>* proj = curr; //æ‰¾åˆ°ä¸currå¯¹åº”çš„
+      while ( proj->below ) proj = proj->below; //å¡”åº•èŠ‚ç‚¹ï¼ˆæŠ•å½±ï¼‰
+      while ( ( base = base->succ ) != proj ) //ç§»åŠ¨baseç›´åˆ°projï¼ŒæœŸé—´ä¸æ–­
+         printf ( "------------" ); //å»¶é•¿æ°´å¹³è”æ¥çº¿
+      print ( curr->entry ); //æœ€åï¼Œè¾“å‡ºå½“å‰å±‚çš„å½“å‰è¯æ¡
    }
    printf ( "\n" );
 }

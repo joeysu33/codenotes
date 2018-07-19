@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> T PQ_LeftHeap<T>::getMax() //获取非空左式堆中优先级最高的词条
-{ return _root->data; } //按照此处约定，堆顶即优先级最高的词条
+template <typename T> T PQ_LeftHeap<T>::getMax() //鑾峰彇闈炵┖宸﹀紡鍫嗕腑浼樺厛绾ф渶楂樼殑璇嶆潯
+{ return _root->data; } //鎸夌収姝ゅ绾﹀畾锛屽爢椤跺嵆浼樺厛绾ф渶楂樼殑璇嶆潯

@@ -8,9 +8,9 @@
 
 #pragma once
 
-template <typename T> void PQ_LeftHeap<T>::insert ( T e ) { //»ùÓÚºÏ²¢²Ù×÷µÄ´ÊÌõ²åÈëËã·¨
-   BinNodePosi(T) v = new BinNode<T> ( e ); //Îªe´´½¨Ò»¸ö¶ş²æÊ÷½Úµã
-   _root = merge ( _root, v ); //Í¨¹ıºÏ²¢Íê³ÉĞÂ½ÚµãµÄ²åÈë
-//   _root->parent = NULL; //¼ÈÈ»´ËÊ±¶Ñ·Ç¿Õ£¬»¹ĞèÏàÓ¦ÉèÖÃ¸¸×ÓÁ´½Ó
-   _size++; //¸üĞÂ¹æÄ£
+template <typename T> void PQ_LeftHeap<T>::insert ( T e ) { //åŸºäºåˆå¹¶æ“ä½œçš„è¯æ¡æ’å…¥ç®—æ³•
+   BinNodePosi(T) v = new BinNode<T> ( e ); //ä¸ºeåˆ›å»ºä¸€ä¸ªäºŒå‰æ ‘èŠ‚ç‚¹
+   _root = merge ( _root, v ); //é€šè¿‡åˆå¹¶å®Œæˆæ–°èŠ‚ç‚¹çš„æ’å…¥
+//   _root->parent = NULL; //æ—¢ç„¶æ­¤æ—¶å †éç©ºï¼Œè¿˜éœ€ç›¸åº”è®¾ç½®çˆ¶å­é“¾æ¥
+   _size++; //æ›´æ–°è§„æ¨¡
 }

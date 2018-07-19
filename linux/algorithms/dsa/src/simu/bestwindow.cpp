@@ -8,10 +8,10 @@
 
 /*DSA*/#include "simu.h"
 
-int bestWindow ( Queue<Customer> windows[], int nWin ) { //ÎªĞÂµ½¹Ë¿ÍÈ·¶¨×î¼Ñ¶ÓÁĞ
-   int minSize = windows[0].size(), optiWin = 0; //×îÓÅ¶ÓÁĞ£¨´°¿Ú£©
-   for ( int i = 1; i < nWin; i++ ) //ÔÚËùÓĞ´°¿ÚÖĞ
-      if ( minSize > windows[i].size() ) //ÌôÑ¡³ö
-         { minSize = windows[i].size(); optiWin = i; } //¶ÓÁĞ×î¶ÌÕß
-   return optiWin; //·µ»Ø
+int bestWindow ( Queue<Customer> windows[], int nWin ) { //ä¸ºæ–°åˆ°é¡¾å®¢ç¡®å®šæœ€ä½³é˜Ÿåˆ—
+   int minSize = windows[0].size(), optiWin = 0; //æœ€ä¼˜é˜Ÿåˆ—ï¼ˆçª—å£ï¼‰
+   for ( int i = 1; i < nWin; i++ ) //åœ¨æ‰€æœ‰çª—å£ä¸­
+      if ( minSize > windows[i].size() ) //æŒ‘é€‰å‡º
+         { minSize = windows[i].size(); optiWin = i; } //é˜Ÿåˆ—æœ€çŸ­è€…
+   return optiWin; //è¿”å›
 }

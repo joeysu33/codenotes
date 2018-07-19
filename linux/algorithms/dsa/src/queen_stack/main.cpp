@@ -8,29 +8,29 @@
 
 #include "queen_stack.h"
 
-#define QUEEN_MAX 20 //»Êºó×î´óÊıÁ¿
+#define QUEEN_MAX 20 //çš‡åæœ€å¤§æ•°é‡
 
 /******************************************************************************************
- * È«¾Ö±äÁ¿
+ * å…¨å±€å˜é‡
  ******************************************************************************************/
-RunMode runMode; //ÑİÊ¾Ä£Ê½
-int nSolu = 0; //½âµÄ×ÜÊı
-int nCheck = 0; //³¢ÊÔµÄ×Ü´ÎÊı
+RunMode runMode; //æ¼”ç¤ºæ¨¡å¼
+int nSolu = 0; //è§£çš„æ€»æ•°
+int nCheck = 0; //å°è¯•çš„æ€»æ¬¡æ•°
 
 /******************************************************************************************
- * n»Êºó£¨µü´ú°æ£©
+ * nçš‡åï¼ˆè¿­ä»£ç‰ˆï¼‰
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
-   for ( int i = 1; i < argc - 1; i++ ) //¼ì²é²ÎÊı
-      if ( !strcmp ( "-step", argv[i] ) ) runMode = Step; //Éè¶¨Îªµ¥²½ÑİÊ¾Ä£Ê½
-   int nQueen = atoi ( argv[argc-1] ); //ÆåÅÌ´óĞ¡ = »Êºó×ÜÊı
-   if ( QUEEN_MAX < nQueen || 1 > nQueen ) { //¼ì²é²ÎÊı
+   for ( int i = 1; i < argc - 1; i++ ) //æ£€æŸ¥å‚æ•°
+      if ( !strcmp ( "-step", argv[i] ) ) runMode = Step; //è®¾å®šä¸ºå•æ­¥æ¼”ç¤ºæ¨¡å¼
+   int nQueen = atoi ( argv[argc-1] ); //æ£‹ç›˜å¤§å° = çš‡åæ€»æ•°
+   if ( QUEEN_MAX < nQueen || 1 > nQueen ) { //æ£€æŸ¥å‚æ•°
       fprintf ( stderr, "\nUsage: %s [-step] <nQueen(%d)>\n", argv[0], QUEEN_MAX );
       return -1;
    }
-   placeQueens ( nQueen ); //Æô¶¯²éÕÒ
+   placeQueens ( nQueen ); //å¯åŠ¨æŸ¥æ‰¾
    cout  << nSolu << " solution(s) found after "
          << nCheck << " check(s) for "
-         << nQueen << " queen(s)\n"; //Êä³ö½âµÄ×ÜÊı
+         << nQueen << " queen(s)\n"; //è¾“å‡ºè§£çš„æ€»æ•°
    return 0;
 }

@@ -8,15 +8,15 @@
 
 #pragma once
 
-template <typename T> bool BTree<T>::remove ( const T& e ) { //´ÓBTreeÊ÷ÖĞÉ¾³ı¹Ø¼üÂëe
-   BTNodePosi(T) v = search ( e ); if ( !v ) return false; //È·ÈÏÄ¿±ê¹Ø¼üÂë´æÔÚ
-   Rank r = v->key.search ( e ); //È·¶¨Ä¿±ê¹Ø¼üÂëÔÚ½ÚµãvÖĞµÄÖÈ£¨ÓÉÉÏ£¬¿Ï¶¨ºÏ·¨£©
-   if ( v->child[0] ) { //Èôv·ÇÒ¶×Ó£¬ÔòeµÄºó¼Ì±ØÊôÓÚÄ³Ò¶½Úµã
-      BTNodePosi(T) u = v->child[r+1]; //ÔÚÓÒ×ÓÊ÷ÖĞÒ»Ö±Ïò×ó£¬¼´¿É
-      while ( u->child[0] ) u = u->child[0]; //ÕÒ³öeµÄºó¼Ì
-      v->key[r] = u->key[0]; v = u; r = 0; //²¢ÓëÖ®½»»»Î»ÖÃ
-   } //ÖÁ´Ë£¬v±ØÈ»Î»ÓÚ×îµ×²ã£¬ÇÒÆäÖĞµÚr¸ö¹Ø¼üÂë¾ÍÊÇ´ıÉ¾³ıÕß
-   v->key.remove ( r ); v->child.remove ( r + 1 ); _size--; //É¾³ıe£¬ÒÔ¼°ÆäÏÂÁ½¸öÍâ²¿½ÚµãÖ®Ò»
-   solveUnderflow ( v ); //ÈçÓĞ±ØÒª£¬Ğè×öĞı×ª»òºÏ²¢
+template <typename T> bool BTree<T>::remove ( const T& e ) { //ä»BTreeæ ‘ä¸­åˆ é™¤å…³é”®ç e
+   BTNodePosi(T) v = search ( e ); if ( !v ) return false; //ç¡®è®¤ç›®æ ‡å…³é”®ç å­˜åœ¨
+   Rank r = v->key.search ( e ); //ç¡®å®šç›®æ ‡å…³é”®ç åœ¨èŠ‚ç‚¹vä¸­çš„ç§©ï¼ˆç”±ä¸Šï¼Œè‚¯å®šåˆæ³•ï¼‰
+   if ( v->child[0] ) { //è‹¥véå¶å­ï¼Œåˆ™eçš„åç»§å¿…å±äºæŸå¶èŠ‚ç‚¹
+      BTNodePosi(T) u = v->child[r+1]; //åœ¨å³å­æ ‘ä¸­ä¸€ç›´å‘å·¦ï¼Œå³å¯
+      while ( u->child[0] ) u = u->child[0]; //æ‰¾å‡ºeçš„åç»§
+      v->key[r] = u->key[0]; v = u; r = 0; //å¹¶ä¸ä¹‹äº¤æ¢ä½ç½®
+   } //è‡³æ­¤ï¼Œvå¿…ç„¶ä½äºæœ€åº•å±‚ï¼Œä¸”å…¶ä¸­ç¬¬rä¸ªå…³é”®ç å°±æ˜¯å¾…åˆ é™¤è€…
+   v->key.remove ( r ); v->child.remove ( r + 1 ); _size--; //åˆ é™¤eï¼Œä»¥åŠå…¶ä¸‹ä¸¤ä¸ªå¤–éƒ¨èŠ‚ç‚¹ä¹‹ä¸€
+   solveUnderflow ( v ); //å¦‚æœ‰å¿…è¦ï¼Œéœ€åšæ—‹è½¬æˆ–åˆå¹¶
    return true;
 }

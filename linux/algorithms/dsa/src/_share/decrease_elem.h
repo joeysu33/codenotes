@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> struct Decrease //º¯Êı¶ÔÏó£ºµİ¼õÒ»¸öTÀà¶ÔÏó
-   {  virtual void operator() ( T& e ) { e--; }  }; //¼ÙÉèT¿ÉÖ±½Óµİ¼õ»òÒÑÖØÔØ--
+template <typename T> struct Decrease //å‡½æ•°å¯¹è±¡ï¼šé€’å‡ä¸€ä¸ªTç±»å¯¹è±¡
+   {  virtual void operator() ( T& e ) { e--; }  }; //å‡è®¾Tå¯ç›´æ¥é€’å‡æˆ–å·²é‡è½½--

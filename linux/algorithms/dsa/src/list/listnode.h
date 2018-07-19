@@ -8,19 +8,19 @@
 
 #pragma once
 
-typedef int Rank; //ÖÈ
-#define ListNodePosi(T) ListNode<T>* //ÁĞ±í½ÚµãÎ»ÖÃ
+typedef int Rank; //ç§©
+#define ListNodePosi(T) ListNode<T>* //åˆ—è¡¨èŠ‚ç‚¹ä½ç½®
 
-template <typename T> struct ListNode { //ÁĞ±í½ÚµãÄ£°åÀà£¨ÒÔË«ÏòÁ´±íĞÎÊ½ÊµÏÖ£©
-// ³ÉÔ±
-   T data; ListNodePosi(T) pred; ListNodePosi(T) succ; //ÊıÖµ¡¢Ç°Çı¡¢ºó¼Ì
-// ¹¹Ôìº¯Êı
-   ListNode() {} //Õë¶ÔheaderºÍtrailerµÄ¹¹Ôì
+template <typename T> struct ListNode { //åˆ—è¡¨èŠ‚ç‚¹æ¨¡æ¿ç±»ï¼ˆä»¥åŒå‘é“¾è¡¨å½¢å¼å®ç°ï¼‰
+// æˆå‘˜
+   T data; ListNodePosi(T) pred; ListNodePosi(T) succ; //æ•°å€¼ã€å‰é©±ã€åç»§
+// æ„é€ å‡½æ•°
+   ListNode() {} //é’ˆå¯¹headerå’Œtrailerçš„æ„é€ 
    ListNode ( T e, ListNodePosi(T) p = NULL, ListNodePosi(T) s = NULL )
-      : data ( e ), pred ( p ), succ ( s ) {} //Ä¬ÈÏ¹¹ÔìÆ÷
-// ²Ù×÷½Ó¿Ú
-   ListNodePosi(T) insertAsPred ( T const& e ); //½ô¿¿µ±Ç°½ÚµãÖ®Ç°²åÈëĞÂ½Úµã
-   ListNodePosi(T) insertAsSucc ( T const& e ); //½ôËæµ±Ç°½ÚµãÖ®ºó²åÈëĞÂ½Úµã
+      : data ( e ), pred ( p ), succ ( s ) {} //é»˜è®¤æ„é€ å™¨
+// æ“ä½œæ¥å£
+   ListNodePosi(T) insertAsPred ( T const& e ); //ç´§é å½“å‰èŠ‚ç‚¹ä¹‹å‰æ’å…¥æ–°èŠ‚ç‚¹
+   ListNodePosi(T) insertAsSucc ( T const& e ); //ç´§éšå½“å‰èŠ‚ç‚¹ä¹‹åæ’å…¥æ–°èŠ‚ç‚¹
 };
 
 #include "listNode_implementation.h"

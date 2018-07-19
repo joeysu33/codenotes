@@ -8,7 +8,7 @@
 
 #pragma once
 
-template <typename T> struct CheckOrder { //º¯Êı¶ÔÏó£ºÅĞ¶ÏÒ»¸öTÀà¶ÔÏóÊÇ·ñ¾Ö²¿ÓĞĞò
+template <typename T> struct CheckOrder { //å‡½æ•°å¯¹è±¡ï¼šåˆ¤æ–­ä¸€ä¸ªTç±»å¯¹è±¡æ˜¯å¦å±€éƒ¨æœ‰åº
    T pred; int& u;
    CheckOrder ( int& unsorted, T& first ) : pred ( first ), u ( unsorted ) { }
    virtual void operator() ( T& e ) { if ( pred > e ) u++; pred = e; }

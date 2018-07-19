@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename T> //ÎŞĞòÏòÁ¿µÄË³Ğò²éÕÒ£º·µ»Ø×îºóÒ»¸öÔªËØeµÄÎ»ÖÃ£»Ê§°ÜÊ±£¬·µ»Ølo - 1
+template <typename T> //æ— åºå‘é‡çš„é¡ºåºæŸ¥æ‰¾ï¼šè¿”å›æœ€åä¸€ä¸ªå…ƒç´ eçš„ä½ç½®ï¼›å¤±è´¥æ—¶ï¼Œè¿”å›lo - 1
 Rank Vector<T>::find ( T const& e, Rank lo, Rank hi ) const { //assert: 0 <= lo < hi <= _size
-   while ( ( lo < hi-- ) && ( e != _elem[hi] ) ); //´ÓºóÏòÇ°£¬Ë³Ğò²éÕÒ
-   return hi; //Èôhi < lo£¬ÔòÒâÎ¶×ÅÊ§°Ü£»·ñÔòhi¼´ÃüÖĞÔªËØµÄÖÈ
+   while ( ( lo < hi-- ) && ( e != _elem[hi] ) ); //ä»åå‘å‰ï¼Œé¡ºåºæŸ¥æ‰¾
+   return hi; //è‹¥hi < loï¼Œåˆ™æ„å‘³ç€å¤±è´¥ï¼›å¦åˆ™hiå³å‘½ä¸­å…ƒç´ çš„ç§©
 }

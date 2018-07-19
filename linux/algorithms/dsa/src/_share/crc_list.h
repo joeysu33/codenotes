@@ -10,7 +10,7 @@
 
 #include "..\list\list.h"
 
-template <typename T> void crc ( List<T> & L ) { //Í³¼ÆÁĞ±íµÄÌØÕ÷£¨ËùÓĞÔªËØ×ÜºÍ£©
-   T crc = 0; L.traverse ( Crc<T> ( crc ) ); //ÒÔcrcÎª»ù±¾²Ù×÷½øĞĞ±éÀú
-   printf ( "CRC =" ); print ( crc ); printf ( "\n" ); //Êä³öÍ³¼ÆµÃµ½µÄÌØÕ÷
+template <typename T> void crc ( List<T> & L ) { //ç»Ÿè®¡åˆ—è¡¨çš„ç‰¹å¾ï¼ˆæ‰€æœ‰å…ƒç´ æ€»å’Œï¼‰
+   T crc = 0; L.traverse ( Crc<T> ( crc ) ); //ä»¥crcä¸ºåŸºæœ¬æ“ä½œè¿›è¡Œéå†
+   printf ( "CRC =" ); print ( crc ); printf ( "\n" ); //è¾“å‡ºç»Ÿè®¡å¾—åˆ°çš„ç‰¹å¾
 }

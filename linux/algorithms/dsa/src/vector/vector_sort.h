@@ -8,13 +8,13 @@
 
 #pragma once
 
-template <typename T> void Vector<T>::sort ( Rank lo, Rank hi ) { //ÏòÁ¿Çø¼ä[lo, hi)ÅÅĞò
-   switch ( rand() % 5 ) { //Ëæ»úÑ¡È¡ÅÅĞòËã·¨¡£¿É¸ù¾İ¾ßÌåÎÊÌâµÄÌØµãÁé»îÑ¡È¡»òÀ©³ä
-      case 1:  bubbleSort ( lo, hi ); break; //ÆğÅİÅÅĞò
-      case 2:  selectionSort ( lo, hi ); break; //Ñ¡ÔñÅÅĞò£¨Ï°Ìâ£©
-      case 3:  mergeSort ( lo, hi ); break; //¹é²¢ÅÅĞò
-      case 4:  heapSort ( lo, hi ); break; //¶ÑÅÅĞò£¨ÉÔºó½éÉÜ£©
-      default: quickSort ( lo, hi ); break; //¿ìËÙÅÅĞò£¨ÉÔºó½éÉÜ£©
+template <typename T> void Vector<T>::sort ( Rank lo, Rank hi ) { //å‘é‡åŒºé—´[lo, hi)æ’åº
+   switch ( rand() % 5 ) { //éšæœºé€‰å–æ’åºç®—æ³•ã€‚å¯æ ¹æ®å…·ä½“é—®é¢˜çš„ç‰¹ç‚¹çµæ´»é€‰å–æˆ–æ‰©å……
+      case 1:  bubbleSort ( lo, hi ); break; //èµ·æ³¡æ’åº
+      case 2:  selectionSort ( lo, hi ); break; //é€‰æ‹©æ’åºï¼ˆä¹ é¢˜ï¼‰
+      case 3:  mergeSort ( lo, hi ); break; //å½’å¹¶æ’åº
+      case 4:  heapSort ( lo, hi ); break; //å †æ’åºï¼ˆç¨åä»‹ç»ï¼‰
+      default: quickSort ( lo, hi ); break; //å¿«é€Ÿæ’åºï¼ˆç¨åä»‹ç»ï¼‰
    }
    /*DSA*/ //selectionSort(lo, hi);
 }

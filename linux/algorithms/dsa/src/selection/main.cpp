@@ -15,20 +15,20 @@
 #include "../vector/vector.h"
 #include "quickSelect.h"
 
-int main ( int argc, char* argv[] ) { //»ùÓÚ¿ìËÙ»®·ÖµÄkÑ¡È¡Ëã·¨²âÊÔ
+int main ( int argc, char* argv[] ) { //åŸºäºå¿«é€Ÿåˆ’åˆ†çš„ké€‰å–ç®—æ³•æµ‹è¯•
    if ( 2 > argc ) { printf ( "Usage: %s <n>\a\a\n", argv[0] ); return 1; }
    int n = atoi ( argv[1] );
    if ( n < 1 ) { printf ( "Invalid arguments\a\a\n" ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
-// Ëæ»úÉú³ÉÏòÁ¿
-   Vector<int> A; //ÒÔÕûĞÍÎªÀı
-   while ( A.size() < n ) //¼ÌĞø²»¶Ï²åÈën£¬Ö±ÖÁ¹²ÓĞn¸öÔªËØ
+// éšæœºç”Ÿæˆå‘é‡
+   Vector<int> A; //ä»¥æ•´å‹ä¸ºä¾‹
+   while ( A.size() < n ) //ç»§ç»­ä¸æ–­æ’å…¥nï¼Œç›´è‡³å…±æœ‰nä¸ªå…ƒç´ 
       A.insert ( A.size(), rand() % n );
    print ( A );
-// ¼ÆËãÖÚÊı
+// è®¡ç®—ä¼—æ•°
    quickSelect ( A, n / 2 ); print ( A );
-// Í¨¹ıÅÅĞò½øÒ»²½ÑéÖ¤
+// é€šè¿‡æ’åºè¿›ä¸€æ­¥éªŒè¯
    A.sort(); print ( A );
-// ·µ»Ø
+// è¿”å›
    return 0;
 }

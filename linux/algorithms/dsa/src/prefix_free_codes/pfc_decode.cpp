@@ -8,11 +8,11 @@
 
 /*DSA*/#include "PFC.h"
 
-void decode ( PFCTree* tree, Bitmap& code, int n ) { //PFC½âÂëËã·¨
-   BinNodePosi ( char ) x = tree->root(); //¸ù¾İPFC±àÂëÊ÷
-   for ( int i = 0; i < n; i++ ) { //½«±àÂë£¨¶ş½øÖÆÎ»Í¼£©
-      x = code.test ( i ) ? x->rc : x->lc; //×ªÒëÎªÃ÷Âë²¢
-      if ( IsLeaf ( *x ) ) { printf ( "%c", x->data ); x = tree->root(); } //´òÓ¡Êä³ö
+void decode ( PFCTree* tree, Bitmap& code, int n ) { //PFCè§£ç ç®—æ³•
+   BinNodePosi ( char ) x = tree->root(); //æ ¹æ®PFCç¼–ç æ ‘
+   for ( int i = 0; i < n; i++ ) { //å°†ç¼–ç ï¼ˆäºŒè¿›åˆ¶ä½å›¾ï¼‰
+      x = code.test ( i ) ? x->rc : x->lc; //è½¬è¯‘ä¸ºæ˜ç å¹¶
+      if ( IsLeaf ( *x ) ) { printf ( "%c", x->data ); x = tree->root(); } //æ‰“å°è¾“å‡º
    }
    /*DSA*/if ( x != tree->root() ) printf ( " code seems to be incomplete ..." ); printf ( "\n" );
 }

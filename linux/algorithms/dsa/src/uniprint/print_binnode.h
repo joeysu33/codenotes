@@ -9,26 +9,26 @@
 #pragma once
 
 /******************************************************************************************
- * BinTreeΩ⁄µ„
+ * BinTreeËäÇÁÇπ
  ******************************************************************************************/
 template <typename T> void UniPrint::p ( BinNode<T>& node ) {
-   p ( node.data ); // ˝÷µ
+   p ( node.data ); //Êï∞ÂÄº
    /******************************************************************************************
     * height & NPL
     ******************************************************************************************/
 #if   defined(DSA_LEFTHEAP)
    printf ( "(%-2d)", node.npl ); //NPL
 #elif defined(DSA_BST)
-   printf ( "(%-2d)", node.height ); //∏ﬂ∂»
+   printf ( "(%-2d)", node.height ); //È´òÂ∫¶
 #elif defined(DSA_AVL)
-   printf ( "(%-2d)", node.height ); //∏ﬂ∂»
+   printf ( "(%-2d)", node.height ); //È´òÂ∫¶
 #elif defined(DSA_REDBLACK)
-   printf ( "(%-2d)", node.height ); //∏ﬂ∂»
+   printf ( "(%-2d)", node.height ); //È´òÂ∫¶
 #elif defined(DSA_SPLAY)
-   printf ( "(%-2d)", node.height ); //∏ﬂ∂»
+   printf ( "(%-2d)", node.height ); //È´òÂ∫¶
 #endif
    /******************************************************************************************
-    * ∏∏◊”¡¥Ω”÷∏’Î
+    * Áà∂Â≠êÈìæÊé•ÊåáÈíà
     ******************************************************************************************/
    printf (
       (  ( node.lc && &node != node.lc->parent ) ||
@@ -36,16 +36,16 @@ template <typename T> void UniPrint::p ( BinNode<T>& node ) {
       "@" : " "
    );
    /******************************************************************************************
-    * Ω⁄µ„—’…´
+    * ËäÇÁÇπÈ¢úËâ≤
     ******************************************************************************************/
 #if defined(DSA_REDBLACK)
-   printf ( node.color == RB_BLACK ? "B" : " " ); //£®∫ˆ¬‘∫ÏΩ⁄µ„£©
+   printf ( node.color == RB_BLACK ? "B" : " " ); //ÔºàÂøΩÁï•Á∫¢ËäÇÁÇπÔºâ
 #endif
    /******************************************************************************************
-    * ∏∏◊”£®∫⁄£©∏ﬂ∂»°¢NPL∆•≈‰
+    * Áà∂Â≠êÔºàÈªëÔºâÈ´òÂ∫¶„ÄÅNPLÂåπÈÖç
     ******************************************************************************************/
 #if   defined(DSA_PQ_COMPLHEAP)
-   //∏ﬂ∂»≤ª±ÿ∆•≈‰
+   //È´òÂ∫¶‰∏çÂøÖÂåπÈÖç
 #elif defined(DSA_PQ_LEFTHEAP)
    printf ( //NPL
       ( node.rc && node.npl != 1 + node.rc->npl ) ||
@@ -53,24 +53,24 @@ template <typename T> void UniPrint::p ( BinNode<T>& node ) {
       "%%" : " "
    );
 #elif defined(DSA_REDBLACK)
-   printf ( BlackHeightUpdated ( node ) ? " " : "!" ); //∫⁄∏ﬂ∂»
+   printf ( BlackHeightUpdated ( node ) ? " " : "!" ); //ÈªëÈ´òÂ∫¶
 #else
-   printf ( HeightUpdated ( node ) ? " " : "!" ); //£®≥£πÊ£©∏ﬂ∂»
+   printf ( HeightUpdated ( node ) ? " " : "!" ); //ÔºàÂ∏∏ËßÑÔºâÈ´òÂ∫¶
 #endif
    /******************************************************************************************
-    * ◊Û”“∆Ω∫‚
+    * Â∑¶Âè≥Âπ≥Ë°°
     ******************************************************************************************/
 #if defined(DSA_AVL)
-   if ( !AvlBalanced ( node ) ) printf ( "X" ); //AVL∆Ω∫‚
-   else if ( 0 < BalFac ( node ) ) printf ( "\\" ); //AVL∆Ω∫‚
-   else if ( BalFac ( node ) < 0 ) printf ( "/" ); //AVL∆Ω∫‚
-   else printf ( "-" ); //AVL∆Ω∫‚
+   if ( !AvlBalanced ( node ) ) printf ( "X" ); //AVLÂπ≥Ë°°
+   else if ( 0 < BalFac ( node ) ) printf ( "\\" ); //AVLÂπ≥Ë°°
+   else if ( BalFac ( node ) < 0 ) printf ( "/" ); //AVLÂπ≥Ë°°
+   else printf ( "-" ); //AVLÂπ≥Ë°°
 #elif defined(DSA_REDBLACK)
-   if ( !Balanced ( node ) ) printf ( "X" ); //RB∆Ω∫‚
-   else if ( 0 < BalFac ( node ) ) printf ( "\\" ); //RB∆Ω∫‚
-   else if ( BalFac ( node ) < 0 ) printf ( "/" ); //RB∆Ω∫‚
-   else printf ( "-" ); //RB∆Ω∫‚
+   if ( !Balanced ( node ) ) printf ( "X" ); //RBÂπ≥Ë°°
+   else if ( 0 < BalFac ( node ) ) printf ( "\\" ); //RBÂπ≥Ë°°
+   else if ( BalFac ( node ) < 0 ) printf ( "/" ); //RBÂπ≥Ë°°
+   else printf ( "-" ); //RBÂπ≥Ë°°
 #else
-   //∆Ω∫‚ŒﬁÀ˘ŒΩ
+   //Âπ≥Ë°°Êó†ÊâÄË∞ì
 #endif
 }

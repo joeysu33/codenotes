@@ -8,20 +8,20 @@
 
 /*DSA*/#include "rpn.h"
 
-Operator optr2rank ( char op ) { //ÓÉÔËËã·û×ªÒë³ö±àºÅ
+Operator optr2rank ( char op ) { //ç”±è¿ç®—ç¬¦è½¬è¯‘å‡ºç¼–å·
    switch ( op ) {
-      case '+' : return ADD; //¼Ó
-      case '-' : return SUB; //¼õ
-      case '*' : return MUL; //³Ë
-      case '/' : return DIV; //³ı
-      case '^' : return POW; //³Ë·½
-      case '!' : return FAC; //½×³Ë
-      case '(' : return L_P; //×óÀ¨ºÅ
-      case ')' : return R_P; //ÓÒÀ¨ºÅ
-      case '\0': return EOE; //ÆğÊ¼·ûÓëÖÕÖ¹·û
-      default  : exit ( -1 ); //Î´ÖªÔËËã·û
+      case '+' : return ADD; //åŠ 
+      case '-' : return SUB; //å‡
+      case '*' : return MUL; //ä¹˜
+      case '/' : return DIV; //é™¤
+      case '^' : return POW; //ä¹˜æ–¹
+      case '!' : return FAC; //é˜¶ä¹˜
+      case '(' : return L_P; //å·¦æ‹¬å·
+      case ')' : return R_P; //å³æ‹¬å·
+      case '\0': return EOE; //èµ·å§‹ç¬¦ä¸ç»ˆæ­¢ç¬¦
+      default  : exit ( -1 ); //æœªçŸ¥è¿ç®—ç¬¦
    }
 }
 
-char orderBetween ( char op1, char op2 ) //±È½ÏÁ½¸öÔËËã·ûÖ®¼äµÄÓÅÏÈ¼¶
+char orderBetween ( char op1, char op2 ) //æ¯”è¾ƒä¸¤ä¸ªè¿ç®—ç¬¦ä¹‹é—´çš„ä¼˜å…ˆçº§
 { return pri[optr2rank ( op1 ) ][optr2rank ( op2 ) ]; }

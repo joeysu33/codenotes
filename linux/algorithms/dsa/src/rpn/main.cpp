@@ -8,7 +8,7 @@
 
 /*DSA*/#include "rpn.h"
 
-char* removeSpace ( char* s ) { //ÌÞ³ýs[]ÖÐµÄ°×¿Õ¸ñ
+char* removeSpace ( char* s ) { //å‰”é™¤s[]ä¸­çš„ç™½ç©ºæ ¼
    char* p = s, *q = s;
    while ( true ) {
       while ( isspace ( *q ) ) q++;
@@ -17,14 +17,14 @@ char* removeSpace ( char* s ) { //ÌÞ³ýs[]ÖÐµÄ°×¿Õ¸ñ
    }
 }
 
-int main ( int argc, char* argv[] ) { //±í´ïÊ½ÇóÖµ£¨Èë¿Ú£©
-   for ( int i = 1; i < argc; i++ ) { //ÖðÒ»´¦Àí¸÷ÃüÁîÐÐ²ÎÊý£¨±í´ïÊ½£©
+int main ( int argc, char* argv[] ) { //è¡¨è¾¾å¼æ±‚å€¼ï¼ˆå…¥å£ï¼‰
+   for ( int i = 1; i < argc; i++ ) { //é€ä¸€å¤„ç†å„å‘½ä»¤è¡Œå‚æ•°ï¼ˆè¡¨è¾¾å¼ï¼‰
       /*DSA*/system ( "cls" ); printf ( "\nPress any key to evaluate: [%s]\a\n", argv[i] ); getchar();
-      char* rpn = ( char* ) malloc ( sizeof ( char ) * 1 );   rpn[0] = '\0'; //Äæ²¨À¼±í´ïÊ½
-      float value = evaluate ( removeSpace ( argv[i] ), rpn ); //ÇóÖµ
-      /*DSA*/printf ( "EXPR\t: %s\n", argv[i] ); //Êä³öÔ­±í´ïÊ½
-      /*DSA*/printf ( "RPN\t: [ %s]\n", rpn ); //Êä³öRPN
-      /*DSA*/printf ( "Value\t= %.1f = %d\n", value, ( int ) value ); //Êä³ö±í´ïÊ½µÄÖµ
+      char* rpn = ( char* ) malloc ( sizeof ( char ) * 1 );   rpn[0] = '\0'; //é€†æ³¢å…°è¡¨è¾¾å¼
+      float value = evaluate ( removeSpace ( argv[i] ), rpn ); //æ±‚å€¼
+      /*DSA*/printf ( "EXPR\t: %s\n", argv[i] ); //è¾“å‡ºåŽŸè¡¨è¾¾å¼
+      /*DSA*/printf ( "RPN\t: [ %s]\n", rpn ); //è¾“å‡ºRPN
+      /*DSA*/printf ( "Value\t= %.1f = %d\n", value, ( int ) value ); //è¾“å‡ºè¡¨è¾¾å¼çš„å€¼
       free ( rpn );   rpn = NULL;
       /*DSA*/getchar();
    }

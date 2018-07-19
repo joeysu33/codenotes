@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename K, typename V> bool Hashtable<K, V>::remove ( K k ) { //É¢ÁĞ±í´ÊÌõÉ¾³ıËã·¨
-   int r = probe4Hit ( k ); if ( !ht[r] ) return false; //¶ÔÓ¦´ÊÌõ²»´æÔÚÊ±£¬ÎŞ·¨É¾³ı
+template <typename K, typename V> bool Hashtable<K, V>::remove ( K k ) { //æ•£åˆ—è¡¨è¯æ¡åˆ é™¤ç®—æ³•
+   int r = probe4Hit ( k ); if ( !ht[r] ) return false; //å¯¹åº”è¯æ¡ä¸å­˜åœ¨æ—¶ï¼Œæ— æ³•åˆ é™¤
    release ( ht[r] ); ht[r] = NULL; markAsRemoved ( r ); N--; return true;
-   //·ñÔòÊÍ·ÅÍ°ÖĞ´ÊÌõ£¬ÉèÖÃÀÁ¶èÉ¾³ı±ê¼Ç£¬²¢¸üĞÂ´ÊÌõ×ÜÊı
+   //å¦åˆ™é‡Šæ”¾æ¡¶ä¸­è¯æ¡ï¼Œè®¾ç½®æ‡’æƒ°åˆ é™¤æ ‡è®°ï¼Œå¹¶æ›´æ–°è¯æ¡æ€»æ•°
 }

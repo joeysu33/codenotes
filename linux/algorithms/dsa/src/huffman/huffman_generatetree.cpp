@@ -8,23 +8,23 @@
 
 /*DSA*/#include "huffman_PQ.h"
 
-HuffTree* minHChar ( HuffForest* forest ) { //ÔÚHuffmanÉ­ÁÖÖĞÕÒ³öÈ¨ÖØ×îĞ¡µÄ£¨³¬£©×Ö·û
-   ListNodePosi ( HuffTree* ) p = forest->first(); //´ÓÊ×½Úµã³ö·¢²éÕÒ
-   ListNodePosi ( HuffTree* ) minChar = p; //×îĞ¡HuffmanÊ÷ËùÔÚµÄ½ÚµãÎ»ÖÃ
-   int minWeight = p->data->root()->data.weight; //Ä¿Ç°µÄ×îĞ¡È¨ÖØ
-   while ( forest->valid ( p = p->succ ) ) //±éÀúËùÓĞ½Úµã
-      if ( minWeight > p->data->root()->data.weight ) //Èôµ±Ç°½ÚµãËùº¬Ê÷¸üĞ¡£¬Ôò
-         {  minWeight = p->data->root()->data.weight; minChar = p;  } //¸üĞÂ¼ÇÂ¼
-   return forest->remove ( minChar ); //½«ÌôÑ¡³öµÄHuffmanÊ÷´ÓÉ­ÁÖÖĞÕª³ı£¬²¢·µ»Ø
+HuffTree* minHChar ( HuffForest* forest ) { //åœ¨Huffmanæ£®æ—ä¸­æ‰¾å‡ºæƒé‡æœ€å°çš„ï¼ˆè¶…ï¼‰å­—ç¬¦
+   ListNodePosi ( HuffTree* ) p = forest->first(); //ä»é¦–èŠ‚ç‚¹å‡ºå‘æŸ¥æ‰¾
+   ListNodePosi ( HuffTree* ) minChar = p; //æœ€å°Huffmanæ ‘æ‰€åœ¨çš„èŠ‚ç‚¹ä½ç½®
+   int minWeight = p->data->root()->data.weight; //ç›®å‰çš„æœ€å°æƒé‡
+   while ( forest->valid ( p = p->succ ) ) //éå†æ‰€æœ‰èŠ‚ç‚¹
+      if ( minWeight > p->data->root()->data.weight ) //è‹¥å½“å‰èŠ‚ç‚¹æ‰€å«æ ‘æ›´å°ï¼Œåˆ™
+         {  minWeight = p->data->root()->data.weight; minChar = p;  } //æ›´æ–°è®°å½•
+   return forest->remove ( minChar ); //å°†æŒ‘é€‰å‡ºçš„Huffmanæ ‘ä»æ£®æ—ä¸­æ‘˜é™¤ï¼Œå¹¶è¿”å›
 }
 
-HuffTree* generateTree ( HuffForest* forest ) { //Huffman±àÂëËã·¨
+HuffTree* generateTree ( HuffForest* forest ) { //Huffmanç¼–ç ç®—æ³•
    while ( 1 < forest->size() ) {
       HuffTree* T1 = minHChar ( forest ); HuffTree* T2 = minHChar ( forest );
       HuffTree* S = new HuffTree(); /*DSA*/printf ( "\n################\nMerging " ); print ( T1->root()->data ); printf ( " with " ); print ( T2->root()->data ); printf ( " ...\n" );
       S->insertAsRoot ( HuffChar ( '^', T1->root()->data.weight + T2->root()->data.weight ) );
       S->attachAsLC ( S->root(), T1 ); S->attachAsRC ( S->root(), T2 );
       forest->insertAsLast ( S ); /*DSA*/ //print(forest);
-   } //assert: Ñ­»·½áÊøÊ±£¬É­ÁÖÖĞÎ¨Ò»£¨ÁĞ±íÊ×½ÚµãÖĞ£©µÄÄÇ¿ÃÊ÷¼´Huffman±àÂëÊ÷
+   } //assert: å¾ªç¯ç»“æŸæ—¶ï¼Œæ£®æ—ä¸­å”¯ä¸€ï¼ˆåˆ—è¡¨é¦–èŠ‚ç‚¹ä¸­ï¼‰çš„é‚£æ£µæ ‘å³Huffmanç¼–ç æ ‘
    return forest->first()->data;
 }

@@ -8,17 +8,17 @@
 
 /*DSA*/#include "../string_pm/string_pm_test.h"
 
-int* buildSS ( char* P ) { //¹¹Ôì×î´óÆ¥Åäºó×º³¤¶È±í£ºO(m)
-   int m = strlen ( P ); int* ss = new int[m]; //Suffix Size±í
-   ss[m - 1]  =  m; //¶Ô×îºóÒ»¸ö×Ö·û¶øÑÔ£¬ÓëÖ®Æ¥ÅäµÄ×î³¤ºó×º¾ÍÊÇÕû¸öP´®
-// ÒÔÏÂ£¬´Óµ¹ÊýµÚ¶þ¸ö×Ö·ûÆð×ÔÓÒÏò×óÉ¨ÃèP£¬ÒÀ´Î¼ÆËã³öss[]ÆäÓà¸÷Ïî
+int* buildSS ( char* P ) { //æž„é€ æœ€å¤§åŒ¹é…åŽç¼€é•¿åº¦è¡¨ï¼šO(m)
+   int m = strlen ( P ); int* ss = new int[m]; //Suffix Sizeè¡¨
+   ss[m - 1]  =  m; //å¯¹æœ€åŽä¸€ä¸ªå­—ç¬¦è€Œè¨€ï¼Œä¸Žä¹‹åŒ¹é…çš„æœ€é•¿åŽç¼€å°±æ˜¯æ•´ä¸ªPä¸²
+// ä»¥ä¸‹ï¼Œä»Žå€’æ•°ç¬¬äºŒä¸ªå­—ç¬¦èµ·è‡ªå³å‘å·¦æ‰«æPï¼Œä¾æ¬¡è®¡ç®—å‡ºss[]å…¶ä½™å„é¡¹
    for ( int lo = m - 1, hi = m - 1, j = lo - 1; j >= 0; j -- )
-      if ( ( lo < j ) && ( ss[m - hi + j - 1] <= j - lo ) ) //Çé¿öÒ»
-         ss[j] =  ss[m - hi + j - 1]; //Ö±½ÓÀûÓÃ´ËÇ°ÒÑ¼ÆËã³öµÄss[]
-      else { //Çé¿ö¶þ
+      if ( ( lo < j ) && ( ss[m - hi + j - 1] <= j - lo ) ) //æƒ…å†µä¸€
+         ss[j] =  ss[m - hi + j - 1]; //ç›´æŽ¥åˆ©ç”¨æ­¤å‰å·²è®¡ç®—å‡ºçš„ss[]
+      else { //æƒ…å†µäºŒ
          hi = j; lo = __min ( lo, hi );
-         while ( ( 0 <= lo ) && ( P[lo] == P[m - hi + lo - 1] ) ) //¶þÖØÑ­»·£¿
-            lo--; //Öð¸ö¶Ô±È´¦ÓÚ(lo, hi]Ç°¶ËµÄ×Ö·û
+         while ( ( 0 <= lo ) && ( P[lo] == P[m - hi + lo - 1] ) ) //äºŒé‡å¾ªçŽ¯ï¼Ÿ
+            lo--; //é€ä¸ªå¯¹æ¯”å¤„äºŽ(lo, hi]å‰ç«¯çš„å­—ç¬¦
          ss[j] = hi - lo;
       }
    /*DSA*/printf ( "-- ss[] Table -------\n" );
@@ -28,16 +28,16 @@ int* buildSS ( char* P ) { //¹¹Ôì×î´óÆ¥Åäºó×º³¤¶È±í£ºO(m)
    return ss;
 }
 
-int* buildGS ( char* P ) { //¹¹ÔìºÃºó×ºÎ»ÒÆÁ¿±í£ºO(m)
+int* buildGS ( char* P ) { //æž„é€ å¥½åŽç¼€ä½ç§»é‡è¡¨ï¼šO(m)
    int* ss = buildSS ( P ); //Suffix Size table
    size_t m = strlen ( P ); int* gs = new int[m]; //Good Suffix shift table
-   for ( size_t j = 0; j < m; j ++ ) gs[j] = m; //³õÊ¼»¯
-   for ( size_t i = 0, j = m - 1; j < UINT_MAX; j -- ) //ÄæÏòÖðÒ»É¨Ãè¸÷×Ö·ûP[j]
-      if ( j + 1 == ss[j] ) //ÈôP[0, j] = P[m - j - 1, m)£¬Ôò
-         while ( i < m - j - 1 ) //¶ÔÓÚP[m - j - 1]×ó²àµÄÃ¿¸ö×Ö·ûP[i]¶øÑÔ£¨¶þÖØÑ­»·£¿£©
-            gs[i++] = m - j - 1; //m - j - 1¶¼ÊÇgs[i]µÄÒ»ÖÖÑ¡Ôñ
-   for ( size_t j = 0; j < m - 1; j ++ ) //»­¼ÒËã·¨£ºÕýÏòÉ¨ÃèP[]¸÷×Ö·û£¬gs[j]²»¶ÏµÝ¼õ£¬Ö±ÖÁ×îÐ¡
-      gs[m - ss[j] - 1] = m - j - 1; //m - j - 1±ØÊÇÆägs[m - ss[j] - 1]ÖµµÄÒ»ÖÖÑ¡Ôñ
+   for ( size_t j = 0; j < m; j ++ ) gs[j] = m; //åˆå§‹åŒ–
+   for ( size_t i = 0, j = m - 1; j < UINT_MAX; j -- ) //é€†å‘é€ä¸€æ‰«æå„å­—ç¬¦P[j]
+      if ( j + 1 == ss[j] ) //è‹¥P[0, j] = P[m - j - 1, m)ï¼Œåˆ™
+         while ( i < m - j - 1 ) //å¯¹äºŽP[m - j - 1]å·¦ä¾§çš„æ¯ä¸ªå­—ç¬¦P[i]è€Œè¨€ï¼ˆäºŒé‡å¾ªçŽ¯ï¼Ÿï¼‰
+            gs[i++] = m - j - 1; //m - j - 1éƒ½æ˜¯gs[i]çš„ä¸€ç§é€‰æ‹©
+   for ( size_t j = 0; j < m - 1; j ++ ) //ç”»å®¶ç®—æ³•ï¼šæ­£å‘æ‰«æP[]å„å­—ç¬¦ï¼Œgs[j]ä¸æ–­é€’å‡ï¼Œç›´è‡³æœ€å°
+      gs[m - ss[j] - 1] = m - j - 1; //m - j - 1å¿…æ˜¯å…¶gs[m - ss[j] - 1]å€¼çš„ä¸€ç§é€‰æ‹©
    /*DSA*/printGS ( P, gs );
    delete [] ss; return gs;
 }

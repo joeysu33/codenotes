@@ -10,7 +10,7 @@
 
 #include "..\vector\vector.h"
 
-template <typename T> void crc ( Vector<T> & V ) { //Í³¼ÆÏòÁ¿µÄÌØÕ÷£¨ËùÓĞÔªËØÖ®ºÍ£©
-   T crc = 0; V.traverse ( Crc<T> ( crc ) ); //ÒÔcrcÎª»ù±¾²Ù×÷½øĞĞ±éÀú
-   printf ( "CRC =" ); print ( crc ); printf ( "\n" ); //Êä³öÍ³¼ÆµÃµ½µÄÌØÕ÷
+template <typename T> void crc ( Vector<T> & V ) { //ç»Ÿè®¡å‘é‡çš„ç‰¹å¾ï¼ˆæ‰€æœ‰å…ƒç´ ä¹‹å’Œï¼‰
+   T crc = 0; V.traverse ( Crc<T> ( crc ) ); //ä»¥crcä¸ºåŸºæœ¬æ“ä½œè¿›è¡Œéå†
+   printf ( "CRC =" ); print ( crc ); printf ( "\n" ); //è¾“å‡ºç»Ÿè®¡å¾—åˆ°çš„ç‰¹å¾
 }

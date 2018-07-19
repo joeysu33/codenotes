@@ -9,9 +9,9 @@
 #include <iostream>
 #include "../UniPrint/print_int_array.h"
 
-int shift0 ( int* A, int n, int k ); //ÂùÁ¦°æ
-int shift1 ( int* A, int n, int k ); //µü´ú°æ
-int shift2 ( int* A, int n, int k ); //µ¹ÖÃ°æ
+int shift0 ( int* A, int n, int k ); //è›®åŠ›ç‰ˆ
+int shift1 ( int* A, int n, int k ); //è¿­ä»£ç‰ˆ
+int shift2 ( int* A, int n, int k ); //å€’ç½®ç‰ˆ
 
 int main ( int argc, char* argv[] ) {
    if ( argc < 3 ) { printf ( "Usage: %s <array_length> <shift>\n", argv[0] ); return 1;}

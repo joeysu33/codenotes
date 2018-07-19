@@ -8,14 +8,14 @@
 
 #pragma once
 
-template <typename T> int Vector<T>::deduplicate() { //É¾³ıÎŞĞòÏòÁ¿ÖĞÖØ¸´ÔªËØ£¨·±Ëö°æ£©
-   int oldSize = _size; //¼ÇÂ¼Ô­¹æÄ£
-   int i = -1; //´Ó×îÇ°¶Ë¿ªÊ¼
-   while ( ++i < _size - 1 ) { //´ÓÇ°Ïòºó£¬ÖğÒ»
-      int j = i + 1; //assert: _elem[0, i]ÖĞ²»º¬ÖØ¸´ÔªËØ
+template <typename T> int Vector<T>::deduplicate() { //åˆ é™¤æ— åºå‘é‡ä¸­é‡å¤å…ƒç´ ï¼ˆç¹çç‰ˆï¼‰
+   int oldSize = _size; //è®°å½•åŸè§„æ¨¡
+   int i = -1; //ä»æœ€å‰ç«¯å¼€å§‹
+   while ( ++i < _size - 1 ) { //ä»å‰å‘åï¼Œé€ä¸€
+      int j = i + 1; //assert: _elem[0, i]ä¸­ä¸å«é‡å¤å…ƒç´ 
       while ( j < _size )
-         if ( _elem[i] == _elem[j] ) remove ( j ); //ÈôÀ×Í¬£¬ÔòÉ¾³ıºóÕß
-         else j++; //²¢¼ÌĞøÉ¨Ãè
+         if ( _elem[i] == _elem[j] ) remove ( j ); //è‹¥é›·åŒï¼Œåˆ™åˆ é™¤åè€…
+         else j++; //å¹¶ç»§ç»­æ‰«æ
    }
-   return oldSize - _size; //ÏòÁ¿¹æÄ£±ä»¯Á¿£¬¼´±»É¾³ıÔªËØ×ÜÊı
+   return oldSize - _size; //å‘é‡è§„æ¨¡å˜åŒ–é‡ï¼Œå³è¢«åˆ é™¤å…ƒç´ æ€»æ•°
 }

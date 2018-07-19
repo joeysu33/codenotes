@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename T> void Quadlist<T>::init() { //Quadlist³õÊ¼»¯£¬´´½¨Quadlist¶ÔÏóÊ±Í³Ò»µ÷ÓÃ
-   header = new QuadlistNode<T>; //´´½¨Í·ÉÚ±ø½Úµã
-   trailer = new QuadlistNode<T>; //´´½¨Î²ÉÚ±ø½Úµã
-   header->succ = trailer; header->pred = NULL; //ÑØºáÏòÁª½ÓÉÚ±ø
-   trailer->pred = header; trailer->succ = NULL; //ÑØºáÏòÁª½ÓÉÚ±ø
-   header->above = trailer->above = NULL; //×İÏòµÄºó¼ÌÖÃ¿Õ
-   header->below = trailer->below = NULL; //×İÏòµÄÇ°ÇıÖÃ¿Õ
-   _size = 0; //¼ÇÂ¼¹æÄ£
-} //Èç´Ë¹¹ÔìµÄËÄÁª±í£¬²»º¬ÈÎºÎÊµÖÊµÄ½Úµã£¬ÇÒÔİÊ±ÓëÆäËüËÄÁª±íÏà»¥¶ÀÁ¢
+template <typename T> void Quadlist<T>::init() { //Quadliståˆå§‹åŒ–ï¼Œåˆ›å»ºQuadlistå¯¹è±¡æ—¶ç»Ÿä¸€è°ƒç”¨
+   header = new QuadlistNode<T>; //åˆ›å»ºå¤´å“¨å…µèŠ‚ç‚¹
+   trailer = new QuadlistNode<T>; //åˆ›å»ºå°¾å“¨å…µèŠ‚ç‚¹
+   header->succ = trailer; header->pred = NULL; //æ²¿æ¨ªå‘è”æ¥å“¨å…µ
+   trailer->pred = header; trailer->succ = NULL; //æ²¿æ¨ªå‘è”æ¥å“¨å…µ
+   header->above = trailer->above = NULL; //çºµå‘çš„åç»§ç½®ç©º
+   header->below = trailer->below = NULL; //çºµå‘çš„å‰é©±ç½®ç©º
+   _size = 0; //è®°å½•è§„æ¨¡
+} //å¦‚æ­¤æ„é€ çš„å››è”è¡¨ï¼Œä¸å«ä»»ä½•å®è´¨çš„èŠ‚ç‚¹ï¼Œä¸”æš‚æ—¶ä¸å…¶å®ƒå››è”è¡¨ç›¸äº’ç‹¬ç«‹

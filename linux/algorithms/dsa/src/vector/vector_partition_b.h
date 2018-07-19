@@ -8,22 +8,22 @@
 
 #pragma once
 
-template <typename T> //Öáµã¹¹ÔìËã·¨£ºÍ¨¹ýµ÷ÕûÔªËØÎ»ÖÃ¹¹ÔìÇø¼ä[lo, hi]µÄÖáµã£¬²¢·µ»ØÆäÖÈ
-Rank Vector<T>::partition ( Rank lo, Rank hi ) { //°æ±¾B£º¿ÉÓÅ»¯´¦Àí¶à¸ö¹Ø¼üÂëÀ×Í¬µÄÍË»¯Çé¿ö
-   swap ( _elem[lo], _elem[lo + rand() % ( hi - lo + 1 ) ] ); //ÈÎÑ¡Ò»¸öÔªËØÓëÊ×ÔªËØ½»»»
-   T pivot = _elem[lo]; //ÒÔÊ×ÔªËØÎªºòÑ¡Öáµã¡ª¡ª¾­ÒÔÉÏ½»»»£¬µÈÐ§ÓÚËæ»úÑ¡È¡
-   while ( lo < hi ) { //´ÓÏòÁ¿µÄÁ½¶Ë½»ÌæµØÏòÖÐ¼äÉ¨Ãè
+template <typename T> //è½´ç‚¹æž„é€ ç®—æ³•ï¼šé€šè¿‡è°ƒæ•´å…ƒç´ ä½ç½®æž„é€ åŒºé—´[lo, hi]çš„è½´ç‚¹ï¼Œå¹¶è¿”å›žå…¶ç§©
+Rank Vector<T>::partition ( Rank lo, Rank hi ) { //ç‰ˆæœ¬Bï¼šå¯ä¼˜åŒ–å¤„ç†å¤šä¸ªå…³é”®ç é›·åŒçš„é€€åŒ–æƒ…å†µ
+   swap ( _elem[lo], _elem[lo + rand() % ( hi - lo + 1 ) ] ); //ä»»é€‰ä¸€ä¸ªå…ƒç´ ä¸Žé¦–å…ƒç´ äº¤æ¢
+   T pivot = _elem[lo]; //ä»¥é¦–å…ƒç´ ä¸ºå€™é€‰è½´ç‚¹â€”â€”ç»ä»¥ä¸Šäº¤æ¢ï¼Œç­‰æ•ˆäºŽéšæœºé€‰å–
+   while ( lo < hi ) { //ä»Žå‘é‡çš„ä¸¤ç«¯äº¤æ›¿åœ°å‘ä¸­é—´æ‰«æ
       while ( lo < hi )
-         if ( pivot < _elem[hi] ) //ÔÚ´óÓÚpivotµÄÇ°ÌáÏÂ
-            hi--; //Ïò×óÍØÕ¹ÓÒ¶Ë×ÓÏòÁ¿
-         else //Ö±ÖÁÓöµ½²»´óÓÚpivotÕß
-            { _elem[lo++] = _elem[hi]; break; } //½«Æä¹éÈë×ó¶Ë×ÓÏòÁ¿
+         if ( pivot < _elem[hi] ) //åœ¨å¤§äºŽpivotçš„å‰æä¸‹
+            hi--; //å‘å·¦æ‹“å±•å³ç«¯å­å‘é‡
+         else //ç›´è‡³é‡åˆ°ä¸å¤§äºŽpivotè€…
+            { _elem[lo++] = _elem[hi]; break; } //å°†å…¶å½’å…¥å·¦ç«¯å­å‘é‡
       while ( lo < hi )
-         if ( _elem[lo] < pivot ) //ÔÚÐ¡ÓÚpivotµÄÇ°ÌáÏÂ
-            lo++; //ÏòÓÒÍØÕ¹×ó¶Ë×ÓÏòÁ¿
-         else //Ö±ÖÁÓöµ½²»Ð¡ÓÚpivotÕß
-            { _elem[hi--] = _elem[lo]; break; } //½«Æä¹éÈëÓÒ¶Ë×ÓÏòÁ¿
+         if ( _elem[lo] < pivot ) //åœ¨å°äºŽpivotçš„å‰æä¸‹
+            lo++; //å‘å³æ‹“å±•å·¦ç«¯å­å‘é‡
+         else //ç›´è‡³é‡åˆ°ä¸å°äºŽpivotè€…
+            { _elem[hi--] = _elem[lo]; break; } //å°†å…¶å½’å…¥å³ç«¯å­å‘é‡
    } //assert: lo == hi
-   _elem[lo] = pivot; //½«±¸·ÝµÄÖáµã¼ÇÂ¼ÖÃÓÚÇ°¡¢ºó×ÓÏòÁ¿Ö®¼ä
-   return lo; //·µ»ØÖáµãµÄÖÈ
+   _elem[lo] = pivot; //å°†å¤‡ä»½çš„è½´ç‚¹è®°å½•ç½®äºŽå‰ã€åŽå­å‘é‡ä¹‹é—´
+   return lo; //è¿”å›žè½´ç‚¹çš„ç§©
 }

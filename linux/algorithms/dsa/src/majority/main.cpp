@@ -18,27 +18,27 @@
 #include "majorityCheck.h"
 
 /******************************************************************************************
- * ÖÚÊıËã·¨²âÊÔ
+ * ä¼—æ•°ç®—æ³•æµ‹è¯•
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    if ( 2 > argc ) { printf ( "Usage: %s <n>\a\a\n", argv[0] ); return 1; }
    int n = atoi ( argv[1] );
    if ( n < 1 ) { printf ( "Invalid arguments\a\a\n" ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
-// Ëæ»úÉú³ÉÏòÁ¿
-   Vector<int> A; //ÒÔÕûĞÍÎªÀı
-   int maj = rand() % n; printf ( "%d is highly possible to be a majority\n", maj ); //Ëæ»úÈ·¶¨Ò»¸ömajEleºòÑ¡
-   while ( A.size() < n ) { //¼ÌĞø²»¶Ï²åÈën£¬Ö±ÖÁ¹²ÓĞn¸öÔªËØ
-      int ele = ( rand() % 100 < 50 ) ? maj : rand() % n; //49%µÄ¸ÅÂÊÈ·¶¨ÊÇmaj£¬51%Ëæ»ú£¨¿ÉÊµÑé²»Í¬¸ÅÂÊµÄĞ§¹û£©
+// éšæœºç”Ÿæˆå‘é‡
+   Vector<int> A; //ä»¥æ•´å‹ä¸ºä¾‹
+   int maj = rand() % n; printf ( "%d is highly possible to be a majority\n", maj ); //éšæœºç¡®å®šä¸€ä¸ªmajEleå€™é€‰
+   while ( A.size() < n ) { //ç»§ç»­ä¸æ–­æ’å…¥nï¼Œç›´è‡³å…±æœ‰nä¸ªå…ƒç´ 
+      int ele = ( rand() % 100 < 50 ) ? maj : rand() % n; //49%çš„æ¦‚ç‡ç¡®å®šæ˜¯majï¼Œ51%éšæœºï¼ˆå¯å®éªŒä¸åŒæ¦‚ç‡çš„æ•ˆæœï¼‰
       A.insert ( A.size(), ele );
    }
-   print ( A ); //¾ùÔÈËæ»úÖÃÂÒ
-// ¼ÆËãÖÚÊı
+   print ( A ); //å‡åŒ€éšæœºç½®ä¹±
+// è®¡ç®—ä¼—æ•°
    majority ( A, maj ) ?
    printf ( "Majority element found as %d\n", maj ) :
    printf ( "Majority element NOT found\n" );
-// Í¨¹ıÅÅĞò½øÒ»²½ÑéÖ¤
+// é€šè¿‡æ’åºè¿›ä¸€æ­¥éªŒè¯
    A.sort(); print ( A );
-// ·µ»Ø
+// è¿”å›
    return 0;
 }

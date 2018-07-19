@@ -8,17 +8,17 @@
 
 #pragma once
 
-template <typename NodePosi> inline //ÔÚ½Úµã*pÓë*lc£¨¿ÉÄÜÎª¿Õ£©Ö®¼ä½¨Á¢¸¸£¨×ó£©×Ó¹ØÏµ
+template <typename NodePosi> inline //åœ¨èŠ‚ç‚¹*pä¸*lcï¼ˆå¯èƒ½ä¸ºç©ºï¼‰ä¹‹é—´å»ºç«‹çˆ¶ï¼ˆå·¦ï¼‰å­å…³ç³»
 void attachAsLChild ( NodePosi p, NodePosi lc ) { p->lc = lc; if ( lc ) lc->parent = p; }
 
-template <typename NodePosi> inline //ÔÚ½Úµã*pÓë*rc£¨¿ÉÄÜÎª¿Õ£©Ö®¼ä½¨Á¢¸¸£¨ÓÒ£©×Ó¹ØÏµ
+template <typename NodePosi> inline //åœ¨èŠ‚ç‚¹*pä¸*rcï¼ˆå¯èƒ½ä¸ºç©ºï¼‰ä¹‹é—´å»ºç«‹çˆ¶ï¼ˆå³ï¼‰å­å…³ç³»
 void attachAsRChild ( NodePosi p, NodePosi rc ) { p->rc = rc; if ( rc ) rc->parent = p; }
 
-template <typename T> //SplayÊ÷ÉìÕ¹Ëã·¨£º´Ó½Úµãv³ö·¢Öğ²ãÉìÕ¹
-BinNodePosi(T) Splay<T>::splay ( BinNodePosi(T) v ) { //vÎªÒò×î½ü·ÃÎÊ¶øĞèÉìÕ¹µÄ½ÚµãÎ»ÖÃ
-   if ( !v ) return NULL; BinNodePosi(T) p; BinNodePosi(T) g; //*vµÄ¸¸Ç×Óë×æ¸¸
-   while ( ( p = v->parent ) && ( g = p->parent ) ) { //×ÔÏÂ¶øÉÏ£¬·´¸´¶Ô*v×öË«²ãÉìÕ¹
-      BinNodePosi(T) gg = g->parent; //Ã¿ÂÖÖ®ºó*v¶¼ÒÔÔ­Ôø×æ¸¸£¨great-grand parent£©Îª¸¸
+template <typename T> //Splayæ ‘ä¼¸å±•ç®—æ³•ï¼šä»èŠ‚ç‚¹vå‡ºå‘é€å±‚ä¼¸å±•
+BinNodePosi(T) Splay<T>::splay ( BinNodePosi(T) v ) { //vä¸ºå› æœ€è¿‘è®¿é—®è€Œéœ€ä¼¸å±•çš„èŠ‚ç‚¹ä½ç½®
+   if ( !v ) return NULL; BinNodePosi(T) p; BinNodePosi(T) g; //*vçš„çˆ¶äº²ä¸ç¥–çˆ¶
+   while ( ( p = v->parent ) && ( g = p->parent ) ) { //è‡ªä¸‹è€Œä¸Šï¼Œåå¤å¯¹*våšåŒå±‚ä¼¸å±•
+      BinNodePosi(T) gg = g->parent; //æ¯è½®ä¹‹å*véƒ½ä»¥åŸæ›¾ç¥–çˆ¶ï¼ˆgreat-grand parentï¼‰ä¸ºçˆ¶
       if ( IsLChild ( *v ) )
          if ( IsLChild ( *p ) ) { //zig-zig
             /*DSA*/printf ( "\tzIg-zIg :" ); print ( g ); print ( p ); print ( v ); printf ( "\n" );
@@ -38,12 +38,12 @@ BinNodePosi(T) Splay<T>::splay ( BinNodePosi(T) v ) { //vÎªÒò×î½ü·ÃÎÊ¶øĞèÉìÕ¹µÄ½
          attachAsRChild ( p, v->lc ); attachAsLChild ( g, v->rc );
          attachAsRChild ( v, g ); attachAsLChild ( v, p );
       }
-      if ( !gg ) v->parent = NULL; //Èô*vÔ­ÏÈµÄÔø×æ¸¸*gg²»´æÔÚ£¬Ôò*vÏÖÔÚÓ¦ÎªÊ÷¸ù
-      else //·ñÔò£¬*gg´ËºóÓ¦¸ÃÒÔ*v×÷Îª×ó»òÓÒº¢×Ó
+      if ( !gg ) v->parent = NULL; //è‹¥*våŸå…ˆçš„æ›¾ç¥–çˆ¶*ggä¸å­˜åœ¨ï¼Œåˆ™*vç°åœ¨åº”ä¸ºæ ‘æ ¹
+      else //å¦åˆ™ï¼Œ*ggæ­¤ååº”è¯¥ä»¥*vä½œä¸ºå·¦æˆ–å³å­©å­
          ( g == gg->lc ) ? attachAsLChild ( gg, v ) : attachAsRChild ( gg, v );
       updateHeight ( g ); updateHeight ( p ); updateHeight ( v );
-   } //Ë«²ãÉìÕ¹½áÊøÊ±£¬±ØÓĞg == NULL£¬µ«p¿ÉÄÜ·Ç¿Õ
-   if ( p = v->parent ) { //Èôp¹ûÕæ·Ç¿Õ£¬Ôò¶îÍâÔÙ×öÒ»´Îµ¥Ğı
+   } //åŒå±‚ä¼¸å±•ç»“æŸæ—¶ï¼Œå¿…æœ‰g == NULLï¼Œä½†på¯èƒ½éç©º
+   if ( p = v->parent ) { //è‹¥pæœçœŸéç©ºï¼Œåˆ™é¢å¤–å†åšä¸€æ¬¡å•æ—‹
       /*DSA*/if ( IsLChild ( *v ) ) { printf ( "\tzIg :" ); print ( p ); print ( v ); printf ( "\n" ); }
       /*DSA*/else              { printf ( "\tzAg :" ); print ( p ); print ( v ); printf ( "\n" ); }
       if ( IsLChild ( *v ) ) { attachAsLChild ( p, v->rc ); attachAsRChild ( v, p ); }
@@ -51,4 +51,4 @@ BinNodePosi(T) Splay<T>::splay ( BinNodePosi(T) v ) { //vÎªÒò×î½ü·ÃÎÊ¶øĞèÉìÕ¹µÄ½
       updateHeight ( p ); updateHeight ( v );
    }
    v->parent = NULL; return v;
-} //µ÷ÕûÖ®ºóĞÂÊ÷¸ùÓ¦Îª±»ÉìÕ¹µÄ½Úµã£¬¹Ê·µ»Ø¸Ã½ÚµãµÄÎ»ÖÃÒÔ±ãÉÏ²ãº¯Êı¸üĞÂÊ÷¸ù
+} //è°ƒæ•´ä¹‹åæ–°æ ‘æ ¹åº”ä¸ºè¢«ä¼¸å±•çš„èŠ‚ç‚¹ï¼Œæ•…è¿”å›è¯¥èŠ‚ç‚¹çš„ä½ç½®ä»¥ä¾¿ä¸Šå±‚å‡½æ•°æ›´æ–°æ ‘æ ¹

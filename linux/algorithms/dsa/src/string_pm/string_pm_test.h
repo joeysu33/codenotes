@@ -14,10 +14,10 @@
 
 #define printString(s) { for (size_t m = strlen(s), k = 0; k < m; k++) printf("%4c", (s)[k]); }
 
-void showProgress ( char*, char*, int, int ); //ÏÔÊ¾Ëã·¨½ø³Ì
-void printNext ( int*, int, int ); //´òÓ¡Next±í
-int* buildNext ( char* ); //¹¹ÔìNext±í
-void printBC ( int* ); //´òÓ¡BC±í
-int* buildBC ( char* ); //¹¹ÔìBC±í
-void printGS ( char*, int* ); //´òÓ¡GS±í
-int* buildGS ( char* ); //¹¹ÔìGS±í
+void showProgress ( char*, char*, int, int ); //æ˜¾ç¤ºç®—æ³•è¿›ç¨‹
+void printNext ( int*, int, int ); //æ‰“å°Nextè¡¨
+int* buildNext ( char* ); //æž„é€ Nextè¡¨
+void printBC ( int* ); //æ‰“å°BCè¡¨
+int* buildBC ( char* ); //æž„é€ BCè¡¨
+void printGS ( char*, int* ); //æ‰“å°GSè¡¨
+int* buildGS ( char* ); //æž„é€ GSè¡¨

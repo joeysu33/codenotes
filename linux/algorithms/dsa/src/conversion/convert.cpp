@@ -8,14 +8,14 @@
 
 /*DSA*/#include "convert.h"
 
-void convert ( Stack<char>& S, __int64 n, int base ) { //Ê®½øÖÆÊınµ½base½øÖÆµÄ×ª»»£¨µü´ú°æ£©
-   static char digit[] //0 < n, 1 < base <= 16£¬ĞÂ½øÖÆÏÂµÄÊıÎ»·ûºÅ£¬¿ÉÊÓbaseÈ¡Öµ·¶Î§ÊÊµ±À©³ä
+void convert ( Stack<char>& S, __int64 n, int base ) { //åè¿›åˆ¶æ•°nåˆ°baseè¿›åˆ¶çš„è½¬æ¢ï¼ˆè¿­ä»£ç‰ˆï¼‰
+   static char digit[] //0 < n, 1 < base <= 16ï¼Œæ–°è¿›åˆ¶ä¸‹çš„æ•°ä½ç¬¦å·ï¼Œå¯è§†baseå–å€¼èŒƒå›´é€‚å½“æ‰©å……
    = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-   while ( n > 0 ) { //ÓÉµÍµ½¸ß£¬ÖğÒ»¼ÆËã³öĞÂ½øÖÆÏÂµÄ¸÷ÊıÎ»
-      int remainder = ( int ) ( n % base ); S.push ( digit[remainder] ); //ÓàÊı£¨µ±Ç°Î»£©ÈëÕ»
+   while ( n > 0 ) { //ç”±ä½åˆ°é«˜ï¼Œé€ä¸€è®¡ç®—å‡ºæ–°è¿›åˆ¶ä¸‹çš„å„æ•°ä½
+      int remainder = ( int ) ( n % base ); S.push ( digit[remainder] ); //ä½™æ•°ï¼ˆå½“å‰ä½ï¼‰å…¥æ ˆ
       /*DSA*/printf ( "%20I64d =", n );
-      n /= base; //n¸üĞÂÎªÆä¶ÔbaseµÄ³ıÉÌ
+      n /= base; //næ›´æ–°ä¸ºå…¶å¯¹baseçš„é™¤å•†
       /*DSA*/printf ( "%20I64d * %d + %d\n", n, base, remainder );
       /*DSA*/print ( S );   getchar();
    }
-} //ĞÂ½øÖÆÏÂÓÉ¸ßµ½µÍµÄ¸÷ÊıÎ»£¬×Ô¶¥¶øÏÂ±£´æÓÚÕ»SÖĞ
+} //æ–°è¿›åˆ¶ä¸‹ç”±é«˜åˆ°ä½çš„å„æ•°ä½ï¼Œè‡ªé¡¶è€Œä¸‹ä¿å­˜äºæ ˆSä¸­

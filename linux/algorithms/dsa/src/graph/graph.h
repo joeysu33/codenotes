@@ -8,56 +8,56 @@
 
 #pragma once
 
-typedef enum { UNDISCOVERED, DISCOVERED, VISITED } VStatus; //¶¥µã×´Ì¬
-typedef enum { UNDETERMINED, TREE, CROSS, FORWARD, BACKWARD } EType; //±ßÔÚ±éÀúÊ÷ÖĞËùÊôµÄÀàĞÍ
+typedef enum { UNDISCOVERED, DISCOVERED, VISITED } VStatus; //é¡¶ç‚¹çŠ¶æ€
+typedef enum { UNDETERMINED, TREE, CROSS, FORWARD, BACKWARD } EType; //è¾¹åœ¨éå†æ ‘ä¸­æ‰€å±çš„ç±»å‹
 
-template <typename Tv, typename Te> //¶¥µãÀàĞÍ¡¢±ßÀàĞÍ
-class Graph { //Í¼GraphÄ£°åÀà
+template <typename Tv, typename Te> //é¡¶ç‚¹ç±»å‹ã€è¾¹ç±»å‹
+class Graph { //å›¾Graphæ¨¡æ¿ç±»
 private:
-   void reset() { //ËùÓĞ¶¥µã¡¢±ßµÄ¸¨ÖúĞÅÏ¢¸´Î»
-      for ( int i = 0; i < n; i++ ) { //ËùÓĞ¶¥µãµÄ
-         status ( i ) = UNDISCOVERED; dTime ( i ) = fTime ( i ) = -1; //×´Ì¬£¬Ê±¼ä±êÇ©
-         parent ( i ) = -1; priority ( i ) = INT_MAX; //£¨ÔÚ±éÀúÊ÷ÖĞµÄ£©¸¸½Úµã£¬ÓÅÏÈ¼¶Êı
-         for ( int j = 0; j < n; j++ ) //ËùÓĞ±ßµÄ
-            if ( exists ( i, j ) ) type ( i, j ) = UNDETERMINED; //ÀàĞÍ
+   void reset() { //æ‰€æœ‰é¡¶ç‚¹ã€è¾¹çš„è¾…åŠ©ä¿¡æ¯å¤ä½
+      for ( int i = 0; i < n; i++ ) { //æ‰€æœ‰é¡¶ç‚¹çš„
+         status ( i ) = UNDISCOVERED; dTime ( i ) = fTime ( i ) = -1; //çŠ¶æ€ï¼Œæ—¶é—´æ ‡ç­¾
+         parent ( i ) = -1; priority ( i ) = INT_MAX; //ï¼ˆåœ¨éå†æ ‘ä¸­çš„ï¼‰çˆ¶èŠ‚ç‚¹ï¼Œä¼˜å…ˆçº§æ•°
+         for ( int j = 0; j < n; j++ ) //æ‰€æœ‰è¾¹çš„
+            if ( exists ( i, j ) ) type ( i, j ) = UNDETERMINED; //ç±»å‹
       }
    }
-   void BFS ( int, int& ); //£¨Á¬Í¨Óò£©¹ã¶ÈÓÅÏÈËÑË÷Ëã·¨
-   void DFS ( int, int& ); //£¨Á¬Í¨Óò£©Éî¶ÈÓÅÏÈËÑË÷Ëã·¨
-   void BCC ( int, int&, Stack<int>& ); //£¨Á¬Í¨Óò£©»ùÓÚDFSµÄË«Á¬Í¨·ÖÁ¿·Ö½âËã·¨
-   bool TSort ( int, int&, Stack<Tv>* ); //£¨Á¬Í¨Óò£©»ùÓÚDFSµÄÍØÆËÅÅĞòËã·¨
-   template <typename PU> void PFS ( int, PU ); //£¨Á¬Í¨Óò£©ÓÅÏÈ¼¶ËÑË÷¿ò¼Ü
+   void BFS ( int, int& ); //ï¼ˆè¿é€šåŸŸï¼‰å¹¿åº¦ä¼˜å…ˆæœç´¢ç®—æ³•
+   void DFS ( int, int& ); //ï¼ˆè¿é€šåŸŸï¼‰æ·±åº¦ä¼˜å…ˆæœç´¢ç®—æ³•
+   void BCC ( int, int&, Stack<int>& ); //ï¼ˆè¿é€šåŸŸï¼‰åŸºäºDFSçš„åŒè¿é€šåˆ†é‡åˆ†è§£ç®—æ³•
+   bool TSort ( int, int&, Stack<Tv>* ); //ï¼ˆè¿é€šåŸŸï¼‰åŸºäºDFSçš„æ‹“æ‰‘æ’åºç®—æ³•
+   template <typename PU> void PFS ( int, PU ); //ï¼ˆè¿é€šåŸŸï¼‰ä¼˜å…ˆçº§æœç´¢æ¡†æ¶
 public:
-// ¶¥µã
-   int n; //¶¥µã×ÜÊı
-   virtual int insert ( Tv const& ) = 0; //²åÈë¶¥µã£¬·µ»Ø±àºÅ
-   virtual Tv remove ( int ) = 0; //É¾³ı¶¥µã¼°Æä¹ØÁª±ß£¬·µ»Ø¸Ã¶¥µãĞÅÏ¢
-   virtual Tv& vertex ( int ) = 0; //¶¥µãvµÄÊı¾İ£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
-   virtual int inDegree ( int ) = 0; //¶¥µãvµÄÈë¶È£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
-   virtual int outDegree ( int ) = 0; //¶¥µãvµÄ³ö¶È£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
-   virtual int firstNbr ( int ) = 0; //¶¥µãvµÄÊ×¸öÁÚ½Ó¶¥µã
-   virtual int nextNbr ( int, int ) = 0; //¶¥µãvµÄ£¨Ïà¶ÔÓÚ¶¥µãjµÄ£©ÏÂÒ»ÁÚ½Ó¶¥µã
-   virtual VStatus& status ( int ) = 0; //¶¥µãvµÄ×´Ì¬
-   virtual int& dTime ( int ) = 0; //¶¥µãvµÄÊ±¼ä±êÇ©dTime
-   virtual int& fTime ( int ) = 0; //¶¥µãvµÄÊ±¼ä±êÇ©fTime
-   virtual int& parent ( int ) = 0; //¶¥µãvÔÚ±éÀúÊ÷ÖĞµÄ¸¸Ç×
-   virtual int& priority ( int ) = 0; //¶¥µãvÔÚ±éÀúÊ÷ÖĞµÄÓÅÏÈ¼¶Êı
-// ±ß£ºÕâÀïÔ¼¶¨£¬ÎŞÏò±ß¾ùÍ³Ò»×ª»¯Îª·½Ïò»¥ÄæµÄÒ»¶ÔÓĞÏò±ß£¬´Ó¶ø½«ÎŞÏòÍ¼ÊÓ×÷ÓĞÏòÍ¼µÄÌØÀı
-   int e; //±ß×ÜÊı
-   virtual bool exists ( int, int ) = 0; //±ß(v, u)ÊÇ·ñ´æÔÚ
-   virtual void insert ( Te const&, int, int, int ) = 0; //ÔÚ¶¥µãvºÍuÖ®¼ä²åÈëÈ¨ÖØÎªwµÄ±ße
-   virtual Te remove ( int, int ) = 0; //É¾³ı¶¥µãvºÍuÖ®¼äµÄ±ße£¬·µ»Ø¸Ã±ßĞÅÏ¢
-   virtual EType & type ( int, int ) = 0; //±ß(v, u)µÄÀàĞÍ
-   virtual Te& edge ( int, int ) = 0; //±ß(v, u)µÄÊı¾İ£¨¸Ã±ßµÄÈ·´æÔÚ£©
-   virtual int& weight ( int, int ) = 0; //±ß(v, u)µÄÈ¨ÖØ
-// Ëã·¨
-   void bfs ( int ); //¹ã¶ÈÓÅÏÈËÑË÷Ëã·¨
-   void dfs ( int ); //Éî¶ÈÓÅÏÈËÑË÷Ëã·¨
-   void bcc ( int ); //»ùÓÚDFSµÄË«Á¬Í¨·ÖÁ¿·Ö½âËã·¨
-   Stack<Tv>* tSort ( int ); //»ùÓÚDFSµÄÍØÆËÅÅĞòËã·¨
-   void prim ( int ); //×îĞ¡Ö§³ÅÊ÷PrimËã·¨
-   void dijkstra ( int ); //×î¶ÌÂ·¾¶DijkstraËã·¨
-   template <typename PU> void pfs ( int, PU ); //ÓÅÏÈ¼¶ËÑË÷¿ò¼Ü
+// é¡¶ç‚¹
+   int n; //é¡¶ç‚¹æ€»æ•°
+   virtual int insert ( Tv const& ) = 0; //æ’å…¥é¡¶ç‚¹ï¼Œè¿”å›ç¼–å·
+   virtual Tv remove ( int ) = 0; //åˆ é™¤é¡¶ç‚¹åŠå…¶å…³è”è¾¹ï¼Œè¿”å›è¯¥é¡¶ç‚¹ä¿¡æ¯
+   virtual Tv& vertex ( int ) = 0; //é¡¶ç‚¹vçš„æ•°æ®ï¼ˆè¯¥é¡¶ç‚¹çš„ç¡®å­˜åœ¨ï¼‰
+   virtual int inDegree ( int ) = 0; //é¡¶ç‚¹vçš„å…¥åº¦ï¼ˆè¯¥é¡¶ç‚¹çš„ç¡®å­˜åœ¨ï¼‰
+   virtual int outDegree ( int ) = 0; //é¡¶ç‚¹vçš„å‡ºåº¦ï¼ˆè¯¥é¡¶ç‚¹çš„ç¡®å­˜åœ¨ï¼‰
+   virtual int firstNbr ( int ) = 0; //é¡¶ç‚¹vçš„é¦–ä¸ªé‚»æ¥é¡¶ç‚¹
+   virtual int nextNbr ( int, int ) = 0; //é¡¶ç‚¹vçš„ï¼ˆç›¸å¯¹äºé¡¶ç‚¹jçš„ï¼‰ä¸‹ä¸€é‚»æ¥é¡¶ç‚¹
+   virtual VStatus& status ( int ) = 0; //é¡¶ç‚¹vçš„çŠ¶æ€
+   virtual int& dTime ( int ) = 0; //é¡¶ç‚¹vçš„æ—¶é—´æ ‡ç­¾dTime
+   virtual int& fTime ( int ) = 0; //é¡¶ç‚¹vçš„æ—¶é—´æ ‡ç­¾fTime
+   virtual int& parent ( int ) = 0; //é¡¶ç‚¹våœ¨éå†æ ‘ä¸­çš„çˆ¶äº²
+   virtual int& priority ( int ) = 0; //é¡¶ç‚¹våœ¨éå†æ ‘ä¸­çš„ä¼˜å…ˆçº§æ•°
+// è¾¹ï¼šè¿™é‡Œçº¦å®šï¼Œæ— å‘è¾¹å‡ç»Ÿä¸€è½¬åŒ–ä¸ºæ–¹å‘äº’é€†çš„ä¸€å¯¹æœ‰å‘è¾¹ï¼Œä»è€Œå°†æ— å‘å›¾è§†ä½œæœ‰å‘å›¾çš„ç‰¹ä¾‹
+   int e; //è¾¹æ€»æ•°
+   virtual bool exists ( int, int ) = 0; //è¾¹(v, u)æ˜¯å¦å­˜åœ¨
+   virtual void insert ( Te const&, int, int, int ) = 0; //åœ¨é¡¶ç‚¹vå’Œuä¹‹é—´æ’å…¥æƒé‡ä¸ºwçš„è¾¹e
+   virtual Te remove ( int, int ) = 0; //åˆ é™¤é¡¶ç‚¹vå’Œuä¹‹é—´çš„è¾¹eï¼Œè¿”å›è¯¥è¾¹ä¿¡æ¯
+   virtual EType & type ( int, int ) = 0; //è¾¹(v, u)çš„ç±»å‹
+   virtual Te& edge ( int, int ) = 0; //è¾¹(v, u)çš„æ•°æ®ï¼ˆè¯¥è¾¹çš„ç¡®å­˜åœ¨ï¼‰
+   virtual int& weight ( int, int ) = 0; //è¾¹(v, u)çš„æƒé‡
+// ç®—æ³•
+   void bfs ( int ); //å¹¿åº¦ä¼˜å…ˆæœç´¢ç®—æ³•
+   void dfs ( int ); //æ·±åº¦ä¼˜å…ˆæœç´¢ç®—æ³•
+   void bcc ( int ); //åŸºäºDFSçš„åŒè¿é€šåˆ†é‡åˆ†è§£ç®—æ³•
+   Stack<Tv>* tSort ( int ); //åŸºäºDFSçš„æ‹“æ‰‘æ’åºç®—æ³•
+   void prim ( int ); //æœ€å°æ”¯æ’‘æ ‘Primç®—æ³•
+   void dijkstra ( int ); //æœ€çŸ­è·¯å¾„Dijkstraç®—æ³•
+   template <typename PU> void pfs ( int, PU ); //ä¼˜å…ˆçº§æœç´¢æ¡†æ¶
 };
 
 #include "Graph_implementation.h"

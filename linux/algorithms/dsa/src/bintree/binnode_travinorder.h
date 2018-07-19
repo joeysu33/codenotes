@@ -8,19 +8,19 @@
 
 #pragma once
 
-/*DSA*/#include "../stack/Stack.h" //ÒıÈëÕ»Ä£°åÀà
+/*DSA*/#include "../stack/Stack.h" //å¼•å…¥æ ˆæ¨¡æ¿ç±»
 /*DSA*/#include "BinNode_TravInorder_R.h"
 /*DSA*/#include "BinNode_TravInorder_I1.h"
 /*DSA*/#include "BinNode_TravInorder_I2.h"
 /*DSA*/#include "BinNode_TravInorder_I3.h"
 /*DSA*/#include "BinNode_TravInorder_I4.h"
-template <typename T> template <typename VST> //ÔªËØÀàĞÍ¡¢²Ù×÷Æ÷
-void BinNode<T>::travIn ( VST& visit ) { //¶ş²æÊ÷ÖĞĞò±éÀúËã·¨Í³Ò»Èë¿Ú
-   switch ( rand() % 5 ) { //´Ë´¦ÔİËæ»úÑ¡ÔñÒÔ×ö²âÊÔ£¬¹²ÎåÖÖÑ¡Ôñ
-      case 1: travIn_I1 ( this, visit ); break; //µü´ú°æ#1
-      case 2: travIn_I2 ( this, visit ); break; //µü´ú°æ#2
-      case 3: travIn_I3 ( this, visit ); break; //µü´ú°æ#3
-      case 4: travIn_I4 ( this, visit ); break; //µü´ú°æ#4
-      default: travIn_R ( this, visit ); break; //µİ¹é°æ
+template <typename T> template <typename VST> //å…ƒç´ ç±»å‹ã€æ“ä½œå™¨
+void BinNode<T>::travIn ( VST& visit ) { //äºŒå‰æ ‘ä¸­åºéå†ç®—æ³•ç»Ÿä¸€å…¥å£
+   switch ( rand() % 5 ) { //æ­¤å¤„æš‚éšæœºé€‰æ‹©ä»¥åšæµ‹è¯•ï¼Œå…±äº”ç§é€‰æ‹©
+      case 1: travIn_I1 ( this, visit ); break; //è¿­ä»£ç‰ˆ#1
+      case 2: travIn_I2 ( this, visit ); break; //è¿­ä»£ç‰ˆ#2
+      case 3: travIn_I3 ( this, visit ); break; //è¿­ä»£ç‰ˆ#3
+      case 4: travIn_I4 ( this, visit ); break; //è¿­ä»£ç‰ˆ#4
+      default: travIn_R ( this, visit ); break; //é€’å½’ç‰ˆ
    }
 }

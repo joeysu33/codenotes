@@ -8,11 +8,11 @@
 
 #pragma once
 
-template <typename T> //¸´ÖÆÁĞ±íÖĞ×ÔÎ»ÖÃpÆğµÄnÏî£¨assert: pÎªºÏ·¨Î»ÖÃ£¬ÇÒÖÁÉÙÓĞn-1¸öºó¼Ì½Úµã£©
+template <typename T> //å¤åˆ¶åˆ—è¡¨ä¸­è‡ªä½ç½®pèµ·çš„né¡¹ï¼ˆassert: pä¸ºåˆæ³•ä½ç½®ï¼Œä¸”è‡³å°‘æœ‰n-1ä¸ªåç»§èŠ‚ç‚¹ï¼‰
 List<T>::List ( ListNodePosi(T) p, int n ) { copyNodes ( p, n ); }
 
-template <typename T> //ÕûÌå¸´ÖÆÁĞ±íL
+template <typename T> //æ•´ä½“å¤åˆ¶åˆ—è¡¨L
 List<T>::List ( List<T> const& L ) { copyNodes ( L.first(), L._size ); }
 
-template <typename T> //¸´ÖÆLÖĞ×ÔµÚrÏîÆğµÄnÏî£¨assert: r+n <= L._size£©
+template <typename T> //å¤åˆ¶Lä¸­è‡ªç¬¬ré¡¹èµ·çš„né¡¹ï¼ˆassert: r+n <= L._sizeï¼‰
 List<T>::List ( List<T> const& L, int r, int n ) { copyNodes ( L[r], n ); }

@@ -7,20 +7,20 @@
  ******************************************************************************************/
 
 /*DSA*/#include "PFC_test.h"
-int main ( int argc, char* argv[] ) { //PFC±àÂë¡¢½âÂëËã·¨Í³Ò»²âÊÔÈë¿Ú
+int main ( int argc, char* argv[] ) { //PFCç¼–ç ã€è§£ç ç®—æ³•ç»Ÿä¸€æµ‹è¯•å…¥å£
    /*DSA*/if ( 2 > argc ) { printf ( "Usage: %s <message#1> [message#2] ...\a\n", argv[0] ); return -1; }
-   PFCForest* forest = initForest(); //³õÊ¼»¯PFCÉ­ÁÖ
-   PFCTree* tree = generateTree ( forest ); release ( forest ); //Éú³ÉPFC±àÂëÊ÷
+   PFCForest* forest = initForest(); //åˆå§‹åŒ–PFCæ£®æ—
+   PFCTree* tree = generateTree ( forest ); release ( forest ); //ç”ŸæˆPFCç¼–ç æ ‘
    /*DSA*/print ( tree );
-   PFCTable* table = generateTable ( tree ); //½«PFC±àÂëÊ÷×ª»»Îª±àÂë±í
-   /*DSA*/for ( int i = 0; i < N_CHAR; i++ ) printf ( " %c: %s\n", i + 0x20, * ( table->get ( i + 0x20 ) ) ); //Êä³ö±àÂë±í
-   for ( int i = 1; i < argc; i++ ) { //¶ÔÓÚÃüÁîĞĞ´«ÈëµÄÃ¿Ò»Ã÷ÎÄ´®
-      /*DSA*/printf ( "\nEncoding: %s\n", argv[i] ); //¿ªÊ¼±àÂë
-      Bitmap codeString; //¶ş½øÖÆ±àÂë´®
-      int n = encode ( table, codeString, argv[i] ); //½«¸ù¾İ±àÂë±íÉú³É£¨³¤¶ÈÎªn£©
-      /*DSA*/printf ( "%s\n", codeString.bits2string ( n ) ); //Êä³öµ±Ç°ÎÄ±¾µÄ±àÂë´®
-      /*DSA*/printf ( "Decoding: " ); //¿ªÊ¼½âÂë
-      decode ( tree, codeString, n ); //ÀûÓÃ±àÂëÊ÷£¬¶Ô³¤¶ÈÎªnµÄ¶ş½øÖÆ±àÂë´®½âÂë£¨Ö±½ÓÊä³ö£©
+   PFCTable* table = generateTable ( tree ); //å°†PFCç¼–ç æ ‘è½¬æ¢ä¸ºç¼–ç è¡¨
+   /*DSA*/for ( int i = 0; i < N_CHAR; i++ ) printf ( " %c: %s\n", i + 0x20, * ( table->get ( i + 0x20 ) ) ); //è¾“å‡ºç¼–ç è¡¨
+   for ( int i = 1; i < argc; i++ ) { //å¯¹äºå‘½ä»¤è¡Œä¼ å…¥çš„æ¯ä¸€æ˜æ–‡ä¸²
+      /*DSA*/printf ( "\nEncoding: %s\n", argv[i] ); //å¼€å§‹ç¼–ç 
+      Bitmap codeString; //äºŒè¿›åˆ¶ç¼–ç ä¸²
+      int n = encode ( table, codeString, argv[i] ); //å°†æ ¹æ®ç¼–ç è¡¨ç”Ÿæˆï¼ˆé•¿åº¦ä¸ºnï¼‰
+      /*DSA*/printf ( "%s\n", codeString.bits2string ( n ) ); //è¾“å‡ºå½“å‰æ–‡æœ¬çš„ç¼–ç ä¸²
+      /*DSA*/printf ( "Decoding: " ); //å¼€å§‹è§£ç 
+      decode ( tree, codeString, n ); //åˆ©ç”¨ç¼–ç æ ‘ï¼Œå¯¹é•¿åº¦ä¸ºnçš„äºŒè¿›åˆ¶ç¼–ç ä¸²è§£ç ï¼ˆç›´æ¥è¾“å‡ºï¼‰
    }
-   release ( table ); release ( tree ); return 0; //ÊÍ·Å±àÂë±í¡¢±àÂëÊ÷
+   release ( table ); release ( tree ); return 0; //é‡Šæ”¾ç¼–ç è¡¨ã€ç¼–ç æ ‘
 }

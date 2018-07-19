@@ -8,8 +8,8 @@
 
 #include "../queen_brute_force_1/queen.h"
 
-void place5Queens() { //5皇后剪枝算法
-   int solu[5]; //解法
+void place5Queens() { //5鐨囧悗鍓灊绠楁硶
+   int solu[5]; //瑙ｆ硶
    for ( solu[0] = 0; solu[0] < 5; solu[0]++ )
       if ( !collide ( solu, 0 ) )
          for ( solu[1] = 0; solu[1] < 5; solu[1]++ )

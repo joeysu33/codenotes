@@ -9,7 +9,7 @@
 #pragma once
 
 template <typename T> BinNodePosi(T) BinNode<T>::insertAsLC ( T const& e )
-{ return lc = new BinNode ( e, this ); } //½«e×÷Îªµ±Ç°½ÚµãµÄ×óº¢×Ó²åÈë¶ş²æÊ÷
+{ return lc = new BinNode ( e, this ); } //å°†eä½œä¸ºå½“å‰èŠ‚ç‚¹çš„å·¦å­©å­æ’å…¥äºŒå‰æ ‘
 
 template <typename T> BinNodePosi(T) BinNode<T>::insertAsRC ( T const& e )
-{ return rc = new BinNode ( e, this ); } //½«e×÷Îªµ±Ç°½ÚµãµÄÓÒº¢×Ó²åÈë¶ş²æÊ÷
+{ return rc = new BinNode ( e, this ); } //å°†eä½œä¸ºå½“å‰èŠ‚ç‚¹çš„å³å­©å­æ’å…¥äºŒå‰æ ‘

@@ -8,9 +8,9 @@
 
 #pragma once
 
-template <typename T> int BinNode<T>::size() { //Í³¼Æµ±Ç°½Úµãºó´ú×ÜÊı£¬¼´ÒÔÆäÎª¸ùµÄ×ÓÊ÷¹æÄ£
-   int s = 1; //¼ÆÈë±¾Éí
-   if ( lc ) s += lc->size(); //µİ¹é¼ÆÈë×ó×ÓÊ÷¹æÄ£
-   if ( rc ) s += rc->size(); //µİ¹é¼ÆÈëÓÒ×ÓÊ÷¹æÄ£
+template <typename T> int BinNode<T>::size() { //ç»Ÿè®¡å½“å‰èŠ‚ç‚¹åä»£æ€»æ•°ï¼Œå³ä»¥å…¶ä¸ºæ ¹çš„å­æ ‘è§„æ¨¡
+   int s = 1; //è®¡å…¥æœ¬èº«
+   if ( lc ) s += lc->size(); //é€’å½’è®¡å…¥å·¦å­æ ‘è§„æ¨¡
+   if ( rc ) s += rc->size(); //é€’å½’è®¡å…¥å³å­æ ‘è§„æ¨¡
    return s;
 }

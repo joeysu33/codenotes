@@ -8,10 +8,10 @@
 
 #pragma once
 
-template <typename T> void List<T>::init() { //ÁĞ±í³õÊ¼»¯£¬ÔÚ´´½¨ÁĞ±í¶ÔÏóÊ±Í³Ò»µ÷ÓÃ
-   header = new ListNode<T>; //´´½¨Í·ÉÚ±ø½Úµã
-   trailer = new ListNode<T>; //´´½¨Î²ÉÚ±ø½Úµã
+template <typename T> void List<T>::init() { //åˆ—è¡¨åˆå§‹åŒ–ï¼Œåœ¨åˆ›å»ºåˆ—è¡¨å¯¹è±¡æ—¶ç»Ÿä¸€è°ƒç”¨
+   header = new ListNode<T>; //åˆ›å»ºå¤´å“¨å…µèŠ‚ç‚¹
+   trailer = new ListNode<T>; //åˆ›å»ºå°¾å“¨å…µèŠ‚ç‚¹
    header->succ = trailer; header->pred = NULL;
    trailer->pred = header; trailer->succ = NULL;
-   _size = 0; //¼ÇÂ¼¹æÄ£
+   _size = 0; //è®°å½•è§„æ¨¡
 }

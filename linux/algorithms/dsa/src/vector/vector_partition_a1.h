@@ -8,18 +8,18 @@
 
 #pragma once
 
-template <typename T> //Öáµã¹¹ÔìËã·¨£ºÍ¨¹ýµ÷ÕûÔªËØÎ»ÖÃ¹¹ÔìÇø¼ä[lo, hi]µÄÖáµã£¬²¢·µ»ØÆäÖÈ
-Rank Vector<T>::partition ( Rank lo, Rank hi ) { //°æ±¾A1£ºÓë°æ±¾AµÈ¼Û£¬¿ÉÖ±½Ó×ªÖÁÓë°æ±¾BµÈ¼ÛµÄ°æ±¾B1
-   swap ( _elem[lo], _elem[lo + rand() % ( hi-lo+1 ) ] ); //ÈÎÑ¡Ò»¸öÔªËØÓëÊ×ÔªËØ½»»»
-   T pivot = _elem[lo]; //ÒÔÊ×ÔªËØÎªºòÑ¡Öáµã¡ª¡ª¾­ÒÔÉÏ½»»»£¬µÈÐ§ÓÚËæ»úÑ¡È¡
-   while ( lo < hi ) { //´ÓÏòÁ¿µÄÁ½¶Ë½»ÌæµØÏòÖÐ¼äÉ¨Ãè
-      while ( ( lo < hi ) && ( pivot <= _elem[hi] ) ) //ÔÚ²»Ð¡ÓÚpivotµÄÇ°ÌáÏÂ
-         hi--; //Ïò×óÍØÕ¹ÓÒ¶Ë×ÓÏòÁ¿
-      if ( lo < hi ) _elem[lo++] = _elem[hi]; //Ð¡ÓÚpivotÕß¹éÈë×ó²à×ÓÏòÁ¿
-      while ( ( lo < hi ) && ( _elem[lo] <= pivot ) ) //ÔÚ±£Ö¤²»´óÓÚpivotµÄÇ°ÌáÏÂ
-         lo++; //ÏòÓÒÍØÕ¹×ó¶Ë×ÓÏòÁ¿
-      if ( lo < hi ) _elem[hi--] = _elem[lo]; //´óÓÚpivotÕß¹éÈëÓÒ²à×ÓÏòÁ¿
+template <typename T> //è½´ç‚¹æž„é€ ç®—æ³•ï¼šé€šè¿‡è°ƒæ•´å…ƒç´ ä½ç½®æž„é€ åŒºé—´[lo, hi]çš„è½´ç‚¹ï¼Œå¹¶è¿”å›žå…¶ç§©
+Rank Vector<T>::partition ( Rank lo, Rank hi ) { //ç‰ˆæœ¬A1ï¼šä¸Žç‰ˆæœ¬Aç­‰ä»·ï¼Œå¯ç›´æŽ¥è½¬è‡³ä¸Žç‰ˆæœ¬Bç­‰ä»·çš„ç‰ˆæœ¬B1
+   swap ( _elem[lo], _elem[lo + rand() % ( hi-lo+1 ) ] ); //ä»»é€‰ä¸€ä¸ªå…ƒç´ ä¸Žé¦–å…ƒç´ äº¤æ¢
+   T pivot = _elem[lo]; //ä»¥é¦–å…ƒç´ ä¸ºå€™é€‰è½´ç‚¹â€”â€”ç»ä»¥ä¸Šäº¤æ¢ï¼Œç­‰æ•ˆäºŽéšæœºé€‰å–
+   while ( lo < hi ) { //ä»Žå‘é‡çš„ä¸¤ç«¯äº¤æ›¿åœ°å‘ä¸­é—´æ‰«æ
+      while ( ( lo < hi ) && ( pivot <= _elem[hi] ) ) //åœ¨ä¸å°äºŽpivotçš„å‰æä¸‹
+         hi--; //å‘å·¦æ‹“å±•å³ç«¯å­å‘é‡
+      if ( lo < hi ) _elem[lo++] = _elem[hi]; //å°äºŽpivotè€…å½’å…¥å·¦ä¾§å­å‘é‡
+      while ( ( lo < hi ) && ( _elem[lo] <= pivot ) ) //åœ¨ä¿è¯ä¸å¤§äºŽpivotçš„å‰æä¸‹
+         lo++; //å‘å³æ‹“å±•å·¦ç«¯å­å‘é‡
+      if ( lo < hi ) _elem[hi--] = _elem[lo]; //å¤§äºŽpivotè€…å½’å…¥å³ä¾§å­å‘é‡
    } //assert: lo == hi
-   _elem[lo] = pivot; //½«±¸·ÝµÄÖáµã¼ÇÂ¼ÖÃÓÚÇ°¡¢ºó×ÓÏòÁ¿Ö®¼ä
-   return lo; //·µ»ØÖáµãµÄÖÈ
+   _elem[lo] = pivot; //å°†å¤‡ä»½çš„è½´ç‚¹è®°å½•ç½®äºŽå‰ã€åŽå­å‘é‡ä¹‹é—´
+   return lo; //è¿”å›žè½´ç‚¹çš„ç§©
 }

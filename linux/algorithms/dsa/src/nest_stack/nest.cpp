@@ -8,16 +8,16 @@
 
 /*DSA*/#include "nest.h"
 
-bool paren ( const char exp[], int lo, int hi ) { //±í´ïÊ½À¨ºÅÆ¥Åä¼ì²é£¬¿É¼æ¹ËÈıÖÖÀ¨ºÅ
-   Stack<char> S; //Ê¹ÓÃÕ»¼ÇÂ¼ÒÑ·¢ÏÖµ«ÉĞÎ´Æ¥ÅäµÄ×óÀ¨ºÅ
-   for ( int i = lo; i <= hi; i++ ) /* ÖğÒ»¼ì²éµ±Ç°×Ö·û */ /*DSA*/{
-      switch ( exp[i] ) { //×óÀ¨ºÅÖ±½Ó½øÕ»£»ÓÒÀ¨ºÅÈôÓëÕ»¶¥Ê§Åä£¬Ôò±í´ïÊ½±Ø²»Æ¥Åä
+bool paren ( const char exp[], int lo, int hi ) { //è¡¨è¾¾å¼æ‹¬å·åŒ¹é…æ£€æŸ¥ï¼Œå¯å…¼é¡¾ä¸‰ç§æ‹¬å·
+   Stack<char> S; //ä½¿ç”¨æ ˆè®°å½•å·²å‘ç°ä½†å°šæœªåŒ¹é…çš„å·¦æ‹¬å·
+   for ( int i = lo; i <= hi; i++ ) /* é€ä¸€æ£€æŸ¥å½“å‰å­—ç¬¦ */ /*DSA*/{
+      switch ( exp[i] ) { //å·¦æ‹¬å·ç›´æ¥è¿›æ ˆï¼›å³æ‹¬å·è‹¥ä¸æ ˆé¡¶å¤±é…ï¼Œåˆ™è¡¨è¾¾å¼å¿…ä¸åŒ¹é…
          case '(': case '[': case '{': S.push ( exp[i] ); break;
          case ')': if ( ( S.empty() ) || ( '(' != S.pop() ) ) return false; break;
          case ']': if ( ( S.empty() ) || ( '[' != S.pop() ) ) return false; break;
          case '}': if ( ( S.empty() ) || ( '{' != S.pop() ) ) return false; break;
-         default: break; //·ÇÀ¨ºÅ×Ö·ûÒ»ÂÉºöÂÔ
+         default: break; //éæ‹¬å·å­—ç¬¦ä¸€å¾‹å¿½ç•¥
       /*DSA*/} displayProgress ( exp, i, S );
    }
-   return S.empty(); //Õû¸ö±í´ïÊ½É¨Ãè¹ıºó£¬Õ»ÖĞÈôÈÔ²ĞÁô£¨×ó£©À¨ºÅ£¬Ôò²»Æ¥Åä£»·ñÔò£¨Õ»¿Õ£©Æ¥Åä
+   return S.empty(); //æ•´ä¸ªè¡¨è¾¾å¼æ‰«æè¿‡åï¼Œæ ˆä¸­è‹¥ä»æ®‹ç•™ï¼ˆå·¦ï¼‰æ‹¬å·ï¼Œåˆ™ä¸åŒ¹é…ï¼›å¦åˆ™ï¼ˆæ ˆç©ºï¼‰åŒ¹é…
 }

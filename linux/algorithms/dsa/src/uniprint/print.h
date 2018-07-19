@@ -8,33 +8,33 @@
 
 #pragma once
 
-#include <stdio.h> //²ÉÓÃC·ç¸ñ¾«Ï¸¿ØÖÆÊä³ö¸ñÊ½
-#include "../huffman/huffChar.h" //Huffman³¬×Ö·û
-#include "../BinTree/BinTree.h" //¶ş²æÊ÷
-#include "../Huffman/HuffTree.h" //HuffmanÊ÷
-#include "../BST/BST.h" //¶ş²æËÑË÷Ê÷
-#include "../AVL/AVL.h" //AVLÊ÷
-#include "../Splay/Splay.h" //ÉìÕ¹Ê÷
-#include "../redBlack/RedBlack.h" //ºìºÚÊ÷
-#include "../BTree/BTree.h" //¶ş²æËÑË÷Ê÷
-#include "../Entry/Entry.h" //´ÊÌõ
-#include "../Skiplist/Quadlist.h" //ËÄ²æ±í
-#include "../Skiplist/Skiplist.h" //Ìø×ª±í
-#include "../Hashtable/Hashtable.h" //É¢ÁĞ±í
-#include "../PQ_List/PQ_List.h" //»ùÓÚÁĞ±íÊµÏÖµÄÓÅÏÈ¼¶¶ÓÁĞ
-#include "../PQ_ComplHeap/PQ_ComplHeap.h" //»ùÓÚÍêÈ«¶ÑÊµÏÖµÄÓÅÏÈ¼¶¶ÓÁĞ
-#include "../PQ_LeftHeap/PQ_LeftHeap.h" //»ùÓÚ×óÊ½¶ÑÊµÏÖµÄÓÅÏÈ¼¶¶ÓÁĞ
-#include "../graph/Graph.h" //Í¼
-#include "../graphMatrix/GraphMatrix.h" //»ùÓÚÁÚ½Ó¾ØÕóÊµÏÖµÄÍ¼
+#include <stdio.h> //é‡‡ç”¨Cé£æ ¼ç²¾ç»†æ§åˆ¶è¾“å‡ºæ ¼å¼
+#include "../huffman/huffChar.h" //Huffmanè¶…å­—ç¬¦
+#include "../BinTree/BinTree.h" //äºŒå‰æ ‘
+#include "../Huffman/HuffTree.h" //Huffmanæ ‘
+#include "../BST/BST.h" //äºŒå‰æœç´¢æ ‘
+#include "../AVL/AVL.h" //AVLæ ‘
+#include "../Splay/Splay.h" //ä¼¸å±•æ ‘
+#include "../redBlack/RedBlack.h" //çº¢é»‘æ ‘
+#include "../BTree/BTree.h" //äºŒå‰æœç´¢æ ‘
+#include "../Entry/Entry.h" //è¯æ¡
+#include "../Skiplist/Quadlist.h" //å››å‰è¡¨
+#include "../Skiplist/Skiplist.h" //è·³è½¬è¡¨
+#include "../Hashtable/Hashtable.h" //æ•£åˆ—è¡¨
+#include "../PQ_List/PQ_List.h" //åŸºäºåˆ—è¡¨å®ç°çš„ä¼˜å…ˆçº§é˜Ÿåˆ—
+#include "../PQ_ComplHeap/PQ_ComplHeap.h" //åŸºäºå®Œå…¨å †å®ç°çš„ä¼˜å…ˆçº§é˜Ÿåˆ—
+#include "../PQ_LeftHeap/PQ_LeftHeap.h" //åŸºäºå·¦å¼å †å®ç°çš„ä¼˜å…ˆçº§é˜Ÿåˆ—
+#include "../graph/Graph.h" //å›¾
+#include "../graphMatrix/GraphMatrix.h" //åŸºäºé‚»æ¥çŸ©é˜µå®ç°çš„å›¾
 
 /******************************************************************************************
- * Êı¾İÔªËØ¡¢Êı¾İ½á¹¹Í¨ÓÃÊä³ö½Ó¿Ú
+ * æ•°æ®å…ƒç´ ã€æ•°æ®ç»“æ„é€šç”¨è¾“å‡ºæ¥å£
  ******************************************************************************************/
 template <typename T> static void print ( T* x ) {  x ? print ( *x ) : printf ( " <NULL>" );  }
 template <typename T> static void print ( T& x ) {  UniPrint::p ( x );  }
 template <typename T> static void print ( const T& x ) {  UniPrint::p ( x );  } //for Stack
-static void print ( char* x ) {  printf ( " %s", x ? x : "<NULL>" );  } //×Ö·û´®ÌØ±ğ´¦Àí
-static void print ( const char* x ) {  printf ( " %s", x ? x : "<NULL>" );  } //×Ö·û´®ÌØ±ğ´¦Àí
+static void print ( char* x ) {  printf ( " %s", x ? x : "<NULL>" );  } //å­—ç¬¦ä¸²ç‰¹åˆ«å¤„ç†
+static void print ( const char* x ) {  printf ( " %s", x ? x : "<NULL>" );  } //å­—ç¬¦ä¸²ç‰¹åˆ«å¤„ç†
 
 class UniPrint {
 public:
@@ -42,14 +42,14 @@ public:
    static void p ( float );
    static void p ( double );
    static void p ( char );
-   static void p ( HuffChar& ); //Huffman£¨³¬£©×Ö·û
-   static void p ( VStatus ); //Í¼¶¥µãµÄ×´Ì¬
-   static void p ( EType ); //Í¼±ßµÄÀàĞÍ
+   static void p ( HuffChar& ); //Huffmanï¼ˆè¶…ï¼‰å­—ç¬¦
+   static void p ( VStatus ); //å›¾é¡¶ç‚¹çš„çŠ¶æ€
+   static void p ( EType ); //å›¾è¾¹çš„ç±»å‹
 
    template <typename K, typename V> static void p ( Entry<K, V>& ); //Entry
-   template <typename T> static void p ( BinNode<T>& ); //BinTree½Úµã
-   template <typename T> static void p ( BinTree<T>& ); //¶ş²æÊ÷
-   template <typename T> static void p ( BTree<T>& ); //B-Ê÷
+   template <typename T> static void p ( BinNode<T>& ); //BinTreeèŠ‚ç‚¹
+   template <typename T> static void p ( BinTree<T>& ); //äºŒå‰æ ‘
+   template <typename T> static void p ( BTree<T>& ); //B-æ ‘
    template <typename T> static void p ( BST<T>& ); //BST
    template <typename T> static void p ( AVL<T>& ); //AVL
    template <typename T> static void p ( RedBlack<T>& ); //RedBlack
@@ -61,9 +61,9 @@ public:
    template <typename T> static void p ( PQ_ComplHeap<T>& ); //PQ_ComplHeap
    template <typename T> static void p ( PQ_LeftHeap<T>& ); //PQ_LeftHeap
    template <typename Tv, typename Te> static void p ( GraphMatrix<Tv, Te>& ); //Graph
-   template <typename T> static void p ( T& ); //ÏòÁ¿¡¢ÁĞ±íµÈÖ§³Ötraverse()±éÀú²Ù×÷µÄÏßĞÔ½á¹¹
-   template <typename T> static void p ( T* s ) //ËùÓĞÖ¸Õë
-   {  s ? p ( *s ) : print ( "<NULL>" ); } //Í³Ò»×ªÎªÒıÓÃ
+   template <typename T> static void p ( T& ); //å‘é‡ã€åˆ—è¡¨ç­‰æ”¯æŒtraverse()éå†æ“ä½œçš„çº¿æ€§ç»“æ„
+   template <typename T> static void p ( T* s ) //æ‰€æœ‰æŒ‡é’ˆ
+   {  s ? p ( *s ) : print ( "<NULL>" ); } //ç»Ÿä¸€è½¬ä¸ºå¼•ç”¨
 }; //UniPrint
 
 #include "print_implementation.h"

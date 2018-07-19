@@ -8,11 +8,11 @@
 
 #pragma once
 
-template <typename T> //ÁĞ±íµÄ²åÈëÅÅĞòËã·¨£º¶ÔÆğÊ¼ÓÚÎ»ÖÃpµÄn¸öÔªËØÅÅĞò
+template <typename T> //åˆ—è¡¨çš„æ’å…¥æ’åºç®—æ³•ï¼šå¯¹èµ·å§‹äºä½ç½®pçš„nä¸ªå…ƒç´ æ’åº
 void List<T>::insertionSort ( ListNodePosi(T) p, int n ) { //valid(p) && rank(p) + n <= size
    /*DSA*/printf ( "InsertionSort ...\n" );
-   for ( int r = 0; r < n; r++ ) { //ÖğÒ»Îª¸÷½Úµã
-      insertA ( search ( p->data, r, p ), p->data ); //²éÕÒÊÊµ±µÄÎ»ÖÃ²¢²åÈë
-      p = p->succ; remove ( p->pred ); //×ªÏòÏÂÒ»½Úµã
+   for ( int r = 0; r < n; r++ ) { //é€ä¸€ä¸ºå„èŠ‚ç‚¹
+      insertA ( search ( p->data, r, p ), p->data ); //æŸ¥æ‰¾é€‚å½“çš„ä½ç½®å¹¶æ’å…¥
+      p = p->succ; remove ( p->pred ); //è½¬å‘ä¸‹ä¸€èŠ‚ç‚¹
    }
 }

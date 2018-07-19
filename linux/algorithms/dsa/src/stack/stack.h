@@ -8,5 +8,5 @@
 
 #pragma once
 
-#include "stack@vector.h" //сиоРа©еииЗ╣ду╩
-//#include "stack@list.h" //сиап╠МеииЗ╣ду╩
+#include "stack@vector.h" //Г■╠Е░▒И┤▐Ф╢╬Г■÷Г └Ф═┬
+//#include "stack@list.h" //Г■╠Е┬≈Х║╗Ф╢╬Г■÷Г └Ф═┬

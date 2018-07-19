@@ -8,13 +8,13 @@
 
 #pragma once
 
-#include "../List/List.h" //ÒıÈëÁĞ±í
-#include "../Entry/Entry.h" //ÒıÈë´ÊÌõ
-#include "Quadlist.h" //ÒıÈëQuadlist
-#include "../Dictionary/Dictionary.h" //ÒıÈë´Êµä
+#include "../List/List.h" //å¼•å…¥åˆ—è¡¨
+#include "../Entry/Entry.h" //å¼•å…¥è¯æ¡
+#include "Quadlist.h" //å¼•å…¥Quadlist
+#include "../Dictionary/Dictionary.h" //å¼•å…¥è¯å…¸
 
-template <typename K, typename V> //key¡¢value
-//·ûºÏDictionary½Ó¿ÚµÄSkiplistÄ£°åÀà£¨µ«Òşº¬¼ÙÉèÔªËØÖ®¼ä¿É±È½Ï´óĞ¡£©
+template <typename K, typename V> //keyã€value
+//ç¬¦åˆDictionaryæ¥å£çš„Skiplistæ¨¡æ¿ç±»ï¼ˆä½†éšå«å‡è®¾å…ƒç´ ä¹‹é—´å¯æ¯”è¾ƒå¤§å°ï¼‰
 class Skiplist : public Dictionary<K, V>, public List<Quadlist<Entry<K, V>>*> {
 protected:
    bool skipSearch (
@@ -22,11 +22,11 @@ protected:
       QuadlistNode<Entry<K, V>>* &p,
       K& k );
 public:
-   int size() const { return empty() ? 0 : last()->data->size(); } //µ×²ãQuadlistµÄ¹æÄ£
-   int level() { return List::size(); } //²ã¸ß == #Quadlist£¬²»Ò»¶¨Òª¿ª·Å
-   bool put ( K, V ); //²åÈë£¨×¢ÒâÓëMapÓĞ±ğ¡ª¡ªSkiplistÔÊĞí´ÊÌõÖØ¸´£¬¹Ê±ØÈ»³É¹¦£©
-   V* get ( K k ); //¶ÁÈ¡
-   bool remove ( K k ); //É¾³ı
+   int size() const { return empty() ? 0 : last()->data->size(); } //åº•å±‚Quadlistçš„è§„æ¨¡
+   int level() { return List::size(); } //å±‚é«˜ == #Quadlistï¼Œä¸ä¸€å®šè¦å¼€æ”¾
+   bool put ( K, V ); //æ’å…¥ï¼ˆæ³¨æ„ä¸Mapæœ‰åˆ«â€”â€”Skiplistå…è®¸è¯æ¡é‡å¤ï¼Œæ•…å¿…ç„¶æˆåŠŸï¼‰
+   V* get ( K k ); //è¯»å–
+   bool remove ( K k ); //åˆ é™¤
 };
 
 #include "Skiplist_implementation.h"

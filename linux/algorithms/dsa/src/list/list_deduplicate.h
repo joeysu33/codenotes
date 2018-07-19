@@ -8,13 +8,13 @@
 
 #pragma once
 
-template <typename T> int List<T>::deduplicate() { //ÌŞ³ıÎŞĞòÁĞ±íÖĞµÄÖØ¸´½Úµã
-   if ( _size < 2 ) return 0; //Æ½·²ÁĞ±í×ÔÈ»ÎŞÖØ¸´
-   int oldSize = _size; //¼ÇÂ¼Ô­¹æÄ£
-   ListNodePosi(T) p = header; Rank r = 0; //p´ÓÊ×½Úµã¿ªÊ¼
-   while ( trailer != ( p = p->succ ) ) { //ÒÀ´ÎÖ±µ½Ä©½Úµã
-      ListNodePosi(T) q = find ( p->data, r, p ); //ÔÚpµÄr¸ö£¨Õæ£©Ç°ÇıÖĞ²éÕÒÀ×Í¬Õß
-      q ? remove ( q ) : r++; //ÈôµÄÈ·´æÔÚ£¬ÔòÉ¾³ıÖ®£»·ñÔòÖÈ¼ÓÒ»
-   } //assert: Ñ­»·¹ı³ÌÖĞµÄÈÎÒâÊ±¿Ì£¬pµÄËùÓĞÇ°Çı»¥²»ÏàÍ¬
-   return oldSize - _size; //ÁĞ±í¹æÄ£±ä»¯Á¿£¬¼´±»É¾³ıÔªËØ×ÜÊı
+template <typename T> int List<T>::deduplicate() { //å‰”é™¤æ— åºåˆ—è¡¨ä¸­çš„é‡å¤èŠ‚ç‚¹
+   if ( _size < 2 ) return 0; //å¹³å‡¡åˆ—è¡¨è‡ªç„¶æ— é‡å¤
+   int oldSize = _size; //è®°å½•åŸè§„æ¨¡
+   ListNodePosi(T) p = header; Rank r = 0; //pä»é¦–èŠ‚ç‚¹å¼€å§‹
+   while ( trailer != ( p = p->succ ) ) { //ä¾æ¬¡ç›´åˆ°æœ«èŠ‚ç‚¹
+      ListNodePosi(T) q = find ( p->data, r, p ); //åœ¨pçš„rä¸ªï¼ˆçœŸï¼‰å‰é©±ä¸­æŸ¥æ‰¾é›·åŒè€…
+      q ? remove ( q ) : r++; //è‹¥çš„ç¡®å­˜åœ¨ï¼Œåˆ™åˆ é™¤ä¹‹ï¼›å¦åˆ™ç§©åŠ ä¸€
+   } //assert: å¾ªç¯è¿‡ç¨‹ä¸­çš„ä»»æ„æ—¶åˆ»ï¼Œpçš„æ‰€æœ‰å‰é©±äº’ä¸ç›¸åŒ
+   return oldSize - _size; //åˆ—è¡¨è§„æ¨¡å˜åŒ–é‡ï¼Œå³è¢«åˆ é™¤å…ƒç´ æ€»æ•°
 }

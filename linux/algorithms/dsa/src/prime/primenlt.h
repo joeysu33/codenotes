@@ -8,4 +8,4 @@
 
 #pragma once
 
-int primeNLT ( int low, int n, char* file ); //根据file文件中的记录，在[low, n)内取最小的素数
+int primeNLT ( int low, int n, char* file ); //鏍规嵁file鏂囦欢涓殑璁板綍锛屽湪[low, n)鍐呭彇鏈�灏忕殑绱犳暟

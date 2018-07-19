@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> void half ( List<T> & L ) //Í³Ò»¼õ°ëÁĞ±íÖĞµÄ¸÷ÔªËØ
-{  L.traverse ( Half<T>() );  } //ÒÔHalf<T>()Îª»ù±¾²Ù×÷½øĞĞ±éÀú
+template <typename T> void half ( List<T> & L ) //ç»Ÿä¸€å‡åŠåˆ—è¡¨ä¸­çš„å„å…ƒç´ 
+{  L.traverse ( Half<T>() );  } //ä»¥Half<T>()ä¸ºåŸºæœ¬æ“ä½œè¿›è¡Œéå†

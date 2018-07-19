@@ -8,22 +8,22 @@
 
 #pragma once
 
-template <typename T> bool Splay<T>::remove ( const T& e ) { //´ÓÉìÕ¹Ê÷ÖĞÉ¾³ı¹Ø¼üÂëe
-   if ( !_root || ( e != search ( e )->data ) ) return false; //ÈôÊ÷¿Õ»òÄ¿±ê²»´æÔÚ£¬ÔòÎŞ·¨É¾³ı
-   BinNodePosi(T) w = _root; //assert: ¾­search()ºó½ÚµãeÒÑ±»ÉìÕ¹ÖÁÊ÷¸ù
-   if ( !HasLChild ( *_root ) ) { //ÈôÎŞ×ó×ÓÊ÷£¬ÔòÖ±½ÓÉ¾³ı
+template <typename T> bool Splay<T>::remove ( const T& e ) { //ä»ä¼¸å±•æ ‘ä¸­åˆ é™¤å…³é”®ç e
+   if ( !_root || ( e != search ( e )->data ) ) return false; //è‹¥æ ‘ç©ºæˆ–ç›®æ ‡ä¸å­˜åœ¨ï¼Œåˆ™æ— æ³•åˆ é™¤
+   BinNodePosi(T) w = _root; //assert: ç»search()åèŠ‚ç‚¹eå·²è¢«ä¼¸å±•è‡³æ ‘æ ¹
+   if ( !HasLChild ( *_root ) ) { //è‹¥æ— å·¦å­æ ‘ï¼Œåˆ™ç›´æ¥åˆ é™¤
       _root = _root->rc; if ( _root ) _root->parent = NULL;
-   } else if ( !HasRChild ( *_root ) ) { //ÈôÎŞÓÒ×ÓÊ÷£¬Ò²Ö±½ÓÉ¾³ı
+   } else if ( !HasRChild ( *_root ) ) { //è‹¥æ— å³å­æ ‘ï¼Œä¹Ÿç›´æ¥åˆ é™¤
       _root = _root->lc; if ( _root ) _root->parent = NULL;
-   } else { //Èô×óÓÒ×ÓÊ÷Í¬Ê±´æÔÚ£¬Ôò
+   } else { //è‹¥å·¦å³å­æ ‘åŒæ—¶å­˜åœ¨ï¼Œåˆ™
       BinNodePosi(T) lTree = _root->lc;
-      lTree->parent = NULL; _root->lc = NULL; //ÔİÊ±½«×ó×ÓÊ÷ÇĞ³ı
-      _root = _root->rc; _root->parent = NULL; //Ö»±£ÁôÓÒ×ÓÊ÷
-      search ( w->data ); //ÒÔÔ­Ê÷¸ùÎªÄ¿±ê£¬×öÒ»´Î£¨±Ø¶¨Ê§°ÜµÄ£©²éÕÒ
-///// assert: ÖÁ´Ë£¬ÓÒ×ÓÊ÷ÖĞ×îĞ¡½Úµã±ØÉìÕ¹ÖÁ¸ù£¬ÇÒ£¨ÒòÎŞÀ×Í¬½Úµã£©Æä×ó×ÓÊ÷±Ø¿Õ£¬ÓÚÊÇ
-      _root->lc = lTree; lTree->parent = _root; //Ö»Ğè½«Ô­×ó×ÓÊ÷½Ó»ØÔ­Î»¼´¿É
+      lTree->parent = NULL; _root->lc = NULL; //æš‚æ—¶å°†å·¦å­æ ‘åˆ‡é™¤
+      _root = _root->rc; _root->parent = NULL; //åªä¿ç•™å³å­æ ‘
+      search ( w->data ); //ä»¥åŸæ ‘æ ¹ä¸ºç›®æ ‡ï¼Œåšä¸€æ¬¡ï¼ˆå¿…å®šå¤±è´¥çš„ï¼‰æŸ¥æ‰¾
+///// assert: è‡³æ­¤ï¼Œå³å­æ ‘ä¸­æœ€å°èŠ‚ç‚¹å¿…ä¼¸å±•è‡³æ ¹ï¼Œä¸”ï¼ˆå› æ— é›·åŒèŠ‚ç‚¹ï¼‰å…¶å·¦å­æ ‘å¿…ç©ºï¼Œäºæ˜¯
+      _root->lc = lTree; lTree->parent = _root; //åªéœ€å°†åŸå·¦å­æ ‘æ¥å›åŸä½å³å¯
    }
-   release ( w->data ); release ( w ); _size--; //ÊÍ·Å½Úµã£¬¸üĞÂ¹æÄ£
-   if ( _root ) updateHeight ( _root ); //´Ëºó£¬ÈôÊ÷·Ç¿Õ£¬ÔòÊ÷¸ùµÄ¸ß¶ÈĞèÒª¸üĞÂ
-   return true; //·µ»Ø³É¹¦±êÖ¾
-} //ÈôÄ¿±ê½Úµã´æÔÚÇÒ±»É¾³ı£¬·µ»Øtrue£»·ñÔò·µ»Øfalse
+   release ( w->data ); release ( w ); _size--; //é‡Šæ”¾èŠ‚ç‚¹ï¼Œæ›´æ–°è§„æ¨¡
+   if ( _root ) updateHeight ( _root ); //æ­¤åï¼Œè‹¥æ ‘éç©ºï¼Œåˆ™æ ‘æ ¹çš„é«˜åº¦éœ€è¦æ›´æ–°
+   return true; //è¿”å›æˆåŠŸæ ‡å¿—
+} //è‹¥ç›®æ ‡èŠ‚ç‚¹å­˜åœ¨ä¸”è¢«åˆ é™¤ï¼Œè¿”å›trueï¼›å¦åˆ™è¿”å›false

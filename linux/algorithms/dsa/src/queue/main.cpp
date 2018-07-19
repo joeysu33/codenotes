@@ -11,36 +11,36 @@
  ******************************************************************************************/
 #include "queue_test.h"
 
-int testID = 0; //²âÊÔ±àºÅ
+int testID = 0; //æµ‹è¯•ç¼–å·
 
 /******************************************************************************************
-* ²âÊÔÕ»
+* æµ‹è¯•æ ˆ
 ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
+template <typename T> //å…ƒç´ ç±»å‹
 void testQueue ( int n ) {
    Queue<T> Q;
    printf ( "\n  ==== Test %2d. Growing queue\n", testID++ );
    while ( Q.size() < n ) {
       ( Q.empty() || ( 30 < dice ( 100 ) ) ) ?
-      Q.enqueue ( dice ( ( T ) 2 * n ) ) : //70%Èë¶Ó
-      Q.dequeue(); //30%³ö¶Ó
+      Q.enqueue ( dice ( ( T ) 2 * n ) ) : //70%å…¥é˜Ÿ
+      Q.dequeue(); //30%å‡ºé˜Ÿ
       print ( Q );
    }
    printf ( "\n  ==== Test %2d. Shrinking queue\n", testID++ );
    while ( !Q.empty() ) {
       ( 70 < dice ( 100 ) ) ?
-      Q.enqueue ( dice ( ( T ) 2 * n ) ) : //30%Èë¶Ó
-      Q.dequeue(); //70%³ö¶Ó
+      Q.enqueue ( dice ( ( T ) 2 * n ) ) : //30%å…¥é˜Ÿ
+      Q.dequeue(); //70%å‡ºé˜Ÿ
       print ( Q );
    }
 }
 
 /******************************************************************************************
- * ²âÊÔ¶ÓÁĞ
+ * æµ‹è¯•é˜Ÿåˆ—
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    if ( 2 > argc ) { printf ( "Usage: %s <size of test>\a\a\n", argv[0] ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
-   testQueue<int> ( atoi ( argv[1] ) ); //ÔªËØÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testQueue<int> ( atoi ( argv[1] ) ); //å…ƒç´ ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
    return 0;
 }

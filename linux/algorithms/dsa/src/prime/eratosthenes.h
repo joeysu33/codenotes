@@ -8,4 +8,4 @@
 
 #pragma once
 
-void Eratosthenes ( int n, char* file ); //É¸·¨ÇóËØÊı
+void Eratosthenes ( int n, char* file ); //ç­›æ³•æ±‚ç´ æ•°

@@ -7,11 +7,11 @@
  ******************************************************************************************/
 
 /*DSA*/#include "../UniPrint/print_int_array.h"
-/*DSA*/int shift ( int* A, int n, int s, int t ); //´ÓA[s]³ö·¢£¬ÒÔtÎª¼ä¸ôÑ­»·×óÒÆ£¬O(3n)
+/*DSA*/int shift ( int* A, int n, int s, int t ); //ä»A[s]å‡ºå‘ï¼Œä»¥tä¸ºé—´éš”å¾ªç¯å·¦ç§»ï¼ŒO(3n)
 
-int shift0 ( int* A, int n, int k ) { //ÂùÁ¦µØ½«Êı×éÑ­»·×óÒÆkÎ»£¬O(nk)
+int shift0 ( int* A, int n, int k ) { //è›®åŠ›åœ°å°†æ•°ç»„å¾ªç¯å·¦ç§»kä½ï¼ŒO(nk)
    if ( k < 1 ) return 0; int mov = 0;
-   while ( k-- ) { //·´¸´ÒÔ1Îª¼ä¸ôÑ­»·×óÒÆ£¬¹²µü´úk´Î
+   while ( k-- ) { //åå¤ä»¥1ä¸ºé—´éš”å¾ªç¯å·¦ç§»ï¼Œå…±è¿­ä»£kæ¬¡
       mov += shift ( A, n, 0, 1 );                                       /*DSA*/printf ( "== move *%3d\n", mov ); print ( A, n );
    }
    return mov;

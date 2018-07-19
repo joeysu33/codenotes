@@ -8,16 +8,16 @@
 
 #pragma once
 
-#include "../BST/BST.h" //»ùÓÚBSTÊµÏÖRedBlack
-template <typename T> class RedBlack : public BST<T> { //RedBlackÊ÷Ä£°åÀà
+#include "../BST/BST.h" //åŸºäºBSTå®ç°RedBlack
+template <typename T> class RedBlack : public BST<T> { //RedBlackæ ‘æ¨¡æ¿ç±»
 protected:
-   void solveDoubleRed ( BinNodePosi(T) x ); //Ë«ºìĞŞÕı
-   void solveDoubleBlack ( BinNodePosi(T) x ); //Ë«ºÚĞŞÕı
-   int updateHeight ( BinNodePosi(T) x ); //¸üĞÂ½ÚµãxµÄ¸ß¶È
+   void solveDoubleRed ( BinNodePosi(T) x ); //åŒçº¢ä¿®æ­£
+   void solveDoubleBlack ( BinNodePosi(T) x ); //åŒé»‘ä¿®æ­£
+   int updateHeight ( BinNodePosi(T) x ); //æ›´æ–°èŠ‚ç‚¹xçš„é«˜åº¦
 public:
-   BinNodePosi(T) insert ( const T& e ); //²åÈë£¨ÖØĞ´£©
-   bool remove ( const T& e ); //É¾³ı£¨ÖØĞ´£©
-// BST::search()µÈÆäÓà½Ó¿Ú¿ÉÖ±½ÓÑØÓÃ
+   BinNodePosi(T) insert ( const T& e ); //æ’å…¥ï¼ˆé‡å†™ï¼‰
+   bool remove ( const T& e ); //åˆ é™¤ï¼ˆé‡å†™ï¼‰
+// BST::search()ç­‰å…¶ä½™æ¥å£å¯ç›´æ¥æ²¿ç”¨
 };
 
 #include "RedBlack_implementation.h"

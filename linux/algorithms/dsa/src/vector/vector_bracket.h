@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> T& Vector<T>::operator[] ( Rank r ) const //ÖØÔØÏÂ±ê²Ù×÷·û
+template <typename T> T& Vector<T>::operator[] ( Rank r ) const //é‡è½½ä¸‹æ ‡æ“ä½œç¬¦
 { return _elem[r]; } // assert: 0 <= r < _size

@@ -8,12 +8,12 @@
 
 #include "queen.h"
 
-bool collide ( int* solu, int k ) { //еп╤ойг╥Я©ирттз╣╠г╟пп╣д╣зkап╥ежцобр╩╩й╨С
+bool collide ( int* solu, int k ) { //Е┬╓Ф√╜Ф≤╞Е░╕Е▐╞Д╩╔Е°╗Е╫⌠Е┴█Х║▄Г └Г╛╛kЕ┬≈Ф■╬Г╫╝Д╦▀Д╦─Г ┤Е░▌
    nCheck++;
    for ( int i = 0; i < k; i++ ) {
-      if ( solu[k] == solu[i] )       return true; //ап
-      if ( solu[k] - solu[i] == k - i ) return true; //╤т╫гоъ
-      if ( solu[k] - solu[i] == i - k ) return true; //╥╢╤т╫гоъ
+      if ( solu[k] == solu[i] )       return true; //Е┬≈
+      if ( solu[k] - solu[i] == k - i ) return true; //Е╞╧Х╖▓Г╨©
+      if ( solu[k] - solu[i] == i - k ) return true; //Е▐█Е╞╧Х╖▓Г╨©
    }
    return false;
 }

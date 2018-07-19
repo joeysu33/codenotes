@@ -9,31 +9,31 @@
 #include   "../queen_brute_force_1/queen.h"
 
 /******************************************************************************************
- * È«¾Ö±äÁ¿
+ * å…¨å±€å˜é‡
  ******************************************************************************************/
-RunMode runMode; //ÑİÊ¾Ä£Ê½
-int nSolu = 0; //½âµÄ×ÜÊı
-int nCheck = 0; //³¢ÊÔµÄ×Ü´ÎÊı
+RunMode runMode; //æ¼”ç¤ºæ¨¡å¼
+int nSolu = 0; //è§£çš„æ€»æ•°
+int nCheck = 0; //å°è¯•çš„æ€»æ¬¡æ•°
 
 /******************************************************************************************
- * ²âÊÔÈë¿Ú
+ * æµ‹è¯•å…¥å£
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    void ( *pPlaceQueens[] ) ( void ) = {
-      place2Queens, //2»ÊºóËã·¨
-      place3Queens, //3»ÊºóËã·¨
-      place4Queens, //4»ÊºóËã·¨
-      place5Queens  //5»ÊºóËã·¨
+      place2Queens, //2çš‡åç®—æ³•
+      place3Queens, //3çš‡åç®—æ³•
+      place4Queens, //4çš‡åç®—æ³•
+      place5Queens  //5çš‡åç®—æ³•
    };
-   if ( argc < 2 ) //¼ì²éÃüÁîĞĞ¸ñÊ½
+   if ( argc < 2 ) //æ£€æŸ¥å‘½ä»¤è¡Œæ ¼å¼
       { cout << "Usage: " << argv[0] << " <-step | -cont>" << endl; return -1; }
-   if ( !strcmp ( "-step", argv[1] ) ) runMode = Step; //Éè¶¨Îªµ¥²½ÑİÊ¾Ä£Ê½
-   else if ( !strcmp ( "-cont", argv[1] ) ) runMode = Continuous; //Éè¶¨ÎªÁ¬ĞøÑİÊ¾Ä£Ê½
+   if ( !strcmp ( "-step", argv[1] ) ) runMode = Step; //è®¾å®šä¸ºå•æ­¥æ¼”ç¤ºæ¨¡å¼
+   else if ( !strcmp ( "-cont", argv[1] ) ) runMode = Continuous; //è®¾å®šä¸ºè¿ç»­æ¼”ç¤ºæ¨¡å¼
    else { cout << "Unrecognizable running mode" << endl; return -2; }
-   for ( int i = 2; i <= 5; i++ ) { //¶ÔÓÚ2~5¸ö»ÊºóµÄÇé¿ö£¬·Ö±ğ
-      nSolu = 0; nCheck = 0; //³õÊ¼»¯¼ÆÊıÆ÷
-      ( *pPlaceQueens[i-2] ) (); //Æô¶¯Ëã·¨
-      printf ( "#Queen = %d\t#Solution = %d\t#Check = %d\a\a\n", i, nSolu, nCheck ); //Êä³ö½â
+   for ( int i = 2; i <= 5; i++ ) { //å¯¹äº2~5ä¸ªçš‡åçš„æƒ…å†µï¼Œåˆ†åˆ«
+      nSolu = 0; nCheck = 0; //åˆå§‹åŒ–è®¡æ•°å™¨
+      ( *pPlaceQueens[i-2] ) (); //å¯åŠ¨ç®—æ³•
+      printf ( "#Queen = %d\t#Solution = %d\t#Check = %d\a\a\n", i, nSolu, nCheck ); //è¾“å‡ºè§£
       getchar();
    }
 }

@@ -8,10 +8,10 @@
 
 #pragma once
 
-template <typename T> bool majEleCheck ( Vector<T> A, T maj ) { //ÑéÖ¤ºòÑ¡ÕßÊÇ·ñÈ·ÎªÖÚÊı
-   int occurrence = 0; //majÔÚA[]ÖĞ³öÏÖµÄ´ÎÊı
-   for ( int i = 0; i < A.size(); i++ ) //ÖğÒ»±éÀúA[]µÄ¸÷¸öÔªËØ
-      if ( A[i] == maj ) occurrence++; //Ã¿Óöµ½Ò»´Îmaj£¬¾ù¸üĞÂ¼ÆÊıÆ÷
+template <typename T> bool majEleCheck ( Vector<T> A, T maj ) { //éªŒè¯å€™é€‰è€…æ˜¯å¦ç¡®ä¸ºä¼—æ•°
+   int occurrence = 0; //majåœ¨A[]ä¸­å‡ºç°çš„æ¬¡æ•°
+   for ( int i = 0; i < A.size(); i++ ) //é€ä¸€éå†A[]çš„å„ä¸ªå…ƒç´ 
+      if ( A[i] == maj ) occurrence++; //æ¯é‡åˆ°ä¸€æ¬¡majï¼Œå‡æ›´æ–°è®¡æ•°å™¨
    /*DSA*/printf ( "%d found with %d/%d occurrence(s)\n", maj, occurrence, A.size() );
-   return 2 * occurrence > A.size(); //¸ù¾İ×îÖÕµÄ¼ÆÊıÖµ£¬¼´¿ÉÅĞ¶ÏÊÇ·ñµÄÈ·µ±Ñ¡
+   return 2 * occurrence > A.size(); //æ ¹æ®æœ€ç»ˆçš„è®¡æ•°å€¼ï¼Œå³å¯åˆ¤æ–­æ˜¯å¦çš„ç¡®å½“é€‰
 }

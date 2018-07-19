@@ -18,9 +18,9 @@ using namespace std;
 
 #include "huffman_PQ.h"
 
-extern int* statistics ( char* ); //¸ù¾İÑù±¾ÎÄ¼şÍ³¼Æ¸÷×Ö·û³öÏÖÆµÂÊ
-extern HuffForest* initForest ( int* ); //´´½¨±àÂëÊ÷É­ÁÖ
-extern HuffTree* generateTree ( HuffForest* ); //¹¹Ôì±àÂëÊ÷
-extern HuffTable* generateTable ( HuffTree* ); //ÓÉ±àÂëÊ÷×ª»»Îª±àÂë±í
-extern int encode ( HuffTable*, Bitmap*, char* ); //Ã÷ÎÄµÄ±àÂë£¬·µ»Ø±àÂë³¤¶È
-extern void decode ( HuffTree*, Bitmap*, int ); //¶ş½øÖÆ´®µÄ½âÂë
+extern int* statistics ( char* ); //æ ¹æ®æ ·æœ¬æ–‡ä»¶ç»Ÿè®¡å„å­—ç¬¦å‡ºç°é¢‘ç‡
+extern HuffForest* initForest ( int* ); //åˆ›å»ºç¼–ç æ ‘æ£®æ—
+extern HuffTree* generateTree ( HuffForest* ); //æ„é€ ç¼–ç æ ‘
+extern HuffTable* generateTable ( HuffTree* ); //ç”±ç¼–ç æ ‘è½¬æ¢ä¸ºç¼–ç è¡¨
+extern int encode ( HuffTable*, Bitmap*, char* ); //æ˜æ–‡çš„ç¼–ç ï¼Œè¿”å›ç¼–ç é•¿åº¦
+extern void decode ( HuffTree*, Bitmap*, int ); //äºŒè¿›åˆ¶ä¸²çš„è§£ç 

@@ -8,16 +8,16 @@
 
 #pragma once
 
-template <typename T> BinNodePosi(T) AVL<T>::insert ( const T& e ) { //½«¹Ø¼üÂëe²åÈëAVLÊ÷ÖĞ
-   BinNodePosi(T) & x = search ( e ); if ( x ) return x; //È·ÈÏÄ¿±ê½Úµã²»´æÔÚ
-   BinNodePosi(T) xx = x = new BinNode<T> ( e, _hot ); _size++; //´´½¨ĞÂ½Úµãx
-// ´ËÊ±£¬xµÄ¸¸Ç×_hotÈôÔö¸ß£¬ÔòÆä×æ¸¸ÓĞ¿ÉÄÜÊ§ºâ
-   for ( BinNodePosi(T) g = _hot; g; g = g->parent ) { //´ÓxÖ®¸¸³ö·¢ÏòÉÏ£¬Öğ²ã¼ì²é¸÷´ú×æÏÈg
-      if ( !AvlBalanced ( *g ) ) { //Ò»µ©·¢ÏÖgÊ§ºâ£¬Ôò£¨²ÉÓÃ¡°3 + 4¡±Ëã·¨£©Ê¹Ö®¸´ºâ£¬²¢½«×ÓÊ÷
-         FromParentTo ( *g ) = rotateAt ( tallerChild ( tallerChild ( g ) ) ); //ÖØĞÂ½ÓÈëÔ­Ê÷
-         break; //g¸´ºâºó£¬¾Ö²¿×ÓÊ÷¸ß¶È±ØÈ»¸´Ô­£»Æä×æÏÈÒà±ØÈç´Ë£¬¹Êµ÷ÕûËæ¼´½áÊø
-      } else //·ñÔò£¨gÒÀÈ»Æ½ºâ£©£¬Ö»Ğè¼òµ¥µØ
-         updateHeight ( g ); //¸üĞÂÆä¸ß¶È£¨×¢Òâ£º¼´±ãgÎ´Ê§ºâ£¬¸ß¶ÈÒà¿ÉÄÜÔö¼Ó£©
-   } //ÖÁ¶àÖ»ĞèÒ»´Îµ÷Õû£»Èô¹ûÕæ×ö¹ıµ÷Õû£¬ÔòÈ«Ê÷¸ß¶È±ØÈ»¸´Ô­
-   return xx; //·µ»ØĞÂ½ÚµãÎ»ÖÃ
-} //ÎŞÂÛeÊÇ·ñ´æÔÚÓÚÔ­Ê÷ÖĞ£¬×ÜÓĞAVL::insert(e)->data == e
+template <typename T> BinNodePosi(T) AVL<T>::insert ( const T& e ) { //å°†å…³é”®ç eæ’å…¥AVLæ ‘ä¸­
+   BinNodePosi(T) & x = search ( e ); if ( x ) return x; //ç¡®è®¤ç›®æ ‡èŠ‚ç‚¹ä¸å­˜åœ¨
+   BinNodePosi(T) xx = x = new BinNode<T> ( e, _hot ); _size++; //åˆ›å»ºæ–°èŠ‚ç‚¹x
+// æ­¤æ—¶ï¼Œxçš„çˆ¶äº²_hotè‹¥å¢é«˜ï¼Œåˆ™å…¶ç¥–çˆ¶æœ‰å¯èƒ½å¤±è¡¡
+   for ( BinNodePosi(T) g = _hot; g; g = g->parent ) { //ä»xä¹‹çˆ¶å‡ºå‘å‘ä¸Šï¼Œé€å±‚æ£€æŸ¥å„ä»£ç¥–å…ˆg
+      if ( !AvlBalanced ( *g ) ) { //ä¸€æ—¦å‘ç°gå¤±è¡¡ï¼Œåˆ™ï¼ˆé‡‡ç”¨â€œ3 + 4â€ç®—æ³•ï¼‰ä½¿ä¹‹å¤è¡¡ï¼Œå¹¶å°†å­æ ‘
+         FromParentTo ( *g ) = rotateAt ( tallerChild ( tallerChild ( g ) ) ); //é‡æ–°æ¥å…¥åŸæ ‘
+         break; //gå¤è¡¡åï¼Œå±€éƒ¨å­æ ‘é«˜åº¦å¿…ç„¶å¤åŸï¼›å…¶ç¥–å…ˆäº¦å¿…å¦‚æ­¤ï¼Œæ•…è°ƒæ•´éšå³ç»“æŸ
+      } else //å¦åˆ™ï¼ˆgä¾ç„¶å¹³è¡¡ï¼‰ï¼Œåªéœ€ç®€å•åœ°
+         updateHeight ( g ); //æ›´æ–°å…¶é«˜åº¦ï¼ˆæ³¨æ„ï¼šå³ä¾¿gæœªå¤±è¡¡ï¼Œé«˜åº¦äº¦å¯èƒ½å¢åŠ ï¼‰
+   } //è‡³å¤šåªéœ€ä¸€æ¬¡è°ƒæ•´ï¼›è‹¥æœçœŸåšè¿‡è°ƒæ•´ï¼Œåˆ™å…¨æ ‘é«˜åº¦å¿…ç„¶å¤åŸ
+   return xx; //è¿”å›æ–°èŠ‚ç‚¹ä½ç½®
+} //æ— è®ºeæ˜¯å¦å­˜åœ¨äºåŸæ ‘ä¸­ï¼Œæ€»æœ‰AVL::insert(e)->data == e

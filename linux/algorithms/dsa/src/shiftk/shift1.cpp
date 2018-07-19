@@ -7,9 +7,9 @@
  ******************************************************************************************/
 
 /*DSA*/#include "../UniPrint/print_int_array.h"
-/*DSA*/int shift ( int* A, int n, int s, int t ); //从A[s]出发，以t为间隔循环左移，O(3n)
+/*DSA*/int shift ( int* A, int n, int s, int t ); //浠嶢[s]鍑哄彂锛屼互t涓洪棿闅斿惊鐜乏绉伙紝O(3n)
 
-int shift1 ( int* A, int n, int k ) { //通过GCD(n, k)轮迭代，将数组循环左移k位，O(n)
+int shift1 ( int* A, int n, int k ) { //閫氳繃GCD(n, k)杞凯浠ｏ紝灏嗘暟缁勫惊鐜乏绉籯浣嶏紝O(n)
    if ( k < 1 ) return 0;
    int mov = 0, s = 0;
    while ( mov < n ) { //O(GCD(n, k)) = O(n*k/LCM(n, k))

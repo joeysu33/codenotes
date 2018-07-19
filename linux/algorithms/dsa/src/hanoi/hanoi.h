@@ -20,5 +20,5 @@ void displayHanoi();
 void hanoi ( int, Stack<Disk>&, Stack<Disk>&, Stack<Disk>& );
 void move ( Stack<Disk>&, Stack<Disk>& );
 
-extern int nDisk; //ÅÌ×Ó×ÜÊı
-extern Stack<int> Sx, Sy, Sz; //ÓÃÈı¸öÕ»Ä£ÄâÈı¸ùÖù×Ó£¬Ã¿¸öÅÌ×ÓµÄ°ë¾¶ÓÃÕûÊı±íÊ¾
+extern int nDisk; //ç›˜å­æ€»æ•°
+extern Stack<int> Sx, Sy, Sz; //ç”¨ä¸‰ä¸ªæ ˆæ¨¡æ‹Ÿä¸‰æ ¹æŸ±å­ï¼Œæ¯ä¸ªç›˜å­çš„åŠå¾„ç”¨æ•´æ•°è¡¨ç¤º

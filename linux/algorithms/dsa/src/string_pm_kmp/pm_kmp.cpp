@@ -8,20 +8,20 @@
 
 /*DSA*/#include "../string_pm/string_pm_test.h"
 
-int match ( char* P, char* T ) {  //KMPËã·¨
-   int* next = buildNext ( P ); //¹¹Ôìnext±í
-   int n = ( int ) strlen ( T ), i = 0; //ÎÄ±¾´®Ö¸Õë
-   int m = ( int ) strlen ( P ), j = 0; //Ä£Ê½´®Ö¸Õë
-   while ( j < m  && i < n ) //×Ô×óÏòÓÒÖğ¸ö±È¶Ô×Ö·û
+int match ( char* P, char* T ) {  //KMPç®—æ³•
+   int* next = buildNext ( P ); //æ„é€ nextè¡¨
+   int n = ( int ) strlen ( T ), i = 0; //æ–‡æœ¬ä¸²æŒ‡é’ˆ
+   int m = ( int ) strlen ( P ), j = 0; //æ¨¡å¼ä¸²æŒ‡é’ˆ
+   while ( j < m  && i < n ) //è‡ªå·¦å‘å³é€ä¸ªæ¯”å¯¹å­—ç¬¦
       /*DSA*/{
       /*DSA*/showProgress ( T, P, i - j, j );
       /*DSA*/printNext ( next, i - j, strlen ( P ) );
       /*DSA*/getchar(); printf ( "\n" );
-      if ( 0 > j || T[i] == P[j] ) //ÈôÆ¥Åä£¬»òPÒÑÒÆ³ö×î×ó²à£¨Á½¸öÅĞ¶ÏµÄ´ÎĞò²»¿É½»»»£©
-         { i ++;  j ++; } //Ôò×ªµ½ÏÂÒ»×Ö·û
-      else //·ñÔò
-         j = next[j]; //Ä£Ê½´®ÓÒÒÆ£¨×¢Òâ£ºÎÄ±¾´®²»ÓÃ»ØÍË£©
+      if ( 0 > j || T[i] == P[j] ) //è‹¥åŒ¹é…ï¼Œæˆ–På·²ç§»å‡ºæœ€å·¦ä¾§ï¼ˆä¸¤ä¸ªåˆ¤æ–­çš„æ¬¡åºä¸å¯äº¤æ¢ï¼‰
+         { i ++;  j ++; } //åˆ™è½¬åˆ°ä¸‹ä¸€å­—ç¬¦
+      else //å¦åˆ™
+         j = next[j]; //æ¨¡å¼ä¸²å³ç§»ï¼ˆæ³¨æ„ï¼šæ–‡æœ¬ä¸²ä¸ç”¨å›é€€ï¼‰
       /*DSA*/}
-   delete [] next; //ÊÍ·Ånext±í
+   delete [] next; //é‡Šæ”¾nextè¡¨
    return i - j;
 }

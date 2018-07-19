@@ -8,22 +8,22 @@
 
 #pragma once
 
-//´Óµ±Ç°½Úµã³ö·¢£¬ÑØ×ó·ÖÖ§²»¶ÏÉîÈë£¬Ö±ÖÁÃ»ÓÐ×ó·ÖÖ§µÄ½Úµã£»ÑØÍ¾½ÚµãÓöµ½ºóÁ¢¼´·ÃÎÊ
-template <typename T, typename VST> //ÔªËØÀàÐÍ¡¢²Ù×÷Æ÷
+//ä»Žå½“å‰èŠ‚ç‚¹å‡ºå‘ï¼Œæ²¿å·¦åˆ†æ”¯ä¸æ–­æ·±å…¥ï¼Œç›´è‡³æ²¡æœ‰å·¦åˆ†æ”¯çš„èŠ‚ç‚¹ï¼›æ²¿é€”èŠ‚ç‚¹é‡åˆ°åŽç«‹å³è®¿é—®
+template <typename T, typename VST> //å…ƒç´ ç±»åž‹ã€æ“ä½œå™¨
 static void visitAlongLeftBranch ( BinNodePosi(T) x, VST& visit, Stack<BinNodePosi(T)>& S ) {
    while ( x ) {
-      visit ( x->data ); //·ÃÎÊµ±Ç°½Úµã
-      S.push ( x->rc ); //ÓÒº¢×ÓÈëÕ»ÔÝ´æ£¨¿ÉÓÅ»¯£ºÍ¨¹ýÅÐ¶Ï£¬±ÜÃâ¿ÕµÄÓÒº¢×ÓÈëÕ»£©
-      x = x->lc;  //ÑØ×ó·ÖÖ§ÉîÈëÒ»²ã
+      visit ( x->data ); //è®¿é—®å½“å‰èŠ‚ç‚¹
+      S.push ( x->rc ); //å³å­©å­å…¥æ ˆæš‚å­˜ï¼ˆå¯ä¼˜åŒ–ï¼šé€šè¿‡åˆ¤æ–­ï¼Œé¿å…ç©ºçš„å³å­©å­å…¥æ ˆï¼‰
+      x = x->lc;  //æ²¿å·¦åˆ†æ”¯æ·±å…¥ä¸€å±‚
    }
 }
 
-template <typename T, typename VST> //ÔªËØÀàÐÍ¡¢²Ù×÷Æ÷
-void travPre_I2 ( BinNodePosi(T) x, VST& visit ) { //¶þ²æÊ÷ÏÈÐò±éÀúËã·¨£¨µü´ú°æ#2£©
-   Stack<BinNodePosi(T)> S; //¸¨ÖúÕ»
+template <typename T, typename VST> //å…ƒç´ ç±»åž‹ã€æ“ä½œå™¨
+void travPre_I2 ( BinNodePosi(T) x, VST& visit ) { //äºŒå‰æ ‘å…ˆåºéåŽ†ç®—æ³•ï¼ˆè¿­ä»£ç‰ˆ#2ï¼‰
+   Stack<BinNodePosi(T)> S; //è¾…åŠ©æ ˆ
    while ( true ) {
-      visitAlongLeftBranch ( x, visit, S ); //´Óµ±Ç°½Úµã³ö·¢£¬ÖðÅú·ÃÎÊ
-      if ( S.empty() ) break; //Ö±µ½Õ»¿Õ
-      x = S.pop(); //µ¯³öÏÂÒ»ÅúµÄÆðµã
+      visitAlongLeftBranch ( x, visit, S ); //ä»Žå½“å‰èŠ‚ç‚¹å‡ºå‘ï¼Œé€æ‰¹è®¿é—®
+      if ( S.empty() ) break; //ç›´åˆ°æ ˆç©º
+      x = S.pop(); //å¼¹å‡ºä¸‹ä¸€æ‰¹çš„èµ·ç‚¹
    }
 }

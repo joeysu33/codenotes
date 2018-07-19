@@ -8,7 +8,7 @@
 
 #pragma once
 
-template <typename T> void PQ_ComplHeap<T>::insert ( T e ) { //½«´ÊÌõ²åÈëÍêÈ«¶ş²æ¶ÑÖĞ
-   Vector<T>::insert ( e ); //Ê×ÏÈ½«ĞÂ´ÊÌõ½ÓÖÁÏòÁ¿Ä©Î²
-   percolateUp ( _size - 1 ); //ÔÙ¶Ô¸Ã´ÊÌõÊµÊ©ÉÏÂËµ÷Õû
+template <typename T> void PQ_ComplHeap<T>::insert ( T e ) { //å°†è¯æ¡æ’å…¥å®Œå…¨äºŒå‰å †ä¸­
+   Vector<T>::insert ( e ); //é¦–å…ˆå°†æ–°è¯æ¡æ¥è‡³å‘é‡æœ«å°¾
+   percolateUp ( _size - 1 ); //å†å¯¹è¯¥è¯æ¡å®æ–½ä¸Šæ»¤è°ƒæ•´
 }

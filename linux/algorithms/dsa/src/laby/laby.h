@@ -8,20 +8,20 @@
 
 #pragma once
 
-// ÃÔ¹¬Ñ°¾¶Ëã·¨£ºÔÚ¸ñµ¥ÔªsÖÁtÖ®¼ä¹æ»®Ò»ÌõÍ¨Â·£¨Èç¹ûµÄÈ·´æÔÚ£©
+// è¿·å®«å¯»å¾„ç®—æ³•ï¼šåœ¨æ ¼å•å…ƒsè‡³tä¹‹é—´è§„åˆ’ä¸€æ¡é€šè·¯ï¼ˆå¦‚æœçš„ç¡®å­˜åœ¨ï¼‰
 bool labyrinth ( Cell Laby[LABY_MAX][LABY_MAX], Cell* s, Cell* t ) {
-   if ( ( AVAILABLE != s->status ) || ( AVAILABLE != t->status ) ) return false; //ÍË»¯Çé¿ö
-   Stack<Cell*> path; //ÓÃÕ»¼ÇÂ¼Í¨Â·£¨TheseusµÄÏßÉş£©
-   s->incoming = UNKNOWN; s->status = ROUTE; path.push ( s ); //Æğµã
-   do { //´ÓÆğµã³ö·¢²»¶ÏÊÔÌ½¡¢»ØËİ£¬Ö±µ½µÖ´ïÖÕµã£¬»òÕßÇî¾¡ËùÓĞ¿ÉÄÜ
+   if ( ( AVAILABLE != s->status ) || ( AVAILABLE != t->status ) ) return false; //é€€åŒ–æƒ…å†µ
+   Stack<Cell*> path; //ç”¨æ ˆè®°å½•é€šè·¯ï¼ˆTheseusçš„çº¿ç»³ï¼‰
+   s->incoming = UNKNOWN; s->status = ROUTE; path.push ( s ); //èµ·ç‚¹
+   do { //ä»èµ·ç‚¹å‡ºå‘ä¸æ–­è¯•æ¢ã€å›æº¯ï¼Œç›´åˆ°æŠµè¾¾ç»ˆç‚¹ï¼Œæˆ–è€…ç©·å°½æ‰€æœ‰å¯èƒ½
       /*DSA*/displayLaby(); /*path.traverse(printLabyCell); printLabyCell(path.top());*/ getchar();
-      Cell* c = path.top(); //¼ì²éµ±Ç°Î»ÖÃ£¨Õ»¶¥£©
-      if ( c == t ) return true; //ÈôÒÑµÖ´ïÖÕµã£¬ÔòÕÒµ½ÁËÒ»ÌõÍ¨Â·£»·ñÔò£¬ÑØÉĞÎ´ÊÔÌ½µÄ·½Ïò¼ÌĞøÊÔÌ½
-      while ( NO_WAY > ( c->outgoing = nextESWN ( c->outgoing ) ) ) //ÖğÒ»¼ì²éËùÓĞ·½Ïò
-         if ( AVAILABLE == neighbor ( c )->status ) break; //ÊÔÍ¼ÕÒµ½ÉĞÎ´ÊÔÌ½µÄ·½Ïò
-      if ( NO_WAY <= c->outgoing ) //ÈôËùÓĞ·½Ïò¶¼ÒÑ³¢ÊÔ¹ı
-         { c->status = BACKTRACKED; c = path.pop(); }//ÔòÏòºó»ØËİÒ»²½
-      else //·ñÔò£¬ÏòÇ°ÊÔÌ½Ò»²½
+      Cell* c = path.top(); //æ£€æŸ¥å½“å‰ä½ç½®ï¼ˆæ ˆé¡¶ï¼‰
+      if ( c == t ) return true; //è‹¥å·²æŠµè¾¾ç»ˆç‚¹ï¼Œåˆ™æ‰¾åˆ°äº†ä¸€æ¡é€šè·¯ï¼›å¦åˆ™ï¼Œæ²¿å°šæœªè¯•æ¢çš„æ–¹å‘ç»§ç»­è¯•æ¢
+      while ( NO_WAY > ( c->outgoing = nextESWN ( c->outgoing ) ) ) //é€ä¸€æ£€æŸ¥æ‰€æœ‰æ–¹å‘
+         if ( AVAILABLE == neighbor ( c )->status ) break; //è¯•å›¾æ‰¾åˆ°å°šæœªè¯•æ¢çš„æ–¹å‘
+      if ( NO_WAY <= c->outgoing ) //è‹¥æ‰€æœ‰æ–¹å‘éƒ½å·²å°è¯•è¿‡
+         { c->status = BACKTRACKED; c = path.pop(); }//åˆ™å‘åå›æº¯ä¸€æ­¥
+      else //å¦åˆ™ï¼Œå‘å‰è¯•æ¢ä¸€æ­¥
          { path.push ( c = advance ( c ) ); c->outgoing = UNKNOWN; c->status = ROUTE; }
    } while ( !path.empty() );
    return false;

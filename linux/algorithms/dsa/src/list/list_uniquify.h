@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename T> int List<T>::uniquify() { //³ÉÅúÌŞ³ıÖØ¸´ÔªËØ£¬Ğ§ÂÊ¸ü¸ß
-   if ( _size < 2 ) return 0; //Æ½·²ÁĞ±í×ÔÈ»ÎŞÖØ¸´
-   int oldSize = _size; //¼ÇÂ¼Ô­¹æÄ£
-   ListNodePosi(T) p = first(); ListNodePosi(T) q; //pÎª¸÷Çø¶ÎÆğµã£¬qÎªÆäºó¼Ì
-   while ( trailer != ( q = p->succ ) ) //·´¸´¿¼²é½ôÁÚµÄ½Úµã¶Ô(p, q)
-      if ( p->data != q->data ) p = q; //Èô»¥Òì£¬Ôò×ªÏòÏÂÒ»Çø¶Î
-      else remove ( q ); //·ñÔò£¨À×Í¬£©£¬É¾³ıºóÕß
-   return oldSize - _size; //ÁĞ±í¹æÄ£±ä»¯Á¿£¬¼´±»É¾³ıÔªËØ×ÜÊı
+template <typename T> int List<T>::uniquify() { //æˆæ‰¹å‰”é™¤é‡å¤å…ƒç´ ï¼Œæ•ˆç‡æ›´é«˜
+   if ( _size < 2 ) return 0; //å¹³å‡¡åˆ—è¡¨è‡ªç„¶æ— é‡å¤
+   int oldSize = _size; //è®°å½•åŸè§„æ¨¡
+   ListNodePosi(T) p = first(); ListNodePosi(T) q; //pä¸ºå„åŒºæ®µèµ·ç‚¹ï¼Œqä¸ºå…¶åç»§
+   while ( trailer != ( q = p->succ ) ) //åå¤è€ƒæŸ¥ç´§é‚»çš„èŠ‚ç‚¹å¯¹(p, q)
+      if ( p->data != q->data ) p = q; //è‹¥äº’å¼‚ï¼Œåˆ™è½¬å‘ä¸‹ä¸€åŒºæ®µ
+      else remove ( q ); //å¦åˆ™ï¼ˆé›·åŒï¼‰ï¼Œåˆ é™¤åè€…
+   return oldSize - _size; //åˆ—è¡¨è§„æ¨¡å˜åŒ–é‡ï¼Œå³è¢«åˆ é™¤å…ƒç´ æ€»æ•°
 }

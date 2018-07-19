@@ -18,30 +18,30 @@
 #include "median.h"
 
 /******************************************************************************************
- * ÖĞÎ»ÊıËã·¨²âÊÔ
+ * ä¸­ä½æ•°ç®—æ³•æµ‹è¯•
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
-// ½âÎöÃüÁîĞĞ
+// è§£æå‘½ä»¤è¡Œ
    if ( 7 > argc ) { printf ( "Usage:\n\t%s <#tests> <n> <min1> <max1> <min2> <max2>\a\a\n", argv[0] ); return 1; }
-   int nTest = atoi ( argv[1] ); //²âÊÔÂÖÊı
-   int n = atoi ( argv[2] ); //ÏòÁ¿³¤¶È
-   int min1 = atoi ( argv[3] ), max1 = atoi ( argv[4] ); //ÊıÖµ·¶Î§
-   int min2 = atoi ( argv[5] ), max2 = atoi ( argv[6] ); //ÊıÖµ·¶Î§
+   int nTest = atoi ( argv[1] ); //æµ‹è¯•è½®æ•°
+   int n = atoi ( argv[2] ); //å‘é‡é•¿åº¦
+   int min1 = atoi ( argv[3] ), max1 = atoi ( argv[4] ); //æ•°å€¼èŒƒå›´
+   int min2 = atoi ( argv[5] ), max2 = atoi ( argv[6] ); //æ•°å€¼èŒƒå›´
    if ( ( nTest < 1 ) || ( n < 1 ) || ( max1 + 1 < min1 + n ) || ( max2 + 1 < min2 + n ) )
       { printf ( "arguments error\a\a\n" ); return 1; }
-// Ëæ»úÖÖ×Ó
+// éšæœºç§å­
    srand ( ( unsigned int ) time ( NULL ) );
-// Ã¿´Î²âÊÔ100×é
+// æ¯æ¬¡æµ‹è¯•100ç»„
    for ( int i = 0; i < nTest; i++ ) {
-      // Ëæ»úÉú³ÉÏòÁ¿
+      // éšæœºç”Ÿæˆå‘é‡
       Vector<int> A1 = randomSortedVector ( n, min1, max1 ); print ( A1 );
       Vector<int> A2 = randomSortedVector ( n, min2, max2 ); print ( A2 );
-      // ¼ÆËãÖĞÎ»Êı£¬²¢ÓëÂùÁ¦Ëã·¨£¨¸ü²»Ò×³ö´í£©µÄ½á¹û¶Ô±È
+      // è®¡ç®—ä¸­ä½æ•°ï¼Œå¹¶ä¸è›®åŠ›ç®—æ³•ï¼ˆæ›´ä¸æ˜“å‡ºé”™ï¼‰çš„ç»“æœå¯¹æ¯”
       int m1 = median ( A1, 0, A2, 0, n );
       int m2 = trivialMedian ( A1, 0, n, A2, 0, n );
       if ( m1 == m2 ) { printf ( "\nmedian: %d = %d\a\n\n\n", m1, m2 ); }
       else          { printf ( "\nmedian: %d <Error> %d\a\a\n\n\n", m1, m2 ); getchar(); }
    }
-   // ·µ»Ø
+   // è¿”å›
    return 0;
 }

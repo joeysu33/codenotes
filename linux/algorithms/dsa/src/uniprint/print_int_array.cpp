@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-void print ( int A[], int n, int lo, int hi ) { //输出整数数组区间A[lo, hi)
+void print ( int A[], int n, int lo, int hi ) { //杈撳嚭鏁存暟鏁扮粍鍖洪棿A[lo, hi)
    bool sorted = true;
    for ( int i = 1; i < n; i++ ) if ( A[i-1] > A[i] ) sorted = false;
    printf ( sorted ? "S: " : " : " );

@@ -8,15 +8,15 @@
 
 /*DSA*/#include "../string_pm/string_pm_test.h"
 
-int* buildNext ( char* P ) { //¹¹ÔìÄ£Ê½´®PµÄnext±í
-   size_t m = strlen ( P ), j = 0; //¡°Ö÷¡±´®Ö¸Õë
-   int* N = new int[m]; //next±í
-   int t = N[0] = -1; //Ä£Ê½´®Ö¸Õë
+int* buildNext ( char* P ) { //æ„é€ æ¨¡å¼ä¸²Pçš„nextè¡¨
+   size_t m = strlen ( P ), j = 0; //â€œä¸»â€ä¸²æŒ‡é’ˆ
+   int* N = new int[m]; //nextè¡¨
+   int t = N[0] = -1; //æ¨¡å¼ä¸²æŒ‡é’ˆ
    while ( j < m - 1 )
-      if ( 0 > t || P[j] == P[t] ) { //Æ¥Åä
+      if ( 0 > t || P[j] == P[t] ) { //åŒ¹é…
          j ++; t ++;
-         N[j] = t; //´Ë¾ä¿É¸Ä½ø...
-      } else //Ê§Åä
+         N[j] = t; //æ­¤å¥å¯æ”¹è¿›...
+      } else //å¤±é…
          t = N[t];
    /*DSA*/printString ( P ); printf ( "\n" );
    /*DSA*/printNext ( N, 0, m );

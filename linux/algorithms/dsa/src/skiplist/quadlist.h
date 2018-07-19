@@ -8,33 +8,33 @@
 
 #pragma once
 
-#include "QuadlistNode.h" //ÒıÈëQuadlist½ÚµãÀà
-template <typename T> class Quadlist { //QuadlistÄ£°åÀà
+#include "QuadlistNode.h" //å¼•å…¥QuadlistèŠ‚ç‚¹ç±»
+template <typename T> class Quadlist { //Quadlistæ¨¡æ¿ç±»
 private:
-   int _size; QlistNodePosi(T) header; QlistNodePosi(T) trailer; //¹æÄ£¡¢Í·ÉÚ±ø¡¢Î²ÉÚ±ø
+   int _size; QlistNodePosi(T) header; QlistNodePosi(T) trailer; //è§„æ¨¡ã€å¤´å“¨å…µã€å°¾å“¨å…µ
 protected:
-   void init(); //Quadlist´´½¨Ê±µÄ³õÊ¼»¯
-   int clear(); //Çå³ıËùÓĞ½Úµã
+   void init(); //Quadliståˆ›å»ºæ—¶çš„åˆå§‹åŒ–
+   int clear(); //æ¸…é™¤æ‰€æœ‰èŠ‚ç‚¹
 public:
-// ¹¹Ôìº¯Êı
-   Quadlist() { init(); } //Ä¬ÈÏ
-// Îö¹¹º¯Êı
-   ~Quadlist() { clear(); delete header; delete trailer; } //É¾³ıËùÓĞ½Úµã£¬ÊÍ·ÅÉÚ±ø
-// Ö»¶Á·ÃÎÊ½Ó¿Ú
-   Rank size() const { return _size; } //¹æÄ£
-   bool empty() const { return _size <= 0; } //ÅĞ¿Õ
-   QlistNodePosi(T) first() const { return header->succ; } //Ê×½ÚµãÎ»ÖÃ
-   QlistNodePosi(T) last() const { return trailer->pred; } //Ä©½ÚµãÎ»ÖÃ
-   bool valid ( QlistNodePosi(T) p ) //ÅĞ¶ÏÎ»ÖÃpÊÇ·ñ¶ÔÍâºÏ·¨
+// æ„é€ å‡½æ•°
+   Quadlist() { init(); } //é»˜è®¤
+// ææ„å‡½æ•°
+   ~Quadlist() { clear(); delete header; delete trailer; } //åˆ é™¤æ‰€æœ‰èŠ‚ç‚¹ï¼Œé‡Šæ”¾å“¨å…µ
+// åªè¯»è®¿é—®æ¥å£
+   Rank size() const { return _size; } //è§„æ¨¡
+   bool empty() const { return _size <= 0; } //åˆ¤ç©º
+   QlistNodePosi(T) first() const { return header->succ; } //é¦–èŠ‚ç‚¹ä½ç½®
+   QlistNodePosi(T) last() const { return trailer->pred; } //æœ«èŠ‚ç‚¹ä½ç½®
+   bool valid ( QlistNodePosi(T) p ) //åˆ¤æ–­ä½ç½®pæ˜¯å¦å¯¹å¤–åˆæ³•
    { return p && ( trailer != p ) && ( header != p ); }
-// ¿ÉĞ´·ÃÎÊ½Ó¿Ú
-   T remove ( QlistNodePosi(T) p ); //É¾³ı£¨ºÏ·¨£©Î»ÖÃp´¦µÄ½Úµã£¬·µ»Ø±»É¾³ı½ÚµãµÄÊıÖµ
-   QlistNodePosi(T) //½«*e×÷ÎªpµÄºó¼Ì¡¢bµÄÉÏÁÚ²åÈë
+// å¯å†™è®¿é—®æ¥å£
+   T remove ( QlistNodePosi(T) p ); //åˆ é™¤ï¼ˆåˆæ³•ï¼‰ä½ç½®på¤„çš„èŠ‚ç‚¹ï¼Œè¿”å›è¢«åˆ é™¤èŠ‚ç‚¹çš„æ•°å€¼
+   QlistNodePosi(T) //å°†*eä½œä¸ºpçš„åç»§ã€bçš„ä¸Šé‚»æ’å…¥
    insertAfterAbove ( T const& e, QlistNodePosi(T) p, QlistNodePosi(T) b = NULL );
-// ±éÀú
-   void traverse ( void (* ) ( T& ) ); //±éÀú¸÷½Úµã£¬ÒÀ´ÎÊµÊ©Ö¸¶¨²Ù×÷£¨º¯ÊıÖ¸Õë£¬Ö»¶Á»ò¾Ö²¿ĞŞ¸Ä£©
-   template <typename VST> //²Ù×÷Æ÷
-   void traverse ( VST& ); //±éÀú¸÷½Úµã£¬ÒÀ´ÎÊµÊ©Ö¸¶¨²Ù×÷£¨º¯Êı¶ÔÏó£¬¿ÉÈ«¾ÖĞÔĞŞ¸Ä½Úµã£©
+// éå†
+   void traverse ( void (* ) ( T& ) ); //éå†å„èŠ‚ç‚¹ï¼Œä¾æ¬¡å®æ–½æŒ‡å®šæ“ä½œï¼ˆå‡½æ•°æŒ‡é’ˆï¼Œåªè¯»æˆ–å±€éƒ¨ä¿®æ”¹ï¼‰
+   template <typename VST> //æ“ä½œå™¨
+   void traverse ( VST& ); //éå†å„èŠ‚ç‚¹ï¼Œä¾æ¬¡å®æ–½æŒ‡å®šæ“ä½œï¼ˆå‡½æ•°å¯¹è±¡ï¼Œå¯å…¨å±€æ€§ä¿®æ”¹èŠ‚ç‚¹ï¼‰
 }; //Quadlist
 
 #include "Quadlist_implementation.h"

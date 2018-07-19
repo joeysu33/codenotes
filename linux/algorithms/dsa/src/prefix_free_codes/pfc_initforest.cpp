@@ -8,11 +8,11 @@
 
 /*DSA*/#include "PFC.h"
 
-PFCForest* initForest() { //PFC±àÂëÉ­ÁÖ³õÊ¼»¯
-   PFCForest* forest = new PFCForest; //Ê×ÏÈ´´½¨¿ÕÉ­ÁÖ£¬È»ºó
-   for ( int i = 0; i < N_CHAR; i++ ) { //¶ÔÃ¿Ò»¸ö¿É´òÓ¡×Ö·û[0x20, 0x80)
-      forest->insert ( i, new PFCTree() ); //´´½¨Ò»¿Ã¶ÔÓ¦µÄPFC±àÂëÊ÷£¬³õÊ¼Ê±ÆäÖĞ
-      ( *forest ) [i]->insertAsRoot ( 0x20 + i ); //Ö»°üº¬¶ÔÓ¦µÄÒ»¸ö£¨Ò¶¡¢¸ù£©½Úµã
+PFCForest* initForest() { //PFCç¼–ç æ£®æ—åˆå§‹åŒ–
+   PFCForest* forest = new PFCForest; //é¦–å…ˆåˆ›å»ºç©ºæ£®æ—ï¼Œç„¶å
+   for ( int i = 0; i < N_CHAR; i++ ) { //å¯¹æ¯ä¸€ä¸ªå¯æ‰“å°å­—ç¬¦[0x20, 0x80)
+      forest->insert ( i, new PFCTree() ); //åˆ›å»ºä¸€æ£µå¯¹åº”çš„PFCç¼–ç æ ‘ï¼Œåˆå§‹æ—¶å…¶ä¸­
+      ( *forest ) [i]->insertAsRoot ( 0x20 + i ); //åªåŒ…å«å¯¹åº”çš„ä¸€ä¸ªï¼ˆå¶ã€æ ¹ï¼‰èŠ‚ç‚¹
    }
-   return forest; //·µ»Ø°üº¬N_CHAR¿ÃÊ÷µÄÉ­ÁÖ£¬ÆäÖĞÃ¿¿ÃÊ÷¸÷°üº¬Ò»¸ö×Ö·û
+   return forest; //è¿”å›åŒ…å«N_CHARæ£µæ ‘çš„æ£®æ—ï¼Œå…¶ä¸­æ¯æ£µæ ‘å„åŒ…å«ä¸€ä¸ªå­—ç¬¦
 }

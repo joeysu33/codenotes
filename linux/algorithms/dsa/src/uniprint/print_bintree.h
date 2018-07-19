@@ -9,95 +9,95 @@
 #pragma once
 
 /******************************************************************************************
- * ¶ş²æÊ÷Êä³ö´òÓ¡
+ * äºŒå‰æ ‘è¾“å‡ºæ‰“å°
  ******************************************************************************************/
-#include "../Bitmap/Bitmap.h" //Ê¹ÓÃÎ»Í¼¼ÇÂ¼·ÖÖ§×ªÏò
+#include "../Bitmap/Bitmap.h" //ä½¿ç”¨ä½å›¾è®°å½•åˆ†æ”¯è½¬å‘
 
 #define ROOT 0
 #define L_CHILD 1
 #define R_CHILD -1*L_CHILD
 
 /******************************************************************************************
- * »ù´¡BinTree
+ * åŸºç¡€BinTree
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
-void UniPrint::p ( BinTree<T> & bt ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d:\n", typeid ( bt ).name(), &bt, bt.size() ); //»ù±¾ĞÅÏ¢
-   Bitmap* branchType = new Bitmap; //¼ÇÂ¼µ±Ç°½Úµã×æÏÈµÄ·½Ïò
-   printBinTree ( bt.root(), -1, ROOT, branchType ); //Ê÷×´½á¹¹
+template <typename T> //å…ƒç´ ç±»å‹
+void UniPrint::p ( BinTree<T> & bt ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d:\n", typeid ( bt ).name(), &bt, bt.size() ); //åŸºæœ¬ä¿¡æ¯
+   Bitmap* branchType = new Bitmap; //è®°å½•å½“å‰èŠ‚ç‚¹ç¥–å…ˆçš„æ–¹å‘
+   printBinTree ( bt.root(), -1, ROOT, branchType ); //æ ‘çŠ¶ç»“æ„
    release ( branchType ); printf ( "\n" );
 }
 
 /******************************************************************************************
- * »ùÓÚBinTreeÊµÏÖµÄBST
+ * åŸºäºBinTreeå®ç°çš„BST
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
-void UniPrint::p ( BST<T> & bt ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d:\n", typeid ( bt ).name(), &bt, bt.size() ); //»ù±¾ĞÅÏ¢
-   Bitmap* branchType = new Bitmap; //¼ÇÂ¼µ±Ç°½Úµã×æÏÈµÄ·½Ïò
-   printBinTree ( bt.root(), -1, ROOT, branchType ); //Ê÷×´½á¹¹
+template <typename T> //å…ƒç´ ç±»å‹
+void UniPrint::p ( BST<T> & bt ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d:\n", typeid ( bt ).name(), &bt, bt.size() ); //åŸºæœ¬ä¿¡æ¯
+   Bitmap* branchType = new Bitmap; //è®°å½•å½“å‰èŠ‚ç‚¹ç¥–å…ˆçš„æ–¹å‘
+   printBinTree ( bt.root(), -1, ROOT, branchType ); //æ ‘çŠ¶ç»“æ„
    release ( branchType ); printf ( "\n" );
 }
 
 /******************************************************************************************
- * »ùÓÚBSTÊµÏÖµÄAVL
- * ÆäÖĞµ÷ÓÃµÄBinNodeµÄ´òÓ¡Àı³Ì£¬¿ÉÒÔÏÔÊ¾BF×´Ì¬
+ * åŸºäºBSTå®ç°çš„AVL
+ * å…¶ä¸­è°ƒç”¨çš„BinNodeçš„æ‰“å°ä¾‹ç¨‹ï¼Œå¯ä»¥æ˜¾ç¤ºBFçŠ¶æ€
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
-void UniPrint::p ( AVL<T> & avl ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d:\n", typeid ( avl ).name(), &avl, avl.size() ); //»ù±¾ĞÅÏ¢
-   Bitmap* branchType = new Bitmap; //¼ÇÂ¼µ±Ç°½Úµã×æÏÈµÄ·½Ïò
-   printBinTree ( avl.root(), -1, ROOT, branchType ); //Ê÷×´½á¹¹
+template <typename T> //å…ƒç´ ç±»å‹
+void UniPrint::p ( AVL<T> & avl ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d:\n", typeid ( avl ).name(), &avl, avl.size() ); //åŸºæœ¬ä¿¡æ¯
+   Bitmap* branchType = new Bitmap; //è®°å½•å½“å‰èŠ‚ç‚¹ç¥–å…ˆçš„æ–¹å‘
+   printBinTree ( avl.root(), -1, ROOT, branchType ); //æ ‘çŠ¶ç»“æ„
    release ( branchType ); printf ( "\n" );
 }
 
 /******************************************************************************************
- * »ùÓÚBSTÊµÏÖµÄRedBlack
- * ÆäÖĞµ÷ÓÃµÄBinNodeµÄ´òÓ¡Àı³Ì£¬¿ÉÒÔÏÔÊ¾BF×´Ì¬
+ * åŸºäºBSTå®ç°çš„RedBlack
+ * å…¶ä¸­è°ƒç”¨çš„BinNodeçš„æ‰“å°ä¾‹ç¨‹ï¼Œå¯ä»¥æ˜¾ç¤ºBFçŠ¶æ€
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
-void UniPrint::p ( RedBlack<T> & rb ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d:\n", typeid ( rb ).name(), &rb, rb.size() ); //»ù±¾ĞÅÏ¢
-   Bitmap* branchType = new Bitmap; //¼ÇÂ¼µ±Ç°½Úµã×æÏÈµÄ·½Ïò
-   printBinTree ( rb.root(), -1, ROOT, branchType ); //Ê÷×´½á¹¹
+template <typename T> //å…ƒç´ ç±»å‹
+void UniPrint::p ( RedBlack<T> & rb ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d:\n", typeid ( rb ).name(), &rb, rb.size() ); //åŸºæœ¬ä¿¡æ¯
+   Bitmap* branchType = new Bitmap; //è®°å½•å½“å‰èŠ‚ç‚¹ç¥–å…ˆçš„æ–¹å‘
+   printBinTree ( rb.root(), -1, ROOT, branchType ); //æ ‘çŠ¶ç»“æ„
    release ( branchType ); printf ( "\n" );
 }
 
 /******************************************************************************************
- * »ùÓÚBSTÊµÏÖµÄSplay
- * ¼øÓÚSplay²»±ØÉèÖÃbfÖ®ÀàµÄ¸½¼Ó±êÊ¶£¬Æä´òÓ¡Àı³ÌÓëBSTÍêÈ«Ò»ÖÂ
+ * åŸºäºBSTå®ç°çš„Splay
+ * é‰´äºSplayä¸å¿…è®¾ç½®bfä¹‹ç±»çš„é™„åŠ æ ‡è¯†ï¼Œå…¶æ‰“å°ä¾‹ç¨‹ä¸BSTå®Œå…¨ä¸€è‡´
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
-void UniPrint::p ( Splay<T> & bt ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d:\n", typeid ( bt ).name(), &bt, bt.size() ); //»ù±¾ĞÅÏ¢
-   Bitmap* branchType = new Bitmap; //¼ÇÂ¼µ±Ç°½Úµã×æÏÈµÄ·½Ïò
-   printBinTree ( bt.root(), -1, ROOT, branchType ); //Ê÷×´½á¹¹
+template <typename T> //å…ƒç´ ç±»å‹
+void UniPrint::p ( Splay<T> & bt ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d:\n", typeid ( bt ).name(), &bt, bt.size() ); //åŸºæœ¬ä¿¡æ¯
+   Bitmap* branchType = new Bitmap; //è®°å½•å½“å‰èŠ‚ç‚¹ç¥–å…ˆçš„æ–¹å‘
+   printBinTree ( bt.root(), -1, ROOT, branchType ); //æ ‘çŠ¶ç»“æ„
    release ( branchType ); printf ( "\n" );
 }
 
 /******************************************************************************************
- * ¶ş²æÊ÷¸÷ÖÖÅÉÉúÀàµÄÍ³Ò»´òÓ¡
+ * äºŒå‰æ ‘å„ç§æ´¾ç”Ÿç±»çš„ç»Ÿä¸€æ‰“å°
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
+template <typename T> //å…ƒç´ ç±»å‹
 static void printBinTree ( BinNodePosi(T) bt, int depth, int type, Bitmap* bType ) {
    if ( !bt ) return;
-   if ( -1 < depth ) //ÉèÖÃµ±Ç°²ãµÄ¹ÕÏò±êÖ¾
+   if ( -1 < depth ) //è®¾ç½®å½“å‰å±‚çš„æ‹å‘æ ‡å¿—
       R_CHILD == type ? bType->set ( depth ) : bType->clear ( depth );
-   printBinTree ( bt->rc, depth + 1, R_CHILD, bType ); //ÓÒ×ÓÊ÷£¨ÔÚÉÏ£©
+   printBinTree ( bt->rc, depth + 1, R_CHILD, bType ); //å³å­æ ‘ï¼ˆåœ¨ä¸Šï¼‰
    print ( bt ); printf ( " *" );
-   for ( int i = -1; i < depth; i++ ) //¸ù¾İÏàÁÚ¸÷²ã
-      if ( ( 0 > i ) || bType->test ( i ) == bType->test ( i + 1 ) ) //µÄ¹ÕÏòÊÇ·ñÒ»ÖÂ£¬¼´¿ÉÈ·¶¨
-         printf ( "      " ); //ÊÇ·ñÓ¦¸Ã
-      else  printf ( "©¦    " ); //´òÓ¡ºáÏß
+   for ( int i = -1; i < depth; i++ ) //æ ¹æ®ç›¸é‚»å„å±‚
+      if ( ( 0 > i ) || bType->test ( i ) == bType->test ( i + 1 ) ) //çš„æ‹å‘æ˜¯å¦ä¸€è‡´ï¼Œå³å¯ç¡®å®š
+         printf ( "      " ); //æ˜¯å¦åº”è¯¥
+      else  printf ( "â”‚    " ); //æ‰“å°æ¨ªçº¿
    switch ( type ) {
-      case  R_CHILD  :  printf ( "©°©¤" );  break;
-      case  L_CHILD  :  printf ( "©¸©¤" );  break;
-      default        :  printf ( "©¤©¤" );  break; //root
+      case  R_CHILD  :  printf ( "â”Œâ”€" );  break;
+      case  L_CHILD  :  printf ( "â””â”€" );  break;
+      default        :  printf ( "â”€â”€" );  break; //root
    }
    print ( bt );
 #if defined(DSA_HUFFMAN)
-   if ( IsLeaf ( *bt ) ) bType->print ( depth + 1 ); //Êä³öHuffman±àÂë
+   if ( IsLeaf ( *bt ) ) bType->print ( depth + 1 ); //è¾“å‡ºHuffmanç¼–ç 
 #endif
    printf ( "\n" );
-   printBinTree ( bt->lc, depth + 1, L_CHILD, bType ); //×ó×ÓÊ÷£¨ÔÚÏÂ£©
+   printBinTree ( bt->lc, depth + 1, L_CHILD, bType ); //å·¦å­æ ‘ï¼ˆåœ¨ä¸‹ï¼‰
 }

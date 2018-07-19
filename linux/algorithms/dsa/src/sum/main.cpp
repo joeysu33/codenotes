@@ -15,18 +15,18 @@ using namespace std;
 #include "../sum/sum.h"
 
 /******************************************************************************************
- * ²âÊÔSUM
+ * æµ‹è¯•SUM
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    int n = ( 1 < argc ) ? atoi ( argv[1] ) : 7; //ToDo: validate n
    int* A = ( int* ) malloc ( n * sizeof ( int ) ); //ToDo: check NULL != A
    srand ( ( unsigned int ) time ( NULL ) );
    for ( int i = 0; i < n; i++ ) A[i] = i;
-   shuffle ( A, n ); print ( A, n ); //´´½¨³¤¶ÈÎªnµÄËæ»úÕûÊýÊý×é
+   shuffle ( A, n ); print ( A, n ); //åˆ›å»ºé•¿åº¦ä¸ºnçš„éšæœºæ•´æ•°æ•°ç»„
    printf ( "SumI  = %d\n", sumI ( A, n ) );
    printf ( "SumR1 = %d\n", sum ( A, n ) );
    printf ( "SumR2 = %d\n\n", sum ( A, 0, n - 1 ) );
-   reverse ( A, n ); print ( A, n ); //µ¹ÖÃ£ºÒ»°ãÐÎÊ½µÄµÝ¹éÈë¿Ú
+   reverse ( A, n ); print ( A, n ); //å€’ç½®ï¼šä¸€èˆ¬å½¢å¼çš„é€’å½’å…¥å£
    printf ( "SumI  = %d\n", sumI ( A, n ) );
    printf ( "SumR1 = %d\n", sum ( A, n ) );
    printf ( "SumR2 = %d\n\n", sum ( A, 0, n - 1 ) );

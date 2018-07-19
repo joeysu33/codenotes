@@ -10,5 +10,5 @@
 
 /*DSA*/#include "..\vector\vector.h"
 
-template <typename T> void increase ( Vector<T> & V ) //Í³Ò»µİÔöÏòÁ¿ÖĞµÄ¸÷ÔªËØ
-{  V.traverse ( Increase<T>() );  } //ÒÔIncrease<T>()Îª»ù±¾²Ù×÷½øĞĞ±éÀú
+template <typename T> void increase ( Vector<T> & V ) //ç»Ÿä¸€é€’å¢å‘é‡ä¸­çš„å„å…ƒç´ 
+{  V.traverse ( Increase<T>() );  } //ä»¥Increase<T>()ä¸ºåŸºæœ¬æ“ä½œè¿›è¡Œéå†

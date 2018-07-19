@@ -8,16 +8,16 @@
 
 #pragma once
 
-template <typename T> //¶þ²æÊ÷×ÓÊ÷½ÓÈëËã·¨£º½«Sµ±×÷½ÚµãxµÄ×ó×ÓÊ÷½ÓÈë£¬S±¾ÉíÖÃ¿Õ
+template <typename T> //äºŒå‰æ ‘å­æ ‘æŽ¥å…¥ç®—æ³•ï¼šå°†Så½“ä½œèŠ‚ç‚¹xçš„å·¦å­æ ‘æŽ¥å…¥ï¼ŒSæœ¬èº«ç½®ç©º
 BinNodePosi(T) BinTree<T>::attachAsLC ( BinNodePosi(T) x, BinTree<T>* &S ) { //x->lc == NULL
-   if ( x->lc = S->_root ) x->lc->parent = x; //½ÓÈë
-   _size += S->_size; updateHeightAbove ( x ); //¸üÐÂÈ«Ê÷¹æÄ£ÓëxËùÓÐ×æÏÈµÄ¸ß¶È
-   S->_root = NULL; S->_size = 0; release ( S ); S = NULL; return x; //ÊÍ·ÅÔ­Ê÷£¬·µ»Ø½ÓÈëÎ»ÖÃ
+   if ( x->lc = S->_root ) x->lc->parent = x; //æŽ¥å…¥
+   _size += S->_size; updateHeightAbove ( x ); //æ›´æ–°å…¨æ ‘è§„æ¨¡ä¸Žxæ‰€æœ‰ç¥–å…ˆçš„é«˜åº¦
+   S->_root = NULL; S->_size = 0; release ( S ); S = NULL; return x; //é‡Šæ”¾åŽŸæ ‘ï¼Œè¿”å›žæŽ¥å…¥ä½ç½®
 }
 
-template <typename T> //¶þ²æÊ÷×ÓÊ÷½ÓÈëËã·¨£º½«Sµ±×÷½ÚµãxµÄÓÒ×ÓÊ÷½ÓÈë£¬S±¾ÉíÖÃ¿Õ
+template <typename T> //äºŒå‰æ ‘å­æ ‘æŽ¥å…¥ç®—æ³•ï¼šå°†Så½“ä½œèŠ‚ç‚¹xçš„å³å­æ ‘æŽ¥å…¥ï¼ŒSæœ¬èº«ç½®ç©º
 BinNodePosi(T) BinTree<T>::attachAsRC ( BinNodePosi(T) x, BinTree<T>* &S ) { //x->rc == NULL
-   if ( x->rc = S->_root ) x->rc->parent = x; //½ÓÈë
-   _size += S->_size; updateHeightAbove ( x ); //¸üÐÂÈ«Ê÷¹æÄ£ÓëxËùÓÐ×æÏÈµÄ¸ß¶È
-   S->_root = NULL; S->_size = 0; release ( S ); S = NULL; return x; //ÊÍ·ÅÔ­Ê÷£¬·µ»Ø½ÓÈëÎ»ÖÃ
+   if ( x->rc = S->_root ) x->rc->parent = x; //æŽ¥å…¥
+   _size += S->_size; updateHeightAbove ( x ); //æ›´æ–°å…¨æ ‘è§„æ¨¡ä¸Žxæ‰€æœ‰ç¥–å…ˆçš„é«˜åº¦
+   S->_root = NULL; S->_size = 0; release ( S ); S = NULL; return x; //é‡Šæ”¾åŽŸæ ‘ï¼Œè¿”å›žæŽ¥å…¥ä½ç½®
 }

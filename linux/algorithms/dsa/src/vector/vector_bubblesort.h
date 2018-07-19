@@ -8,6 +8,6 @@
 
 #pragma once
 
-template <typename T> //ÏòÁ¿µÄÆğÅİÅÅĞò
+template <typename T> //å‘é‡çš„èµ·æ³¡æ’åº
 void Vector<T>::bubbleSort ( Rank lo, Rank hi ) //assert: 0 <= lo < hi <= size
-{ while ( !bubble ( lo, hi-- ) ); } //ÖğÌË×öÉ¨Ãè½»»»£¬Ö±ÖÁÈ«Ğò
+{ while ( !bubble ( lo, hi-- ) ); } //é€è¶Ÿåšæ‰«æäº¤æ¢ï¼Œç›´è‡³å…¨åº

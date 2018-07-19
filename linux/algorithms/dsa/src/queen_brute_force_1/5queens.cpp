@@ -8,9 +8,9 @@
 
 #include "queen.h"
 
-void place5Queens_BruteForce() { //5皇后蛮力算法
-   int solu[5]; //解法
-   int nCandidate = 0; //候选解总数
+void place5Queens_BruteForce() { //5鐨囧悗铔姏绠楁硶
+   int solu[5]; //瑙ｆ硶
+   int nCandidate = 0; //鍊欓�夎В鎬绘暟
    for ( solu[0] = 0; solu[0] < 5; solu[0]++ )
       for ( solu[1] = 0; solu[1] < 5; solu[1]++ )
          for ( solu[2] = 0; solu[2] < 5; solu[2]++ )
@@ -24,5 +24,5 @@ void place5Queens_BruteForce() { //5皇后蛮力算法
                   if ( collide ( solu, 4 ) ) continue;
                   nSolu++; displaySolution ( solu, 5 );
                }
-   printf ( "%d Queens, %d Solution(s), %d Candidate(s), %dCheck(s)\n\a\a", 5, nSolu, nCandidate, nCheck ); //输出解的总数
+   printf ( "%d Queens, %d Solution(s), %d Candidate(s), %dCheck(s)\n\a\a", 5, nSolu, nCandidate, nCheck ); //杈撳嚭瑙ｇ殑鎬绘暟
 }

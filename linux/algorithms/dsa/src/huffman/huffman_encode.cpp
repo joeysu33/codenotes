@@ -8,15 +8,15 @@
 
 /*DSA*/#include "Huffman_PQ.h"
 
-int encode ( HuffTable* table, Bitmap* codeString, char* s ) { //°´ÕÕ±àÂë±í¶ÔBitmap´®±àÂë
-   int n = 0; //´ı·µ»ØµÄ±àÂë´®×Ü³¤n
-   for ( size_t m = strlen ( s ), i = 0; i < m; i++ ) { //¶ÔÓÚÃ÷ÎÄÖĞµÄÃ¿¸ö×Ö·û
-      char** pCharCode = table->get ( s[i] ); //È¡³öÆä¶ÔÓ¦µÄ±àÂë´®
-      if ( !pCharCode ) pCharCode = table->get ( s[i] + 'A' - 'a' ); //Ğ¡Ğ´×ÖÄ¸×ªÎª´óĞ´
-      if ( !pCharCode ) pCharCode = table->get ( ' ' ); //ÎŞ·¨Ê¶±ğµÄ×Ö·ûÍ³Ò»ÊÓ×÷¿Õ¸ñ
-      printf ( "%s", *pCharCode ); //Êä³öµ±Ç°×Ö·ûµÄ±àÂë
-      for ( size_t m = strlen ( *pCharCode ), j = 0; j < m; j++ ) //½«µ±Ç°×Ö·ûµÄ±àÂë½ÓÈë±àÂë´®
+int encode ( HuffTable* table, Bitmap* codeString, char* s ) { //æŒ‰ç…§ç¼–ç è¡¨å¯¹Bitmapä¸²ç¼–ç 
+   int n = 0; //å¾…è¿”å›çš„ç¼–ç ä¸²æ€»é•¿n
+   for ( size_t m = strlen ( s ), i = 0; i < m; i++ ) { //å¯¹äºæ˜æ–‡ä¸­çš„æ¯ä¸ªå­—ç¬¦
+      char** pCharCode = table->get ( s[i] ); //å–å‡ºå…¶å¯¹åº”çš„ç¼–ç ä¸²
+      if ( !pCharCode ) pCharCode = table->get ( s[i] + 'A' - 'a' ); //å°å†™å­—æ¯è½¬ä¸ºå¤§å†™
+      if ( !pCharCode ) pCharCode = table->get ( ' ' ); //æ— æ³•è¯†åˆ«çš„å­—ç¬¦ç»Ÿä¸€è§†ä½œç©ºæ ¼
+      printf ( "%s", *pCharCode ); //è¾“å‡ºå½“å‰å­—ç¬¦çš„ç¼–ç 
+      for ( size_t m = strlen ( *pCharCode ), j = 0; j < m; j++ ) //å°†å½“å‰å­—ç¬¦çš„ç¼–ç æ¥å…¥ç¼–ç ä¸²
          '1' == * ( *pCharCode + j ) ? codeString->set ( n++ ) : codeString->clear ( n++ );
    }
    printf ( "\n" ); return n;
-} //¶ş½øÖÆ±àÂë´®¼ÇÂ¼ÓÚÎ»Í¼codeStringÖĞ
+} //äºŒè¿›åˆ¶ç¼–ç ä¸²è®°å½•äºä½å›¾codeStringä¸­

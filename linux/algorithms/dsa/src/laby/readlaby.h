@@ -8,7 +8,7 @@
 
 #pragma once
 
-void readLaby ( char* labyFile ) { //¶ÁÈëÃÔ¹¬
+void readLaby ( char* labyFile ) { //è¯»å…¥è¿·å®«
    FILE* fp;
    if ( ! ( fp = fopen ( labyFile, "r" ) ) )
       { cout << "can't open " << labyFile << endl; exit ( -1 ); }

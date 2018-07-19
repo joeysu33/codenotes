@@ -8,27 +8,27 @@
 
 #pragma once
 
-#include "BTNode.h" //ÒıÈëB-Ê÷½ÚµãÀà
+#include "BTNode.h" //å¼•å…¥B-æ ‘èŠ‚ç‚¹ç±»
 
-template <typename T> class BTree { //B-Ê÷Ä£°åÀà
+template <typename T> class BTree { //B-æ ‘æ¨¡æ¿ç±»
 protected:
-   int _size; //´æ·ÅµÄ¹Ø¼üÂë×ÜÊı
-   int _order; //B-Ê÷µÄ½×´Î£¬ÖÁÉÙÎª3¡ª¡ª´´½¨Ê±Ö¸¶¨£¬Ò»°ã²»ÄÜĞŞ¸Ä
-   BTNodePosi(T) _root; //¸ù½Úµã
-   BTNodePosi(T) _hot; //BTree::search()×îºó·ÃÎÊµÄ·Ç¿Õ£¨³ı·ÇÊ÷¿Õ£©µÄ½ÚµãÎ»ÖÃ
-   void solveOverflow ( BTNodePosi(T) ); //Òò²åÈë¶øÉÏÒçÖ®ºóµÄ·ÖÁÑ´¦Àí
-   void solveUnderflow ( BTNodePosi(T) ); //ÒòÉ¾³ı¶øÏÂÒçÖ®ºóµÄºÏ²¢´¦Àí
+   int _size; //å­˜æ”¾çš„å…³é”®ç æ€»æ•°
+   int _order; //B-æ ‘çš„é˜¶æ¬¡ï¼Œè‡³å°‘ä¸º3â€”â€”åˆ›å»ºæ—¶æŒ‡å®šï¼Œä¸€èˆ¬ä¸èƒ½ä¿®æ”¹
+   BTNodePosi(T) _root; //æ ¹èŠ‚ç‚¹
+   BTNodePosi(T) _hot; //BTree::search()æœ€åè®¿é—®çš„éç©ºï¼ˆé™¤éæ ‘ç©ºï¼‰çš„èŠ‚ç‚¹ä½ç½®
+   void solveOverflow ( BTNodePosi(T) ); //å› æ’å…¥è€Œä¸Šæº¢ä¹‹åçš„åˆ†è£‚å¤„ç†
+   void solveUnderflow ( BTNodePosi(T) ); //å› åˆ é™¤è€Œä¸‹æº¢ä¹‹åçš„åˆå¹¶å¤„ç†
 public:
-   BTree ( int order = 3 ) : _order ( order ), _size ( 0 ) //¹¹Ôìº¯Êı£ºÄ¬ÈÏÎª×îµÍµÄ3½×
+   BTree ( int order = 3 ) : _order ( order ), _size ( 0 ) //æ„é€ å‡½æ•°ï¼šé»˜è®¤ä¸ºæœ€ä½çš„3é˜¶
    { _root = new BTNode<T>(); }
-   ~BTree() { if ( _root ) release ( _root ); } //Îö¹¹º¯Êı£ºÊÍ·ÅËùÓĞ½Úµã
-   int const order() { return _order; } //½×´Î
-   int const size() { return _size; } //¹æÄ£
-   BTNodePosi(T) & root() { return _root; } //Ê÷¸ù
-   bool empty() const { return !_root; } //ÅĞ¿Õ
-   BTNodePosi(T) search ( const T& e ); //²éÕÒ
-   bool insert ( const T& e ); //²åÈë
-   bool remove ( const T& e ); //É¾³ı
+   ~BTree() { if ( _root ) release ( _root ); } //ææ„å‡½æ•°ï¼šé‡Šæ”¾æ‰€æœ‰èŠ‚ç‚¹
+   int const order() { return _order; } //é˜¶æ¬¡
+   int const size() { return _size; } //è§„æ¨¡
+   BTNodePosi(T) & root() { return _root; } //æ ‘æ ¹
+   bool empty() const { return !_root; } //åˆ¤ç©º
+   BTNodePosi(T) search ( const T& e ); //æŸ¥æ‰¾
+   bool insert ( const T& e ); //æ’å…¥
+   bool remove ( const T& e ); //åˆ é™¤
 }; //BTree
 
 #include "BTree_implementation.h"

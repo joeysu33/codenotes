@@ -9,19 +9,19 @@
 #pragma once
 
 /******************************************************************************************
- * ½«BinNode¸÷·½·¨µÄÊµÏÖ²¿·Ö£¬¼ò½àµØÒıÈëBinNode.h
- * Ğ§¹ûµÈÍ¬ÓÚ½«ÕâĞ©ÊµÏÖÖ±½Ó»ãÈëBinNode.h
- * ÔÚexportÉĞÎ´±»±àÒëÆ÷Ö§³ÖÇ°£¬Èç´Ë¿É½«¶¨ÒåÓëÊµÏÖ·ÖÀë£¬ÒÔ±ã¿Î³Ì½²½â
+ * å°†BinNodeå„æ–¹æ³•çš„å®ç°éƒ¨åˆ†ï¼Œç®€æ´åœ°å¼•å…¥BinNode.h
+ * æ•ˆæœç­‰åŒäºå°†è¿™äº›å®ç°ç›´æ¥æ±‡å…¥BinNode.h
+ * åœ¨exportå°šæœªè¢«ç¼–è¯‘å™¨æ”¯æŒå‰ï¼Œå¦‚æ­¤å¯å°†å®šä¹‰ä¸å®ç°åˆ†ç¦»ï¼Œä»¥ä¾¿è¯¾ç¨‹è®²è§£
  ******************************************************************************************/
 #include "BinNode_macro.h"
-#include "BinNode_size.h" //ºó´úÊıÄ¿
-#include "BinNode_insert.h" //²åÈë
-#include "BinNode_succ.h" //È¡½Úµãºó¼Ì
-#include "BinNode_travPreorder.h" //ÏÈĞò±éÀú
-#include "BinNode_travInorder.h" //ÖĞĞò±éÀú
-#include "BinNode_travPostorder.h" //ºóĞò±éÀú
-#include "BinNode_travLevel.h" //²ã´Î±éÀú
-#include "BinNode_zig.h" //Ë³Ê±ÕëĞı×ª
-#include "BinNode_zag.h" //ÄæÊ±ÕëĞı×ª
+#include "BinNode_size.h" //åä»£æ•°ç›®
+#include "BinNode_insert.h" //æ’å…¥
+#include "BinNode_succ.h" //å–èŠ‚ç‚¹åç»§
+#include "BinNode_travPreorder.h" //å…ˆåºéå†
+#include "BinNode_travInorder.h" //ä¸­åºéå†
+#include "BinNode_travPostorder.h" //ååºéå†
+#include "BinNode_travLevel.h" //å±‚æ¬¡éå†
+#include "BinNode_zig.h" //é¡ºæ—¶é’ˆæ—‹è½¬
+#include "BinNode_zag.h" //é€†æ—¶é’ˆæ—‹è½¬
 #include "BinNode_stretchByZig.h"
 #include "BinNode_stretchByZag.h"

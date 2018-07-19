@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename K, typename V> struct Entry { //´ÊÌõÄ£°åÀà
-   K key; V value; //¹Ø¼üÂë¡¢ÊıÖµ
-   Entry ( K k = K(), V v = V() ) : key ( k ), value ( v ) {}; //Ä¬ÈÏ¹¹Ôìº¯Êı
-   Entry ( Entry<K, V> const& e ) : key ( e.key ), value ( e.value ) {}; //»ùÓÚ¿ËÂ¡µÄ¹¹Ôìº¯Êı
-   bool operator< ( Entry<K, V> const& e ) { return key <  e.key; }  //±È½ÏÆ÷£ºĞ¡ÓÚ
-   bool operator> ( Entry<K, V> const& e ) { return key >  e.key; }  //±È½ÏÆ÷£º´óÓÚ
-   bool operator== ( Entry<K, V> const& e ) { return key == e.key; } //ÅĞµÈÆ÷£ºµÈÓÚ
-   bool operator!= ( Entry<K, V> const& e ) { return key != e.key; } //ÅĞµÈÆ÷£º²»µÈÓÚ
-}; //µÃÒæÓÚ±È½ÏÆ÷ºÍÅĞµÈÆ÷£¬´Ó´ËÍùºó£¬²»±ØÑÏ¸ñÇø·Ö´ÊÌõ¼°Æä¶ÔÓ¦µÄ¹Ø¼üÂë
+template <typename K, typename V> struct Entry { //è¯æ¡æ¨¡æ¿ç±»
+   K key; V value; //å…³é”®ç ã€æ•°å€¼
+   Entry ( K k = K(), V v = V() ) : key ( k ), value ( v ) {}; //é»˜è®¤æ„é€ å‡½æ•°
+   Entry ( Entry<K, V> const& e ) : key ( e.key ), value ( e.value ) {}; //åŸºäºå…‹éš†çš„æ„é€ å‡½æ•°
+   bool operator< ( Entry<K, V> const& e ) { return key <  e.key; }  //æ¯”è¾ƒå™¨ï¼šå°äº
+   bool operator> ( Entry<K, V> const& e ) { return key >  e.key; }  //æ¯”è¾ƒå™¨ï¼šå¤§äº
+   bool operator== ( Entry<K, V> const& e ) { return key == e.key; } //åˆ¤ç­‰å™¨ï¼šç­‰äº
+   bool operator!= ( Entry<K, V> const& e ) { return key != e.key; } //åˆ¤ç­‰å™¨ï¼šä¸ç­‰äº
+}; //å¾—ç›Šäºæ¯”è¾ƒå™¨å’Œåˆ¤ç­‰å™¨ï¼Œä»æ­¤å¾€åï¼Œä¸å¿…ä¸¥æ ¼åŒºåˆ†è¯æ¡åŠå…¶å¯¹åº”çš„å…³é”®ç 

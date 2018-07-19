@@ -6,11 +6,11 @@
  * Copyright (c) 2006-2013. All rights reserved.
  ******************************************************************************************/
 
-int maxR ( int A[], int lo, int hi ) { //¼ÆËãÊý×éÇø¼äA[lo, hi)µÄ×î´óÖµ£¨¶þ·ÖµÝ¹é£©
-   if ( lo + 1 == hi ) //ÈçÓöµÝ¹é»ù£¨Çø¼ä³¤¶ÈÒÑ½µÖÁ1£©£¬Ôò
-      return A[lo]; //Ö±½Ó·µ»Ø¸ÃÔªËØ
-   else { //·ñÔò£¨Ò»°ãÇé¿öÏÂlo + 1 < hi£©£¬ÔòµÝ¹éµØ
-      int mi = ( lo + hi ) >> 1; //ÒÔÖÐÎ»µ¥ÔªÎª½ç£¬½«Ô­Çø¼äÒ»·ÖÎª¶þ£ºA[lo, mi)ºÍA[mi, hi)
-      return max ( maxR ( A, lo, mi ), maxR ( A, mi, hi ) ); //¼ÆËã×ÓÇø¼äµÄ×î´óÖµ£¬ÔÙ´ÓÖÐÈ¡´óÕß
+int maxR ( int A[], int lo, int hi ) { //è®¡ç®—æ•°ç»„åŒºé—´A[lo, hi)çš„æœ€å¤§å€¼ï¼ˆäºŒåˆ†é€’å½’ï¼‰
+   if ( lo + 1 == hi ) //å¦‚é‡é€’å½’åŸºï¼ˆåŒºé—´é•¿åº¦å·²é™è‡³1ï¼‰ï¼Œåˆ™
+      return A[lo]; //ç›´æŽ¥è¿”å›žè¯¥å…ƒç´ 
+   else { //å¦åˆ™ï¼ˆä¸€èˆ¬æƒ…å†µä¸‹lo + 1 < hiï¼‰ï¼Œåˆ™é€’å½’åœ°
+      int mi = ( lo + hi ) >> 1; //ä»¥ä¸­ä½å•å…ƒä¸ºç•Œï¼Œå°†åŽŸåŒºé—´ä¸€åˆ†ä¸ºäºŒï¼šA[lo, mi)å’ŒA[mi, hi)
+      return max ( maxR ( A, lo, mi ), maxR ( A, mi, hi ) ); //è®¡ç®—å­åŒºé—´çš„æœ€å¤§å€¼ï¼Œå†ä»Žä¸­å–å¤§è€…
    }
-} //O(hi - lo)£¬ÏßÐÔÕý±ÈÓÚÇø¼äµÄ³¤¶È
+} //O(hi - lo)ï¼Œçº¿æ€§æ­£æ¯”äºŽåŒºé—´çš„é•¿åº¦

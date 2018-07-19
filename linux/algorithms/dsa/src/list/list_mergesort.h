@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename T> //ÁĞ±íµÄ¹é²¢ÅÅĞòËã·¨£º¶ÔÆğÊ¼ÓÚÎ»ÖÃpµÄn¸öÔªËØÅÅĞò
+template <typename T> //åˆ—è¡¨çš„å½’å¹¶æ’åºç®—æ³•ï¼šå¯¹èµ·å§‹äºä½ç½®pçš„nä¸ªå…ƒç´ æ’åº
 void List<T>::mergeSort ( ListNodePosi(T) & p, int n ) { //valid(p) && rank(p) + n <= size
    /*DSA*/printf ( "\tMERGEsort [%3d]\n", n );
-   if ( n < 2 ) return; //Èô´ıÅÅĞò·¶Î§ÒÑ×ã¹»Ğ¡£¬ÔòÖ±½Ó·µ»Ø£»·ñÔò...
-   int m = n >> 1; //ÒÔÖĞµãÎª½ç
-   ListNodePosi(T) q = p; for ( int i = 0; i < m; i++ ) q = q->succ; //¾ù·ÖÁĞ±í
-   mergeSort ( p, m ); mergeSort ( q, n - m ); //¶ÔÇ°¡¢ºó×ÓÁĞ±í·Ö±ğÅÅĞò
-   merge ( p, m, *this, q, n - m ); //¹é²¢
-} //×¢Òâ£ºÅÅĞòºó£¬pÒÀÈ»Ö¸Ïò¹é²¢ºóÇø¼äµÄ£¨ĞÂ£©Æğµã
+   if ( n < 2 ) return; //è‹¥å¾…æ’åºèŒƒå›´å·²è¶³å¤Ÿå°ï¼Œåˆ™ç›´æ¥è¿”å›ï¼›å¦åˆ™...
+   int m = n >> 1; //ä»¥ä¸­ç‚¹ä¸ºç•Œ
+   ListNodePosi(T) q = p; for ( int i = 0; i < m; i++ ) q = q->succ; //å‡åˆ†åˆ—è¡¨
+   mergeSort ( p, m ); mergeSort ( q, n - m ); //å¯¹å‰ã€åå­åˆ—è¡¨åˆ†åˆ«æ’åº
+   merge ( p, m, *this, q, n - m ); //å½’å¹¶
+} //æ³¨æ„ï¼šæ’åºåï¼Œpä¾ç„¶æŒ‡å‘å½’å¹¶ååŒºé—´çš„ï¼ˆæ–°ï¼‰èµ·ç‚¹

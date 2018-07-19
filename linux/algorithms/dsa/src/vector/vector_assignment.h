@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename T> Vector<T>& Vector<T>::operator= ( Vector<T> const& V ) { //ÖØÔØ
-   if ( _elem ) delete [] _elem; //ÊÍ·ÅÔ­ÓĞÄÚÈİ
-   copyFrom ( V._elem, 0, V.size() ); //ÕûÌå¸´ÖÆ
-   return *this; //·µ»Øµ±Ç°¶ÔÏóµÄÒıÓÃ£¬ÒÔ±ãÁ´Ê½¸³Öµ
+template <typename T> Vector<T>& Vector<T>::operator= ( Vector<T> const& V ) { //é‡è½½
+   if ( _elem ) delete [] _elem; //é‡Šæ”¾åŸæœ‰å†…å®¹
+   copyFrom ( V._elem, 0, V.size() ); //æ•´ä½“å¤åˆ¶
+   return *this; //è¿”å›å½“å‰å¯¹è±¡çš„å¼•ç”¨ï¼Œä»¥ä¾¿é“¾å¼èµ‹å€¼
 }

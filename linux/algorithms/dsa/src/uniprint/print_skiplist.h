@@ -12,9 +12,9 @@
  * Skiplist
  ******************************************************************************************/
 
-template <typename K, typename V> //e¡¢value
-void UniPrint::p ( Skiplist<K, V>& s ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d*%d:\n", typeid ( s ).name(), &s, s.level(), s.size() ); //»ù±¾ĞÅÏ¢
-   s.traverse ( print ); //Í¨¹ıprint()±éÀúÊä³öËùÓĞÔªËØ
+template <typename K, typename V> //eã€value
+void UniPrint::p ( Skiplist<K, V>& s ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d*%d:\n", typeid ( s ).name(), &s, s.level(), s.size() ); //åŸºæœ¬ä¿¡æ¯
+   s.traverse ( print ); //é€šè¿‡print()éå†è¾“å‡ºæ‰€æœ‰å…ƒç´ 
    printf ( "\n" );
 }

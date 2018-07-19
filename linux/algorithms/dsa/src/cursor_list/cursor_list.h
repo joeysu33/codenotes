@@ -12,42 +12,42 @@
 #include "../_share/util.h"
 #include "../UniPrint/print.h"
 
-typedef int Rank; //ÖÈ
-#define DEFAULT_CAPACITY  3 //Ä¬ÈÏµÄ³õÊ¼ÈİÁ¿£¨Êµ¼ÊÓ¦ÓÃÖĞ¿ÉÉèÖÃÎª¸ü´ó£©
+typedef int Rank; //ç§©
+#define DEFAULT_CAPACITY  3 //é»˜è®¤çš„åˆå§‹å®¹é‡ï¼ˆå®é™…åº”ç”¨ä¸­å¯è®¾ç½®ä¸ºæ›´å¤§ï¼‰
 
-template <typename T> class CursorList { //ÓÎ±êÊ½ÁĞ±í
+template <typename T> class CursorList { //æ¸¸æ ‡å¼åˆ—è¡¨
 protected:
-   Rank _size; int _capacity; //¹æÄ£¡¢ÈİÁ¿
-   Rank* _link; T* _elem; //ÓÎ±êÖ¸Õë¡¢Êı¾İÇø
-   Rank _data, _free; //Êı¾İÁ´±íºÍ¿ÕÏĞÁ´±íµÄÆğµã
+   Rank _size; int _capacity; //è§„æ¨¡ã€å®¹é‡
+   Rank* _link; T* _elem; //æ¸¸æ ‡æŒ‡é’ˆã€æ•°æ®åŒº
+   Rank _data, _free; //æ•°æ®é“¾è¡¨å’Œç©ºé—²é“¾è¡¨çš„èµ·ç‚¹
 public:
-   CursorList ( int c = DEFAULT_CAPACITY ) { //ÈİÁ¿Îªc
-      _link = new Rank[_capacity = c]; //ÓÎ±êÖ¸ÕëÏòÁ¿
-      _elem = new T[_capacity = c]; memset ( _elem, 0, c * sizeof ( T ) ); //Êı¾İÏòÁ¿
-      _data = -1; _size = 0; //Êı¾İÁ´±í³õÊ¼Îª¿Õ
-      _free = 0; //¿ÕÏĞÁ´±íÓÉËùÓĞµ¥ÔªÒÀ´Î´®½Ó¶ø³É
+   CursorList ( int c = DEFAULT_CAPACITY ) { //å®¹é‡ä¸ºc
+      _link = new Rank[_capacity = c]; //æ¸¸æ ‡æŒ‡é’ˆå‘é‡
+      _elem = new T[_capacity = c]; memset ( _elem, 0, c * sizeof ( T ) ); //æ•°æ®å‘é‡
+      _data = -1; _size = 0; //æ•°æ®é“¾è¡¨åˆå§‹ä¸ºç©º
+      _free = 0; //ç©ºé—²é“¾è¡¨ç”±æ‰€æœ‰å•å…ƒä¾æ¬¡ä¸²æ¥è€Œæˆ
       for ( Rank i = 0; i < c - 1; i++ ) _link[i] = i + 1;
       _link[c - 1] = -1;
    }
-   ~CursorList() { delete [] _link; delete [] _elem; } //ÊÍ·ÅÄÚ²¿¿Õ¼ä
-   Rank size() const { return _size; } //¹æÄ£
-   bool empty() const { return !_size; } //ÅĞ¿Õ
-   Rank find ( T const& e ) const { //²éÕÒ
-      Rank i = _data; //´ÓÊı¾İÁ´±íÆğµã³ö·¢
-      while ( ( 0 <= i ) && ( e != _elem[i] ) ) i = _link[i]; //ÒÀ´Î±È¶Ô
+   ~CursorList() { delete [] _link; delete [] _elem; } //é‡Šæ”¾å†…éƒ¨ç©ºé—´
+   Rank size() const { return _size; } //è§„æ¨¡
+   bool empty() const { return !_size; } //åˆ¤ç©º
+   Rank find ( T const& e ) const { //æŸ¥æ‰¾
+      Rank i = _data; //ä»æ•°æ®é“¾è¡¨èµ·ç‚¹å‡ºå‘
+      while ( ( 0 <= i ) && ( e != _elem[i] ) ) i = _link[i]; //ä¾æ¬¡æ¯”å¯¹
       return i;
    }
-   Rank insert ( T const& e ) { //²åÈëÔªËØ
+   Rank insert ( T const& e ) { //æ’å…¥å…ƒç´ 
       assert ( 0 <= _free );
       Rank k = _free; _free = _link[k]; _elem[k] = e;
       _link[k] = _data; _data = k;
       _size++; return k;
    }
-   Rank remove ( Rank k ) { //É¾³ıÖÈÎªkµÄÔªËØ
-      assert ( 0 <= k ); //´ËÇ°¾­²éÕÒ²¢È·ÈÏkºÏ·¨
-      if ( _data == k ) //Èô[k]ÎªÊ×½Úµã
+   Rank remove ( Rank k ) { //åˆ é™¤ç§©ä¸ºkçš„å…ƒç´ 
+      assert ( 0 <= k ); //æ­¤å‰ç»æŸ¥æ‰¾å¹¶ç¡®è®¤kåˆæ³•
+      if ( _data == k ) //è‹¥[k]ä¸ºé¦–èŠ‚ç‚¹
          _data = _link[k];
-      else { //·ñÔò
+      else { //å¦åˆ™
          Rank i = _data; while ( k != _link[i] ) i = _link[i];
          _link[i] = _link[k];
       }

@@ -9,11 +9,11 @@
 /*DSA*/#include "Huffman_PQ.h"
 
 /******************************************************************************************
- * HuffmanÊ÷¹¹ÔìËã·¨£º¶Ô´«ÈëµÄHuffmanÉ­ÁÖforestÖğ²½ºÏ²¢£¬Ö±µ½³ÉÎªÒ»¿ÃÊ÷
+ * Huffmanæ ‘æ„é€ ç®—æ³•ï¼šå¯¹ä¼ å…¥çš„Huffmanæ£®æ—foresté€æ­¥åˆå¹¶ï¼Œç›´åˆ°æˆä¸ºä¸€æ£µæ ‘
  ******************************************************************************************
- * forest»ùÓÚÓÅÏÈ¼¶¶ÓÁĞÊµÏÖ£¬´ËËã·¨ÊÊÓÃÓÚ·ûºÏPQ½Ó¿ÚµÄÈÎºÎÊµÏÖ·½Ê½
- * ÎªHuffman_PQ_List¡¢Huffman_PQ_ComplHeapºÍHuffman_PQ_LeftHeap¹²ÓÃ
- * ±àÒëÇ°¶ÔÓ¦¹¤³ÌÖ»ĞèÉèÖÃÏàÓ¦±êÖ¾£ºDSA_PQ_List¡¢DSA_PQ_ComplHeap»òDSA_PQ_LeftHeap
+ * foreståŸºäºä¼˜å…ˆçº§é˜Ÿåˆ—å®ç°ï¼Œæ­¤ç®—æ³•é€‚ç”¨äºç¬¦åˆPQæ¥å£çš„ä»»ä½•å®ç°æ–¹å¼
+ * ä¸ºHuffman_PQ_Listã€Huffman_PQ_ComplHeapå’ŒHuffman_PQ_LeftHeapå…±ç”¨
+ * ç¼–è¯‘å‰å¯¹åº”å·¥ç¨‹åªéœ€è®¾ç½®ç›¸åº”æ ‡å¿—ï¼šDSA_PQ_Listã€DSA_PQ_ComplHeapæˆ–DSA_PQ_LeftHeap
  ******************************************************************************************/
 HuffTree* generateTree ( HuffForest* forest ) {
    while ( 1 < forest->size() ) {
@@ -22,8 +22,8 @@ HuffTree* generateTree ( HuffForest* forest ) {
       /*DSA*/printf ( "Merging " ); print ( s1->root()->data ); printf ( " with " ); print ( s2->root()->data ); printf ( " ...\n" );
       s->insertAsRoot ( HuffChar ( '^', s1->root()->data.weight + s2->root()->data.weight ) );
       s->attachAsLC ( s->root(), s1 ); s->attachAsRC ( s->root(), s2 );
-      forest->insert ( s ); //½«ºÏ²¢ºóµÄHuffmanÊ÷²å»ØHuffmanÉ­ÁÖ
+      forest->insert ( s ); //å°†åˆå¹¶åçš„Huffmanæ ‘æ’å›Huffmanæ£®æ—
    }
-   HuffTree* tree = forest->delMax(); //ÖÁ´Ë£¬É­ÁÖÖĞµÄ×îºóÒ»¿ÃÊ÷
-   return tree; //¼´È«¾ÖHuffman±àÂëÊ÷
+   HuffTree* tree = forest->delMax(); //è‡³æ­¤ï¼Œæ£®æ—ä¸­çš„æœ€åä¸€æ£µæ ‘
+   return tree; //å³å…¨å±€Huffmanç¼–ç æ ‘
 }

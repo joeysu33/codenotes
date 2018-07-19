@@ -9,15 +9,15 @@
 #pragma once
 
 /******************************************************************************************
-* ½«BST¸÷·½·¨µÄÊµÏÖ²¿·Ö£¬¼ò½àµØÒıÈëBST.h
-* Ğ§¹ûµÈÍ¬ÓÚ½«ÕâĞ©ÊµÏÖÖ±½Ó»ãÈëBST.h
-* ÔÚexportÉĞÎ´±»±àÒëÆ÷Ö§³ÖÇ°£¬Èç´Ë¿É½«¶¨ÒåÓëÊµÏÖ·ÖÀë£¬ÒÔ±ã¿Î³Ì½²½â
+* å°†BSTå„æ–¹æ³•çš„å®ç°éƒ¨åˆ†ï¼Œç®€æ´åœ°å¼•å…¥BST.h
+* æ•ˆæœç­‰åŒäºå°†è¿™äº›å®ç°ç›´æ¥æ±‡å…¥BST.h
+* åœ¨exportå°šæœªè¢«ç¼–è¯‘å™¨æ”¯æŒå‰ï¼Œå¦‚æ­¤å¯å°†å®šä¹‰ä¸å®ç°åˆ†ç¦»ï¼Œä»¥ä¾¿è¯¾ç¨‹è®²è§£
 ******************************************************************************************/
-//#include "BST_searchIn_recursive.h" //ÔÚ×ÓÊ÷ÖĞ²éÕÒ£¨µİ¹é°æ£©
-#include "BST_searchIn_iterative.h" //ÔÚ×ÓÊ÷ÖĞ²éÕÒ£¨µü´ú°æ£©
-#include "BST_search.h" //²éÕÒ
-#include "BST_insert.h" //²åÈë
-#include "BST_removeAt.h" //ÔÚ×ÓÊ÷ÖĞÉ¾³ı
-#include "BST_remove.h" //É¾³ı
+//#include "BST_searchIn_recursive.h" //åœ¨å­æ ‘ä¸­æŸ¥æ‰¾ï¼ˆé€’å½’ç‰ˆï¼‰
+#include "BST_searchIn_iterative.h" //åœ¨å­æ ‘ä¸­æŸ¥æ‰¾ï¼ˆè¿­ä»£ç‰ˆï¼‰
+#include "BST_search.h" //æŸ¥æ‰¾
+#include "BST_insert.h" //æ’å…¥
+#include "BST_removeAt.h" //åœ¨å­æ ‘ä¸­åˆ é™¤
+#include "BST_remove.h" //åˆ é™¤
 #include "BST_connect34.h"
 #include "BST_rotateAt.h"

@@ -13,34 +13,34 @@
 #define R_CHILD -1*L_CHILD
 
 /******************************************************************************************
- * ´òÓ¡Êä³öPQ_ComplHeap
+ * æ‰“å°è¾“å‡ºPQ_ComplHeap
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
-void UniPrint::p ( PQ_ComplHeap<T> & pq ) { //ÒıÓÃ
-   printf ( "%s[%d]*%d:\n", typeid ( pq ).name(), &pq, pq.size() ); //»ù±¾ĞÅÏ¢
-   int branchType[256]; //×îÉî256²ã <= 2^256 = 1.16*10^77
-   printComplHeap ( ( Vector<T> & ) pq, pq.size(), 0, 0, ROOT, branchType ); //Ê÷×´½á¹¹
+template <typename T> //å…ƒç´ ç±»å‹
+void UniPrint::p ( PQ_ComplHeap<T> & pq ) { //å¼•ç”¨
+   printf ( "%s[%d]*%d:\n", typeid ( pq ).name(), &pq, pq.size() ); //åŸºæœ¬ä¿¡æ¯
+   int branchType[256]; //æœ€æ·±256å±‚ <= 2^256 = 1.16*10^77
+   printComplHeap ( ( Vector<T> & ) pq, pq.size(), 0, 0, ROOT, branchType ); //æ ‘çŠ¶ç»“æ„
    printf ( "\n" );
 }
 
 /******************************************************************************************
- * µİ¹é´òÓ¡Êä³ö
+ * é€’å½’æ‰“å°è¾“å‡º
  ******************************************************************************************/
-template <typename T> //ÔªËØÀàĞÍ
+template <typename T> //å…ƒç´ ç±»å‹
 static void printComplHeap ( Vector<T>& elem, int n, int k, int depth, int type, int* bType ) {
-   if ( k >= n ) return; //µİ¹é»ù
+   if ( k >= n ) return; //é€’å½’åŸº
    bType[depth] = type;
-   printComplHeap ( elem, n, RChild ( k ), depth + 1, R_CHILD, bType ); //ÓÒ×ÓÊ÷£¨ÔÚÉÏ£©
+   printComplHeap ( elem, n, RChild ( k ), depth + 1, R_CHILD, bType ); //å³å­æ ‘ï¼ˆåœ¨ä¸Šï¼‰
    print ( elem[k] ); ParentValid ( k ) && ( elem[Parent ( k ) ] < elem[k] ) ? printf ( "X" ) : printf ( " " ); printf ( "*" );
-   for ( int i = 0; i < depth; i++ ) //¸ù¾İÏàÁÚ¸÷²ã
-      if ( bType[i] + bType[i+1] ) //µÄ¹ÕÏòÊÇ·ñÒ»ÖÂ£¬¼´¿ÉÈ·¶¨
-         printf ( "      " ); //ÊÇ·ñÓ¦¸Ã
-      else  printf ( "©¦    " ); //´òÓ¡ºáÏß
+   for ( int i = 0; i < depth; i++ ) //æ ¹æ®ç›¸é‚»å„å±‚
+      if ( bType[i] + bType[i+1] ) //çš„æ‹å‘æ˜¯å¦ä¸€è‡´ï¼Œå³å¯ç¡®å®š
+         printf ( "      " ); //æ˜¯å¦åº”è¯¥
+      else  printf ( "â”‚    " ); //æ‰“å°æ¨ªçº¿
    switch ( type ) {
-      case  R_CHILD  :  printf ( "©°©¤" );  break;
-      case  L_CHILD  :  printf ( "©¸©¤" );  break;
-      default        :  printf ( "©¤©¤" );  break; //root
+      case  R_CHILD  :  printf ( "â”Œâ”€" );  break;
+      case  L_CHILD  :  printf ( "â””â”€" );  break;
+      default        :  printf ( "â”€â”€" );  break; //root
    }
    print ( elem[k] ); ParentValid ( k ) && ( elem[Parent ( k ) ] < elem[k] ) ? printf ( "X" ) : printf ( " " ); printf ( "\n" );
-   printComplHeap ( elem, n, LChild ( k ), depth + 1, L_CHILD, bType ); //×ó×ÓÊ÷£¨ÔÚÏÂ£©
+   printComplHeap ( elem, n, LChild ( k ), depth + 1, L_CHILD, bType ); //å·¦å­æ ‘ï¼ˆåœ¨ä¸‹ï¼‰
 }

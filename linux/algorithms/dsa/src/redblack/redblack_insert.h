@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename T> BinNodePosi(T) RedBlack<T>::insert ( const T& e ) { //½«e²åÈëºìºÚÊ÷
-   BinNodePosi(T) & x = search ( e ); if ( x ) return x; //È·ÈÏÄ¿±ê²»´æÔÚ£¨ÁôÒâ¶Ô_hotµÄÉèÖÃ£©
-   x = new BinNode<T> ( e, _hot, NULL, NULL, -1 ); _size++; //´´½¨ºì½Úµãx£ºÒÔ_hotÎª¸¸£¬ºÚ¸ß¶È-1
-   solveDoubleRed ( x ); return x ? x : _hot->parent; //¾­Ë«ºìĞŞÕıºó£¬¼´¿É·µ»Ø
-} //ÎŞÂÛeÊÇ·ñ´æÔÚÓÚÔ­Ê÷ÖĞ£¬·µ»ØÊ±×ÜÓĞx->data == e
+template <typename T> BinNodePosi(T) RedBlack<T>::insert ( const T& e ) { //å°†eæ’å…¥çº¢é»‘æ ‘
+   BinNodePosi(T) & x = search ( e ); if ( x ) return x; //ç¡®è®¤ç›®æ ‡ä¸å­˜åœ¨ï¼ˆç•™æ„å¯¹_hotçš„è®¾ç½®ï¼‰
+   x = new BinNode<T> ( e, _hot, NULL, NULL, -1 ); _size++; //åˆ›å»ºçº¢èŠ‚ç‚¹xï¼šä»¥_hotä¸ºçˆ¶ï¼Œé»‘é«˜åº¦-1
+   solveDoubleRed ( x ); return x ? x : _hot->parent; //ç»åŒçº¢ä¿®æ­£åï¼Œå³å¯è¿”å›
+} //æ— è®ºeæ˜¯å¦å­˜åœ¨äºåŸæ ‘ä¸­ï¼Œè¿”å›æ—¶æ€»æœ‰x->data == e

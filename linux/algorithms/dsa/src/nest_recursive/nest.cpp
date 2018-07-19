@@ -8,24 +8,24 @@
 
 /*DSA*/#include "../nest_stack/nest.h"
 
-void trim ( const char exp[], int& lo, int& hi ) { //É¾³ıexp[lo, hi]²»º¬À¨ºÅµÄ×î³¤Ç°×º¡¢ºó×º
-   while ( ( lo <= hi ) && ( exp[lo] != '(' ) && ( exp[lo] != ')' ) ) lo++; //²éÕÒµÚÒ»¸öºÍ
-   while ( ( lo <= hi ) && ( exp[hi] != '(' ) && ( exp[hi] != ')' ) ) hi--; //×îºóÒ»¸öÀ¨ºÅ
+void trim ( const char exp[], int& lo, int& hi ) { //åˆ é™¤exp[lo, hi]ä¸å«æ‹¬å·çš„æœ€é•¿å‰ç¼€ã€åç¼€
+   while ( ( lo <= hi ) && ( exp[lo] != '(' ) && ( exp[lo] != ')' ) ) lo++; //æŸ¥æ‰¾ç¬¬ä¸€ä¸ªå’Œ
+   while ( ( lo <= hi ) && ( exp[hi] != '(' ) && ( exp[hi] != ')' ) ) hi--; //æœ€åä¸€ä¸ªæ‹¬å·
 }
 
-int divide ( const char exp[], int lo, int hi ) { //ÇĞ·Öexp[lo, hi]£¬Ê¹expÆ¥Åä½öµ±×Ó±í´ïÊ½Æ¥Åä
-   int mi = lo; int crc = 1; //crcÎª[lo, mi]·¶Î§ÄÚ×ó¡¢ÓÒÀ¨ºÅÊıÄ¿Ö®²î
-   while ( ( 0 < crc ) && ( ++mi < hi ) ) //Öğ¸ö¼ì²é¸÷×Ö·û£¬Ö±µ½×ó¡¢ÓÒÀ¨ºÅÊıÄ¿ÏàµÈ£¬»òÕßÔ½½ç
-      {  if ( exp[mi] == ')' )  crc--; if ( exp[mi] == '(' )  crc++;  } //×ó¡¢ÓÒÀ¨ºÅ·Ö±ğ¼ÆÊı
-   return mi; //Èômi <= hi£¬ÔòÎªºÏ·¨ÇĞ·Öµã£»·ñÔò£¬ÒâÎ¶×Å¾Ö²¿²»¿ÉÄÜÆ¥Åä
+int divide ( const char exp[], int lo, int hi ) { //åˆ‡åˆ†exp[lo, hi]ï¼Œä½¿expåŒ¹é…ä»…å½“å­è¡¨è¾¾å¼åŒ¹é…
+   int mi = lo; int crc = 1; //crcä¸º[lo, mi]èŒƒå›´å†…å·¦ã€å³æ‹¬å·æ•°ç›®ä¹‹å·®
+   while ( ( 0 < crc ) && ( ++mi < hi ) ) //é€ä¸ªæ£€æŸ¥å„å­—ç¬¦ï¼Œç›´åˆ°å·¦ã€å³æ‹¬å·æ•°ç›®ç›¸ç­‰ï¼Œæˆ–è€…è¶Šç•Œ
+      {  if ( exp[mi] == ')' )  crc--; if ( exp[mi] == '(' )  crc++;  } //å·¦ã€å³æ‹¬å·åˆ†åˆ«è®¡æ•°
+   return mi; //è‹¥mi <= hiï¼Œåˆ™ä¸ºåˆæ³•åˆ‡åˆ†ç‚¹ï¼›å¦åˆ™ï¼Œæ„å‘³ç€å±€éƒ¨ä¸å¯èƒ½åŒ¹é…
 }
 
-bool paren ( const char exp[], int lo, int hi ) { //¼ì²é±í´ïÊ½exp[lo, hi]ÊÇ·ñÀ¨ºÅÆ¥Åä£¨µİ¹é°æ£©
+bool paren ( const char exp[], int lo, int hi ) { //æ£€æŸ¥è¡¨è¾¾å¼exp[lo, hi]æ˜¯å¦æ‹¬å·åŒ¹é…ï¼ˆé€’å½’ç‰ˆï¼‰
    /*DSA*/displaySubstring ( exp, lo, hi );
-   trim ( exp, lo, hi ); if ( lo > hi ) return true; //Çå³ı²»º¬À¨ºÅµÄÇ°×º¡¢ºó×º
-   if ( exp[lo] != '(' ) return false; //Ê××Ö·û·Ç×óÀ¨ºÅ£¬Ôò±Ø²»Æ¥Åä
-   if ( exp[hi] != ')' ) return false; //Ä©×Ö·û·ÇÓÒÀ¨ºÅ£¬Ôò±Ø²»Æ¥Åä
-   int mi = divide ( exp, lo, hi ); //È·¶¨ÊÊµ±µÄÇĞ·Öµã
-   if ( mi > hi ) return false; //ÇĞ·Öµã²»ºÏ·¨£¬ÒâÎ¶×Å¾Ö²¿ÒÔÖÁÕûÌå²»Æ¥Åä
-   return paren ( exp, lo + 1, mi - 1 ) && paren ( exp, mi + 1, hi ); //·Ö±ğ¼ì²é×ó¡¢ÓÒ×Ó±í´ïÊ½
+   trim ( exp, lo, hi ); if ( lo > hi ) return true; //æ¸…é™¤ä¸å«æ‹¬å·çš„å‰ç¼€ã€åç¼€
+   if ( exp[lo] != '(' ) return false; //é¦–å­—ç¬¦éå·¦æ‹¬å·ï¼Œåˆ™å¿…ä¸åŒ¹é…
+   if ( exp[hi] != ')' ) return false; //æœ«å­—ç¬¦éå³æ‹¬å·ï¼Œåˆ™å¿…ä¸åŒ¹é…
+   int mi = divide ( exp, lo, hi ); //ç¡®å®šé€‚å½“çš„åˆ‡åˆ†ç‚¹
+   if ( mi > hi ) return false; //åˆ‡åˆ†ç‚¹ä¸åˆæ³•ï¼Œæ„å‘³ç€å±€éƒ¨ä»¥è‡³æ•´ä½“ä¸åŒ¹é…
+   return paren ( exp, lo + 1, mi - 1 ) && paren ( exp, mi + 1, hi ); //åˆ†åˆ«æ£€æŸ¥å·¦ã€å³å­è¡¨è¾¾å¼
 }

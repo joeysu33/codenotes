@@ -8,10 +8,10 @@
 
 #pragma once
 
-//¶ÔÏòÁ¿Ç°n¸ö´ÊÌõÖĞµÄµÚi¸öÊµÊ©ÏÂÂË£¬i < n
+//å¯¹å‘é‡å‰nä¸ªè¯æ¡ä¸­çš„ç¬¬iä¸ªå®æ–½ä¸‹æ»¤ï¼Œi < n
 template <typename T> Rank PQ_ComplHeap<T>::percolateDown ( Rank n, Rank i ) {
-   Rank j; //i¼°Æä£¨ÖÁ¶àÁ½¸ö£©º¢×ÓÖĞ£¬¿°Îª¸¸Õß
-   while ( i != ( j = ProperParent ( _elem, n, i ) ) ) //Ö»Òªi·Çj£¬Ôò
-      { swap ( _elem[i], _elem[j] ); i = j; } //¶şÕß»»Î»£¬²¢¼ÌĞø¿¼²éÏÂ½µºóµÄi
-   return i; //·µ»ØÏÂÂËµÖ´ïµÄÎ»ÖÃ£¨ÒàiÒàj£©
+   Rank j; //iåŠå…¶ï¼ˆè‡³å¤šä¸¤ä¸ªï¼‰å­©å­ä¸­ï¼Œå ªä¸ºçˆ¶è€…
+   while ( i != ( j = ProperParent ( _elem, n, i ) ) ) //åªè¦iéjï¼Œåˆ™
+      { swap ( _elem[i], _elem[j] ); i = j; } //äºŒè€…æ¢ä½ï¼Œå¹¶ç»§ç»­è€ƒæŸ¥ä¸‹é™åçš„i
+   return i; //è¿”å›ä¸‹æ»¤æŠµè¾¾çš„ä½ç½®ï¼ˆäº¦iäº¦jï¼‰
 }

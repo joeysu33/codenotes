@@ -8,11 +8,11 @@
 
 #include "queen.h"
 
-void displaySolution ( int* solu, int n ) { //Êä³ön*nµÄ¿ÉĞĞ²¼¾Ö
+void displaySolution ( int* solu, int n ) { //è¾“å‡ºn*nçš„å¯è¡Œå¸ƒå±€
    ( Step == runMode ) ? system ( "cls" ) : printf ( "--\n" );
    for ( int i = 0; i < n; i++ ) {
       for ( int j = 0; j < n; j++ ) {
-         printf ( ( j == solu[i] ) ? "¨€" : "[]" );
+         printf ( ( j == solu[i] ) ? "â–ˆ" : "[]" );
       }
       printf ( "\n" );
    }

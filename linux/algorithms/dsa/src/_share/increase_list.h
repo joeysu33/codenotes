@@ -10,5 +10,5 @@
 
 /*DSA*/#include "..\list\list.h"
 
-template <typename T> void increase ( List<T> & L ) //Í³Ò»µİÔöÁĞ±íÖĞµÄ¸÷ÔªËØ
-{  L.traverse ( Increase<T>() );  } //ÒÔIncrease<T>()Îª»ù±¾²Ù×÷½øĞĞ±éÀú
+template <typename T> void increase ( List<T> & L ) //ç»Ÿä¸€é€’å¢åˆ—è¡¨ä¸­çš„å„å…ƒç´ 
+{  L.traverse ( Increase<T>() );  } //ä»¥Increase<T>()ä¸ºåŸºæœ¬æ“ä½œè¿›è¡Œéå†

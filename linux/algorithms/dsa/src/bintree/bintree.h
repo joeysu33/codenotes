@@ -8,40 +8,40 @@
 
 #pragma once
 
-#include "BinNode.h" //ÒıÈë¶ş²æÊ÷½ÚµãÀà
-template <typename T> class BinTree { //¶ş²æÊ÷Ä£°åÀà
+#include "BinNode.h" //å¼•å…¥äºŒå‰æ ‘èŠ‚ç‚¹ç±»
+template <typename T> class BinTree { //äºŒå‰æ ‘æ¨¡æ¿ç±»
 protected:
-   int _size; BinNodePosi(T) _root; //¹æÄ£¡¢¸ù½Úµã
-   virtual int updateHeight ( BinNodePosi(T) x ); //¸üĞÂ½ÚµãxµÄ¸ß¶È
-   void updateHeightAbove ( BinNodePosi(T) x ); //¸üĞÂ½Úµãx¼°Æä×æÏÈµÄ¸ß¶È
+   int _size; BinNodePosi(T) _root; //è§„æ¨¡ã€æ ¹èŠ‚ç‚¹
+   virtual int updateHeight ( BinNodePosi(T) x ); //æ›´æ–°èŠ‚ç‚¹xçš„é«˜åº¦
+   void updateHeightAbove ( BinNodePosi(T) x ); //æ›´æ–°èŠ‚ç‚¹xåŠå…¶ç¥–å…ˆçš„é«˜åº¦
 public:
-   BinTree() : _size ( 0 ), _root ( NULL ) { } //¹¹Ôìº¯Êı
-   ~BinTree() { if ( 0 < _size ) remove ( _root ); } //Îö¹¹º¯Êı
-   int size() const { return _size; } //¹æÄ£
-   bool empty() const { return !_root; } //ÅĞ¿Õ
-   BinNodePosi(T) root() const { return _root; } //Ê÷¸ù
-   BinNodePosi(T) insertAsRoot ( T const& e ); //²åÈë¸ù½Úµã
-   BinNodePosi(T) insertAsLC ( BinNodePosi(T) x, T const& e ); //e×÷ÎªxµÄ×óº¢×Ó£¨Ô­ÎŞ£©²åÈë
-   BinNodePosi(T) insertAsRC ( BinNodePosi(T) x, T const& e ); //e×÷ÎªxµÄÓÒº¢×Ó£¨Ô­ÎŞ£©²åÈë
-   BinNodePosi(T) attachAsLC ( BinNodePosi(T) x, BinTree<T>* &T ); //T×÷Îªx×ó×ÓÊ÷½ÓÈë
-   BinNodePosi(T) attachAsRC ( BinNodePosi(T) x, BinTree<T>* &T ); //T×÷ÎªxÓÒ×ÓÊ÷½ÓÈë
-   int remove ( BinNodePosi(T) x ); //É¾³ıÒÔÎ»ÖÃx´¦½ÚµãÎª¸ùµÄ×ÓÊ÷£¬·µ»Ø¸Ã×ÓÊ÷Ô­ÏÈµÄ¹æÄ£
-   BinTree<T>* secede ( BinNodePosi(T) x ); //½«×ÓÊ÷x´Óµ±Ç°Ê÷ÖĞÕª³ı£¬²¢½«Æä×ª»»ÎªÒ»¿Ã¶ÀÁ¢×ÓÊ÷
-   template <typename VST> //²Ù×÷Æ÷
-   void travLevel ( VST& visit ) { if ( _root ) _root->travLevel ( visit ); } //²ã´Î±éÀú
-   template <typename VST> //²Ù×÷Æ÷
-   void travPre ( VST& visit ) { if ( _root ) _root->travPre ( visit ); } //ÏÈĞò±éÀú
-   template <typename VST> //²Ù×÷Æ÷
-   void travIn ( VST& visit ) { if ( _root ) _root->travIn ( visit ); } //ÖĞĞò±éÀú
-   template <typename VST> //²Ù×÷Æ÷
-   void travPost ( VST& visit ) { if ( _root ) _root->travPost ( visit ); } //ºóĞò±éÀú
-   bool operator< ( BinTree<T> const& t ) //±È½ÏÆ÷£¨ÆäÓà×ÔĞĞ²¹³ä£©
+   BinTree() : _size ( 0 ), _root ( NULL ) { } //æ„é€ å‡½æ•°
+   ~BinTree() { if ( 0 < _size ) remove ( _root ); } //ææ„å‡½æ•°
+   int size() const { return _size; } //è§„æ¨¡
+   bool empty() const { return !_root; } //åˆ¤ç©º
+   BinNodePosi(T) root() const { return _root; } //æ ‘æ ¹
+   BinNodePosi(T) insertAsRoot ( T const& e ); //æ’å…¥æ ¹èŠ‚ç‚¹
+   BinNodePosi(T) insertAsLC ( BinNodePosi(T) x, T const& e ); //eä½œä¸ºxçš„å·¦å­©å­ï¼ˆåŸæ— ï¼‰æ’å…¥
+   BinNodePosi(T) insertAsRC ( BinNodePosi(T) x, T const& e ); //eä½œä¸ºxçš„å³å­©å­ï¼ˆåŸæ— ï¼‰æ’å…¥
+   BinNodePosi(T) attachAsLC ( BinNodePosi(T) x, BinTree<T>* &T ); //Tä½œä¸ºxå·¦å­æ ‘æ¥å…¥
+   BinNodePosi(T) attachAsRC ( BinNodePosi(T) x, BinTree<T>* &T ); //Tä½œä¸ºxå³å­æ ‘æ¥å…¥
+   int remove ( BinNodePosi(T) x ); //åˆ é™¤ä»¥ä½ç½®xå¤„èŠ‚ç‚¹ä¸ºæ ¹çš„å­æ ‘ï¼Œè¿”å›è¯¥å­æ ‘åŸå…ˆçš„è§„æ¨¡
+   BinTree<T>* secede ( BinNodePosi(T) x ); //å°†å­æ ‘xä»å½“å‰æ ‘ä¸­æ‘˜é™¤ï¼Œå¹¶å°†å…¶è½¬æ¢ä¸ºä¸€æ£µç‹¬ç«‹å­æ ‘
+   template <typename VST> //æ“ä½œå™¨
+   void travLevel ( VST& visit ) { if ( _root ) _root->travLevel ( visit ); } //å±‚æ¬¡éå†
+   template <typename VST> //æ“ä½œå™¨
+   void travPre ( VST& visit ) { if ( _root ) _root->travPre ( visit ); } //å…ˆåºéå†
+   template <typename VST> //æ“ä½œå™¨
+   void travIn ( VST& visit ) { if ( _root ) _root->travIn ( visit ); } //ä¸­åºéå†
+   template <typename VST> //æ“ä½œå™¨
+   void travPost ( VST& visit ) { if ( _root ) _root->travPost ( visit ); } //ååºéå†
+   bool operator< ( BinTree<T> const& t ) //æ¯”è¾ƒå™¨ï¼ˆå…¶ä½™è‡ªè¡Œè¡¥å……ï¼‰
    { return _root && t._root && lt ( _root, t._root ); }
-   bool operator== ( BinTree<T> const& t ) //ÅĞµÈÆ÷
+   bool operator== ( BinTree<T> const& t ) //åˆ¤ç­‰å™¨
    { return _root && t._root && ( _root == t._root ); }
    /*DSA*/
-   /*DSA*/void stretchToLPath() { stretchByZag ( _root ); } //½èÖúzagĞı×ª£¬×ª»¯Îª×óÏòµ¥Á´
-   /*DSA*/void stretchToRPath() { stretchByZig ( _root, _size ); } //½èÖúzigĞı×ª£¬×ª»¯ÎªÓÒÏòµ¥Á´
+   /*DSA*/void stretchToLPath() { stretchByZag ( _root ); } //å€ŸåŠ©zagæ—‹è½¬ï¼Œè½¬åŒ–ä¸ºå·¦å‘å•é“¾
+   /*DSA*/void stretchToRPath() { stretchByZig ( _root, _size ); } //å€ŸåŠ©zigæ—‹è½¬ï¼Œè½¬åŒ–ä¸ºå³å‘å•é“¾
 }; //BinTree
 
 #include "BinTree_implementation.h"

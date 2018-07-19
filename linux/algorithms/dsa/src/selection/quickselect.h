@@ -8,7 +8,7 @@
 
 #pragma once
 
-template <typename T> void quickSelect ( Vector<T> & A, Rank k ) { //基于快速划分的k选取算法
+template <typename T> void quickSelect ( Vector<T> & A, Rank k ) { //鍩轰簬蹇�熷垝鍒嗙殑k閫夊彇绠楁硶
    for ( Rank lo = 0, hi = A.size() - 1; lo < hi; ) {
       Rank i = lo, j = hi; T pivot = A[lo];
       while ( i < j ) { //O(hi - lo + 1) = O(n)

@@ -9,13 +9,13 @@
 #pragma once
 
 template <typename T> ListNodePosi(T) List<T>::insertAsFirst ( T const& e )
-{  _size++; return header->insertAsSucc ( e );  } //eµ±×÷Ê×½Úµã²åÈë
+{  _size++; return header->insertAsSucc ( e );  } //eå½“ä½œé¦–èŠ‚ç‚¹æ’å…¥
 
 template <typename T> ListNodePosi(T) List<T>::insertAsLast ( T const& e )
-{  _size++; return trailer->insertAsPred ( e );  } //eµ±×÷Ä©½Úµã²åÈë
+{  _size++; return trailer->insertAsPred ( e );  } //eå½“ä½œæœ«èŠ‚ç‚¹æ’å…¥
 
 template <typename T> ListNodePosi(T) List<T>::insertA ( ListNodePosi(T) p, T const& e )
-{  _size++; return p->insertAsSucc ( e );  } //eµ±×÷pµÄºó¼Ì²åÈë£¨After£©
+{  _size++; return p->insertAsSucc ( e );  } //eå½“ä½œpçš„åç»§æ’å…¥ï¼ˆAfterï¼‰
 
 template <typename T> ListNodePosi(T) List<T>::insertB ( ListNodePosi(T) p, T const& e )
-{  _size++; return p->insertAsPred ( e );  } //eµ±×÷pµÄÇ°Çı²åÈë£¨Before£©
+{  _size++; return p->insertAsPred ( e );  } //eå½“ä½œpçš„å‰é©±æ’å…¥ï¼ˆBeforeï¼‰

@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename T> Rank Vector<T>::bubble ( Rank lo, Rank hi ) { //Ò»ÌËÉ¨Ãè½»»»
-   Rank last = lo; //×îÓÒ²àµÄÄæĞò¶Ô³õÊ¼»¯Îª[lo - 1, lo]
-   while ( ++lo < hi ) //×Ô×óÏòÓÒ£¬ÖğÒ»¼ì²é¸÷¶ÔÏàÁÚÔªËØ
-      if ( _elem[lo - 1] > _elem[lo] ) { //ÈôÄæĞò£¬Ôò
-         last = lo; //¸üĞÂ×îÓÒ²àÄæĞò¶ÔÎ»ÖÃ¼ÇÂ¼£¬²¢
-         swap ( _elem[lo - 1], _elem[lo] ); //Í¨¹ı½»»»Ê¹¾Ö²¿ÓĞĞò
+template <typename T> Rank Vector<T>::bubble ( Rank lo, Rank hi ) { //ä¸€è¶Ÿæ‰«æäº¤æ¢
+   Rank last = lo; //æœ€å³ä¾§çš„é€†åºå¯¹åˆå§‹åŒ–ä¸º[lo - 1, lo]
+   while ( ++lo < hi ) //è‡ªå·¦å‘å³ï¼Œé€ä¸€æ£€æŸ¥å„å¯¹ç›¸é‚»å…ƒç´ 
+      if ( _elem[lo - 1] > _elem[lo] ) { //è‹¥é€†åºï¼Œåˆ™
+         last = lo; //æ›´æ–°æœ€å³ä¾§é€†åºå¯¹ä½ç½®è®°å½•ï¼Œå¹¶
+         swap ( _elem[lo - 1], _elem[lo] ); //é€šè¿‡äº¤æ¢ä½¿å±€éƒ¨æœ‰åº
       }
-   return last; //·µ»Ø×îÓÒ²àµÄÄæĞò¶ÔÎ»ÖÃ
+   return last; //è¿”å›æœ€å³ä¾§çš„é€†åºå¯¹ä½ç½®
 }

@@ -10,9 +10,9 @@
 
 #include "..\list\list.h"
 
-template <typename T> void checkOrder ( List<T> & L ) { //ÅĞ¶ÏÁĞ±íÊÇ·ñÕûÌåÓĞĞò
-   int unsorted = 0; //ÄæĞò¼ÆÊıÆ÷
-   L.traverse ( CheckOrder<T> ( unsorted, L.first()->data ) ); //½øĞĞ±éÀú
+template <typename T> void checkOrder ( List<T> & L ) { //åˆ¤æ–­åˆ—è¡¨æ˜¯å¦æ•´ä½“æœ‰åº
+   int unsorted = 0; //é€†åºè®¡æ•°å™¨
+   L.traverse ( CheckOrder<T> ( unsorted, L.first()->data ) ); //è¿›è¡Œéå†
    if ( 0 < unsorted )
       printf ( "Unsorted with %d adjacent disordered pair(s)\n", unsorted );
    else

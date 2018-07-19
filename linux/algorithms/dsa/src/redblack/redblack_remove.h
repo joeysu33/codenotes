@@ -8,17 +8,17 @@
 
 #pragma once
 
-template <typename T> bool RedBlack<T>::remove ( const T& e ) { //´ÓºìºÚÊ÷ÖĞÉ¾³ı¹Ø¼üÂëe
-   BinNodePosi(T) & x = search ( e ); if ( !x ) return false; //È·ÈÏÄ¿±ê´æÔÚ£¨ÁôÒâ_hotµÄÉèÖÃ£©
-   BinNodePosi(T) r = removeAt ( x, _hot ); if ( ! ( --_size ) ) return true; //ÊµÊ©É¾³ı
-// assert: _hotÄ³Ò»º¢×Ó¸Õ±»É¾³ı£¬ÇÒ±»rËùÖ¸½Úµã£¨¿ÉÄÜÊÇNULL£©½ÓÌæ¡£ÒÔÏÂ¼ì²éÊÇ·ñÊ§ºâ£¬²¢×ö±ØÒªµ÷Õû
-   if ( ! _hot ) //Èô¸Õ±»É¾³ıµÄÊÇ¸ù½Úµã£¬Ôò½«ÆäÖÃºÚ£¬²¢¸üĞÂºÚ¸ß¶È
+template <typename T> bool RedBlack<T>::remove ( const T& e ) { //ä»çº¢é»‘æ ‘ä¸­åˆ é™¤å…³é”®ç e
+   BinNodePosi(T) & x = search ( e ); if ( !x ) return false; //ç¡®è®¤ç›®æ ‡å­˜åœ¨ï¼ˆç•™æ„_hotçš„è®¾ç½®ï¼‰
+   BinNodePosi(T) r = removeAt ( x, _hot ); if ( ! ( --_size ) ) return true; //å®æ–½åˆ é™¤
+// assert: _hotæŸä¸€å­©å­åˆšè¢«åˆ é™¤ï¼Œä¸”è¢«ræ‰€æŒ‡èŠ‚ç‚¹ï¼ˆå¯èƒ½æ˜¯NULLï¼‰æ¥æ›¿ã€‚ä»¥ä¸‹æ£€æŸ¥æ˜¯å¦å¤±è¡¡ï¼Œå¹¶åšå¿…è¦è°ƒæ•´
+   if ( ! _hot ) //è‹¥åˆšè¢«åˆ é™¤çš„æ˜¯æ ¹èŠ‚ç‚¹ï¼Œåˆ™å°†å…¶ç½®é»‘ï¼Œå¹¶æ›´æ–°é»‘é«˜åº¦
       { _root->color = RB_BLACK; updateHeight ( _root ); return true; }
-// assert: ÒÔÏÂ£¬Ô­x£¨ÏÖr£©±Ø·Ç¸ù£¬_hot±Ø·Ç¿Õ
-   if ( BlackHeightUpdated ( *_hot ) ) return true; //ÈôËùÓĞ×æÏÈµÄºÚÉî¶ÈÒÀÈ»Æ½ºâ£¬ÔòÎŞĞèµ÷Õû
-   if ( IsRed ( r ) ) //·ñÔò£¬ÈôrÎªºì£¬ÔòÖ»ĞèÁîÆä×ªºÚ
+// assert: ä»¥ä¸‹ï¼ŒåŸxï¼ˆç°rï¼‰å¿…éæ ¹ï¼Œ_hotå¿…éç©º
+   if ( BlackHeightUpdated ( *_hot ) ) return true; //è‹¥æ‰€æœ‰ç¥–å…ˆçš„é»‘æ·±åº¦ä¾ç„¶å¹³è¡¡ï¼Œåˆ™æ— éœ€è°ƒæ•´
+   if ( IsRed ( r ) ) //å¦åˆ™ï¼Œè‹¥rä¸ºçº¢ï¼Œåˆ™åªéœ€ä»¤å…¶è½¬é»‘
       { r->color = RB_BLACK; r->height++; return true; }
-// assert: ÒÔÏÂ£¬Ô­x£¨ÏÖr£©¾ùÎªºÚÉ«
+// assert: ä»¥ä¸‹ï¼ŒåŸxï¼ˆç°rï¼‰å‡ä¸ºé»‘è‰²
    //*DSA*/printBinTree(_hot, 0, 0);
-   solveDoubleBlack ( r ); return true; //¾­Ë«ºÚµ÷Õûºó·µ»Ø
-} //ÈôÄ¿±ê½Úµã´æÔÚÇÒ±»É¾³ı£¬·µ»Øtrue£»·ñÔò·µ»Øfalse
+   solveDoubleBlack ( r ); return true; //ç»åŒé»‘è°ƒæ•´åè¿”å›
+} //è‹¥ç›®æ ‡èŠ‚ç‚¹å­˜åœ¨ä¸”è¢«åˆ é™¤ï¼Œè¿”å›trueï¼›å¦åˆ™è¿”å›false

@@ -8,17 +8,17 @@
 
 #pragma once
 
-template <typename Tv, typename Te> //×î¶ÌÂ·¾¶DijkstraËã·¨£ºÊÊÓÃÓÚÒ»°ãµÄÓĞÏòÍ¼
+template <typename Tv, typename Te> //æœ€çŸ­è·¯å¾„Dijkstraç®—æ³•ï¼šé€‚ç”¨äºä¸€èˆ¬çš„æœ‰å‘å›¾
 void Graph<Tv, Te>::dijkstra ( int s ) { //assert: 0 <= s < n
    reset(); priority ( s ) = 0;
-   for ( int i = 0; i < n; i++ ) { //¹²ĞèÒıÈën¸ö¶¥µãºÍn-1Ìõ±ß
+   for ( int i = 0; i < n; i++ ) { //å…±éœ€å¼•å…¥nä¸ªé¡¶ç‚¹å’Œn-1æ¡è¾¹
       status ( s ) = VISITED;
-      if ( -1 != parent ( s ) ) type ( parent ( s ), s ) = TREE; //ÒıÈëµ±Ç°µÄs
-      for ( int j = firstNbr ( s ); -1 < j; j = nextNbr ( s, j ) ) //Ã¶¾ÙsµÄËùÓĞÁÚ¾Ój
-         if ( ( status ( j ) == UNDISCOVERED ) && ( priority ( j ) > priority ( s ) + weight ( s, j ) ) ) //¶ÔÁÚ½Ó¶¥µãj×öËÉ³Ú
-            { priority ( j ) = priority ( s ) + weight ( s, j ); parent ( j ) = s; } //ÓëPrimËã·¨Î¨Ò»µÄ²»Í¬Ö®´¦
-      for ( int shortest = INT_MAX, j = 0; j < n; j++ ) //Ñ¡³öÏÂÒ»×î½ü¶¥µã
+      if ( -1 != parent ( s ) ) type ( parent ( s ), s ) = TREE; //å¼•å…¥å½“å‰çš„s
+      for ( int j = firstNbr ( s ); -1 < j; j = nextNbr ( s, j ) ) //æšä¸¾sçš„æ‰€æœ‰é‚»å±…j
+         if ( ( status ( j ) == UNDISCOVERED ) && ( priority ( j ) > priority ( s ) + weight ( s, j ) ) ) //å¯¹é‚»æ¥é¡¶ç‚¹jåšæ¾å¼›
+            { priority ( j ) = priority ( s ) + weight ( s, j ); parent ( j ) = s; } //ä¸Primç®—æ³•å”¯ä¸€çš„ä¸åŒä¹‹å¤„
+      for ( int shortest = INT_MAX, j = 0; j < n; j++ ) //é€‰å‡ºä¸‹ä¸€æœ€è¿‘é¡¶ç‚¹
          if ( ( status ( j ) == UNDISCOVERED ) && ( shortest > priority ( j ) ) )
             { shortest = priority ( j ); s = j; }
    }
-} //¶ÔÓÚÎŞÏòÁ¬Í¨Í¼£¬¼ÙÉèÃ¿Ò»Ìõ±ß±íÊ¾Îª·½Ïò»¥Äæ¡¢È¨ÖØÏàµÈµÄÒ»¶Ô±ß
+} //å¯¹äºæ— å‘è¿é€šå›¾ï¼Œå‡è®¾æ¯ä¸€æ¡è¾¹è¡¨ç¤ºä¸ºæ–¹å‘äº’é€†ã€æƒé‡ç›¸ç­‰çš„ä¸€å¯¹è¾¹

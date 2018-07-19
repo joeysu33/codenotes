@@ -9,25 +9,25 @@
 #pragma once
 
 /******************************************************************************************
- * Í¼Graph
+ * å›¾Graph
  ******************************************************************************************/
-template <typename Tv, typename Te> //¶¥µãÀàĞÍ¡¢±ßÀàĞÍ
-void UniPrint::p ( GraphMatrix<Tv, Te>& s ) { //ÒıÓÃ
+template <typename Tv, typename Te> //é¡¶ç‚¹ç±»å‹ã€è¾¹ç±»å‹
+void UniPrint::p ( GraphMatrix<Tv, Te>& s ) { //å¼•ç”¨
    int inD = 0; for ( int i = 0; i < s.n; i++ ) inD += s.inDegree ( i );
    int outD = 0; for ( int i = 0; i < s.n; i++ ) outD += s.outDegree ( i );
-   printf ( "%s[%d]*(%d, %d):\n", typeid ( s ).name(), &s, s.n, s.e ); //»ù±¾ĞÅÏ¢
-// ±êÌâĞĞ
+   printf ( "%s[%d]*(%d, %d):\n", typeid ( s ).name(), &s, s.n, s.e ); //åŸºæœ¬ä¿¡æ¯
+// æ ‡é¢˜è¡Œ
    print ( s.n ); printf ( " " ); print ( inD ); printf ( "|" );
    for ( int i = 0; i < s.n; i++ ) { print ( s.vertex ( i ) ); printf ( "[" ); print ( s.status ( i ) ); printf ( "] " ); }
    printf ( "\n" );
-// ±êÌâĞĞ£¨Ğø£©
+// æ ‡é¢˜è¡Œï¼ˆç»­ï¼‰
    print ( outD ); printf ( " " ); print ( s.e ); printf ( "|" );
    for ( int i = 0; i < s.n; i++ ) { print ( s.inDegree ( i ) ); printf ( " " ); }
    printf ( "| dTime fTime Parent Weight\n" );
-// Ë®Æ½·Ö¸ôÏß
+// æ°´å¹³åˆ†éš”çº¿
    printf ( "-----------+" ); for ( int i = 0; i < s.n; i++ ) printf ( "------" );
    printf ( "+----------------------------\n" );
-// ÖğĞĞÊä³ö¸÷¶¥µã
+// é€è¡Œè¾“å‡ºå„é¡¶ç‚¹
    for ( int i = 0; i < s.n; i++ ) {
       print ( s.vertex ( i ) ); printf ( "[" ); print ( s.status ( i ) ); printf ( "] " ); print ( s.outDegree ( i ) ); printf ( "|" );
       for ( int j = 0; j < s.n; j++ )

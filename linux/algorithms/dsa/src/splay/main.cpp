@@ -8,32 +8,32 @@
 
 #include "Splay_test.h"
 
-template <typename T> void  testSplayPeriod ( int n ) { //ÖÜÆÚĞÔ·ÃÎÊ²âÊÔ
+template <typename T> void  testSplayPeriod ( int n ) { //å‘¨æœŸæ€§è®¿é—®æµ‹è¯•
    Splay<T> splay;
    for ( int i = 0; i < n; i++ ) splay.insert ( ( T ) i ); print ( splay );
    for ( int i = 0; i < n; i++ ) { splay.search ( ( T ) i ); print ( splay ); }
 }
 
-template <typename T> void  testSplayRandom ( int n ) { //Ëæ»ú·ÃÎÊ²âÊÔ
+template <typename T> void  testSplayRandom ( int n ) { //éšæœºè®¿é—®æµ‹è¯•
    Splay<T> splay;
    while ( splay.size() < n ) {
-      T e = dice ( ( T ) n * 3 ); //[0, 3n)·¶Î§ÄÚµÄe
+      T e = dice ( ( T ) n * 3 ); //[0, 3n)èŒƒå›´å†…çš„e
       switch ( dice ( 3 ) ) {
-         case 0: { //²éÕÒ£¬³É¹¦ÂÊ <= 33.3%
+         case 0: { //æŸ¥æ‰¾ï¼ŒæˆåŠŸç‡ <= 33.3%
             printf ( "Searching for " ); print ( e ); printf ( " ...\n" );
             splay.search ( e ) ?
             printf ( "Found with" ), print ( splay.root() ), printf ( "\n" ) :
             printf ( "Not found\n" );
             break;
          }
-         case 1: { //É¾³ı£¬³É¹¦ÂÊ <= 33.3%
+         case 1: { //åˆ é™¤ï¼ŒæˆåŠŸç‡ <= 33.3%
             printf ( "Removing " ); print ( e ); printf ( " ...\n" );
             splay.remove ( e ) ?
             printf ( "Removal done\n" ) :
             print ( e ), printf ( " not exists\n" );
             break;
          }
-         default: {//²åÈë£¬³É¹¦ÂÊ == 100%
+         default: {//æ’å…¥ï¼ŒæˆåŠŸç‡ == 100%
             printf ( "Inserting " ); print ( e ); printf ( " ...\n" );
             splay.insert ( e );
             ( e == splay.root()->data ) ?
@@ -42,19 +42,19 @@ template <typename T> void  testSplayRandom ( int n ) { //Ëæ»ú·ÃÎÊ²âÊÔ
             break;
          }
       } //switch
-      print ( splay ); //ÎŞÂÛµ÷ÓÃÄÄ¸ö½Ó¿Ú£¬Splay¶¼»á×ÔÎÒµ÷ÕûĞÎÌ¬£¬¹ÊĞèÍ³Ò»Êä³ö
+      print ( splay ); //æ— è®ºè°ƒç”¨å“ªä¸ªæ¥å£ï¼ŒSplayéƒ½ä¼šè‡ªæˆ‘è°ƒæ•´å½¢æ€ï¼Œæ•…éœ€ç»Ÿä¸€è¾“å‡º
    } //while
    while ( splay.size() > 0 ) {
-      T e = dice ( ( T ) n * 3 ); //[0, 3n)·¶Î§ÄÚµÄe
+      T e = dice ( ( T ) n * 3 ); //[0, 3n)èŒƒå›´å†…çš„e
       printf ( "Removing " ); print ( e ); printf ( " ...\n" );
       splay.remove ( e ) ? printf ( "Removal done\n" ), print ( splay ) : print ( e ), printf ( " not exists\n" );
    }
-} //¿Îºó£ºÀûÓÃÕâÒ»½Ó¿Ú£¬Õë¶Ô²»Í¬·Ö²¼µÄ·ÃÎÊ£¬ÑéÖ¤¿ÎÉÏ¶ÔSplay·ÖÌ¯·ÖÎöµÄ½áÂÛ
+} //è¯¾åï¼šåˆ©ç”¨è¿™ä¸€æ¥å£ï¼Œé’ˆå¯¹ä¸åŒåˆ†å¸ƒçš„è®¿é—®ï¼ŒéªŒè¯è¯¾ä¸Šå¯¹Splayåˆ†æ‘Šåˆ†æçš„ç»“è®º
 
-int main ( int argc, char* argv[] ) { //²âÊÔÖ÷Èë¿Ú
+int main ( int argc, char* argv[] ) { //æµ‹è¯•ä¸»å…¥å£
    if ( 2 > argc ) { printf ( "Usage: %s <size of test>\a\a\n", argv[0] ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
-   testSplayRandom<int> ( atoi ( argv[1] ) ); //ÔªËØÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
-   testSplayPeriod<int> ( atoi ( argv[1] ) ); //ÔªËØÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testSplayRandom<int> ( atoi ( argv[1] ) ); //å…ƒç´ ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
+   testSplayPeriod<int> ( atoi ( argv[1] ) ); //å…ƒç´ ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
    return 0;
 }

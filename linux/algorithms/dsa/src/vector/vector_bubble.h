@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename T> bool Vector<T>::bubble ( Rank lo, Rank hi ) { //Ò»ÌËÉ¨Ãè½»»»
-   bool sorted = true; //ÕûÌåÓĞĞò±êÖ¾
-   while ( ++lo < hi ) //×Ô×óÏòÓÒ£¬ÖğÒ»¼ì²é¸÷¶ÔÏàÁÚÔªËØ
-      if ( _elem[lo - 1] > _elem[lo] ) { //ÈôÄæĞò£¬Ôò
-         sorted = false; //ÒâÎ¶×ÅÉĞÎ´ÕûÌåÓĞĞò£¬²¢ĞèÒª
-         swap ( _elem[lo - 1], _elem[lo] ); //Í¨¹ı½»»»Ê¹¾Ö²¿ÓĞĞò
+template <typename T> bool Vector<T>::bubble ( Rank lo, Rank hi ) { //ä¸€è¶Ÿæ‰«æäº¤æ¢
+   bool sorted = true; //æ•´ä½“æœ‰åºæ ‡å¿—
+   while ( ++lo < hi ) //è‡ªå·¦å‘å³ï¼Œé€ä¸€æ£€æŸ¥å„å¯¹ç›¸é‚»å…ƒç´ 
+      if ( _elem[lo - 1] > _elem[lo] ) { //è‹¥é€†åºï¼Œåˆ™
+         sorted = false; //æ„å‘³ç€å°šæœªæ•´ä½“æœ‰åºï¼Œå¹¶éœ€è¦
+         swap ( _elem[lo - 1], _elem[lo] ); //é€šè¿‡äº¤æ¢ä½¿å±€éƒ¨æœ‰åº
       }
-   return sorted; //·µ»ØÓĞĞò±êÖ¾
+   return sorted; //è¿”å›æœ‰åºæ ‡å¿—
 }

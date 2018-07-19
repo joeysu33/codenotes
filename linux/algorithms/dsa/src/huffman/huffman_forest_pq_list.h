@@ -8,5 +8,5 @@
 
 #pragma once
 
-#include "../PQ_List/PQ_List.h" //用PQ_List实现
-typedef PQ_List<HuffTree*> HuffForest; //Huffman森林
+#include "../PQ_List/PQ_List.h" //鐢≒Q_List瀹炵幇
+typedef PQ_List<HuffTree*> HuffForest; //Huffman妫灄

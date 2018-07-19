@@ -8,9 +8,9 @@
 
 #pragma once
 
-template <typename T> T List<T>::remove ( ListNodePosi(T) p ) { //É¾³ıºÏ·¨½Úµãp£¬·µ»ØÆäÊıÖµ
-   T e = p->data; //±¸·İ´ıÉ¾³ı½ÚµãµÄÊıÖµ£¨¼Ù¶¨TÀàĞÍ¿ÉÖ±½Ó¸³Öµ£©
-   p->pred->succ = p->succ; p->succ->pred = p->pred; //ºó¼Ì¡¢Ç°Çı
-   delete p; _size--; //ÊÍ·Å½Úµã£¬¸üĞÂ¹æÄ£
-   return e; //·µ»Ø±¸·İµÄÊıÖµ
+template <typename T> T List<T>::remove ( ListNodePosi(T) p ) { //åˆ é™¤åˆæ³•èŠ‚ç‚¹pï¼Œè¿”å›å…¶æ•°å€¼
+   T e = p->data; //å¤‡ä»½å¾…åˆ é™¤èŠ‚ç‚¹çš„æ•°å€¼ï¼ˆå‡å®šTç±»å‹å¯ç›´æ¥èµ‹å€¼ï¼‰
+   p->pred->succ = p->succ; p->succ->pred = p->pred; //åç»§ã€å‰é©±
+   delete p; _size--; //é‡Šæ”¾èŠ‚ç‚¹ï¼Œæ›´æ–°è§„æ¨¡
+   return e; //è¿”å›å¤‡ä»½çš„æ•°å€¼
 }

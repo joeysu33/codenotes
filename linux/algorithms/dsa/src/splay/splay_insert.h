@@ -8,17 +8,17 @@
 
 #pragma once
 
-template <typename T> BinNodePosi(T) Splay<T>::insert ( const T& e ) { //½«¹Ø¼üÂëe²åÈëÉìÕ¹Ê÷ÖĞ
-   if ( !_root ) { _size++; return _root = new BinNode<T> ( e ); } //´¦ÀíÔ­Ê÷Îª¿ÕµÄÍË»¯Çé¿ö
-   if ( e == search ( e )->data ) return _root; //È·ÈÏÄ¿±ê½Úµã²»´æÔÚ
-   _size++; BinNodePosi(T) t = _root; //´´½¨ĞÂ½Úµã¡£ÒÔÏÂµ÷Õû<=7¸öÖ¸ÕëÒÔÍê³É¾Ö²¿ÖØ¹¹
-   if ( _root->data < e ) { //²åÈëĞÂ¸ù£¬ÒÔtºÍt->rcÎª×ó¡¢ÓÒº¢×Ó
-      t->parent = _root = new BinNode<T> ( e, NULL, t, t->rc ); //2 + 3¸ö
-      if ( HasRChild ( *t ) ) { t->rc->parent = _root; t->rc = NULL; } //<= 2¸ö
-   } else { //²åÈëĞÂ¸ù£¬ÒÔt->lcºÍtÎª×ó¡¢ÓÒº¢×Ó
-      t->parent = _root = new BinNode<T> ( e, NULL, t->lc, t ); //2 + 3¸ö
-      if ( HasLChild ( *t ) ) { t->lc->parent = _root; t->lc = NULL; } //<= 2¸ö
+template <typename T> BinNodePosi(T) Splay<T>::insert ( const T& e ) { //å°†å…³é”®ç eæ’å…¥ä¼¸å±•æ ‘ä¸­
+   if ( !_root ) { _size++; return _root = new BinNode<T> ( e ); } //å¤„ç†åŸæ ‘ä¸ºç©ºçš„é€€åŒ–æƒ…å†µ
+   if ( e == search ( e )->data ) return _root; //ç¡®è®¤ç›®æ ‡èŠ‚ç‚¹ä¸å­˜åœ¨
+   _size++; BinNodePosi(T) t = _root; //åˆ›å»ºæ–°èŠ‚ç‚¹ã€‚ä»¥ä¸‹è°ƒæ•´<=7ä¸ªæŒ‡é’ˆä»¥å®Œæˆå±€éƒ¨é‡æ„
+   if ( _root->data < e ) { //æ’å…¥æ–°æ ¹ï¼Œä»¥tå’Œt->rcä¸ºå·¦ã€å³å­©å­
+      t->parent = _root = new BinNode<T> ( e, NULL, t, t->rc ); //2 + 3ä¸ª
+      if ( HasRChild ( *t ) ) { t->rc->parent = _root; t->rc = NULL; } //<= 2ä¸ª
+   } else { //æ’å…¥æ–°æ ¹ï¼Œä»¥t->lcå’Œtä¸ºå·¦ã€å³å­©å­
+      t->parent = _root = new BinNode<T> ( e, NULL, t->lc, t ); //2 + 3ä¸ª
+      if ( HasLChild ( *t ) ) { t->lc->parent = _root; t->lc = NULL; } //<= 2ä¸ª
    }
-   updateHeightAbove ( t ); //¸üĞÂt¼°Æä×æÏÈ£¨Êµ¼ÊÉÏÖ»ÓĞ_rootÒ»¸ö£©µÄ¸ß¶È
-   return _root; //ĞÂ½Úµã±ØÈ»ÖÃÓÚÊ÷¸ù£¬·µ»ØÖ®
-} //ÎŞÂÛeÊÇ·ñ´æÔÚÓÚÔ­Ê÷ÖĞ£¬·µ»ØÊ±×ÜÓĞ_root->data == e
+   updateHeightAbove ( t ); //æ›´æ–°tåŠå…¶ç¥–å…ˆï¼ˆå®é™…ä¸Šåªæœ‰_rootä¸€ä¸ªï¼‰çš„é«˜åº¦
+   return _root; //æ–°èŠ‚ç‚¹å¿…ç„¶ç½®äºæ ‘æ ¹ï¼Œè¿”å›ä¹‹
+} //æ— è®ºeæ˜¯å¦å­˜åœ¨äºåŸæ ‘ä¸­ï¼Œè¿”å›æ—¶æ€»æœ‰_root->data == e

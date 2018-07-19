@@ -8,14 +8,14 @@
 
 #pragma once
 
-#include "../BST/BST.h" //基于BST实现Splay
-template <typename T> class Splay : public BST<T> { //由BST派生的Splay树模板类
+#include "../BST/BST.h" //鍩轰簬BST瀹炵幇Splay
+template <typename T> class Splay : public BST<T> { //鐢盉ST娲剧敓鐨凷play鏍戞ā鏉跨被
 protected:
-   BinNodePosi(T) splay ( BinNodePosi(T) v ); //将节点v伸展至根
+   BinNodePosi(T) splay ( BinNodePosi(T) v ); //灏嗚妭鐐箆浼稿睍鑷虫牴
 public:
-   BinNodePosi(T) & search ( const T& e ); //查找（重写）
-   BinNodePosi(T) insert ( const T& e ); //插入（重写）
-   bool remove ( const T& e ); //删除（重写）
+   BinNodePosi(T) & search ( const T& e ); //鏌ユ壘锛堥噸鍐欙級
+   BinNodePosi(T) insert ( const T& e ); //鎻掑叆锛堥噸鍐欙級
+   bool remove ( const T& e ); //鍒犻櫎锛堥噸鍐欙級
 };
 
 #include "Splay_implementation.h"

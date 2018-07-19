@@ -8,18 +8,18 @@
 
 #pragma once
 
-template <typename T> //ÏòÁ¿Ñ¡ÔñÅÅĞò
+template <typename T> //å‘é‡é€‰æ‹©æ’åº
 void Vector<T>::selectionSort ( Rank lo, Rank hi ) { //assert: 0 < lo <= hi <= size
    /*DSA*/printf ( "\tSELECTIONsort [%3d, %3d)\n", lo, hi );
    while ( lo < --hi )
-      swap ( _elem[max ( lo, hi ) ], _elem[hi] ); //½«[hi]Óë[lo, hi]ÖĞµÄ×î´óÕß½»»»
+      swap ( _elem[max ( lo, hi ) ], _elem[hi] ); //å°†[hi]ä¸[lo, hi]ä¸­çš„æœ€å¤§è€…äº¤æ¢
 }
 
 template <typename T>
-Rank Vector<T>::max ( Rank lo, Rank hi ) { //ÔÚ[lo, hi]ÄÚÕÒ³ö×î´óÕß
+Rank Vector<T>::max ( Rank lo, Rank hi ) { //åœ¨[lo, hi]å†…æ‰¾å‡ºæœ€å¤§è€…
    Rank mx = hi;
-   while ( lo < hi-- ) //ÄæÏòÉ¨Ãè
-      if ( _elem[hi] > _elem[mx] ) //ÇÒÑÏ¸ñ±È½Ï
-         mx = hi; //¹ÊÄÜÔÚmaxÓĞ¶à¸öÊ±±£Ö¤ºóÕßÓÅÏÈ£¬½ø¶ø±£Ö¤selectionSortÎÈ¶¨
+   while ( lo < hi-- ) //é€†å‘æ‰«æ
+      if ( _elem[hi] > _elem[mx] ) //ä¸”ä¸¥æ ¼æ¯”è¾ƒ
+         mx = hi; //æ•…èƒ½åœ¨maxæœ‰å¤šä¸ªæ—¶ä¿è¯åè€…ä¼˜å…ˆï¼Œè¿›è€Œä¿è¯selectionSortç¨³å®š
    return mx;
 }

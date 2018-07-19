@@ -8,17 +8,17 @@
 
 #pragma once
 
-#define  InHeap(n, i)      ( ( ( -1 ) < ( i ) ) && ( ( i ) < ( n ) ) ) //ÅĞ¶ÏPQ[i]ÊÇ·ñºÏ·¨
-#define  Parent(i)         ( ( i - 1 ) >> 1 ) //PQ[i]µÄ¸¸½Úµã£¨floor((i-1)/2)£¬iÎŞÂÛÕı¸º£©
-#define  LastInternal(n)   Parent( n - 1 ) //×îºóÒ»¸öÄÚ²¿½Úµã£¨¼´Ä©½ÚµãµÄ¸¸Ç×£©
-#define  LChild(i)         ( 1 + ( ( i ) << 1 ) ) //PQ[i]µÄ×óº¢×Ó
-#define  RChild(i)         ( ( 1 + ( i ) ) << 1 ) //PQ[i]µÄÓÒº¢×Ó
-#define  ParentValid(i)    ( 0 < i ) //ÅĞ¶ÏPQ[i]ÊÇ·ñÓĞ¸¸Ç×
-#define  LChildValid(n, i) InHeap( n, LChild( i ) ) //ÅĞ¶ÏPQ[i]ÊÇ·ñÓĞÒ»¸ö£¨×ó£©º¢×Ó
-#define  RChildValid(n, i) InHeap( n, RChild( i ) ) //ÅĞ¶ÏPQ[i]ÊÇ·ñÓĞÁ½¸öº¢×Ó
-#define  Bigger(PQ, i, j)  ( lt( PQ[i], PQ[j] ) ? j : i ) //È¡´óÕß£¨µÈÊ±Ç°ÕßÓÅÏÈ£©
-#define  ProperParent(PQ, n, i) /*¸¸×Ó£¨ÖÁ¶à£©ÈıÕßÖĞµÄ´óÕß*/ \
+#define  InHeap(n, i)      ( ( ( -1 ) < ( i ) ) && ( ( i ) < ( n ) ) ) //åˆ¤æ–­PQ[i]æ˜¯å¦åˆæ³•
+#define  Parent(i)         ( ( i - 1 ) >> 1 ) //PQ[i]çš„çˆ¶èŠ‚ç‚¹ï¼ˆfloor((i-1)/2)ï¼Œiæ— è®ºæ­£è´Ÿï¼‰
+#define  LastInternal(n)   Parent( n - 1 ) //æœ€åä¸€ä¸ªå†…éƒ¨èŠ‚ç‚¹ï¼ˆå³æœ«èŠ‚ç‚¹çš„çˆ¶äº²ï¼‰
+#define  LChild(i)         ( 1 + ( ( i ) << 1 ) ) //PQ[i]çš„å·¦å­©å­
+#define  RChild(i)         ( ( 1 + ( i ) ) << 1 ) //PQ[i]çš„å³å­©å­
+#define  ParentValid(i)    ( 0 < i ) //åˆ¤æ–­PQ[i]æ˜¯å¦æœ‰çˆ¶äº²
+#define  LChildValid(n, i) InHeap( n, LChild( i ) ) //åˆ¤æ–­PQ[i]æ˜¯å¦æœ‰ä¸€ä¸ªï¼ˆå·¦ï¼‰å­©å­
+#define  RChildValid(n, i) InHeap( n, RChild( i ) ) //åˆ¤æ–­PQ[i]æ˜¯å¦æœ‰ä¸¤ä¸ªå­©å­
+#define  Bigger(PQ, i, j)  ( lt( PQ[i], PQ[j] ) ? j : i ) //å–å¤§è€…ï¼ˆç­‰æ—¶å‰è€…ä¼˜å…ˆï¼‰
+#define  ProperParent(PQ, n, i) /*çˆ¶å­ï¼ˆè‡³å¤šï¼‰ä¸‰è€…ä¸­çš„å¤§è€…*/ \
             ( RChildValid(n, i) ? Bigger( PQ, Bigger( PQ, i, LChild(i) ), RChild(i) ) : \
             ( LChildValid(n, i) ? Bigger( PQ, i, LChild(i) ) : i \
             ) \
-            ) //ÏàµÈÊ±¸¸½ÚµãÓÅÏÈ£¬Èç´Ë¿É±ÜÃâ²»±ØÒªµÄ½»»»
+            ) //ç›¸ç­‰æ—¶çˆ¶èŠ‚ç‚¹ä¼˜å…ˆï¼Œå¦‚æ­¤å¯é¿å…ä¸å¿…è¦çš„äº¤æ¢

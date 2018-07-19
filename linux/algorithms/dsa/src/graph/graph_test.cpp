@@ -12,24 +12,24 @@
 #include "Graph_test.h"
 
 /******************************************************************************************
- * Éú³ÉÓÉv¸ö¶¥µã¡¢eÌõ±ß¹¹³ÉµÄËæ»úÍ¼
+ * ç”Ÿæˆç”±vä¸ªé¡¶ç‚¹ã€eæ¡è¾¹æ„æˆçš„éšæœºå›¾
  ******************************************************************************************/
-template <typename Tv, typename Te> //¶¥µãÀàĞÍ¡¢±ßÀàĞÍ
+template <typename Tv, typename Te> //é¡¶ç‚¹ç±»å‹ã€è¾¹ç±»å‹
 void randomGraph ( GraphMatrix<Tv, Te> & g, int n, int e ) { //assert: 0 < e(e-1) <= v
-   while ( ( g.n < n ) || ( g.e < e ) ) { //Ëæ»ú²âÊÔ
-      if ( g.n < n ) { //¶¥µã
-         if ( dice ( 100 ) < 65 ) { //65%¸ÅÂÊ²åÈë¶¥µã
+   while ( ( g.n < n ) || ( g.e < e ) ) { //éšæœºæµ‹è¯•
+      if ( g.n < n ) { //é¡¶ç‚¹
+         if ( dice ( 100 ) < 65 ) { //65%æ¦‚ç‡æ’å…¥é¡¶ç‚¹
             Tv vertex = ( Tv ) ( 'A' + dice ( 26 ) );      /*DSA*/printf ( "Inserting vertex" ); print ( vertex ); printf ( " ..." );
             g.insert ( vertex );               /*DSA*/printf ( "done\n" );
-         } else { //35%¸ÅÂÊÉ¾³ı¶¥µã
+         } else { //35%æ¦‚ç‡åˆ é™¤é¡¶ç‚¹
             if ( 1 > g.n ) continue;
             int i = dice ( g.n );       /*DSA*/printf ( "Removing vertex %d ...", i );
             Tv v = g.remove ( i );        /*DSA*/printf ( "done with" ); print ( v ); printf ( "\n" );
          }
          /*DSA*/print ( g );
       }
-      if ( ( 1 < g.n ) && ( g.e < e ) ) { //±ß
-         if ( dice ( 100 ) < 65 ) { //65%¸ÅÂÊ²åÈë±ß
+      if ( ( 1 < g.n ) && ( g.e < e ) ) { //è¾¹
+         if ( dice ( 100 ) < 65 ) { //65%æ¦‚ç‡æ’å…¥è¾¹
             int i = dice ( g.n ), j = dice ( g.n ); Te e = dice ( ( Te ) 3 * n );
             /*DSA*/printf ( "Inserting edge (%d, %d) = ", i, j ); print ( e ); printf ( " ..." );
             if ( g.exists ( i, j ) ) {
@@ -37,7 +37,7 @@ void randomGraph ( GraphMatrix<Tv, Te> & g, int n, int e ) { //assert: 0 < e(e-1
             } else {
                g.insert ( e, e, i, j );      /*DSA*/printf ( "done\n" );
             }
-         } else { //35%¸ÅÂÊÉ¾³ı±ß
+         } else { //35%æ¦‚ç‡åˆ é™¤è¾¹
             int i = dice ( g.n ), j = dice ( g.n );
             /*DSA*/printf ( "Removing edge (%d, %d) ...", i, j );
             if ( g.exists ( i, j ) ) {
@@ -54,16 +54,16 @@ void randomGraph ( GraphMatrix<Tv, Te> & g, int n, int e ) { //assert: 0 < e(e-1
 }
 
 /******************************************************************************************
- * ´ÓÃüÁîĞĞ£¨ÎÄ¼şÖØ¶¨Ïò£©ÖĞµ¼ÈëÍ¼
+ * ä»å‘½ä»¤è¡Œï¼ˆæ–‡ä»¶é‡å®šå‘ï¼‰ä¸­å¯¼å…¥å›¾
  ******************************************************************************************/
 void importGraph ( GraphMatrix<char, int> & g ) {
    int n; scanf ( "%d\n", &n ); /*DSA*/printf ( "%d vertices\n", n );
-   for ( int i = 0; i < n; i++ ) { //²åÈëv¸ö¶¥µã
+   for ( int i = 0; i < n; i++ ) { //æ’å…¥vä¸ªé¡¶ç‚¹
       char vertex; scanf ( "%c", &vertex );  /*DSA*/printf ( "Inserting vertex" ); print ( vertex ); printf ( " ..." );
       g.insert ( vertex );                  /*DSA*/printf ( "done\n" ); print ( g );
    }
    for ( int i = 0; i < n; i++ )
-      for ( int j = 0; j < n; j++ ) { //²åÈë±ß
+      for ( int j = 0; j < n; j++ ) { //æ’å…¥è¾¹
          int edge; scanf ( "%d", &edge );
          if ( 0 > edge ) continue;             /*DSA*/printf ( "Inserting edge (%d, %d) = ", i, j ); print ( edge ); printf ( " ..." );
          g.insert ( edge, edge, i, j );        /*DSA*/printf ( "done\n" );
@@ -71,7 +71,7 @@ void importGraph ( GraphMatrix<char, int> & g ) {
 }
 
 /******************************************************************************************
- * Í¼½á¹¹µÄÍ³Ò»²âÊÔ
+ * å›¾ç»“æ„çš„ç»Ÿä¸€æµ‹è¯•
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    if ( 2 > argc ) { printf ( "Usage: %s -random <n> <e> | -import <n> <e> < <path>\a\a\n", argv[0] ); return -1; }
@@ -82,9 +82,9 @@ int main ( int argc, char* argv[] ) {
    //srand( 7654321 );
    GraphMatrix<char, int> g;
    if ( !strcmp ( "-random", argv[1] ) )
-      randomGraph<char, int> ( g, atoi ( argv[2] ), atoi ( argv[3] ) ); //¶¥µãÒÔ×Ö·û±àºÅ£¬±ßÎªÕûÊıÈ¨ÖØ
+      randomGraph<char, int> ( g, atoi ( argv[2] ), atoi ( argv[3] ) ); //é¡¶ç‚¹ä»¥å­—ç¬¦ç¼–å·ï¼Œè¾¹ä¸ºæ•´æ•°æƒé‡
    else if ( !strcmp ( "-import", argv[1] ) )
-      importGraph ( g ); //´ÓÃüÁîĞĞ£¨ÎÄ¼şÖØ¶¨Ïò£©ÖĞµ¼ÈëÍ¼
+      importGraph ( g ); //ä»å‘½ä»¤è¡Œï¼ˆæ–‡ä»¶é‡å®šå‘ï¼‰ä¸­å¯¼å…¥å›¾
    else return -1;
    /*DSA*/printf ( "\n" ); print ( g );
    /*DSA*/printf ( "=== BFS\n" );

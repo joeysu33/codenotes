@@ -8,14 +8,14 @@
 
 #pragma once
 
-template <typename T> void List<T>::reverse() { //Ç°ºóµ¹ÖÃ
-   if ( _size < 2 ) return; //Æ½·²Çé¿ö
+template <typename T> void List<T>::reverse() { //å‰åå€’ç½®
+   if ( _size < 2 ) return; //å¹³å‡¡æƒ…å†µ
    ListNodePosi(T) p; ListNodePosi(T) q;
    for ( p = header, q = p->succ; p != trailer; p = q, q = p->succ )
-      p->pred = q; //×ÔÇ°Ïòºó£¬ÒÀ´Îµßµ¹¸÷½ÚµãµÄÇ°ÇıÖ¸Õë
-   trailer->pred = NULL; //µ¥¶ÀÉèÖÃÎ²½ÚµãµÄÇ°ÇıÖ¸Õë
+      p->pred = q; //è‡ªå‰å‘åï¼Œä¾æ¬¡é¢ å€’å„èŠ‚ç‚¹çš„å‰é©±æŒ‡é’ˆ
+   trailer->pred = NULL; //å•ç‹¬è®¾ç½®å°¾èŠ‚ç‚¹çš„å‰é©±æŒ‡é’ˆ
    for ( p = header, q = p->pred; p != trailer; p = q, q = p->pred )
-      q->succ = p; //×ÔÇ°Ïòºó£¬ÒÀ´Îµßµ¹¸÷½ÚµãµÄºó¼ÌÖ¸Õë
-   header->succ = NULL; //µ¥¶ÀÉèÖÃÍ·½ÚµãµÄºó¼ÌÖ¸Õë
-   swap ( header, trailer ); //Í·¡¢Î²½Úµã»¥»»
+      q->succ = p; //è‡ªå‰å‘åï¼Œä¾æ¬¡é¢ å€’å„èŠ‚ç‚¹çš„åç»§æŒ‡é’ˆ
+   header->succ = NULL; //å•ç‹¬è®¾ç½®å¤´èŠ‚ç‚¹çš„åç»§æŒ‡é’ˆ
+   swap ( header, trailer ); //å¤´ã€å°¾èŠ‚ç‚¹äº’æ¢
 }

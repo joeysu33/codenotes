@@ -8,14 +8,14 @@
 
 #pragma once
 
-struct Queen { //»ÊºóÀà
-   int x, y; //»ÊºóÔÚÆåÅÌÉÏµÄÎ»ÖÃ×ø±ê
+struct Queen { //çš‡åç±»
+   int x, y; //çš‡ååœ¨æ£‹ç›˜ä¸Šçš„ä½ç½®åæ ‡
    Queen ( int xx = 0, int yy = 0 ) : x ( xx ), y ( yy ) {};
-   bool operator== ( Queen const& q ) const { //ÖØÔØÅĞµÈ²Ù×÷·û£¬ÒÔ¼ì²â²»Í¬»ÊºóÖ®¼ä¿ÉÄÜµÄ³åÍ»
-      return    ( x == q.x ) //ĞĞ³åÍ»£¨ÕâÒ»Çé¿öÆäÊµ²¢²»»á·¢Éú£¬¿ÉÊ¡ÂÔ£©
-                || ( y == q.y ) //ÁĞ³åÍ»
-                || ( x + y == q.x + q.y ) //ÑØÕı¶Ô½ÇÏß³åÍ»
-                || ( x - y == q.x - q.y ); //ÑØ·´¶Ô½ÇÏß³åÍ»
+   bool operator== ( Queen const& q ) const { //é‡è½½åˆ¤ç­‰æ“ä½œç¬¦ï¼Œä»¥æ£€æµ‹ä¸åŒçš‡åä¹‹é—´å¯èƒ½çš„å†²çª
+      return    ( x == q.x ) //è¡Œå†²çªï¼ˆè¿™ä¸€æƒ…å†µå…¶å®å¹¶ä¸ä¼šå‘ç”Ÿï¼Œå¯çœç•¥ï¼‰
+                || ( y == q.y ) //åˆ—å†²çª
+                || ( x + y == q.x + q.y ) //æ²¿æ­£å¯¹è§’çº¿å†²çª
+                || ( x - y == q.x - q.y ); //æ²¿åå¯¹è§’çº¿å†²çª
    }
-   bool operator!= ( Queen const& q ) const { return ! ( *this == q ); } //ÖØÔØ²»µÈ²Ù×÷·û /*DSA*/¿É·ñĞ´³É£ºreturn *this != q£¿
+   bool operator!= ( Queen const& q ) const { return ! ( *this == q ); } //é‡è½½ä¸ç­‰æ“ä½œç¬¦ /*DSA*/å¯å¦å†™æˆï¼šreturn *this != qï¼Ÿ
 };

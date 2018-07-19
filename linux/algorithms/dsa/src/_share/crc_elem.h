@@ -8,8 +8,8 @@
 
 #pragma once
 
-template <typename T> struct Crc { //º¯Êı¶ÔÏó£ºÀÛ¼ÆTÀà¶ÔÏóµÄÌØÕ÷£¨±ÈÈç×ÜºÍ£©£¬ÒÔ±ãĞ£Ñé¶ÔÏó¼¯ºÏ
+template <typename T> struct Crc { //å‡½æ•°å¯¹è±¡ï¼šç´¯è®¡Tç±»å¯¹è±¡çš„ç‰¹å¾ï¼ˆæ¯”å¦‚æ€»å’Œï¼‰ï¼Œä»¥ä¾¿æ ¡éªŒå¯¹è±¡é›†åˆ
    T& c;
    Crc ( T& crc ) : c ( crc ) {}
-   virtual void operator() ( T& e ) { c += e; } //¼ÙÉèT¿ÉÖ±½ÓÏà¼Ó
+   virtual void operator() ( T& e ) { c += e; } //å‡è®¾Tå¯ç›´æ¥ç›¸åŠ 
 };

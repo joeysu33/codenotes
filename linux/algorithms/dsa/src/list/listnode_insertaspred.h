@@ -8,9 +8,9 @@
 
 #pragma once
 
-template <typename T> //½«e½ô¿¿µ±Ç°½ÚµãÖ®Ç°²åÈëÓÚµ±Ç°½ÚµãËùÊôÁĞ±í£¨ÉèÓĞÉÚ±øÍ·½Úµãheader£©
+template <typename T> //å°†eç´§é å½“å‰èŠ‚ç‚¹ä¹‹å‰æ’å…¥äºå½“å‰èŠ‚ç‚¹æ‰€å±åˆ—è¡¨ï¼ˆè®¾æœ‰å“¨å…µå¤´èŠ‚ç‚¹headerï¼‰
 ListNodePosi(T) ListNode<T>::insertAsPred ( T const& e ) {
-   ListNodePosi(T) x = new ListNode ( e, pred, this ); //´´½¨ĞÂ½Úµã
-   pred->succ = x; pred = x; //ÉèÖÃÕıÏòÁ´½Ó
-   return x; //·µ»ØĞÂ½ÚµãµÄÎ»ÖÃ
+   ListNodePosi(T) x = new ListNode ( e, pred, this ); //åˆ›å»ºæ–°èŠ‚ç‚¹
+   pred->succ = x; pred = x; //è®¾ç½®æ­£å‘é“¾æ¥
+   return x; //è¿”å›æ–°èŠ‚ç‚¹çš„ä½ç½®
 }

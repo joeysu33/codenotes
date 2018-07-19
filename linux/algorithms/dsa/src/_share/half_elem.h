@@ -8,5 +8,5 @@
 
 #pragma once
 
-template <typename T> struct Half //º¯Êı¶ÔÏó£º¼õ°ëÒ»¸öTÀà¶ÔÏó
-   {  virtual void operator() ( T& e ) { e /= 2; }  }; //¼ÙÉèT¿ÉÖ±½Ó¼õ°ë
+template <typename T> struct Half //å‡½æ•°å¯¹è±¡ï¼šå‡åŠä¸€ä¸ªTç±»å¯¹è±¡
+   {  virtual void operator() ( T& e ) { e /= 2; }  }; //å‡è®¾Tå¯ç›´æ¥å‡åŠ

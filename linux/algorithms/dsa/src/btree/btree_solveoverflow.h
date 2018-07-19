@@ -8,23 +8,23 @@
 
 #pragma once
 
-template <typename T> //¹Ø¼üÂë²åÈëºóÈô½ÚµãÉÏÒç£¬Ôò×ö½Úµã·ÖÁÑ´¦Àí
+template <typename T> //å…³é”®ç æ’å…¥åè‹¥èŠ‚ç‚¹ä¸Šæº¢ï¼Œåˆ™åšèŠ‚ç‚¹åˆ†è£‚å¤„ç†
 void BTree<T>::solveOverflow ( BTNodePosi(T) v ) {
-   if ( _order >= v->child.size() ) return; //µİ¹é»ù£ºµ±Ç°½Úµã²¢Î´ÉÏÒç
-   Rank s = _order / 2; //Öáµã£¨´ËÊ±Ó¦ÓĞ_order = key.size() = child.size() - 1£©
-   BTNodePosi(T) u = new BTNode<T>(); //×¢Òâ£ºĞÂ½ÚµãÒÑÓĞÒ»¸ö¿Õº¢×Ó
-   for ( Rank j = 0; j < _order - s - 1; j++ ) { //vÓÒ²à_order-s-1¸öº¢×Ó¼°¹Ø¼üÂë·ÖÁÑÎªÓÒ²à½Úµãu
-      u->child.insert ( j, v->child.remove ( s + 1 ) ); //Öğ¸öÒÆ¶¯Ğ§ÂÊµÍ
-      u->key.insert ( j, v->key.remove ( s + 1 ) ); //´Ë²ßÂÔ¿É¸Ä½ø
+   if ( _order >= v->child.size() ) return; //é€’å½’åŸºï¼šå½“å‰èŠ‚ç‚¹å¹¶æœªä¸Šæº¢
+   Rank s = _order / 2; //è½´ç‚¹ï¼ˆæ­¤æ—¶åº”æœ‰_order = key.size() = child.size() - 1ï¼‰
+   BTNodePosi(T) u = new BTNode<T>(); //æ³¨æ„ï¼šæ–°èŠ‚ç‚¹å·²æœ‰ä¸€ä¸ªç©ºå­©å­
+   for ( Rank j = 0; j < _order - s - 1; j++ ) { //vå³ä¾§_order-s-1ä¸ªå­©å­åŠå…³é”®ç åˆ†è£‚ä¸ºå³ä¾§èŠ‚ç‚¹u
+      u->child.insert ( j, v->child.remove ( s + 1 ) ); //é€ä¸ªç§»åŠ¨æ•ˆç‡ä½
+      u->key.insert ( j, v->key.remove ( s + 1 ) ); //æ­¤ç­–ç•¥å¯æ”¹è¿›
    }
-   u->child[_order - s - 1] = v->child.remove ( s + 1 ); //ÒÆ¶¯v×î¿¿ÓÒµÄº¢×Ó
-   if ( u->child[0] ) //ÈôuµÄº¢×ÓÃÇ·Ç¿Õ£¬Ôò
-      for ( Rank j = 0; j < _order - s; j++ ) //ÁîËüÃÇµÄ¸¸½ÚµãÍ³Ò»
-         u->child[j]->parent = u; //Ö¸Ïòu
-   BTNodePosi(T) p = v->parent; //vµ±Ç°µÄ¸¸½Úµãp
-   if ( !p ) { _root = p = new BTNode<T>(); p->child[0] = v; v->parent = p; } //Èôp¿ÕÔò´´½¨Ö®
-   Rank r = 1 + p->key.search ( v->key[0] ); //pÖĞÖ¸ÏòuµÄÖ¸ÕëµÄÖÈ
-   p->key.insert ( r, v->key.remove ( s ) ); //Öáµã¹Ø¼üÂëÉÏÉı
-   p->child.insert ( r + 1, u );  u->parent = p; //ĞÂ½ÚµãuÓë¸¸½Úµãp»¥Áª
-   solveOverflow ( p ); //ÉÏÉıÒ»²ã£¬ÈçÓĞ±ØÒªÔò¼ÌĞø·ÖÁÑ¡ª¡ªÖÁ¶àµİ¹éO(logn)²ã
+   u->child[_order - s - 1] = v->child.remove ( s + 1 ); //ç§»åŠ¨væœ€é å³çš„å­©å­
+   if ( u->child[0] ) //è‹¥uçš„å­©å­ä»¬éç©ºï¼Œåˆ™
+      for ( Rank j = 0; j < _order - s; j++ ) //ä»¤å®ƒä»¬çš„çˆ¶èŠ‚ç‚¹ç»Ÿä¸€
+         u->child[j]->parent = u; //æŒ‡å‘u
+   BTNodePosi(T) p = v->parent; //vå½“å‰çš„çˆ¶èŠ‚ç‚¹p
+   if ( !p ) { _root = p = new BTNode<T>(); p->child[0] = v; v->parent = p; } //è‹¥pç©ºåˆ™åˆ›å»ºä¹‹
+   Rank r = 1 + p->key.search ( v->key[0] ); //pä¸­æŒ‡å‘uçš„æŒ‡é’ˆçš„ç§©
+   p->key.insert ( r, v->key.remove ( s ) ); //è½´ç‚¹å…³é”®ç ä¸Šå‡
+   p->child.insert ( r + 1, u );  u->parent = p; //æ–°èŠ‚ç‚¹uä¸çˆ¶èŠ‚ç‚¹päº’è”
+   solveOverflow ( p ); //ä¸Šå‡ä¸€å±‚ï¼Œå¦‚æœ‰å¿…è¦åˆ™ç»§ç»­åˆ†è£‚â€”â€”è‡³å¤šé€’å½’O(logn)å±‚
 }

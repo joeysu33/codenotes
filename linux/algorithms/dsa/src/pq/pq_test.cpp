@@ -13,22 +13,22 @@
 #include <windows.h>
 
 /******************************************************************************************
- * Õë¶Ô»ùÓÚÁĞ±í¡¢ÏòÁ¿ÒÔ¼°×óÊ½¶ÑÊµÏÖµÄÓÅÏÈ¼¶¶ÓÁĞ£¬×ö¹ı³ÌÍ³Ò»µÄ²âÊÔ
+ * é’ˆå¯¹åŸºäºåˆ—è¡¨ã€å‘é‡ä»¥åŠå·¦å¼å †å®ç°çš„ä¼˜å…ˆçº§é˜Ÿåˆ—ï¼Œåšè¿‡ç¨‹ç»Ÿä¸€çš„æµ‹è¯•
  ******************************************************************************************/
-template <typename PQ, typename T> //¶ÑÀàĞÍ¡¢´ÊÌõÀàĞÍ
+template <typename PQ, typename T> //å †ç±»å‹ã€è¯æ¡ç±»å‹
 void  testHeap ( int n ) {
-   T* A = new T[2*n/3]; //´´½¨ÈİÁ¿Îª2*n/3µÄÊı×é£¬²¢
-   for ( int i = 0; i < 2 * n / 3; i++ ) A[i] = dice ( ( T ) 3 * n ); //ÔÚÆäÖĞËæ»úÉú³É2*n/3¸ö´ÊÌõ
+   T* A = new T[2*n/3]; //åˆ›å»ºå®¹é‡ä¸º2*n/3çš„æ•°ç»„ï¼Œå¹¶
+   for ( int i = 0; i < 2 * n / 3; i++ ) A[i] = dice ( ( T ) 3 * n ); //åœ¨å…¶ä¸­éšæœºç”Ÿæˆ2*n/3ä¸ªè¯æ¡
    /*DSA*/printf ( "%d random keys created:\n", 2 * n / 3 );
    /*DSA*/for ( int i = 0; i < 2 * n / 3; i++ ) print ( A[i] ); printf ( "\n" );
-   PQ heap ( A + n / 6, n / 3 ); //ÅúÁ¿½¨¶Ñ£¨PQ_ComplHeapÊµÏÖÁËRobert FloydËã·¨£©
+   PQ heap ( A + n / 6, n / 3 ); //æ‰¹é‡å»ºå †ï¼ˆPQ_ComplHeapå®ç°äº†Robert Floydç®—æ³•ï¼‰
    delete [] A;
    /*DSA*/system("cls"); print ( heap );  Sleep(100);
-   while ( heap.size() < n ) { //Ëæ»ú²âÊÔ
-      if ( dice ( 100 ) < 70 ) { //70%¸ÅÂÊ²åÈëĞÂ´ÊÌõ
+   while ( heap.size() < n ) { //éšæœºæµ‹è¯•
+      if ( dice ( 100 ) < 70 ) { //70%æ¦‚ç‡æ’å…¥æ–°è¯æ¡
          T e = dice ( ( T ) 3 * n ); /*DSA*/printf ( "Inserting" ); print ( e ); printf ( " ...\n" );
          heap.insert ( e ); /*DSA*/printf ( "Insertion done\n" );
-      } else { //30%¸ÅÂÊÕª³ı×î´ó´ÊÌõ
+      } else { //30%æ¦‚ç‡æ‘˜é™¤æœ€å¤§è¯æ¡
          if ( !heap.empty() ) {
             /*DSA*/printf ( "Deleting max ...\n" );
             T e = heap.delMax();/*DSA*/printf ( "Deletion done with" ); print ( e ); printf ( "\n" );
@@ -36,25 +36,25 @@ void  testHeap ( int n ) {
       }
       /*DSA*/system("cls"); print ( heap ); Sleep(100);
    }
-   while ( !heap.empty() ) { //Çå¿Õ
+   while ( !heap.empty() ) { //æ¸…ç©º
       T e = heap.delMax();/*DSA*/printf ( "Deletion done with" ); print ( e ); printf ( "\n" );
       /*DSA*/system("cls"); print ( heap ); Sleep(100);
    }
 }
 
 /******************************************************************************************
- * ÓÅÏÈ¼¶¶ÓÁĞ²âÊÔ
+ * ä¼˜å…ˆçº§é˜Ÿåˆ—æµ‹è¯•
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    if ( 2 > argc ) { printf ( "Usage: %s <size of test>\a\a\n", argv[0] ); return 1; }
    srand ( ( unsigned int ) time ( NULL ) );
    //srand( 1234567 );
 #if defined(DSA_PQ_LEFTHEAP)
-   testHeap<PQ_LeftHeap<int>, int> ( atoi ( argv[1] ) ); //´ÊÌõÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testHeap<PQ_LeftHeap<int>, int> ( atoi ( argv[1] ) ); //è¯æ¡ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
 #elif defined(DSA_PQ_COMPLHEAP)
-   testHeap<PQ_ComplHeap<int>, int> ( atoi ( argv[1] ) ); //´ÊÌõÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testHeap<PQ_ComplHeap<int>, int> ( atoi ( argv[1] ) ); //è¯æ¡ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
 #elif defined(DSA_PQ_LIST)
-   testHeap<PQ_List<int>, int> ( atoi ( argv[1] ) ); //´ÊÌõÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testHeap<PQ_List<int>, int> ( atoi ( argv[1] ) ); //è¯æ¡ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
 #else
    printf ( "PQ type not defined yet\n" );
 #endif

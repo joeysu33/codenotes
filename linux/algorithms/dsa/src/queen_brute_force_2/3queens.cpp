@@ -8,8 +8,8 @@
 
 #include "../queen_brute_force_1/queen.h"
 
-void place3Queens() { //3皇后剪枝算法
-   int solu[3]; //解法
+void place3Queens() { //3鐨囧悗鍓灊绠楁硶
+   int solu[3]; //瑙ｆ硶
    for ( solu[0] = 0; solu[0] < 3; solu[0]++ )
       if ( !collide ( solu, 0 ) )
          for ( solu[1] = 0; solu[1] < 3; solu[1]++ )
