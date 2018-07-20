@@ -111,69 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named splaytree
+# Target rules for targets named heap
 
 # Build rule for target.
-splaytree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 splaytree
-.PHONY : splaytree
+heap: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 heap
+.PHONY : heap
 
 # fast build rule for target.
-splaytree/fast:
-	$(MAKE) -f CMakeFiles/splaytree.dir/build.make CMakeFiles/splaytree.dir/build
-.PHONY : splaytree/fast
+heap/fast:
+	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/build
+.PHONY : heap/fast
 
 #=============================================================================
-# Target rules for targets named searchtree
+# Target rules for targets named exec-1-1-27
 
 # Build rule for target.
-searchtree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 searchtree
-.PHONY : searchtree
+exec-1-1-27: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 exec-1-1-27
+.PHONY : exec-1-1-27
 
 # fast build rule for target.
-searchtree/fast:
-	$(MAKE) -f CMakeFiles/searchtree.dir/build.make CMakeFiles/searchtree.dir/build
-.PHONY : searchtree/fast
-
-#=============================================================================
-# Target rules for targets named leftheap
-
-# Build rule for target.
-leftheap: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 leftheap
-.PHONY : leftheap
-
-# fast build rule for target.
-leftheap/fast:
-	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/build
-.PHONY : leftheap/fast
-
-#=============================================================================
-# Target rules for targets named avltree
-
-# Build rule for target.
-avltree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 avltree
-.PHONY : avltree
-
-# fast build rule for target.
-avltree/fast:
-	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/build
-.PHONY : avltree/fast
-
-#=============================================================================
-# Target rules for targets named mktree
-
-# Build rule for target.
-mktree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mktree
-.PHONY : mktree
-
-# fast build rule for target.
-mktree/fast:
-	$(MAKE) -f CMakeFiles/mktree.dir/build.make CMakeFiles/mktree.dir/build
-.PHONY : mktree/fast
+exec-1-1-27/fast:
+	$(MAKE) -f CMakeFiles/exec-1-1-27.dir/build.make CMakeFiles/exec-1-1-27.dir/build
+.PHONY : exec-1-1-27/fast
 
 #=============================================================================
 # Target rules for targets named str_brute2
@@ -202,6 +163,19 @@ str_brute1/fast:
 .PHONY : str_brute1/fast
 
 #=============================================================================
+# Target rules for targets named bm2
+
+# Build rule for target.
+bm2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bm2
+.PHONY : bm2
+
+# fast build rule for target.
+bm2/fast:
+	$(MAKE) -f CMakeFiles/bm2.dir/build.make CMakeFiles/bm2.dir/build
+.PHONY : bm2/fast
+
+#=============================================================================
 # Target rules for targets named kmp
 
 # Build rule for target.
@@ -215,17 +189,82 @@ kmp/fast:
 .PHONY : kmp/fast
 
 #=============================================================================
-# Target rules for targets named heap
+# Target rules for targets named splaytree
 
 # Build rule for target.
-heap: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 heap
-.PHONY : heap
+splaytree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 splaytree
+.PHONY : splaytree
 
 # fast build rule for target.
-heap/fast:
-	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/build
-.PHONY : heap/fast
+splaytree/fast:
+	$(MAKE) -f CMakeFiles/splaytree.dir/build.make CMakeFiles/splaytree.dir/build
+.PHONY : splaytree/fast
+
+#=============================================================================
+# Target rules for targets named leftheap
+
+# Build rule for target.
+leftheap: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 leftheap
+.PHONY : leftheap
+
+# fast build rule for target.
+leftheap/fast:
+	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/build
+.PHONY : leftheap/fast
+
+#=============================================================================
+# Target rules for targets named avltree
+
+# Build rule for target.
+avltree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 avltree
+.PHONY : avltree
+
+# fast build rule for target.
+avltree/fast:
+	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/build
+.PHONY : avltree/fast
+
+#=============================================================================
+# Target rules for targets named searchtree
+
+# Build rule for target.
+searchtree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 searchtree
+.PHONY : searchtree
+
+# fast build rule for target.
+searchtree/fast:
+	$(MAKE) -f CMakeFiles/searchtree.dir/build.make CMakeFiles/searchtree.dir/build
+.PHONY : searchtree/fast
+
+#=============================================================================
+# Target rules for targets named bm
+
+# Build rule for target.
+bm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bm
+.PHONY : bm
+
+# fast build rule for target.
+bm/fast:
+	$(MAKE) -f CMakeFiles/bm.dir/build.make CMakeFiles/bm.dir/build
+.PHONY : bm/fast
+
+#=============================================================================
+# Target rules for targets named btree_mktree_byorder
+
+# Build rule for target.
+btree_mktree_byorder: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 btree_mktree_byorder
+.PHONY : btree_mktree_byorder
+
+# fast build rule for target.
+btree_mktree_byorder/fast:
+	$(MAKE) -f CMakeFiles/btree_mktree_byorder.dir/build.make CMakeFiles/btree_mktree_byorder.dir/build
+.PHONY : btree_mktree_byorder/fast
 
 avltree.o: avltree.c.o
 
@@ -254,13 +293,67 @@ avltree.c.s:
 	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/avltree.c.s
 .PHONY : avltree.c.s
 
+bm.o: bm.c.o
+
+.PHONY : bm.o
+
+# target to build an object file
+bm.c.o:
+	$(MAKE) -f CMakeFiles/bm.dir/build.make CMakeFiles/bm.dir/bm.c.o
+.PHONY : bm.c.o
+
+bm.i: bm.c.i
+
+.PHONY : bm.i
+
+# target to preprocess a source file
+bm.c.i:
+	$(MAKE) -f CMakeFiles/bm.dir/build.make CMakeFiles/bm.dir/bm.c.i
+.PHONY : bm.c.i
+
+bm.s: bm.c.s
+
+.PHONY : bm.s
+
+# target to generate assembly for a file
+bm.c.s:
+	$(MAKE) -f CMakeFiles/bm.dir/build.make CMakeFiles/bm.dir/bm.c.s
+.PHONY : bm.c.s
+
+bm2.o: bm2.c.o
+
+.PHONY : bm2.o
+
+# target to build an object file
+bm2.c.o:
+	$(MAKE) -f CMakeFiles/bm2.dir/build.make CMakeFiles/bm2.dir/bm2.c.o
+.PHONY : bm2.c.o
+
+bm2.i: bm2.c.i
+
+.PHONY : bm2.i
+
+# target to preprocess a source file
+bm2.c.i:
+	$(MAKE) -f CMakeFiles/bm2.dir/build.make CMakeFiles/bm2.dir/bm2.c.i
+.PHONY : bm2.c.i
+
+bm2.s: bm2.c.s
+
+.PHONY : bm2.s
+
+# target to generate assembly for a file
+bm2.c.s:
+	$(MAKE) -f CMakeFiles/bm2.dir/build.make CMakeFiles/bm2.dir/bm2.c.s
+.PHONY : bm2.c.s
+
 btree_mktree_byorder.o: btree_mktree_byorder.c.o
 
 .PHONY : btree_mktree_byorder.o
 
 # target to build an object file
 btree_mktree_byorder.c.o:
-	$(MAKE) -f CMakeFiles/mktree.dir/build.make CMakeFiles/mktree.dir/btree_mktree_byorder.c.o
+	$(MAKE) -f CMakeFiles/btree_mktree_byorder.dir/build.make CMakeFiles/btree_mktree_byorder.dir/btree_mktree_byorder.c.o
 .PHONY : btree_mktree_byorder.c.o
 
 btree_mktree_byorder.i: btree_mktree_byorder.c.i
@@ -269,7 +362,7 @@ btree_mktree_byorder.i: btree_mktree_byorder.c.i
 
 # target to preprocess a source file
 btree_mktree_byorder.c.i:
-	$(MAKE) -f CMakeFiles/mktree.dir/build.make CMakeFiles/mktree.dir/btree_mktree_byorder.c.i
+	$(MAKE) -f CMakeFiles/btree_mktree_byorder.dir/build.make CMakeFiles/btree_mktree_byorder.dir/btree_mktree_byorder.c.i
 .PHONY : btree_mktree_byorder.c.i
 
 btree_mktree_byorder.s: btree_mktree_byorder.c.s
@@ -278,8 +371,35 @@ btree_mktree_byorder.s: btree_mktree_byorder.c.s
 
 # target to generate assembly for a file
 btree_mktree_byorder.c.s:
-	$(MAKE) -f CMakeFiles/mktree.dir/build.make CMakeFiles/mktree.dir/btree_mktree_byorder.c.s
+	$(MAKE) -f CMakeFiles/btree_mktree_byorder.dir/build.make CMakeFiles/btree_mktree_byorder.dir/btree_mktree_byorder.c.s
 .PHONY : btree_mktree_byorder.c.s
+
+exec-1-1-27.o: exec-1-1-27.c.o
+
+.PHONY : exec-1-1-27.o
+
+# target to build an object file
+exec-1-1-27.c.o:
+	$(MAKE) -f CMakeFiles/exec-1-1-27.dir/build.make CMakeFiles/exec-1-1-27.dir/exec-1-1-27.c.o
+.PHONY : exec-1-1-27.c.o
+
+exec-1-1-27.i: exec-1-1-27.c.i
+
+.PHONY : exec-1-1-27.i
+
+# target to preprocess a source file
+exec-1-1-27.c.i:
+	$(MAKE) -f CMakeFiles/exec-1-1-27.dir/build.make CMakeFiles/exec-1-1-27.dir/exec-1-1-27.c.i
+.PHONY : exec-1-1-27.c.i
+
+exec-1-1-27.s: exec-1-1-27.c.s
+
+.PHONY : exec-1-1-27.s
+
+# target to generate assembly for a file
+exec-1-1-27.c.s:
+	$(MAKE) -f CMakeFiles/exec-1-1-27.dir/build.make CMakeFiles/exec-1-1-27.dir/exec-1-1-27.c.s
+.PHONY : exec-1-1-27.c.s
 
 heap.o: heap.c.o
 
@@ -477,22 +597,34 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... splaytree"
-	@echo "... searchtree"
-	@echo "... leftheap"
-	@echo "... avltree"
-	@echo "... mktree"
+	@echo "... rebuild_cache"
+	@echo "... heap"
+	@echo "... exec-1-1-27"
 	@echo "... str_brute2"
 	@echo "... str_brute1"
+	@echo "... bm2"
 	@echo "... kmp"
-	@echo "... heap"
-	@echo "... rebuild_cache"
+	@echo "... splaytree"
+	@echo "... leftheap"
+	@echo "... avltree"
+	@echo "... searchtree"
+	@echo "... bm"
+	@echo "... btree_mktree_byorder"
 	@echo "... avltree.o"
 	@echo "... avltree.i"
 	@echo "... avltree.s"
+	@echo "... bm.o"
+	@echo "... bm.i"
+	@echo "... bm.s"
+	@echo "... bm2.o"
+	@echo "... bm2.i"
+	@echo "... bm2.s"
 	@echo "... btree_mktree_byorder.o"
 	@echo "... btree_mktree_byorder.i"
 	@echo "... btree_mktree_byorder.s"
+	@echo "... exec-1-1-27.o"
+	@echo "... exec-1-1-27.i"
+	@echo "... exec-1-1-27.s"
 	@echo "... heap.o"
 	@echo "... heap.i"
 	@echo "... heap.s"
