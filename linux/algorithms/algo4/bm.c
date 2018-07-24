@@ -102,6 +102,9 @@ makeGS(const char *p) {
     return gs;
 }
 
+/*!
+ * Boyer Moore
+ */
 int
 bm (const char *t, const char *p) {
     int *bc, *gs;

@@ -111,30 +111,43 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named heap
+# Target rules for targets named kmp-dfa
 
 # Build rule for target.
-heap: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 heap
-.PHONY : heap
+kmp-dfa: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kmp-dfa
+.PHONY : kmp-dfa
 
 # fast build rule for target.
-heap/fast:
-	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/build
-.PHONY : heap/fast
+kmp-dfa/fast:
+	$(MAKE) -f CMakeFiles/kmp-dfa.dir/build.make CMakeFiles/kmp-dfa.dir/build
+.PHONY : kmp-dfa/fast
 
 #=============================================================================
-# Target rules for targets named exec-1-1-27
+# Target rules for targets named kmp
 
 # Build rule for target.
-exec-1-1-27: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 exec-1-1-27
-.PHONY : exec-1-1-27
+kmp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kmp
+.PHONY : kmp
 
 # fast build rule for target.
-exec-1-1-27/fast:
-	$(MAKE) -f CMakeFiles/exec-1-1-27.dir/build.make CMakeFiles/exec-1-1-27.dir/build
-.PHONY : exec-1-1-27/fast
+kmp/fast:
+	$(MAKE) -f CMakeFiles/kmp.dir/build.make CMakeFiles/kmp.dir/build
+.PHONY : kmp/fast
+
+#=============================================================================
+# Target rules for targets named kr
+
+# Build rule for target.
+kr: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kr
+.PHONY : kr
+
+# fast build rule for target.
+kr/fast:
+	$(MAKE) -f CMakeFiles/kr.dir/build.make CMakeFiles/kr.dir/build
+.PHONY : kr/fast
 
 #=============================================================================
 # Target rules for targets named str_brute2
@@ -163,30 +176,30 @@ str_brute1/fast:
 .PHONY : str_brute1/fast
 
 #=============================================================================
-# Target rules for targets named bm2
+# Target rules for targets named heap
 
 # Build rule for target.
-bm2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bm2
-.PHONY : bm2
+heap: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 heap
+.PHONY : heap
 
 # fast build rule for target.
-bm2/fast:
-	$(MAKE) -f CMakeFiles/bm2.dir/build.make CMakeFiles/bm2.dir/build
-.PHONY : bm2/fast
+heap/fast:
+	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/build
+.PHONY : heap/fast
 
 #=============================================================================
-# Target rules for targets named kmp
+# Target rules for targets named check-kr
 
 # Build rule for target.
-kmp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 kmp
-.PHONY : kmp
+check-kr: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 check-kr
+.PHONY : check-kr
 
 # fast build rule for target.
-kmp/fast:
-	$(MAKE) -f CMakeFiles/kmp.dir/build.make CMakeFiles/kmp.dir/build
-.PHONY : kmp/fast
+check-kr/fast:
+	$(MAKE) -f CMakeFiles/check-kr.dir/build.make CMakeFiles/check-kr.dir/build
+.PHONY : check-kr/fast
 
 #=============================================================================
 # Target rules for targets named splaytree
@@ -320,33 +333,6 @@ bm.c.s:
 	$(MAKE) -f CMakeFiles/bm.dir/build.make CMakeFiles/bm.dir/bm.c.s
 .PHONY : bm.c.s
 
-bm2.o: bm2.c.o
-
-.PHONY : bm2.o
-
-# target to build an object file
-bm2.c.o:
-	$(MAKE) -f CMakeFiles/bm2.dir/build.make CMakeFiles/bm2.dir/bm2.c.o
-.PHONY : bm2.c.o
-
-bm2.i: bm2.c.i
-
-.PHONY : bm2.i
-
-# target to preprocess a source file
-bm2.c.i:
-	$(MAKE) -f CMakeFiles/bm2.dir/build.make CMakeFiles/bm2.dir/bm2.c.i
-.PHONY : bm2.c.i
-
-bm2.s: bm2.c.s
-
-.PHONY : bm2.s
-
-# target to generate assembly for a file
-bm2.c.s:
-	$(MAKE) -f CMakeFiles/bm2.dir/build.make CMakeFiles/bm2.dir/bm2.c.s
-.PHONY : bm2.c.s
-
 btree_mktree_byorder.o: btree_mktree_byorder.c.o
 
 .PHONY : btree_mktree_byorder.o
@@ -374,32 +360,32 @@ btree_mktree_byorder.c.s:
 	$(MAKE) -f CMakeFiles/btree_mktree_byorder.dir/build.make CMakeFiles/btree_mktree_byorder.dir/btree_mktree_byorder.c.s
 .PHONY : btree_mktree_byorder.c.s
 
-exec-1-1-27.o: exec-1-1-27.c.o
+check-kr.o: check-kr.c.o
 
-.PHONY : exec-1-1-27.o
+.PHONY : check-kr.o
 
 # target to build an object file
-exec-1-1-27.c.o:
-	$(MAKE) -f CMakeFiles/exec-1-1-27.dir/build.make CMakeFiles/exec-1-1-27.dir/exec-1-1-27.c.o
-.PHONY : exec-1-1-27.c.o
+check-kr.c.o:
+	$(MAKE) -f CMakeFiles/check-kr.dir/build.make CMakeFiles/check-kr.dir/check-kr.c.o
+.PHONY : check-kr.c.o
 
-exec-1-1-27.i: exec-1-1-27.c.i
+check-kr.i: check-kr.c.i
 
-.PHONY : exec-1-1-27.i
+.PHONY : check-kr.i
 
 # target to preprocess a source file
-exec-1-1-27.c.i:
-	$(MAKE) -f CMakeFiles/exec-1-1-27.dir/build.make CMakeFiles/exec-1-1-27.dir/exec-1-1-27.c.i
-.PHONY : exec-1-1-27.c.i
+check-kr.c.i:
+	$(MAKE) -f CMakeFiles/check-kr.dir/build.make CMakeFiles/check-kr.dir/check-kr.c.i
+.PHONY : check-kr.c.i
 
-exec-1-1-27.s: exec-1-1-27.c.s
+check-kr.s: check-kr.c.s
 
-.PHONY : exec-1-1-27.s
+.PHONY : check-kr.s
 
 # target to generate assembly for a file
-exec-1-1-27.c.s:
-	$(MAKE) -f CMakeFiles/exec-1-1-27.dir/build.make CMakeFiles/exec-1-1-27.dir/exec-1-1-27.c.s
-.PHONY : exec-1-1-27.c.s
+check-kr.c.s:
+	$(MAKE) -f CMakeFiles/check-kr.dir/build.make CMakeFiles/check-kr.dir/check-kr.c.s
+.PHONY : check-kr.c.s
 
 heap.o: heap.c.o
 
@@ -428,6 +414,33 @@ heap.c.s:
 	$(MAKE) -f CMakeFiles/heap.dir/build.make CMakeFiles/heap.dir/heap.c.s
 .PHONY : heap.c.s
 
+kmp-dfa.o: kmp-dfa.c.o
+
+.PHONY : kmp-dfa.o
+
+# target to build an object file
+kmp-dfa.c.o:
+	$(MAKE) -f CMakeFiles/kmp-dfa.dir/build.make CMakeFiles/kmp-dfa.dir/kmp-dfa.c.o
+.PHONY : kmp-dfa.c.o
+
+kmp-dfa.i: kmp-dfa.c.i
+
+.PHONY : kmp-dfa.i
+
+# target to preprocess a source file
+kmp-dfa.c.i:
+	$(MAKE) -f CMakeFiles/kmp-dfa.dir/build.make CMakeFiles/kmp-dfa.dir/kmp-dfa.c.i
+.PHONY : kmp-dfa.c.i
+
+kmp-dfa.s: kmp-dfa.c.s
+
+.PHONY : kmp-dfa.s
+
+# target to generate assembly for a file
+kmp-dfa.c.s:
+	$(MAKE) -f CMakeFiles/kmp-dfa.dir/build.make CMakeFiles/kmp-dfa.dir/kmp-dfa.c.s
+.PHONY : kmp-dfa.c.s
+
 kmp.o: kmp.c.o
 
 .PHONY : kmp.o
@@ -454,6 +467,33 @@ kmp.s: kmp.c.s
 kmp.c.s:
 	$(MAKE) -f CMakeFiles/kmp.dir/build.make CMakeFiles/kmp.dir/kmp.c.s
 .PHONY : kmp.c.s
+
+kr.o: kr.c.o
+
+.PHONY : kr.o
+
+# target to build an object file
+kr.c.o:
+	$(MAKE) -f CMakeFiles/kr.dir/build.make CMakeFiles/kr.dir/kr.c.o
+.PHONY : kr.c.o
+
+kr.i: kr.c.i
+
+.PHONY : kr.i
+
+# target to preprocess a source file
+kr.c.i:
+	$(MAKE) -f CMakeFiles/kr.dir/build.make CMakeFiles/kr.dir/kr.c.i
+.PHONY : kr.c.i
+
+kr.s: kr.c.s
+
+.PHONY : kr.s
+
+# target to generate assembly for a file
+kr.c.s:
+	$(MAKE) -f CMakeFiles/kr.dir/build.make CMakeFiles/kr.dir/kr.c.s
+.PHONY : kr.c.s
 
 leftheap.o: leftheap.c.o
 
@@ -598,12 +638,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... heap"
-	@echo "... exec-1-1-27"
+	@echo "... kmp-dfa"
+	@echo "... kmp"
+	@echo "... kr"
 	@echo "... str_brute2"
 	@echo "... str_brute1"
-	@echo "... bm2"
-	@echo "... kmp"
+	@echo "... heap"
+	@echo "... check-kr"
 	@echo "... splaytree"
 	@echo "... leftheap"
 	@echo "... avltree"
@@ -616,21 +657,24 @@ help:
 	@echo "... bm.o"
 	@echo "... bm.i"
 	@echo "... bm.s"
-	@echo "... bm2.o"
-	@echo "... bm2.i"
-	@echo "... bm2.s"
 	@echo "... btree_mktree_byorder.o"
 	@echo "... btree_mktree_byorder.i"
 	@echo "... btree_mktree_byorder.s"
-	@echo "... exec-1-1-27.o"
-	@echo "... exec-1-1-27.i"
-	@echo "... exec-1-1-27.s"
+	@echo "... check-kr.o"
+	@echo "... check-kr.i"
+	@echo "... check-kr.s"
 	@echo "... heap.o"
 	@echo "... heap.i"
 	@echo "... heap.s"
+	@echo "... kmp-dfa.o"
+	@echo "... kmp-dfa.i"
+	@echo "... kmp-dfa.s"
 	@echo "... kmp.o"
 	@echo "... kmp.i"
 	@echo "... kmp.s"
+	@echo "... kr.o"
+	@echo "... kr.i"
+	@echo "... kr.s"
 	@echo "... leftheap.o"
 	@echo "... leftheap.i"
 	@echo "... leftheap.s"

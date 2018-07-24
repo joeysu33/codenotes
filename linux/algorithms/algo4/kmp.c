@@ -68,9 +68,58 @@ showNext(const char *p) {
     free(n);
 }
 
+int 
+kmp(const char *t, const char *p) {
+    int i, j, k, tlen, plen;
+    int *nxt;
+
+    tlen = strlen(t), plen = strlen(p);
+    k = tlen - plen;
+    nxt = next(p);
+
+    for(i=0, j=0; i < tlen && j < plen ;) {
+        if(j < 0 || t[i] == p[j]) {
+            ++j;
+            ++i;
+        } else {
+            j = nxt[j];
+            //bf算法
+            //i -= j-1;
+            //j = 0;
+        }
+    }
+
+    free(nxt);
+    if(j == plen) return i-j;
+    return -1;
+}
+
+#define FIND(t, p) \
+    do {\
+        const char *pt = #t, *pp = #p;\
+        int i= kmp(pt, pp);\
+        if(i<0) {\
+            printf("Not found for %s\n", pp);\
+        } else {\
+            printf("Found it for %s, position = %d\n", pp, i) ;\
+        }\
+    }while(0)
+
+int 
+main(int argc, char *argv[]) {
+    FIND(aifjeiwjfoaajofjoewfjoafdsfjsfsf, jeiwj);
+    FIND(jeiwjaifjfoaajofjoewfjoafdsfjsfsf, jeiwj);
+    FIND(1903240jeiwjaifjfoaajofjoewfjoafdsfjsfsjeiwjf, jeiwj);
+    FIND(1903240eiwjaifjfoaajofjoewfjoafdsfjsfsjeiwjf, jeiwj);
+    FIND(ccccc, jeiwj);
+
+    return 0;
+}
+
+/*
 int
 main(int argc, char *argv[]) {
     showNext(s1);
     return 0;
 }
-
+*/
