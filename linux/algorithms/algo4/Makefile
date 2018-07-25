@@ -124,30 +124,30 @@ kmp-dfa/fast:
 .PHONY : kmp-dfa/fast
 
 #=============================================================================
-# Target rules for targets named kmp
+# Target rules for targets named searchtree
 
 # Build rule for target.
-kmp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 kmp
-.PHONY : kmp
+searchtree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 searchtree
+.PHONY : searchtree
 
 # fast build rule for target.
-kmp/fast:
-	$(MAKE) -f CMakeFiles/kmp.dir/build.make CMakeFiles/kmp.dir/build
-.PHONY : kmp/fast
+searchtree/fast:
+	$(MAKE) -f CMakeFiles/searchtree.dir/build.make CMakeFiles/searchtree.dir/build
+.PHONY : searchtree/fast
 
 #=============================================================================
-# Target rules for targets named kr
+# Target rules for targets named bm
 
 # Build rule for target.
-kr: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 kr
-.PHONY : kr
+bm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bm
+.PHONY : bm
 
 # fast build rule for target.
-kr/fast:
-	$(MAKE) -f CMakeFiles/kr.dir/build.make CMakeFiles/kr.dir/build
-.PHONY : kr/fast
+bm/fast:
+	$(MAKE) -f CMakeFiles/bm.dir/build.make CMakeFiles/bm.dir/build
+.PHONY : bm/fast
 
 #=============================================================================
 # Target rules for targets named str_brute2
@@ -176,6 +176,19 @@ str_brute1/fast:
 .PHONY : str_brute1/fast
 
 #=============================================================================
+# Target rules for targets named prim_encrypt
+
+# Build rule for target.
+prim_encrypt: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 prim_encrypt
+.PHONY : prim_encrypt
+
+# fast build rule for target.
+prim_encrypt/fast:
+	$(MAKE) -f CMakeFiles/prim_encrypt.dir/build.make CMakeFiles/prim_encrypt.dir/build
+.PHONY : prim_encrypt/fast
+
+#=============================================================================
 # Target rules for targets named heap
 
 # Build rule for target.
@@ -200,6 +213,32 @@ check-kr: cmake_check_build_system
 check-kr/fast:
 	$(MAKE) -f CMakeFiles/check-kr.dir/build.make CMakeFiles/check-kr.dir/build
 .PHONY : check-kr/fast
+
+#=============================================================================
+# Target rules for targets named kmp
+
+# Build rule for target.
+kmp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kmp
+.PHONY : kmp
+
+# fast build rule for target.
+kmp/fast:
+	$(MAKE) -f CMakeFiles/kmp.dir/build.make CMakeFiles/kmp.dir/build
+.PHONY : kmp/fast
+
+#=============================================================================
+# Target rules for targets named kr
+
+# Build rule for target.
+kr: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kr
+.PHONY : kr
+
+# fast build rule for target.
+kr/fast:
+	$(MAKE) -f CMakeFiles/kr.dir/build.make CMakeFiles/kr.dir/build
+.PHONY : kr/fast
 
 #=============================================================================
 # Target rules for targets named splaytree
@@ -239,32 +278,6 @@ avltree: cmake_check_build_system
 avltree/fast:
 	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/build
 .PHONY : avltree/fast
-
-#=============================================================================
-# Target rules for targets named searchtree
-
-# Build rule for target.
-searchtree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 searchtree
-.PHONY : searchtree
-
-# fast build rule for target.
-searchtree/fast:
-	$(MAKE) -f CMakeFiles/searchtree.dir/build.make CMakeFiles/searchtree.dir/build
-.PHONY : searchtree/fast
-
-#=============================================================================
-# Target rules for targets named bm
-
-# Build rule for target.
-bm: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bm
-.PHONY : bm
-
-# fast build rule for target.
-bm/fast:
-	$(MAKE) -f CMakeFiles/bm.dir/build.make CMakeFiles/bm.dir/build
-.PHONY : bm/fast
 
 #=============================================================================
 # Target rules for targets named btree_mktree_byorder
@@ -522,6 +535,33 @@ leftheap.c.s:
 	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/leftheap.c.s
 .PHONY : leftheap.c.s
 
+prim_encrypt.o: prim_encrypt.c.o
+
+.PHONY : prim_encrypt.o
+
+# target to build an object file
+prim_encrypt.c.o:
+	$(MAKE) -f CMakeFiles/prim_encrypt.dir/build.make CMakeFiles/prim_encrypt.dir/prim_encrypt.c.o
+.PHONY : prim_encrypt.c.o
+
+prim_encrypt.i: prim_encrypt.c.i
+
+.PHONY : prim_encrypt.i
+
+# target to preprocess a source file
+prim_encrypt.c.i:
+	$(MAKE) -f CMakeFiles/prim_encrypt.dir/build.make CMakeFiles/prim_encrypt.dir/prim_encrypt.c.i
+.PHONY : prim_encrypt.c.i
+
+prim_encrypt.s: prim_encrypt.c.s
+
+.PHONY : prim_encrypt.s
+
+# target to generate assembly for a file
+prim_encrypt.c.s:
+	$(MAKE) -f CMakeFiles/prim_encrypt.dir/build.make CMakeFiles/prim_encrypt.dir/prim_encrypt.c.s
+.PHONY : prim_encrypt.c.s
+
 searchtree.o: searchtree.c.o
 
 .PHONY : searchtree.o
@@ -639,17 +679,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... kmp-dfa"
-	@echo "... kmp"
-	@echo "... kr"
+	@echo "... searchtree"
+	@echo "... bm"
 	@echo "... str_brute2"
 	@echo "... str_brute1"
+	@echo "... prim_encrypt"
 	@echo "... heap"
 	@echo "... check-kr"
+	@echo "... kmp"
+	@echo "... kr"
 	@echo "... splaytree"
 	@echo "... leftheap"
 	@echo "... avltree"
-	@echo "... searchtree"
-	@echo "... bm"
 	@echo "... btree_mktree_byorder"
 	@echo "... avltree.o"
 	@echo "... avltree.i"
@@ -678,6 +719,9 @@ help:
 	@echo "... leftheap.o"
 	@echo "... leftheap.i"
 	@echo "... leftheap.s"
+	@echo "... prim_encrypt.o"
+	@echo "... prim_encrypt.i"
+	@echo "... prim_encrypt.s"
 	@echo "... searchtree.o"
 	@echo "... searchtree.i"
 	@echo "... searchtree.s"

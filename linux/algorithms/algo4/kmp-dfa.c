@@ -34,26 +34,63 @@
 /*!构造DFA的表格会比较大 */
 int**
 makeDFA(const char *p) {
-    int * ip, i, j, x, M, c;
+    int * ip, i, j, x, M, c, size;
 
     int ** res = (int **)malloc(sizeof(int*) * NSYM);
     M = strlen(p);
+    size = sizeof(int) * M;
     for(i=0; i<NSYM; ++i) {
-        res[i]  = (int *)malloc(sizeof(int) * M);
+        res[i]  = (int *)malloc(size);
+        //***********对所有的数据进行初始化（非常重要)
+        memset(res[i], 0, size);
     }
 
     /*!构造DFA表*/
-    res[p[0]][0] = 1; /*! 输入第一个字符进入状态1 */
-    for(x = 0, j=1; j < M; j++) {
+    x=0, j=1;
+    res[p[x]][x] = j; /*! 输入第一个字符进入状态1 */
+    for(; j < M; j++) {
         //计算dfa[][j]
         for(c =0; c < NSYM; c++) {
             res[c][j] = res[c][x];
         }
-        res[p[j]][j]  = j+1;
-        x = res[p[j]][x];
+        res[p[j]][j]  = j+1; /*! 状态更新 */
+        x = res[p[j]][x];    /*! 设置新的上一次状态 */
     }
 
     return res;
+}
+
+void
+showTab(int symb, int *tab, int m) {
+    int i;
+    printf("[%c] \n",symb);
+    for(i=0; i<m; ++i) printf("%4d ", tab[i]); printf("\n");
+}
+
+void
+showKmp(const char *p) {
+    int i, j, k, sym[NSYM];
+    int **dfa;
+    k = strlen(p);
+    dfa = makeDFA(p);
+    for(i=0; i<NSYM; ++i) {
+        sym[i] = 0;
+    }
+    for(i=0; i<k; ++i) {
+        sym[p[i]] += 1;
+    }
+
+    for(i=0; i<NSYM; ++i) {
+        if(sym[i] > 0) {
+            showTab(i, dfa[i], k);
+        }
+    }
+
+    for(i=0;i< NSYM; ++i) {
+        free(dfa[i]);
+    }
+    free(dfa);
+    printf("\n");
 }
 
 int
@@ -64,20 +101,33 @@ kmp(const char *t, const char *p) {
     m = strlen(t), n = strlen(p);
 
     dfa = makeDFA(p);
+    //showKmp(p);
     /*!j表示当前的状态，默认初始状态是0 */
-    for(i=0, k = m-n, j=0; i <= k; ++i) {
-        j = dfa[t[i]][j];
-        if(j == m) {
-            return i-j;
+
+    //*******这里如果写成 i <= k，如果查找字符串在尾部，则根本找不到????
+    //k = m-n
+    //这里不能写成 i<=k,因为这里i就是索引自己，而不是t[i+j]，如果是t[i+j]那么可以这么写
+
+    for(i=0,j=0; i<m && j<n ; ++i) {
+        j = dfa[t[i]][j]; //i必须取m,因为这里i描述的是不断的输入流
+        if(j == n) {
+            break;
         }
     }
 
-    for(i=0; i<NSYM; ++i) 
-        free(dfa[i]);
-    free(dfa);
+    //================================================================
+    //标准的算法4，写法，会让i多加一次
+    //for(i=0; j=0; i < m && j < n; ++i)
+    //  j = dfa[t[i]][j]; //如果一旦j == n,i已经多加了一次
+    //if(j == n) return i-j ; //因为i已经多加了一次，这里就可以直接i-j
 
+    for(k=0; k<NSYM; ++k) 
+        free(dfa[k]);
+    free(dfa);
+    if(j == n) return i-j+1; /*!这里特别需要注意，因为j表示的是长度，所以需要+1,相当于i-(j-1) */
     return -1;
 }
+
 
 #define FIND(t, p) \
     do {\
@@ -92,10 +142,16 @@ kmp(const char *t, const char *p) {
 
 int 
 main(int argc, char *argv[]) {
+    //showKmp("ababac");
+    //showKmp("aifjeiwjfoaajof");
+    //return 0;
+
+
     FIND(aifjeiwjfoaajofjoewfjoafdsfjsfsf, jeiwj);
     FIND(jeiwjaifjfoaajofjoewfjoafdsfjsfsf, jeiwj);
     FIND(1903240jeiwjaifjfoaajofjoewfjoafdsfjsfsjeiwjf, jeiwj);
-    FIND(1903240eiwjaifjfoaajofjoewfjoafdsfjsfsjeiwjf, jeiwj);
+    FIND(1903240eiwjaifjfoaajofjoewfjoafdsfjsfsjeiwjf, jeiwjf);
+    FIND(1903240eiwjaioafdsfjsfsjeiwjjeiwjjeiwjf, jeiwj);
     FIND(ccccc, jeiwj);
 
     return 0;
