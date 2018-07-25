@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "..\vector\vector.h"
+#include "../vector/vector.h"
 
 template <typename T> void checkOrder ( Vector<T> & V ) { //判断向量是否整体有序
    int unsorted = 0; //逆序计数器

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../BST/BST.h" //基于BST实现Splay
+#include "../bst/bst.h" //基于bst实现splay
 template <typename T> class Splay : public BST<T> { //由BST派生的Splay树模板类
 protected:
    BinNodePosi(T) splay ( BinNodePosi(T) v ); //将节点v伸展至根
@@ -18,4 +18,4 @@ public:
    bool remove ( const T& e ); //删除（重写）
 };
 
-#include "Splay_implementation.h"
+#include "splay_implementation.h"

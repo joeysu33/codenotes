@@ -10,7 +10,7 @@
  * Test of Skiplist
  ******************************************************************************************/
 
-#include "skipList_test.h"
+#include "skiplist_test.h"
 
 /******************************************************************************************
  * 测试跳转表
@@ -24,7 +24,7 @@ void testSkiplist ( int n ) {
             K key = dice ( ( K ) n * 3 ); //[0, 3n)范围内的key
             printf ( "Searching for " ); print ( key ); printf ( " ... " );
             V* pValue = L.get ( key );
-            pValue ? printf ( "found with " ), print ( *pValue ) : printf ( "Not found" ); printf ( "\n" );
+            pValue ? printf ( "found with " ), printf ( *pValue ) : printf ( "Not found" ); printf ( "\n" );
             break;
          }
          case 1: { //删除，成功率 <= 33.3%

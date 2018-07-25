@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../Entry/Entry.h"
+#include "../entry/entry.h"
 #define QlistNodePosi(T)  QuadlistNode<T>* //跳转表节点位置
 
 template <typename T> struct QuadlistNode { //QuadlistNode模板类
@@ -23,4 +23,4 @@ template <typename T> struct QuadlistNode { //QuadlistNode模板类
    ( T const& e, QlistNodePosi(T) b = NULL );
 };
 
-#include "QuadlistNode_implementation.h"
+#include "quadlistnode_implementation.h"

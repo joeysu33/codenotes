@@ -13,4 +13,4 @@
  * 效果等同于将这些实现直接汇入QuadlistNode.h
  * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
  ******************************************************************************************/
-#include "QuadlistNode_insert.h"
+#include "quadlistnode_insert.h"

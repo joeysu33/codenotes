@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "../List/List.h" //引入列表
-#include "../Entry/Entry.h" //引入词条
-#include "Quadlist.h" //引入Quadlist
-#include "../Dictionary/Dictionary.h" //引入词典
+#include "../list/list.h" //引入列表
+#include "../entry/entry.h" //引入词条
+#include "quadlist.h" //引入quadlist
+#include "../dictionary/dictionary.h" //引入词典
 
 template <typename K, typename V> //key、value
 //符合Dictionary接口的Skiplist模板类（但隐含假设元素之间可比较大小）
@@ -29,4 +29,4 @@ public:
    bool remove ( K k ); //删除
 };
 
-#include "Skiplist_implementation.h"
+#include "skiplist_implementation.h"

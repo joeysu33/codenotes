@@ -24,28 +24,28 @@
 #include "vector_expand.h"
 #include "vector_shrink.h"
 
-#include "Vector_insert.h"
+#include "vector_insert.h"
 #include "vector_remove.h"
-#include "vector_removeInterval.h"
+#include "vector_removeinterval.h"
 
-#include "Vector_disordered.h"
-#include "Vector_find.h"
-#include "Vector_search.h"
-#include "Vector_search_binary_C.h" //有A、B、C三种版本，C最完善
-#include "Vector_search_fibonaccian_B.h" //有A、B两种版本，B虽华丽，A更实用（但返回值有待与接口统一）
+#include "vector_disordered.h"
+#include "vector_find.h"
+#include "vector_search.h"
+#include "vector_search_binary_c.h" //有a、b、c三种版本，c最完善
+#include "vector_search_fibonaccian_b.h" //有a、b两种版本，b虽华丽，a更实用（但返回值有待与接口统一）
 
-#include "Vector_traverse.h"
+#include "vector_traverse.h"
 
-#include "Vector_unsort.h"
-#include "Vector_sort.h"
+#include "vector_unsort.h"
+#include "vector_sort.h"
 #include "vector_bubble.h"
-#include "vector_bubbleSort.h"
-#include "vector_selectionSort.h"
+#include "vector_bubblesort.h"
+#include "vector_selectionsort.h"
 #include "vector_merge.h"
-#include "vector_mergeSort.h"
-#include "vector_partition_B.h" //有A、A1、B、B1、C共5个版本
-#include "vector_quickSort.h"
-#include "vector_heapSort.h"
+#include "vector_mergesort.h"
+#include "vector_partition_b.h" //有a、a1、b、b1、c共5个版本
+#include "vector_quicksort.h"
+#include "vector_heapsort.h"
 
-#include "Vector_uniquify.h" //或者Vector_uniquify_slow.h
-#include "Vector_deduplicate.h"
+#include "vector_uniquify.h" //或者vector_uniquify_slow.h
+#include "vector_deduplicate.h"

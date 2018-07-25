@@ -33,6 +33,8 @@ makeBC(const char *p) {
     if(!p) return NULL;
     k = strlen(p);
     bc = (int*)malloc(k * sizeof(int));
+    /*!+++++++++丢失了初始化++++++*/
+    for(i=0; i<k; ++i) bc[i] = -1;
 
     /*!画家算法，向右移动，如果右侧有相同的字符会进行覆盖*/
     for(i=0; i<k; ++i) {

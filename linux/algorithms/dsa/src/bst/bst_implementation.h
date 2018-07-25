@@ -14,10 +14,10 @@
 * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
 ******************************************************************************************/
 //#include "BST_searchIn_recursive.h" //在子树中查找（递归版）
-#include "BST_searchIn_iterative.h" //在子树中查找（迭代版）
-#include "BST_search.h" //查找
-#include "BST_insert.h" //插入
-#include "BST_removeAt.h" //在子树中删除
-#include "BST_remove.h" //删除
-#include "BST_connect34.h"
-#include "BST_rotateAt.h"
+#include "bst_searchin_iterative.h" //在子树中查找（迭代版）
+#include "bst_search.h" //查找
+#include "bst_insert.h" //插入
+#include "bst_removeat.h" //在子树中删除
+#include "bst_remove.h" //删除
+#include "bst_connect34.h"
+#include "bst_rotateat.h"

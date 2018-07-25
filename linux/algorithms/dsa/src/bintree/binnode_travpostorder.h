@@ -8,9 +8,9 @@
 
 #pragma once
 
-/*DSA*/#include "../stack/Stack.h" //引入栈模板类
-/*DSA*/#include "BinNode_TravPostorder_R.h"
-/*DSA*/#include "BinNode_TravPostorder_I.h"
+/*dsa*/#include "../stack/stack.h" //引入栈模板类
+/*dsa*/#include "binnode_travpostorder_r.h"
+/*dsa*/#include "binnode_travpostorder_i.h"
 template <typename T> template <typename VST> //元素类型、操作器
 void BinNode<T>::travPost ( VST& visit ) { //二叉树后序遍历算法统一入口
    switch ( rand() % 2 ) { //此处暂随机选择以做测试，共两种选择

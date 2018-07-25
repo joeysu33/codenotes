@@ -13,5 +13,5 @@
  * 效果等同于将这些实现直接汇入listNode.h
  * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
  ******************************************************************************************/
-#include "listNode_insertAsSucc.h"
-#include "listNode_insertAsPred.h"
+#include "listnode_insertassucc.h"
+#include "listnode_insertaspred.h"

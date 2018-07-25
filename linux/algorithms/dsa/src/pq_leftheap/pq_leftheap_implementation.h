@@ -16,7 +16,7 @@
 #include "../_share/release.h"
 #include "../_share/util.h"
 
-#include "PQ_LeftHeap_Insert.h"
-#include "PQ_LeftHeap_getMax.h"
-#include "PQ_LeftHeap_delMax.h"
-#include "PQ_LeftHeap_Merge.h"
+#include "pq_leftheap_insert.h"
+#include "pq_leftheap_getmax.h"
+#include "pq_leftheap_delmax.h"
+#include "pq_leftheap_merge.h"

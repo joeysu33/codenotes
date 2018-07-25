@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "BinNode.h" //引入二叉树节点类
+#include "binnode.h" //引入二叉树节点类
 template <typename T> class BinTree { //二叉树模板类
 protected:
    int _size; BinNodePosi(T) _root; //规模、根节点
@@ -44,4 +44,4 @@ public:
    /*DSA*/void stretchToRPath() { stretchByZig ( _root, _size ); } //借助zig旋转，转化为右向单链
 }; //BinTree
 
-#include "BinTree_implementation.h"
+#include "bintree_implementation.h"

@@ -14,11 +14,11 @@
  * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
  ******************************************************************************************/
 
-#include "Quadlist_initialize.h"
+#include "quadlist_initialize.h"
 
-#include "Quadlist_insert.h"
-#include "Quadlist_remove.h"
+#include "quadlist_insert.h"
+#include "quadlist_remove.h"
 
-//#include "Quadlist_search.h"
+//#include "quadlist_search.h"
 
-#include "Quadlist_traverse.h"
+#include "quadlist_traverse.h"

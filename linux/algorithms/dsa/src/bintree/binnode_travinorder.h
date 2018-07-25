@@ -8,12 +8,12 @@
 
 #pragma once
 
-/*DSA*/#include "../stack/Stack.h" //引入栈模板类
-/*DSA*/#include "BinNode_TravInorder_R.h"
-/*DSA*/#include "BinNode_TravInorder_I1.h"
-/*DSA*/#include "BinNode_TravInorder_I2.h"
-/*DSA*/#include "BinNode_TravInorder_I3.h"
-/*DSA*/#include "BinNode_TravInorder_I4.h"
+/*dsa*/#include "../stack/stack.h" //引入栈模板类
+/*dsa*/#include "binnode_travinorder_r.h"
+/*dsa*/#include "binnode_travinorder_i1.h"
+/*dsa*/#include "binnode_travinorder_i2.h"
+/*dsa*/#include "binnode_travinorder_i3.h"
+/*dsa*/#include "binnode_travinorder_i4.h"
 template <typename T> template <typename VST> //元素类型、操作器
 void BinNode<T>::travIn ( VST& visit ) { //二叉树中序遍历算法统一入口
    switch ( rand() % 5 ) { //此处暂随机选择以做测试，共五种选择

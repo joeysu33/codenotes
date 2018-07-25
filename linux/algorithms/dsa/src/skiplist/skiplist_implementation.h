@@ -14,7 +14,7 @@
  * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
  ******************************************************************************************/
 
-#include "Skiplist_get.h"
-#include "Skiplist_put.h"
-#include "Skiplist_remove.h"
-#include "Skiplist_skipSearch.h"
+#include "skiplist_get.h"
+#include "skiplist_put.h"
+#include "skiplist_remove.h"
+#include "skiplist_skipsearch.h"

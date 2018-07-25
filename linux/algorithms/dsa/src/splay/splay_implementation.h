@@ -13,7 +13,7 @@
 * 效果等同于将这些实现直接汇入BST.h
 * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
 ******************************************************************************************/
-#include "Splay_search.h" //查找
-#include "Splay_insert.h" //插入
-#include "Splay_remove.h" //删除
-#include "Splay_splay.h" //伸展调整
+#include "splay_search.h" //查找
+#include "splay_insert.h" //插入
+#include "splay_remove.h" //删除
+#include "splay_splay.h" //伸展调整

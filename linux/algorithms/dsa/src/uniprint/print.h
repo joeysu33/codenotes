@@ -9,23 +9,23 @@
 #pragma once
 
 #include <stdio.h> //采用C风格精细控制输出格式
-#include "../huffman/huffChar.h" //Huffman超字符
-#include "../BinTree/BinTree.h" //二叉树
-#include "../Huffman/HuffTree.h" //Huffman树
-#include "../BST/BST.h" //二叉搜索树
-#include "../AVL/AVL.h" //AVL树
-#include "../Splay/Splay.h" //伸展树
-#include "../redBlack/RedBlack.h" //红黑树
-#include "../BTree/BTree.h" //二叉搜索树
-#include "../Entry/Entry.h" //词条
-#include "../Skiplist/Quadlist.h" //四叉表
-#include "../Skiplist/Skiplist.h" //跳转表
-#include "../Hashtable/Hashtable.h" //散列表
-#include "../PQ_List/PQ_List.h" //基于列表实现的优先级队列
-#include "../PQ_ComplHeap/PQ_ComplHeap.h" //基于完全堆实现的优先级队列
-#include "../PQ_LeftHeap/PQ_LeftHeap.h" //基于左式堆实现的优先级队列
-#include "../graph/Graph.h" //图
-#include "../graphMatrix/GraphMatrix.h" //基于邻接矩阵实现的图
+#include "../huffman/huffchar.h" //huffman超字符
+#include "../bintree/bintree.h" //二叉树
+#include "../huffman/hufftree.h" //huffman树
+#include "../bst/bst.h" //二叉搜索树
+#include "../avl/avl.h" //avl树
+#include "../splay/splay.h" //伸展树
+#include "../redblack/redblack.h" //红黑树
+#include "../btree/btree.h" //二叉搜索树
+#include "../entry/entry.h" //词条
+#include "../skiplist/quadlist.h" //四叉表
+#include "../skiplist/skiplist.h" //跳转表
+#include "../hashtable/hashtable.h" //散列表
+#include "../pq_list/pq_list.h" //基于列表实现的优先级队列
+#include "../pq_complheap/pq_complheap.h" //基于完全堆实现的优先级队列
+#include "../pq_leftheap/pq_leftheap.h" //基于左式堆实现的优先级队列
+#include "../graph/graph.h" //图
+#include "../graphmatrix/graphmatrix.h" //基于邻接矩阵实现的图
 
 /******************************************************************************************
  * 数据元素、数据结构通用输出接口

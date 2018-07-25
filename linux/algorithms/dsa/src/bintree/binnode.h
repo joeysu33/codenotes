@@ -42,4 +42,4 @@ template <typename T> struct BinNode { //二叉树节点模板类
    /*DSA*/BinNodePosi(T) zag(); //逆时针旋转
 };
 
-#include "BinNode_implementation.h"
+#include "binnode_implementation.h"

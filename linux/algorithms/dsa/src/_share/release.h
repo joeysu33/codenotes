@@ -8,7 +8,11 @@
 
 #pragma once
 
-#include <typeinfo.h>
+#if defined(_MSC_VER)
+    #include <typeinfo.h>
+#else
+    #include <typeinfo>
+#endif
 
 /******************************************************************************************
  * 列表、向量等结构内的节点中，可以存放基本类型或构造类型

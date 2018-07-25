@@ -8,7 +8,7 @@
 
 #pragma once
 
-/*DSA*/#include "../prime/primeNLT.h"
+/*dsa*/#include "../prime/primenlt.h"
 
 template <typename K, typename V> Hashtable<K, V>::Hashtable ( int c ) { //创建散列表，容量为
    M = primeNLT ( c, 1048576, "../../_input/prime-1048576-bitmap.txt" ); //不小于c的素数M

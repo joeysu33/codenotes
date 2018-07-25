@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../BinTree/BinTree.h" //引入BinTree
+#include "../bintree/bintree.h" //引入bintree
 
 template <typename T> class BST : public BinTree<T> { //由BinTree派生BST模板类
 protected:
@@ -23,4 +23,4 @@ public: //基本接口：以virtual修饰，强制要求所有派生类（BST变
    virtual bool remove ( const T& e ); //删除
 };
 
-#include "BST_implementation.h"
+#include "bst_implementation.h"

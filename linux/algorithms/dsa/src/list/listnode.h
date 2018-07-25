@@ -23,4 +23,4 @@ template <typename T> struct ListNode { //列表节点模板类（以双向链�
    ListNodePosi(T) insertAsSucc ( T const& e ); //紧随当前节点之后插入新节点
 };
 
-#include "listNode_implementation.h"
+#include "listnode_implementation.h"

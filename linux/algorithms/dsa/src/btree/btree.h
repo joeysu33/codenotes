@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "BTNode.h" //引入B-树节点类
+#include "btnode.h" //引入b-树节点类
 
 template <typename T> class BTree { //B-树模板类
 protected:
@@ -31,4 +31,4 @@ public:
    bool remove ( const T& e ); //删除
 }; //BTree
 
-#include "BTree_implementation.h"
+#include "btree_implementation.h"

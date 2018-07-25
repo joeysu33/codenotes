@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "../Vector/Vector.h" //引入向量
-#include "../Graph/Graph.h" //引入图ADT
+#include "../vector/vector.h" //引入向量
+#include "../graph/graph.h" //引入图adt
 
 template <typename Tv> struct Vertex { //顶点对象（为简化起见，并未严格封装）
    Tv data; int inDegree, outDegree; VStatus status; //数据、出入度数、状态

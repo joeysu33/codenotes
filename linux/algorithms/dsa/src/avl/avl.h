@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../BST/BST.h" //基于BST实现AVL树
+#include "../bst/bst.h" //基于bst实现avl树
 template <typename T> class AVL : public BST<T> { //由BST派生AVL树模板类
 public:
    BinNodePosi(T) insert ( const T& e ); //插入（重写）
@@ -16,4 +16,4 @@ public:
 // BST::search()等其余接口可直接沿用
 };
 
-#include "AVL_implementation.h"
+#include "avl_implementation.h"

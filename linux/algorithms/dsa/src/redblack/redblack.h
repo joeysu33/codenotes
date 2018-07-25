@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../BST/BST.h" //基于BST实现RedBlack
+#include "../bst/bst.h" //基于bst实现redblack
 template <typename T> class RedBlack : public BST<T> { //RedBlack树模板类
 protected:
    void solveDoubleRed ( BinNodePosi(T) x ); //双红修正
@@ -20,4 +20,4 @@ public:
 // BST::search()等其余接口可直接沿用
 };
 
-#include "RedBlack_implementation.h"
+#include "redblack_implementation.h"

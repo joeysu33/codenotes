@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "..\list\list.h"
+#include "../list/list.h"
 
 template <typename T> void checkOrder ( List<T> & L ) { //判断列表是否整体有序
    int unsorted = 0; //逆序计数器

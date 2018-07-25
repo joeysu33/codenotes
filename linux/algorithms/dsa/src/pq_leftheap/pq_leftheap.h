@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "../PQ/PQ.h" //引入优先级队列ADT
-#include "../BinTree/BinTree.h" //引入二叉树节点模板类
+#include "../pq/pq.h" //引入优先级队列adt
+#include "../bintree/bintree.h" //引入二叉树节点模板类
 
 template <typename T>
 class PQ_LeftHeap : public PQ<T>, public BinTree<T> { //基于二叉树，以左式堆形式实现的PQ
@@ -23,4 +23,4 @@ public:
    T delMax(); //删除优先级最高的元素
 }; //PQ_LeftHeap
 
-#include "PQ_LeftHeap_implementation.h"
+#include "pq_leftheap_implementation.h"

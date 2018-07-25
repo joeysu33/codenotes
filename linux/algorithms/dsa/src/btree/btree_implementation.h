@@ -13,8 +13,8 @@
  * 效果等同于将这些实现直接汇入BTree.h
  * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
  ******************************************************************************************/
-#include "BTree_search.h" //查找
-#include "BTree_insert.h" //插入
-#include "BTree_remove.h" //删除
-#include "BTree_solveOverflow.h" //节点上溢处理
-#include "BTree_solveUnderflow.h" //节点下溢处理
+#include "btree_search.h" //查找
+#include "btree_insert.h" //插入
+#include "btree_remove.h" //删除
+#include "btree_solveoverflow.h" //节点上溢处理
+#include "btree_solveunderflow.h" //节点下溢处理

@@ -13,6 +13,6 @@
 * 效果等同于将这些实现直接汇入BST.h
 * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
 ******************************************************************************************/
-#include "AVL_macro.h" //宏
-#include "AVL_insert.h" //插入
-#include "AVL_remove.h" //删除
+#include "avl_macro.h" //宏
+#include "avl_insert.h" //插入
+#include "avl_remove.h" //删除

@@ -19,20 +19,26 @@ using namespace std;
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include <typeinfo.h>
+
+#if defined(_MSC_VER_)
+    #include <typeinfo.h>
+#else
+    #include <typeinfo>
+#endif
+
 #include "comparator.h"
 
-#include "checkOrder_Elem.h"
-#include "checkOrder_list.h"
-#include "checkOrder_vector.h"
+#include "checkorder_elem.h"
+#include "checkorder_list.h"
+#include "checkorder_vector.h"
 
-#include "double_Elem.h"
-#include "increase_Elem.h"
-#include "hailstone_Elem.h"
+#include "double_elem.h"
+#include "increase_elem.h"
+#include "hailstone_elem.h"
 #include "increase_list.h"
 #include "increase_vector.h"
 
-#include "crc_Elem.h"
+#include "crc_elem.h"
 #include "crc_list.h"
 #include "crc_vector.h"
 

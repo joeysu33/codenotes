@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "../pq_complheap/pq_complheap.h"
 template <typename T> void Vector<T>::heapSort ( Rank lo, Rank hi ) { //0 <= lo < hi <= size
    /*DSA*/printf ( "\tHEAPsort [%3d, %3d)\n", lo, hi );
    PQ_ComplHeap<T> H ( _elem + lo, hi - lo ); //将待排序区间建成一个完全二叉堆，O(n)
