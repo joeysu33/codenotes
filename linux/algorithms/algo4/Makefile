@@ -150,6 +150,19 @@ bm/fast:
 .PHONY : bm/fast
 
 #=============================================================================
+# Target rules for targets named leftheap
+
+# Build rule for target.
+leftheap: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 leftheap
+.PHONY : leftheap
+
+# fast build rule for target.
+leftheap/fast:
+	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/build
+.PHONY : leftheap/fast
+
+#=============================================================================
 # Target rules for targets named str_brute2
 
 # Build rule for target.
@@ -228,6 +241,32 @@ kmp/fast:
 .PHONY : kmp/fast
 
 #=============================================================================
+# Target rules for targets named teststack
+
+# Build rule for target.
+teststack: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 teststack
+.PHONY : teststack
+
+# fast build rule for target.
+teststack/fast:
+	$(MAKE) -f CMakeFiles/teststack.dir/build.make CMakeFiles/teststack.dir/build
+.PHONY : teststack/fast
+
+#=============================================================================
+# Target rules for targets named binarytree_access
+
+# Build rule for target.
+binarytree_access: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 binarytree_access
+.PHONY : binarytree_access
+
+# fast build rule for target.
+binarytree_access/fast:
+	$(MAKE) -f CMakeFiles/binarytree_access.dir/build.make CMakeFiles/binarytree_access.dir/build
+.PHONY : binarytree_access/fast
+
+#=============================================================================
 # Target rules for targets named kr
 
 # Build rule for target.
@@ -254,19 +293,6 @@ splaytree/fast:
 .PHONY : splaytree/fast
 
 #=============================================================================
-# Target rules for targets named leftheap
-
-# Build rule for target.
-leftheap: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 leftheap
-.PHONY : leftheap
-
-# fast build rule for target.
-leftheap/fast:
-	$(MAKE) -f CMakeFiles/leftheap.dir/build.make CMakeFiles/leftheap.dir/build
-.PHONY : leftheap/fast
-
-#=============================================================================
 # Target rules for targets named avltree
 
 # Build rule for target.
@@ -278,6 +304,19 @@ avltree: cmake_check_build_system
 avltree/fast:
 	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/build
 .PHONY : avltree/fast
+
+#=============================================================================
+# Target rules for targets named skiplist
+
+# Build rule for target.
+skiplist: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 skiplist
+.PHONY : skiplist
+
+# fast build rule for target.
+skiplist/fast:
+	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/build
+.PHONY : skiplist/fast
 
 #=============================================================================
 # Target rules for targets named btree_mktree_byorder
@@ -318,6 +357,33 @@ avltree.s: avltree.c.s
 avltree.c.s:
 	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/avltree.c.s
 .PHONY : avltree.c.s
+
+binarytree_access.o: binarytree_access.c.o
+
+.PHONY : binarytree_access.o
+
+# target to build an object file
+binarytree_access.c.o:
+	$(MAKE) -f CMakeFiles/binarytree_access.dir/build.make CMakeFiles/binarytree_access.dir/binarytree_access.c.o
+.PHONY : binarytree_access.c.o
+
+binarytree_access.i: binarytree_access.c.i
+
+.PHONY : binarytree_access.i
+
+# target to preprocess a source file
+binarytree_access.c.i:
+	$(MAKE) -f CMakeFiles/binarytree_access.dir/build.make CMakeFiles/binarytree_access.dir/binarytree_access.c.i
+.PHONY : binarytree_access.c.i
+
+binarytree_access.s: binarytree_access.c.s
+
+.PHONY : binarytree_access.s
+
+# target to generate assembly for a file
+binarytree_access.c.s:
+	$(MAKE) -f CMakeFiles/binarytree_access.dir/build.make CMakeFiles/binarytree_access.dir/binarytree_access.c.s
+.PHONY : binarytree_access.c.s
 
 bm.o: bm.c.o
 
@@ -589,6 +655,33 @@ searchtree.c.s:
 	$(MAKE) -f CMakeFiles/searchtree.dir/build.make CMakeFiles/searchtree.dir/searchtree.c.s
 .PHONY : searchtree.c.s
 
+skiplist.o: skiplist.c.o
+
+.PHONY : skiplist.o
+
+# target to build an object file
+skiplist.c.o:
+	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/skiplist.c.o
+.PHONY : skiplist.c.o
+
+skiplist.i: skiplist.c.i
+
+.PHONY : skiplist.i
+
+# target to preprocess a source file
+skiplist.c.i:
+	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/skiplist.c.i
+.PHONY : skiplist.c.i
+
+skiplist.s: skiplist.c.s
+
+.PHONY : skiplist.s
+
+# target to generate assembly for a file
+skiplist.c.s:
+	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/skiplist.c.s
+.PHONY : skiplist.c.s
+
 splaytree.o: splaytree.c.o
 
 .PHONY : splaytree.o
@@ -670,6 +763,33 @@ str_brute2.c.s:
 	$(MAKE) -f CMakeFiles/str_brute2.dir/build.make CMakeFiles/str_brute2.dir/str_brute2.c.s
 .PHONY : str_brute2.c.s
 
+teststack.o: teststack.c.o
+
+.PHONY : teststack.o
+
+# target to build an object file
+teststack.c.o:
+	$(MAKE) -f CMakeFiles/teststack.dir/build.make CMakeFiles/teststack.dir/teststack.c.o
+.PHONY : teststack.c.o
+
+teststack.i: teststack.c.i
+
+.PHONY : teststack.i
+
+# target to preprocess a source file
+teststack.c.i:
+	$(MAKE) -f CMakeFiles/teststack.dir/build.make CMakeFiles/teststack.dir/teststack.c.i
+.PHONY : teststack.c.i
+
+teststack.s: teststack.c.s
+
+.PHONY : teststack.s
+
+# target to generate assembly for a file
+teststack.c.s:
+	$(MAKE) -f CMakeFiles/teststack.dir/build.make CMakeFiles/teststack.dir/teststack.c.s
+.PHONY : teststack.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -681,20 +801,26 @@ help:
 	@echo "... kmp-dfa"
 	@echo "... searchtree"
 	@echo "... bm"
+	@echo "... leftheap"
 	@echo "... str_brute2"
 	@echo "... str_brute1"
 	@echo "... prim_encrypt"
 	@echo "... heap"
 	@echo "... check-kr"
 	@echo "... kmp"
+	@echo "... teststack"
+	@echo "... binarytree_access"
 	@echo "... kr"
 	@echo "... splaytree"
-	@echo "... leftheap"
 	@echo "... avltree"
+	@echo "... skiplist"
 	@echo "... btree_mktree_byorder"
 	@echo "... avltree.o"
 	@echo "... avltree.i"
 	@echo "... avltree.s"
+	@echo "... binarytree_access.o"
+	@echo "... binarytree_access.i"
+	@echo "... binarytree_access.s"
 	@echo "... bm.o"
 	@echo "... bm.i"
 	@echo "... bm.s"
@@ -725,6 +851,9 @@ help:
 	@echo "... searchtree.o"
 	@echo "... searchtree.i"
 	@echo "... searchtree.s"
+	@echo "... skiplist.o"
+	@echo "... skiplist.i"
+	@echo "... skiplist.s"
 	@echo "... splaytree.o"
 	@echo "... splaytree.i"
 	@echo "... splaytree.s"
@@ -734,6 +863,9 @@ help:
 	@echo "... str_brute2.o"
 	@echo "... str_brute2.i"
 	@echo "... str_brute2.s"
+	@echo "... teststack.o"
+	@echo "... teststack.i"
+	@echo "... teststack.s"
 .PHONY : help
 
 
