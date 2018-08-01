@@ -27,6 +27,9 @@ namespace NSA{
         public:
             TB() {}
         };
+
+        class TC : public TA {};
+        class TD : public TC, public TB {};
     }
 } 
 
