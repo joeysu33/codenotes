@@ -163,6 +163,19 @@ leftheap/fast:
 .PHONY : leftheap/fast
 
 #=============================================================================
+# Target rules for targets named btree_mktree_byorder
+
+# Build rule for target.
+btree_mktree_byorder: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 btree_mktree_byorder
+.PHONY : btree_mktree_byorder
+
+# fast build rule for target.
+btree_mktree_byorder/fast:
+	$(MAKE) -f CMakeFiles/btree_mktree_byorder.dir/build.make CMakeFiles/btree_mktree_byorder.dir/build
+.PHONY : btree_mktree_byorder/fast
+
+#=============================================================================
 # Target rules for targets named str_brute2
 
 # Build rule for target.
@@ -215,6 +228,19 @@ heap/fast:
 .PHONY : heap/fast
 
 #=============================================================================
+# Target rules for targets named btree_traversal
+
+# Build rule for target.
+btree_traversal: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 btree_traversal
+.PHONY : btree_traversal
+
+# fast build rule for target.
+btree_traversal/fast:
+	$(MAKE) -f CMakeFiles/btree_traversal.dir/build.make CMakeFiles/btree_traversal.dir/build
+.PHONY : btree_traversal/fast
+
+#=============================================================================
 # Target rules for targets named check-kr
 
 # Build rule for target.
@@ -252,19 +278,6 @@ teststack: cmake_check_build_system
 teststack/fast:
 	$(MAKE) -f CMakeFiles/teststack.dir/build.make CMakeFiles/teststack.dir/build
 .PHONY : teststack/fast
-
-#=============================================================================
-# Target rules for targets named binarytree_access
-
-# Build rule for target.
-binarytree_access: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 binarytree_access
-.PHONY : binarytree_access
-
-# fast build rule for target.
-binarytree_access/fast:
-	$(MAKE) -f CMakeFiles/binarytree_access.dir/build.make CMakeFiles/binarytree_access.dir/build
-.PHONY : binarytree_access/fast
 
 #=============================================================================
 # Target rules for targets named kr
@@ -318,19 +331,6 @@ skiplist/fast:
 	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/build
 .PHONY : skiplist/fast
 
-#=============================================================================
-# Target rules for targets named btree_mktree_byorder
-
-# Build rule for target.
-btree_mktree_byorder: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 btree_mktree_byorder
-.PHONY : btree_mktree_byorder
-
-# fast build rule for target.
-btree_mktree_byorder/fast:
-	$(MAKE) -f CMakeFiles/btree_mktree_byorder.dir/build.make CMakeFiles/btree_mktree_byorder.dir/build
-.PHONY : btree_mktree_byorder/fast
-
 avltree.o: avltree.c.o
 
 .PHONY : avltree.o
@@ -357,33 +357,6 @@ avltree.s: avltree.c.s
 avltree.c.s:
 	$(MAKE) -f CMakeFiles/avltree.dir/build.make CMakeFiles/avltree.dir/avltree.c.s
 .PHONY : avltree.c.s
-
-binarytree_access.o: binarytree_access.c.o
-
-.PHONY : binarytree_access.o
-
-# target to build an object file
-binarytree_access.c.o:
-	$(MAKE) -f CMakeFiles/binarytree_access.dir/build.make CMakeFiles/binarytree_access.dir/binarytree_access.c.o
-.PHONY : binarytree_access.c.o
-
-binarytree_access.i: binarytree_access.c.i
-
-.PHONY : binarytree_access.i
-
-# target to preprocess a source file
-binarytree_access.c.i:
-	$(MAKE) -f CMakeFiles/binarytree_access.dir/build.make CMakeFiles/binarytree_access.dir/binarytree_access.c.i
-.PHONY : binarytree_access.c.i
-
-binarytree_access.s: binarytree_access.c.s
-
-.PHONY : binarytree_access.s
-
-# target to generate assembly for a file
-binarytree_access.c.s:
-	$(MAKE) -f CMakeFiles/binarytree_access.dir/build.make CMakeFiles/binarytree_access.dir/binarytree_access.c.s
-.PHONY : binarytree_access.c.s
 
 bm.o: bm.c.o
 
@@ -438,6 +411,33 @@ btree_mktree_byorder.s: btree_mktree_byorder.c.s
 btree_mktree_byorder.c.s:
 	$(MAKE) -f CMakeFiles/btree_mktree_byorder.dir/build.make CMakeFiles/btree_mktree_byorder.dir/btree_mktree_byorder.c.s
 .PHONY : btree_mktree_byorder.c.s
+
+btree_traversal.o: btree_traversal.c.o
+
+.PHONY : btree_traversal.o
+
+# target to build an object file
+btree_traversal.c.o:
+	$(MAKE) -f CMakeFiles/btree_traversal.dir/build.make CMakeFiles/btree_traversal.dir/btree_traversal.c.o
+.PHONY : btree_traversal.c.o
+
+btree_traversal.i: btree_traversal.c.i
+
+.PHONY : btree_traversal.i
+
+# target to preprocess a source file
+btree_traversal.c.i:
+	$(MAKE) -f CMakeFiles/btree_traversal.dir/build.make CMakeFiles/btree_traversal.dir/btree_traversal.c.i
+.PHONY : btree_traversal.c.i
+
+btree_traversal.s: btree_traversal.c.s
+
+.PHONY : btree_traversal.s
+
+# target to generate assembly for a file
+btree_traversal.c.s:
+	$(MAKE) -f CMakeFiles/btree_traversal.dir/build.make CMakeFiles/btree_traversal.dir/btree_traversal.c.s
+.PHONY : btree_traversal.c.s
 
 check-kr.o: check-kr.c.o
 
@@ -802,31 +802,31 @@ help:
 	@echo "... searchtree"
 	@echo "... bm"
 	@echo "... leftheap"
+	@echo "... btree_mktree_byorder"
 	@echo "... str_brute2"
 	@echo "... str_brute1"
 	@echo "... prim_encrypt"
 	@echo "... heap"
+	@echo "... btree_traversal"
 	@echo "... check-kr"
 	@echo "... kmp"
 	@echo "... teststack"
-	@echo "... binarytree_access"
 	@echo "... kr"
 	@echo "... splaytree"
 	@echo "... avltree"
 	@echo "... skiplist"
-	@echo "... btree_mktree_byorder"
 	@echo "... avltree.o"
 	@echo "... avltree.i"
 	@echo "... avltree.s"
-	@echo "... binarytree_access.o"
-	@echo "... binarytree_access.i"
-	@echo "... binarytree_access.s"
 	@echo "... bm.o"
 	@echo "... bm.i"
 	@echo "... bm.s"
 	@echo "... btree_mktree_byorder.o"
 	@echo "... btree_mktree_byorder.i"
 	@echo "... btree_mktree_byorder.s"
+	@echo "... btree_traversal.o"
+	@echo "... btree_traversal.i"
+	@echo "... btree_traversal.s"
 	@echo "... check-kr.o"
 	@echo "... check-kr.i"
 	@echo "... check-kr.s"
