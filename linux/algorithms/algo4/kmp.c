@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <memory.h>
 #include <string.h>
-#include <malloc.h>
 
 /*!
  * 构建next表,next表的构建
