@@ -284,6 +284,8 @@ growNode(SkipListNodePosi n, struct SkipList *list) {
         k->m_down = tail;
         list->m_tail = k;
         i2 = k;
+        list->m_height++;
+        printf("升高一层\n");
     }
 
     assert(i1 && i2);
@@ -292,8 +294,6 @@ growNode(SkipListNodePosi n, struct SkipList *list) {
 
     i->m_next = i2;
     i2->m_prev = i;
-    list->m_height++;
-    printf("升高一层\n");
 
     return i;
 }
