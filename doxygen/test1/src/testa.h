@@ -12,7 +12,7 @@ namespace NSA{
 
     namespace NSB {
         /*!
-         * \breif 本类是测试类TA
+         * \brief 本类是测试类TA
          */
         class TA {
         public:
@@ -21,7 +21,7 @@ namespace NSA{
         };
 
         /*!
-         * \breif 本类是测试类TB
+         * \brief 本类是测试类TB
          */
         class TB {
         public:

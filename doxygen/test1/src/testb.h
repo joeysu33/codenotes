@@ -3,39 +3,39 @@
 
 
 /*!
- * \breif 本类B用来处理XXXX */
+ * \brief 本类B用来处理XXXX */
 class B {
 public:
     /*!
-     * \breif 构造函数
+     * \brief 构造函数
      * \param int a 参数a
      * \param int b 参数b
      */
     B(int a, int b) : m_a(a), m_b(b) {}
 
     /*!
-     * \breif 设置参数D
+     * \brief 设置参数D
      * \param void *d 参数d
      * \return 返回NULL
      */
     void setD(void *d) { m_d = d; }
 
     /*!
-     * \breif 获取参数D
+     * \brief 获取参数D
      * \return 参数D
      */
     void* getD() const { return m_d; }
 
 protected:
     /*!
-     * \breif 设置参数e
+     * \brief 设置参数e
      * \param void* e参数e
      * \return 返回NULL
      */
     void setE(void* e) { m_e = e; }
 
     /*!
-     * \breif 获取参数e
+     * \brief 获取参数e
      * \return 返回参数e
      */
     void* getE() const { return m_e; }
