@@ -1,0 +1,17 @@
+/*!
+\page refsb RefSB页
+这是一个Page的测试页
+
+- 菜单项1
+- 菜单项2
+    实例代码:<br/>
+    \code
+    int max(int a, int b) {
+        return a > b ? a : b;
+    }
+    \endcode
+
+\example snip1.cpp
+\example snip2.cpp
+\example snip3.cpp
+*/

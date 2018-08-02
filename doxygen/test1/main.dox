@@ -1,0 +1,15 @@
+/*!
+\mainpage Doxygen测试主页
+\section sa 概要
+    \ref refsa
+\section sb 详细1
+    \ref refsb
+    \subsection sb1 详细1.1
+    \subsection sb2 详细1.2
+\section sc 详细2
+    \subsection sc1 详细2.1
+    \subsection sc2 详细2.2
+\section sc3 详细3
+\section sc4 关于
+    \ref about
+*/
