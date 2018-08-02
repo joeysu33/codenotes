@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "Test1"
+PROJECT_NAME           = "TestProject1"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -51,7 +51,7 @@ PROJECT_BRIEF          = "用来测试Doxygen"
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           =
+PROJECT_LOGO           = ./images/logo.jpg
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
@@ -164,7 +164,7 @@ STRIP_FROM_PATH        =
 STRIP_FROM_INC_PATH    =
 
 # If the SHORT_NAMES tag is set to YES, doxygen will generate much shorter (but
-# less readable) file names. This can be useful is your file systems doesn't
+
 # support long names like on DOS, Mac, or CD-ROM.
 # The default value is: NO.
 
@@ -2313,8 +2313,9 @@ DIRECTORY_GRAPH        = YES
 # png:gdiplus:gdiplus.
 # The default value is: png.
 # This tag requires that the tag HAVE_DOT is set to YES.
+# Dot有的版本并不支持png和jpge，我的版本是2.40,但是png类型的输出总是报错
 
-DOT_IMAGE_FORMAT       = png
+DOT_IMAGE_FORMAT       = svg
 
 # If DOT_IMAGE_FORMAT is set to svg, then this option can be set to YES to
 # enable generation of interactive SVG images that allow zooming and panning.
