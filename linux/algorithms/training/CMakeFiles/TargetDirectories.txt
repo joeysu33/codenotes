@@ -1,4 +1,0 @@
-/home/ds/github.com/codenotes/linux/algorithms/training/CMakeFiles/edit_cache.dir
-/home/ds/github.com/codenotes/linux/algorithms/training/CMakeFiles/rebuild_cache.dir
-/home/ds/github.com/codenotes/linux/algorithms/training/CMakeFiles/bigint.dir
-/home/ds/github.com/codenotes/linux/algorithms/training/CMakeFiles/bigfloat.dir
