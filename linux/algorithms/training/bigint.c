@@ -35,61 +35,17 @@ char *easyChar(PBigInt i) {
     int j;
 
     /*! 处理第一位 */
-    j = NMAX-i->m_len-1;
+    j = NMAX-i->m_len;
     if(i->m_d[j].m_high != 0)
         *(r++) = i->m_d[j].m_high + '0';
-    if(i->m_d[j].m_low != 0)
-        *(r++) = i->m_d[j].m_low + '0';
-    for(++j; j < NMAX; ++j) {
+    //低位一定不会为0
+    *(r++) = i->m_d[j].m_low + '0';
+    for(j++; j < NMAX; ++j) {
         *(r++) = i->m_d[j].m_high + '0';
         *(r++) = i->m_d[j].m_low + '0';
     }
 
     *r = 0;
-    return res;
-}
-
-/*!
- * \brief bigInt2Char Has some bugs
- * \param i
- * \return
- */
-char* bigInt2Char(PBigInt i) {
-    if(!i) return NULL;
-    if(i->m_len < 1) return NULL;
-
-    assert(i->m_len * 2 < NMAX);
-    char * r = (char*)malloc((NMAX+1) * sizeof(char)), *res = r; //signed
-    Base * pb = &i->m_d[NMAX - i->m_len], *end = &i->m_d[NMAX-1];
-    int j;
-
-    *r = 0; //初始为空字符串
-    end++; //退回到最右侧, 无效位置
-    pb--; //向后退一步，从偶数序列开始访问
-    if(i->m_sign) { *r = '-'; *(++r) = 0; }
-
-    //从非0开始，偶数访问低位，奇数访问高位
-    for(j=0; j<i->m_len * 2; ++j) {
-        if(j % 2 == 0) {
-            pb++;
-            if(pb->m_low != 0) break;
-        } else {
-            if(pb->m_high != 0) break;
-        }
-    }
-
-    while(*r) r++; //找到最末尾的位置，开始插入
-    while(pb != end) {
-        if(j % 2 == 0) {
-            pb++;
-            *(r++) = pb->m_low + '0';
-        } else {
-            *(r++) = pb->m_high + '0';
-        }
-        ++j;
-    }
-    *r = 0;
-
     return res;
 }
 
@@ -119,16 +75,40 @@ makeBigInt(const char *s, PBigInt i) {
     }
 
     i->m_len = k / 2;
-    //if(k % 2 != 0) i->m_len++;
+    if(k % 2 != 0) i->m_len++;
 
     /*! 解决-0 != 0的情况 */
     if(!i->m_len) i->m_sign = 0;
 }
 
+/*!
+ * i1+i2,并将结果写入到i1中 */
 PBigInt
 add(PBigInt i1, PBigInt i2) {
-    PBigInt i = NULL;
-    return i;
+    if(!i1 || !i2) return i1;
+    int len1 = i1->m_len, len2 = i2->m_len;
+    int j, k, l, t;
+    //避免溢出len1 
+    assert(len1 < NMAX -1);
+    if(len1 < 1 || len2 < 1) return i1;
+
+    /*!考虑符号????*/
+    for(j=0, k=0, l=0; j>=len1 && k >= len2; ++l) {
+        if(l % 2 == 0) {
+            j++;
+            k++;
+
+            t = i1->m_d[NMAX - j].m_low + i2->m_d[NMAX -k].m_low;
+            i1->m_d[NMAX -j].m_low  = t % 10; //计算结果
+            i1->m_d[NMAX -j].m_high = t / 10; //发生进位
+        } else {
+            t = i1->m_d[NMAX -j].m_high + i2->m_d[NMAX -k].m_high;
+            i1->m_d[NMAX -j].m_high = t % 10;   //计算结果
+            i1->m_d[NMAX -j -1].m_low = t / 10; //发生进位
+        }
+    }
+
+    return i1;
 }
 
 void
@@ -145,16 +125,13 @@ testBigInt() {
 
     int count = sizeof(s)/sizeof(char*), i;
     BigInt i1;
-    char *pc = NULL, *ez;
+    char *ez;
     for(i=0; i<count; ++i) {
         makeBigInt(s[i], &i1);
         ez = easyChar(&i1);
-        //pc = bigInt2Char(&i1);
         assert(ez);
-        //assert(pc);
-        printf("i=%d\ns[%d]=%s, pc=%s, easyChar=%s\n", i, i, s[i], pc, ez);
+        printf("i=%d\ns[%d]=%s, easyChar=%s\n", i, i, s[i],ez);
         assert(!strcmp(s[i], ez));
-        //free(pc);
         free(ez);
     }
 }
