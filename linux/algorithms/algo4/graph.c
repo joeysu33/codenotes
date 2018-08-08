@@ -14,7 +14,7 @@
 #include <assert.h>
 
 
-#define NQMAX 8
+#define NQMAX 100
 
 typedef enum _EdgeState{
     ES_UNDEFINED = 0, //未定义
@@ -30,7 +30,7 @@ typedef enum _VertexState {
     VS_VISITED, //已经访问
 } VertexState;
 
-static char * vstat[] = {
+static char * estat[] = {
     "Undefined",
     "Tree",
     "Forward",
@@ -38,7 +38,7 @@ static char * vstat[] = {
     "Cross",
 };
 
-static char * estat[] = {
+static char * vstat[] = {
     "Undiscovered",
     "Discovered",
     "Visited",
@@ -143,12 +143,14 @@ addEdge(Graph *g, int i, int j) {
         pe = &(*pe)->m_next;
     }
     *pe = e;
+    g->m_ec++;
 }
 
 /*!
  * 释放本次edge，返回下一次的edge*/
 Edge*
 freeEdge(Edge *e) {
+    if(!e) return NULL;
     Edge *next = e->m_next;
     free(e);
     return next;
@@ -158,6 +160,7 @@ void
 freeGraph(Graph *g) {
     int i;
     Edge *e;
+    if(!g->m_vc) return ;
     for(i=0; i<g->m_vc; ++i) {
         e = g->m_vertex[i].m_edge;
         do {
@@ -179,9 +182,13 @@ getVertex(Graph *g, int i) {
 void
 setVertexCount(Graph *g, int vc) {
     if(!g || vc < 1) return ;
+    int i;
     freeGraph(g);
     g->m_vertex = (Vertex*)malloc(sizeof(Vertex) * vc);
     g->m_vc = vc;
+
+    //对于已经分配的内存一定要记得初始化 bugs-3
+    for(i=0; i<vc; ++i) initVertex(&g->m_vertex[i]);
 }
 
 void
@@ -210,7 +217,11 @@ findEdge(Graph *g, int i, Edge *e) {
     Vertex *v2 = getVertex(g, e->m_vertex);
     if(!v1 || !v2) assert(0);
 
-    printf("Found Edge(%c->%c): weight=%d\n", v1->m_d, v2->m_d, e->m_weight);
+    printf("Found Edge(%c->%c): weight=%d, state=%s\n", 
+            v1->m_d, 
+            v2->m_d, 
+            e->m_weight,
+            estat[e->m_st]);
 }
 
 /*!
@@ -236,6 +247,7 @@ findEdge(Graph *g, int i, Edge *e) {
  */
 void
 makeGraph(Graph *g) {
+    //边的加入已经提前有序操作，保证结果的唯一性
     char vetexs[] = {'s', 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
     EdgeIndex edges[] = { {0, 1}, {0,3}, {0, 4},
                             {1, 3}, {1,5},
@@ -270,14 +282,16 @@ void
 enqueue(int *q, int *front, int *rear, int d) {
     if(!q) return ;
     if(qIsFull(*front, *rear)) assert(0);
-    q[(*rear++) % NQMAX] = d;
+    //bugs-1 (*rear++)XXX *(解引用)的运算符优先级最靠后
+    q[(*rear)++ % NQMAX] = d;
 }
 
 int
 dequeue(int *q, int *front, int *rear) {
     if(!q) return -INT_MAX;
     if(qIsEmpty(*front, *rear)) assert(0);
-    int r = q[(*front++) % NQMAX];
+    //bugs-1 (*front++)XXX *(解引用)的运算符优先级最靠后
+    int r = q[(*front)++ % NQMAX];
     return r;
 }
 
@@ -300,14 +314,15 @@ bfs_sub(Graph *g, int i) {
     int m, n;
     Vertex *v, *v1;
     Edge *e;
+    //只要数据在队列中，就意味着该数据已经被发现
     enqueue(q, &qf, &qr, i);
+    v->m_st = VS_DISCOVERED;
 
     while(!qIsEmpty(qf, qr)) {
         m = dequeue(q, &qf, &qr);
         if(m < 0 || m >= g->m_vc) assert(0);
         v = &g->m_vertex[m];
         e = v->m_edge;
-        v->m_st = VS_DISCOVERED;
         v->m_dtime = ++g->m_clock;
 
         //获取与m相关联的所有vertex，并入队列
@@ -317,12 +332,14 @@ bfs_sub(Graph *g, int i) {
 
             switch(v1->m_st) {
                 case VS_UNDISCOVERED:{
-                                        enqueue(q, &qf, &qr, e->m_vertex);
-                                        e->m_st = ES_TREE;
-                                        findEdge(g, m, e);
-                                        break;
+                                         //如队列的时候就设置顶点节点被发现, bugs-2
+                                         v1->m_st = VS_DISCOVERED;
+                                         enqueue(q, &qf, &qr, e->m_vertex);
+                                         e->m_st = ES_TREE;
+                                         findEdge(g, m, e);
+                                         break;
                                      }
-                default: e->m_st = ES_CROSS; break;
+                default: e->m_st = ES_CROSS; findEdge(g, m, e); break;
             }
 
             e = e->m_next;
@@ -331,7 +348,7 @@ bfs_sub(Graph *g, int i) {
         //完成该顶点的下一步工作（找邻接之后完成任务)
         v->m_st = VS_VISITED;
         v->m_atime = ++g->m_clock;
-        findVertex(g, e->m_vertex);
+        findVertex(g, m);
     }
 }
 
@@ -346,9 +363,59 @@ bfs(Graph *g) {
     for(i=0 ; i<g->m_vc; ++i) {
         v = getVertex(g, i);
         if(!v) assert(0);
-        if(v == VS_UNDISCOVERED)
+        if(v->m_st == VS_UNDISCOVERED)
             bfs_sub(g, i);
     }
+}
+
+/*!
+ * 深度优先算法一次遍历*/
+void
+dfs_sub(Graph *g, int i) {
+    if(!g || i < 0 || i>= g->m_vc) return ;
+    int j;
+    Vertex *v = getVertex(g, i), *u;
+    assert(v);
+    Edge *e = v->m_edge;
+
+    v->m_st = VS_DISCOVERED;
+    //发现时间
+    v->m_dtime = ++g->m_clock;
+    while(e) {
+        j = e->m_vertex;
+        u = getVertex(g, j);
+        assert(u);
+
+        switch(u->m_st) {
+            case VS_UNDISCOVERED: {
+                                       e->m_st = ES_TREE;
+                                       findEdge(g, i, e);
+                                       //递归继续处理，处理完成之后会在这里进行回溯
+                                       dfs_sub(g, j);
+                                       break;
+                                   }
+            case VS_DISCOVERED: {
+                                    e->m_st = ES_BACKWARD; //子孙找到祖先了
+                                    findEdge(g, i, e);
+                                    break;
+                                }
+            //VISITED
+            default: {
+                         //祖先找到子孙了，或亲戚找到亲戚了
+                         //存在祖先->子孙关系 v是u的祖先，v的(dtime, atime)一定包含u的(dtime,atime)
+                         //对于dfs中VISTED的处理要搞清楚FORWARD和CROSS的状态 bugs-4
+                         e->m_st = v->m_dtime < u->m_dtime ? ES_FORWARD : ES_CROSS;  //?????
+                         findEdge(g, i, e);
+                         break;
+                     }
+        }
+        e = e->m_next;
+    }
+
+    v->m_st = VS_VISITED;
+    //访问时间
+    v->m_atime = ++g->m_clock;
+    findVertex(g, i);
 }
 
 /*!
@@ -356,19 +423,33 @@ bfs(Graph *g) {
 void
 dfs(Graph *g) {
     if(!g) return ;
+    int i;
+    Vertex *v;
+    for(i=0; i<g->m_vc; ++i) {
+        v = getVertex(g, i);
+        assert(v);
+
+        if(v->m_st == VS_UNDISCOVERED) 
+            dfs_sub(g, i);
+    }
 }
 
 int
 main(int argc, char *argv[]) {
+    printf("\n---------------------BFS-------------------------\n");
     Graph g;
     initGraph(&g); 
     makeGraph(&g);
     bfs(&g);
     freeGraph(&g);
 
+    printf("\n---------------------DFS--------------------------\n");
+
+    initGraph(&g);
+    makeGraph(&g);
+    dfs(&g);
+    freeGraph(&g);
+
     return 0;
 }
-
-
-
 
