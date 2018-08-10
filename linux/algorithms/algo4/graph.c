@@ -224,6 +224,18 @@ findEdge(Graph *g, int i, Edge *e) {
             estat[e->m_st]);
 }
 
+void
+makeGraph2(Graph *g, char *vertex, int vertexCount,
+        EdgeIndex *index, int edgeCount) {
+    if(!g || !vertex || !index ||
+            vertexCount < 1 ) return ;
+
+    int i;
+    setVertexCount(g, vertexCount);
+    for(i=0; i<vertexCount; ++i) setVertex(g, i, vertex[i]);
+    for(i=0; i<edgeCount; ++i) addEdge(g, index[i].m_i, index[i].m_j);
+}
+
 /*!
  * 示例 (有向图)
  * s a b c d e f g (8个顶点)
@@ -258,12 +270,45 @@ makeGraph(Graph *g) {
 
     int vc = sizeof(vetexs)/sizeof(vetexs[0]);
     int ec = sizeof(edges)/sizeof(edges[0]);
-    int i;
-    setVertexCount(g, vc);
-    for(i=0; i<vc; ++i) setVertex(g, i, vetexs[i]);
-    for(i=0; i<ec; ++i) addEdge(g, edges[i].m_i, edges[i].m_j);
+    makeGraph2(g, vetexs, vc, edges, ec);
 }
 
+
+/*!
+ * 示例（有向无环图),测试拓扑排序
+ * a b c d e f
+ * a, ->c, ->d
+ * b, ->c
+ * c, ->d, ->e, ->f
+ * d, NULL
+ * e, ->f
+ * f, NULL
+ * */
+void
+makeTopnologyExampleGraph(Graph *g) {
+    char vetexs[] = {'a', 'b', 'c', 'd', 'e', 'f'};
+    EdgeIndex edges[] = { {0, 2}, {0,3},
+                            {1, 2},
+                            {2, 3},{2, 4},{2,5},
+                            {4, 5}};
+
+    int vc = sizeof(vetexs)/sizeof(vetexs[0]);
+    int ec = sizeof(edges)/sizeof(edges[0]);
+    makeGraph2(g, vetexs, vc, edges, ec);
+}
+
+void
+makeTopnologyErrExampleGraph(Graph *g) {
+    char vetexs[] = {'a', 'b', 'c', 'd', 'e', 'f'};
+    EdgeIndex edges[] = { {0, 2}, {0,3},
+                            {1, 2},
+                            {2, 0}, {2, 3},{2, 4},{2,5},
+                            {4, 5}};
+
+    int vc = sizeof(vetexs)/sizeof(vetexs[0]);
+    int ec = sizeof(edges)/sizeof(edges[0]);
+    makeGraph2(g, vetexs, vc, edges, ec);
+}
 
 void
 initGraph(Graph *g) {
@@ -271,6 +316,28 @@ initGraph(Graph *g) {
     g->m_vc = g->m_ec = 0;
     g->m_clock = 0;
     g->m_vertex = NULL;
+}
+
+/*!
+ * 重置图的状态
+ * 将边的状态设置为ES_UNDEFINED
+ * 顶点的状态设置为VS_UNDISCOVERED,并且将dtime和atime置为初始值
+ * */
+void
+reset(Graph *g) {
+    int i;
+    Vertex *v;
+    Edge *e;
+    for(i=0; i<g->m_vc; ++i) {
+        v = getVertex(g, i);
+        v->m_st = VS_UNDISCOVERED;
+        v->m_dtime = v->m_atime = 0;
+        e = v->m_edge;
+        while(e) {
+            e->m_st = ES_UNDEFINED;
+            e = e->m_next;
+        }
+    }
 }
 
 int
@@ -316,6 +383,7 @@ bfs_sub(Graph *g, int i) {
     Edge *e;
     //只要数据在队列中，就意味着该数据已经被发现
     enqueue(q, &qf, &qr, i);
+    v = getVertex(g, i);
     v->m_st = VS_DISCOVERED;
 
     while(!qIsEmpty(qf, qr)) {
@@ -359,7 +427,7 @@ bfs(Graph *g) {
     if(!g) return ;
     int i;
     Vertex *v;
-
+    reset(g);
     for(i=0 ; i<g->m_vc; ++i) {
         v = getVertex(g, i);
         if(!v) assert(0);
@@ -425,6 +493,7 @@ dfs(Graph *g) {
     if(!g) return ;
     int i;
     Vertex *v;
+    reset(g);
     for(i=0; i<g->m_vc; ++i) {
         v = getVertex(g, i);
         assert(v);
@@ -434,21 +503,119 @@ dfs(Graph *g) {
     }
 }
 
+/*!
+ * 排序成功返回1, 否则返回0, 进行深度搜索*/
+int
+topnologySortSub(Graph *g, int i, char *stack, int *stacktop) {
+    if(!g || !stack || !stacktop) return 0;
+    Vertex *v = getVertex(g, i), *u;
+    v->m_st = VS_DISCOVERED;
+    Edge *e = v->m_edge;
+    int j;
+
+    //这里可以不用考虑边的状态，边的状态是辅助信息，不会对算法造成影响
+    //顶点的状态必须要设置，否则就成死循环了
+    while(e) {
+        j = e->m_vertex;
+        u = getVertex(g, j);
+        switch(u->m_st) {
+            case VS_UNDISCOVERED: {
+                                      //失败，直接退出0
+                                      if(!topnologySortSub(g, j, stack, stacktop))
+                                          return 0;
+                                      break; //bugs-5,没有break, 直接从这行往下执行
+                                  }
+            case VS_DISCOVERED: { printf("[%c -> %c]\n", v->m_d, u->m_d); return 0; }
+            default: break;
+        }
+
+        e = e->m_next;
+    }
+
+    v->m_st = VS_VISITED;
+    stack[++(*stacktop)] = v->m_d; //最后访问的节点一定是最后输出的节点，依赖之前的parent->parent->parent...
+
+    return 1;
+}
+
+/*!
+ * 对有向无环图 <=> 拓扑排序
+ * 进行深度搜索，并逆序输出，如果存在边BACKWARD则认定为无法进行拓扑排序
+ * 拓扑排序和选取的起始点，以及边的优先顺序有关系，不唯一，但是能保证依赖关系
+ * */
+void
+topnologySort(Graph *g) {
+    if(!g) return ;
+    char stack[NQMAX]; 
+    int stacktop = -1, i;
+    Vertex *v ;
+    reset(g);
+
+    for(i=0; i<g->m_vc; ++i) {
+        v = getVertex(g, i);
+        assert(v);
+
+        if(v->m_st == VS_UNDISCOVERED) {
+            if(!topnologySortSub(g, i, stack, &stacktop)) {
+                //栈清空
+                stacktop = -1; break;
+            }
+        }
+    }
+
+    printf("TopnologySort Result:");
+    if(stacktop < 0) 
+        printf("Error");
+    else 
+        while(stacktop >= 0) {
+            printf("%c ", stack[stacktop--]);
+        }
+    printf("\n");
+}
+
+void
+showTitle(const char *s) {
+    printf("\n---------------------%s-------------------------\n", s);
+}
+
+#define RUNGRAPH(title, maker, opt) \
+    do {\
+        showTitle(#title);\
+        initGraph(&g); \
+        maker(&g);\
+        opt(&g);\
+        freeGraph(&g);\
+    } while(0)
+
 int
 main(int argc, char *argv[]) {
-    printf("\n---------------------BFS-------------------------\n");
     Graph g;
+
+    /*
+    showTitle("BFS");
     initGraph(&g); 
     makeGraph(&g);
     bfs(&g);
     freeGraph(&g);
 
-    printf("\n---------------------DFS--------------------------\n");
-
+    showTitle("DFS");
     initGraph(&g);
     makeGraph(&g);
     dfs(&g);
     freeGraph(&g);
+
+    showTitle("TopnologySort");
+    initGraph(&g);
+    makeTopnologyExampleGraph(&g);
+    topnologySort(&g);
+    freeGraph(&g);
+    */
+
+    RUNGRAPH(BFS, makeGraph, bfs);
+    RUNGRAPH(DFS, makeGraph, dfs);
+    RUNGRAPH(TopnologySort, makeGraph, topnologySort);
+    RUNGRAPH(TopnologySort, makeTopnologyExampleGraph, topnologySort);
+    RUNGRAPH(TopnologySort, makeTopnologyErrExampleGraph, topnologySort);
 
     return 0;
 }
