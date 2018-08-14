@@ -45,7 +45,7 @@ readLine(char *buf, int *i) {
     if(!buf || !i) return ;
     while((c = fgetc(stdin)) != EOF) {
         if(c == '\n') {
-            buf[*i]=0;
+            buf[*i]='\0'; //设置空字符
             break;
         }
         buf[(*i)++] = c;
@@ -55,11 +55,11 @@ readLine(char *buf, int *i) {
 
 bool
 isEmpty(char *buf) {
-    if(!buf) return false;
+    if(!buf) return true;
     while(*(buf++)) {
-        if(!isblank(*buf)) { return true; }
+        if(!isblank(*buf)) { return false; }
     }
-    return false;
+    return true;
 }
 
 bool
@@ -72,7 +72,7 @@ void
 readDataLine(char *buf, int *i) {
     do{
         readLine(buf, i);
-    }while(!isComment(buf) && !isEmpty(buf));
+    }while(isComment(buf) || isEmpty(buf));
 }
 
 Edge*
@@ -88,8 +88,8 @@ Graph
 makeGraph(int *vc, int *ec) {
     int m, n, i, j; //顶点个数、边的条数
     char buffer[NBUFFER];
-    char sym[255], c;
-    Edge **e;
+    char sym[255], c, k;
+    Edge **e, *e1;
 
     readDataLine(buffer, &i);
     sscanf(buffer, "%d%d", &m, &n);
@@ -100,82 +100,124 @@ makeGraph(int *vc, int *ec) {
     Graph g = (Graph) malloc(sizeof(Vertex) * m);
     Vertex *v;
 
-    for(j=0; j<m; ++j) {
-        g[i].m_edge = NULL;
-        //g[i].m_next = NULL;
-        sscanf(buffer, "%c", &c);
-        g[i].m_c = c;
+    char *p = buffer;
+    for(j=0; j<m && (*p); p++) {
+        if(isblank(*p)) continue;
+
+        g[j].m_edge = NULL; //bugs-7 索引值j写成i了
+        //sscanf(buffer, "%c", &c); //这样读，始终读第一个bugs-1
+        c = *p;
+        g[j].m_c = c; //这里索引值写错了，j写成i了
         sym[c] = j; //符号表索引值
+        j++;
     }
 
     do {
         readDataLine(buffer, &i);
-        sscanf(buffer, "%c", &c);
+        if(i == 0 ) break; //read EOF
+        //sscanf(buffer, "%c", &c); //始终读第一个bugs-2
+        sscanf(buffer, "%c%*[^a-zA-Z0-9]%c%d", &c, &k, &j);
         v = &g[sym[c]];
-        sscanf(buffer, "%c%d", &c, &j);
-        e = &v->m_edge;
-        while(*e) *e = (*e)->m_next;
-        *e  = makeEdge(sym[c], j);
-    } while(i > 0);
+        //sscanf(buffer, "%c%d", &c, &j); //始终从第一个开始读，bugs-3
+        //e = &v->m_edge; //bugs-4，多维指针的乱用
+        //while(*e) *e = (*e)->m_next;
+        if(!v->m_edge) { 
+            e = &v->m_edge; 
+        } else {
+            e1 = v->m_edge;
+            while(e1->m_next) e1 = e1->m_next;
+            e = &e1->m_next;
+        }
+        *e  = makeEdge(sym[k], j);
+    } while(1);
 
     *vc = m; *ec = n;
     return g;
 }
 
 void
-freeGraph(Graph g, int vc) {
+freeGraph(Graph *g, int vc) {
     int i;
     Edge *e, *pe;
     for(i=0; i<vc; ++i) {
-        e = g[i].m_edge;
+        e = (*g)[i].m_edge;
         while(e) {
             pe = e;
             e = e->m_next;
             free(pe);
         }
-        g[i].m_edge = NULL;
+        (*g)[i].m_edge = NULL;
     }
-    free(g);
+    free(*g);
+    *g = NULL;
 }
 
 /*!
  * 构建一个堆，总是从堆中找到距离最近的顶点*/
 void
 prim(Graph g, int vc, int ec) {
-    int a[NMAX],b[NMAX], prio[NMAX], v[NMAX]; //新建的顶点(a,b)索引集合, 权值集合,顶点的集合
+    int prio[NMAX][NMAX], visited[NMAX], vertex[NMAX];
+    int i, j, k,minEdge = INT_MAX, iv=0; //边的条数
     Edge *e;
-    int i, j, k,minEdge = INT_MAX, ie = 0 ,iv=0; //边的条数
+    int prioSum = 0;
+
+    //设置初始值,-1表示不存在这样的边
+    for(i=0; i<NMAX; ++i)
+        for(j =0; j<NMAX; ++j)
+            prio[i][j] = INT_MAX;
+
+    //初始化v
+    for(i=0; i<NMAX; ++i) visited[i] = 0;
 
     //找出一条最小的边，作为最开始的顶点
     j = -1, k=-1;
     for(i=0; i<vc; ++i) {
         e = g[i].m_edge;
         while(e) {
+            prio[e->m_vertex][i] = prio[i][e->m_vertex] = e->m_prio; //无向图
+            printf("e[%d][%d]=e[%d][%d]=%d\n", i, e->m_vertex,
+                    e->m_vertex, i, e->m_prio);
             if(e->m_prio < minEdge) {
                 j = i;
                 k = e->m_vertex;
+                minEdge = e->m_prio;
             }
             e = e->m_next;
         }
     }
 
-    a[ie] = j; b[ie] = k;
-    prio[ie++] = minEdge;
-    v[iv++] = j; v[iv++] = k;
+    visited[j] = 1; visited[k] = 1;
+    //新增两个顶点
+    vertex[iv++] = j; 
+    vertex[iv++] = k;
+    prioSum += minEdge;
 
-    for(i=0; i<vc; ++i) {
-        minEdge = INT_MAX;
-        for(j=0; j<iv; ++j) {
-            if(v[j] == i) continue;
+    //bugs-6 将vertex[i]写成了i
+    do {
+       minEdge = INT_MAX;
+       k = -1;
+       for(i=0; i<iv; ++i) {
+           for(j=0; j<vc; ++j) {
+               if(vertex[i] != j && !visited[j] && prio[vertex[i]][j] < minEdge) {
+                   k = j;
+                   minEdge = prio[vertex[i]][j];
+               }
+           }
+       }
 
-            for(k=0; k<ie; ++k) {
-                if((a[k] == i && b[k] == j) ||
-                    (a[k] == j && b[k] == i)) continue;
+       //如果图是联通的k一定存在
+       assert(k >= 0);
+       visited[k] = 1;
+       vertex[iv++] = k;
+       prioSum += minEdge;
+    } while(iv < vc);
 
-                //找到新的边,并找到最小边
-            }
-        }
+    for(i=0; i<iv; ++i) {
+        //g[vertex[i]].m_c = 'x';
+        printf("%c ", g[vertex[i]].m_c);
     }
+    printf("\n");
+    printf("MST prio:%d\n", prioSum);
 }
 
 
@@ -185,6 +227,12 @@ kruskal(Graph g, int vc, int ec) {
 
 int
 main(int argc, char *argv[]) {
+    //要先使用深度优先算法来确定该图是连通的
+    int vc, ec;
+    Graph g = makeGraph(&vc, &ec);
+    prim(g, vc, ec);
+    freeGraph(&g, vc);
+
     return 0;
 }
 
