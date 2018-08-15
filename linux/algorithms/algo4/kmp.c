@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <memory.h>
-#include <string.h>
-//#include <malloc.h>
+#include "common.h"
 
 /*!
  * 构建next表,next表的构建

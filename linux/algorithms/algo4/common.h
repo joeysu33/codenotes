@@ -9,6 +9,8 @@
 #include <assert.h>
 #include <stdint.h>
 #include <time.h>
+#include <ctype.h>
+#include <memory.h>
 
 typedef unsigned char bool;
 

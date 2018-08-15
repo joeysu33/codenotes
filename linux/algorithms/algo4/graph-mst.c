@@ -84,6 +84,24 @@ makeEdge(int vertex, int val) {
     return e;
 }
 
+void
+addEdge(Graph g, int i, int j, int prio) {
+    Vertex *v =  &g[i];
+    Edge *e = v->m_edge, **pe;
+    if(!e) pe = &v->m_edge;
+    else { 
+        while(e->m_next) e = e->m_next;
+        pe = &e->m_next;
+    }
+    *pe =  makeEdge(j, prio);
+}
+
+void
+addBiEdge(Graph g, int i, int j, int prio) {
+    addEdge(g, i, j, prio);
+    addEdge(g, j, i, prio);
+}
+
 Graph 
 makeGraph(int *vc, int *ec) {
     int m, n, i, j; //顶点个数、边的条数
@@ -117,11 +135,11 @@ makeGraph(int *vc, int *ec) {
         if(i == 0 ) break; //read EOF
         //sscanf(buffer, "%c", &c); //始终读第一个bugs-2
         sscanf(buffer, "%c%*[^a-zA-Z0-9]%c%d", &c, &k, &j);
-        v = &g[sym[c]];
+        //v = &g[sym[c]];
         //sscanf(buffer, "%c%d", &c, &j); //始终从第一个开始读，bugs-3
         //e = &v->m_edge; //bugs-4，多维指针的乱用
         //while(*e) *e = (*e)->m_next;
-        if(!v->m_edge) { 
+        /*if(!v->m_edge) { 
             e = &v->m_edge; 
         } else {
             e1 = v->m_edge;
@@ -129,6 +147,9 @@ makeGraph(int *vc, int *ec) {
             e = &e1->m_next;
         }
         *e  = makeEdge(sym[k], j);
+        */
+        addBiEdge(g,sym[c], sym[k], j);
+
     } while(1);
 
     *vc = m; *ec = n;
@@ -156,7 +177,7 @@ freeGraph(Graph *g, int vc) {
  * 构建一个堆，总是从堆中找到距离最近的顶点*/
 void
 prim(Graph g, int vc, int ec) {
-    int prio[NMAX][NMAX], visited[NMAX], vertex[NMAX];
+    int prio[NMAX][NMAX], visited[NMAX], vertex[NMAX]; //存储边，存储已经处理完成的顶点和该顶点的索引值
     int i, j, k,minEdge = INT_MAX, iv=0; //边的条数
     Edge *e;
     int prioSum = 0;
@@ -169,8 +190,17 @@ prim(Graph g, int vc, int ec) {
     //初始化v
     for(i=0; i<NMAX; ++i) visited[i] = 0;
 
+    for(i=0; i<vc; ++i) {
+        e = g[i].m_edge;
+        while(e) {
+            prio[i][e->m_vertex] = e->m_prio; //无向图
+            printf("e[%d][%d]=%d\n", i, e->m_vertex, e->m_prio);
+            e = e->m_next;
+        }
+    }
+    
     //找出一条最小的边，作为最开始的顶点
-    j = -1, k=-1;
+    /*j = -1, k=-1;
     for(i=0; i<vc; ++i) {
         e = g[i].m_edge;
         while(e) {
@@ -191,6 +221,13 @@ prim(Graph g, int vc, int ec) {
     vertex[iv++] = j; 
     vertex[iv++] = k;
     prioSum += minEdge;
+    */
+
+    //任意选定一个顶点开始
+    k = rand() % vc; //给定任意值
+    printf("from %c start!!!\n", g[k].m_c);
+    visited[k] = 1;
+    vertex[iv++] = k;
 
     //bugs-6 将vertex[i]写成了i
     do {
@@ -220,17 +257,109 @@ prim(Graph g, int vc, int ec) {
     printf("MST prio:%d\n", prioSum);
 }
 
+void
+dfsSub(Graph g, int index, int *visited) {
+    if(index < 0) return ;
+    *(visited+index) = true;
+    Vertex *v = &g[index];
+    Edge *e = v->m_edge;
+    while(e) {
+        if(!visited[e->m_vertex]) {
+            dfsSub(g, e->m_vertex, visited);
+        } 
+            
+        e = e->m_next;
+    }
+}
+
+/*!
+ * 是否是无向连通图*/
+bool
+isConnected(Graph g, int vc) {
+    int visited[NMAX], i, j;
+    for(i=0; i<vc; ++i) visited[i]=false;
+    for(i=0, j=0; i<vc; ++i) {
+        if(!visited[i]) {
+            dfsSub(g, i, visited);
+            j++;
+
+            if(j > 1) return false;
+        }
+    }
+    return true;
+}
 
 void
 kruskal(Graph g, int vc, int ec) {
+    //将边存储到数组中
+    typedef struct _EdgeData { int m_inda, m_indb, m_prio, m_visited; } EdgeData;
+    EdgeData ed[NMAX], tmp;
+    int i , j, k, edge;
+    Vertex *v;
+    Edge *e;
+
+    //堆的构建从1开始，0作为哨兵, 1~N
+    for(i=0, j=0; i<vc; ++i) {
+        v = &g[i];
+        e = v->m_edge;
+        while(e) {
+            ++j;
+            ed[j].m_inda = i;
+            ed[j].m_indb = e->m_vertex;
+            ed[j].m_prio = e->m_prio;
+            ed[j].m_visited = 0;
+            e = e->m_next;
+        }
+    }
+
+    //assert(j*2 == ec && j > 1);
+    //构建小根堆,自下而上进行下滤percolateDown
+    //最后一个根节点j-1,最后一个根节点1
+    for(i = j/2; i>0; --i) {
+        k = 2 * i;
+        if(2*i+1 <= j && ed[2*i +1].m_prio < ed[k].m_prio) {
+            k = 2 * i + 1;
+        }
+
+        //交换数据
+        if(ed[k].m_prio < ed[i].m_prio) {
+            tmp = ed[k];
+            ed[k] = ed[i];
+            ed[i] = tmp;
+        }
+    }
+
+    edge = 0;
+    /*
+    do {
+        //从堆顶取一条权值最小的边
+        tmp = ed[0];
+    } while(edge == ec-1);
+    */
+
+}
+
+void
+printLn(const char *title) {
+    printf("-----------------%s-----------------\n", title);
 }
 
 int
 main(int argc, char *argv[]) {
     //要先使用深度优先算法来确定该图是连通的
     int vc, ec;
+    srand(time(NULL));
     Graph g = makeGraph(&vc, &ec);
+    if(!isConnected(g, vc)) {
+        freeGraph(&g, vc);
+        return 1;
+    }
+
+    printLn("Prim");
     prim(g, vc, ec);
+
+    printLn("Kruskal");
+    kruskal(g, vc, ec);
     freeGraph(&g, vc);
 
     return 0;
