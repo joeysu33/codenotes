@@ -289,23 +289,59 @@ isConnected(Graph g, int vc) {
     return true;
 }
 
+/*!
+ * UF (Union/Find)操作 */
+int
+ufFind(int *arr, int x) {
+    if(!arr || x < 0) return INT_MAX;
+    if(arr[x] < 0) return x;
+    return arr[x] = ufFind(arr, arr[x]); //含路径压缩find
+}
+
+void
+ufUnion(int *arr,int x, int y) {
+    if(!arr || x < 0 || y < 0) return ;
+    int xr = ufFind(arr, x), yr = ufFind(arr, y);
+    if(xr == yr) return ;
+
+    //对x和y的树(从根部)进行合并
+    arr[yr] = xr;
+}
+
+void
+ufInit(int *arr, int size) {
+    int i;
+    for(i=0; i<size; ++i) arr[i] = -1;
+}
+
+int
+ufNumsOfConnected(int *arr, int size) {
+    int i, n;
+    for(i=0, n=0; i<size; ++i) {
+        if(arr[i] < 0) n++;
+    }
+    return n;
+}
+
 void
 kruskal(Graph g, int vc, int ec) {
     //将边存储到数组中
     typedef struct _EdgeData { int m_inda, m_indb, m_prio, m_visited; } EdgeData;
-    EdgeData ed[NMAX], tmp;
-    int i , j, k, edge;
+    EdgeData ed[NMAX], tmp, *ptmp;
+    int i , j, k, a, edge, uf[NMAX], prioSum;
     Vertex *v;
     Edge *e;
 
+    ufInit(uf, vc);
     //堆的构建从1开始，0作为哨兵, 1~N
     for(i=0, j=0; i<vc; ++i) {
         v = &g[i];
         e = v->m_edge;
         while(e) {
             ++j;
+            k = e->m_vertex;
             ed[j].m_inda = i;
-            ed[j].m_indb = e->m_vertex;
+            ed[j].m_indb = k;
             ed[j].m_prio = e->m_prio;
             ed[j].m_visited = 0;
             e = e->m_next;
@@ -313,30 +349,75 @@ kruskal(Graph g, int vc, int ec) {
     }
 
     //assert(j*2 == ec && j > 1);
-    //构建小根堆,自下而上进行下滤percolateDown
+    //构建大根堆,自下而上进行下滤percolateDown
     //最后一个根节点j-1,最后一个根节点1
     for(i = j/2; i>0; --i) {
-        k = 2 * i;
-        if(2*i+1 <= j && ed[2*i +1].m_prio < ed[k].m_prio) {
-            k = 2 * i + 1;
+        //percolateDown下滤操作
+        tmp = ed[i];
+        a = i;
+        while(true) {
+            k = 2 * a;
+            if(2*a+1 <= j && ed[2*a +1].m_prio > ed[k].m_prio) {
+                k = 2*a + 1;
+            }
+            if(k <= j && tmp.m_prio < ed[k].m_prio) {
+                ed[a] = ed[k];
+                a = k;
+            } else  break;
         }
+        ed[a] = tmp;
+    }
 
-        //交换数据
-        if(ed[k].m_prio < ed[i].m_prio) {
-            tmp = ed[k];
-            ed[k] = ed[i];
-            ed[i] = tmp;
+    //堆排序（省事一点)
+    for(i=j;i > 1; ) { //最后一个值可以忽略1
+        //和最后一个位置进行对调
+        tmp = ed[1];
+        ed[1] = ed[i];
+        ed[i] = tmp;
+
+        //下滤操作，堆的规模缩短至i--
+        i--;
+        tmp = ed[1];
+        a = 1;
+        while(true) {
+            k = 2 * a;
+            if(2*a +1 <=i && ed[2*a+1].m_prio > ed[k].m_prio) k = 2*a+1;
+            if(k <= i && ed[k].m_prio > tmp.m_prio) { //bugs-10 特别注意，如果使用移动数据则都是用值，不再使用索引
+                ed[a] = ed[k];
+                a = k;
+            } else break;
         }
+        ed[a] = tmp;
     }
 
     edge = 0;
-    /*
+    k = 1; //从1开始
+    prioSum = 0; 
+    a = j;
     do {
-        //从堆顶取一条权值最小的边
-        tmp = ed[0];
-    } while(edge == ec-1);
-    */
+        //从已经堆排序的数据中取出最小的
+        assert(k <= a && k > 0);
+        ptmp = &ed[k];
+        if(ptmp->m_visited) {
+            k++; continue;
+        }
 
+        i = ufFind(uf, ptmp->m_inda);
+        j = ufFind(uf, ptmp->m_indb);
+
+        if(i == j) {
+            k++;
+            continue; //i和j必须分属不同的连通图
+        }
+        printf("(%c, %c, %d) ",ptmp->m_inda + 'a', ptmp->m_indb + 'a', ptmp->m_prio);
+        ufUnion(uf, i, j);
+        ptmp->m_visited = 1;
+        edge++; k=1; //从头开始取最小的
+        prioSum += ptmp->m_prio;
+        printf("{conncted:%d} ", ufNumsOfConnected(uf, vc));
+        fflush(stdout);
+    } while(edge != vc-1); //edge != ec-1 ? bugs-N要注意判断条件，否则直接死循环
+    printf("sum=%d\n", prioSum);
 }
 
 void
@@ -364,8 +445,6 @@ main(int argc, char *argv[]) {
 
     return 0;
 }
-
-
 
 
 
