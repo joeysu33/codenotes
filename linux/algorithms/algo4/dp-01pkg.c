@@ -105,6 +105,8 @@ main(int argc, char *argv[]) {
         }
     }
 
+    for(j=1; j<=n; ++j) printf("%-4d ", j);
+    printf("\n");
     for(i=0; i<m; ++i) {
         for(j=1; j<=n; ++j) {
             printf("%-4d ", f[i][j]);
