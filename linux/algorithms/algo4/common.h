@@ -22,5 +22,8 @@ typedef unsigned char bool;
 #define false 0
 #endif
 
+int cmax(int a, int b) { return  a > b ? a : b; }
+int cmin(int a, int b) { return  a < b ? a : b; }
+
 
 #endif //_COMMON_INCLUDED_H
