@@ -13,6 +13,9 @@
  *
  * 问题规模:将背包的负重从1开始一直到C (还是自底向上的原则来进行解题)
  * 存在的问题，背包问题和物品重量的粒度有关系，最小粒度的取值必须是其他所有背包的除数。
+ *
+ * 一维数组转换方程
+ * fa[j] = cmax(fa[j-1] , fa[j-w[i]] + p[i]);
  */
 
 #include "common.h"
@@ -117,7 +120,7 @@ main(int argc, char *argv[]) {
     //找出选中的物品, 从下至上，从右至左，找到最后一个出现的最大值
     i = m-1; //最后一行
     j = n;
-    while(i>=0) {
+    while(i>=0 && j > 0) {
         //f[i][j] >= f[i-1][j]
         if(i-1 >= 0 && f[i-1][j] == f[i][j]) {
             --i;
@@ -126,15 +129,30 @@ main(int argc, char *argv[]) {
 
         selected[k++] = pkg[i];
         j -= w[i];
+        --i; //bugs-7 一行仅取值一次，取完就进入下一行
     }
     
 
     printf("\n");
     printf("Maximum value of package:%d\n", f[m-1][n]); //bugs-3, 要取到n值
     printf("Selected :");
-    for(i=0; i<k; ++i) 
+    for(i=k-1; i>=0; --i) 
         printf("%c ", selected[i]);
     printf("\n");
+
+    //使用一维滚轮数组来实现, fa表示在某个重量下能达到的最大价值
+    int fa[NMAX];
+    fa[0] = 0; //0表示没有重量
+    for(i=0; i<m; ++i) {
+        for(j=1; j<=n; ++j) {
+            if(j >= w[i]) {
+                fa[j] = cmax(fa[j-1], fa[j-w[i]] + p[i]);
+            } else {
+                fa[j] = fa[j-1];
+            }
+        }
+    }
+    printf("Maximum value of package:%d\n", fa[n]);
 
     return 0;
 }
