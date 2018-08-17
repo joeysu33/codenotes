@@ -34,7 +34,7 @@ main(int argc, char *argv[]) {
     //printf("Enter package names, weights, price.\n");
     //fflush(stdout);
 
-    char c, *cp, str[NVAL], si, pkg[NMAX]; //si描述str的长度，足够了
+    char c, *cp, str[NVAL], si, pkg[NMAX], selected[NMAX]; //si描述str的长度，足够了
     st = 0; 
     si = 0;
     j = 0;
@@ -111,9 +111,30 @@ main(int argc, char *argv[]) {
         }
         printf("\n");
     }
+
+    //找出选中的物品, 从下至上，从右至左，找到最后一个出现的最大值
+    i = m-1; //最后一行
+    j = n;
+    while(i>=0) {
+        //f[i][j] >= f[i-1][j]
+        if(i-1 >= 0 && f[i-1][j] == f[i][j]) {
+            --i;
+            continue;
+        }
+
+        selected[k++] = pkg[i];
+        j -= w[i];
+    }
+    
+
     printf("\n");
     printf("Maximum value of package:%d\n", f[m-1][n]); //bugs-3, 要取到n值
+    printf("Selected :");
+    for(i=0; i<k; ++i) 
+        printf("%c ", selected[i]);
+    printf("\n");
 
     return 0;
 }
+
 
