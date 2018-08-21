@@ -114,7 +114,7 @@ main(int argc, char *argv[]) {
         for(j=1; j<=n; ++j) {
             printf("%-4d ", f[i][j]);
         }
-        printf("\n");
+        printf("[%c]\n", pkg[i]);
     }
 
     //找出选中的物品, 从下至上，从右至左，找到最后一个出现的最大值
