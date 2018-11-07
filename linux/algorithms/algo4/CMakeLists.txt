@@ -9,8 +9,9 @@ set(LIBRARY_OUTPUT_PATH ./lib)
 #aux_source_directory(<dir> <variable>)
 
 aux_source_directory(. srcs)
-add_compile_options(-g)
+#add_compile_options(-g)
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
+set(CMAKE_BUILD_TYPE Debug)
 
 foreach(i ${srcs})
     #string(SUBSTRING string (begin) (end,or-1) (variable))
