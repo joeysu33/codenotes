@@ -1,9 +1,10 @@
-#include <iostream.h>   
-#include <fstream.h>
+#include <iostream>   
+#include <fstream>
 #include <stdlib.h>  
 const int M=4;
 const int SQS=20;//扇区的最大数
 
+using namespace std;
 struct XZDU
 {
 	char qqcx;  //请求次序
@@ -19,7 +20,7 @@ void create(XZDU table[])
 	int i;
 	cout<<"请输入旋转调度的文件名:"<<endl;
 	cin>>filname;  
-	f1.open(filname,ios::in|ios::nocreate);
+	f1.open(filname,ios::in);
 	if(!f1)
 	{
 		cout<<"不能打开指定文件!"<<endl;  
@@ -41,7 +42,7 @@ void create(XZDU table[])
 	f1.close();
 }
 
-void main()
+int main()
 {
 	XZDU xzdu[M];
 	int i;int flag[M];int j=0;int flag1=1;
@@ -63,4 +64,5 @@ void main()
 				if(flag[j]==0) {flag1=1;break;}
 	}
 
+    return 0;
 }

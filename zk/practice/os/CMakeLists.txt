@@ -1,3 +1,5 @@
 cmake_minimum_required(VERSION 3.4.0)
 project(zikao_os)
 add_executable(fio fio.cpp)
+add_executable(deadlock deadlk_checker.cpp)
+set(CMAKE_BUILD_TYPE Debug)

@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-#define N 4
+#define N 8
 
 static int q[N];
 
@@ -24,12 +24,12 @@ void
 showPlace() {
     int i,j;
     static int k = 0;
-    ++k;
-    printf("------count:%d--------\n", k);
+    printf("------count:%d--------\n", ++k);
+    fflush(stdout);
     for(i=N-1; i>=0; --i) {
         for(j=0; j<N; ++j) {
-            if(q[i] == j) printf("@");
-            else printf("*");
+            if(q[i] == j) printf("%-2c",'@');
+            else printf("%-2c", '*');
         }
         printf("\n");
     }
@@ -43,6 +43,9 @@ placeQueue(int index) {
     if(index < 0 || index > N) return;
     if(index == N) {
         showPlace();
+        //TODO 这里没有返回，导致index ==N的时候仍然在执行
+        //静态数据正好在q[N]的后面，且都是整型，导致静态数据被修改
+        return ;
     }
 
     /*

@@ -3,11 +3,16 @@
  */
 #include <stdio.h>
 
-#define N 4
+#define N 8
+//#define STEP 
+
+static int no;
 
 void showPlace(int *stk, int top) {
     int i, j;
     char c;
+
+    printf("---------No:%d---------\n", ++no);
     for(i=top; i>=0; --i) {
         for(j=0; j<N;++j){
             if(stk[i] == j) c = '@';
@@ -18,12 +23,15 @@ void showPlace(int *stk, int top) {
     }
     printf("\n");
     fflush(stdout);
+#if defined(STEP)
+    getchar();
+#endif
 }
 
 int hasConflict(int *stk, int top) {
     int i, j,k;
     //只有一个元素，不存在冲突
-    if(top == 0) return 0;
+    if(top <= 0) return 0;
 
     int newval = stk[top];
     j = top;
@@ -40,22 +48,20 @@ int hasConflict(int *stk, int top) {
 }
 
 //给皇后找一个合适的位置
-int placeQueue(int *stk, int top, int* solveCnt) {
+void placeQueue(int *stk, int top, int* solveCnt) {
     int i;
-    if(!stk || !solveCnt) return 1;
-
-    if(!hasConflict(stk, top) && (top == N-1)) {
-        showPlace(stk, top);
-        solveCnt++;
-        return 0;
+    if(!stk || !solveCnt) return ;
+    if(top == N) {
+        showPlace(stk, N-1);
+        (*solveCnt)++;
     }
 
     for(i=0; i<N; ++i) {
-        stk[top+1]++;
-        if(!placeQueue(stk, top+1, solveCnt)) return 0; 
+        stk[top] = i;
+        if(!hasConflict(stk, top) ) {
+            placeQueue(stk, top+1, solveCnt);
+        }
     }
-
-    return 1;
 }
 
 int
@@ -64,16 +70,8 @@ main(int argc, char *argv[]) {
     top = -1;
     cnt = 0;
 
-    for(i=0; i<N; ++i) {
-        stk[i] = 0;
-    }
-    
-    showPlace(stk, 3);
-    for(int i=0; i<N; ++i) {
-        stk[i] = i;
-        //入栈第一个皇后
-        placeQueue(stk, 0, &cnt);
-    }
+    placeQueue(stk, 0, &cnt);
+    printf("total count=%d\n", cnt);
 
     return 0;
 }

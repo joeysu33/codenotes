@@ -33,6 +33,7 @@ bool conflict(Position *a, Position *b) {
             (a->m_x + a->m_y ==  b->m_x + b->m_y) ||
             (a->m_x - a->m_y ==  b->m_x - b->m_y))
         return true;
+    //问题1:没有写入返回值
     return false;
 }
 
@@ -50,7 +51,7 @@ void showPlace() {
     }
     printf("\n");
     fflush(stdout);
-    getchar();
+    //getchar();
 }
 
 int
@@ -68,7 +69,7 @@ main(int argc, char *argv[]) {
 
     bool s2 = false, s1 = false;
     int cnt=0;
-    while(q[0].m_x < N) {
+    while(true){
         i = stk+1; //下一个要放的棋子
 
         s1 = true;
@@ -87,7 +88,8 @@ main(int argc, char *argv[]) {
             //回溯到上一个位置，出栈
             q[i].m_x = 0;
             //逐步一直进行回溯,直到q[stk].m_x != N-1,但是不能回溯到根上
-            while(q[stk].m_x == N-1 && stk != 0) {
+            //问题2:没有设置终止条件 stk != 0
+            /*while(q[stk].m_x == N-1 && stk != 0) {
                 q[stk].m_x = 0;
 
                 stk--;
@@ -95,8 +97,12 @@ main(int argc, char *argv[]) {
                     s2 = 1; //栈空,Error
                     break;
                 } 
-            } 
+            } */
+
+            //问题3:增加终止条件
             if(stk == 0 && q[stk].m_x == N-1) { s2 = 0; printf("finished"); break; }
+
+            //对于已经发生移动的皇后，需要重新进行调整校验
             q[stk].m_x++;
             if(stk > 0) stk--; 
         } else {

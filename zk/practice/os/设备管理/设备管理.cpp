@@ -5,6 +5,8 @@
 #define true 1 
 #define n 4 
 #define m 10 
+
+/*! 设备类表 */
 struct 
 { 
 	char type[10]; /*设备类名*/ 
@@ -12,6 +14,8 @@ struct
 	int can_use; /*现存的可用设备台数*/ 
 	int address; /*该类设备在设备表中的起始地址*/ 
 }equiptype[n]; /*设备类表定义，假定系统有n个设备类型*/ 
+
+/*! 设备表*/
 struct 
 { 
 	int number; /*设备绝对号*/
@@ -20,6 +24,8 @@ struct
 	char jobname[10];/*占有设备的作业名*/ 
 	int lnumber; /*设备相对号*/ 
 }equipment[m]; /*设备表定义，假定系统有m个设备*/ 
+
+
 void allocate(char *J,char *type,int mm) 
 {
 	int i,address; /*查询该类设备*/ 
@@ -76,7 +82,7 @@ void reclaim(char *J,char *type)
 	
 }/*设备回收函数结束*/ 
 
-void main( ) 
+int main( ) 
 { 
 	char J[4]; 
 	int i,mm,a; 
@@ -99,9 +105,9 @@ void main( )
 	equiptype[3].address=9;
 	for(i=0;i<10;i++) 
 	{ 
-		equipment[i].number=i;
-		equipment[i].status=1;
-		equipment[i].used=0;
+		equipment[i].number=i; /*设备的绝对号*/
+		equipment[i].status=1; /*设备的状态, 好/坏*/
+		equipment[i].used=0;   /*设备是否在使用*/
 	} 
 	while(1) 
 	{ 
@@ -133,4 +139,6 @@ void main( )
 				equipment[i].lnumber); 
 		} 
 	} 
+
+    return 0;
 }
