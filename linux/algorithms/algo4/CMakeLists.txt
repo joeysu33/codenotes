@@ -20,3 +20,5 @@ foreach(i ${srcs})
     add_executable(${basename} ${filename})
 endforeach()
 
+#对特定的目标增加链接库
+target_link_libraries(fermat-lagrange -lm)
