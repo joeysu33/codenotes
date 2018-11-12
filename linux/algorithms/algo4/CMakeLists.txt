@@ -9,8 +9,9 @@ set(LIBRARY_OUTPUT_PATH ./lib)
 #aux_source_directory(<dir> <variable>)
 
 aux_source_directory(. srcs)
-add_compile_options(-g)
+#add_compile_options(-g)
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
+set(CMAKE_BUILD_TYPE Debug)
 
 foreach(i ${srcs})
     #string(SUBSTRING string (begin) (end,or-1) (variable))
@@ -19,3 +20,5 @@ foreach(i ${srcs})
     add_executable(${basename} ${filename})
 endforeach()
 
+#对特定的目标增加链接库
+target_link_libraries(fermat-lagrange -lm)
