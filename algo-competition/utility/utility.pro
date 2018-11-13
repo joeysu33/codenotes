@@ -25,8 +25,11 @@ SOURCES += \
         utility.cpp
 
 HEADERS += \
-        utility.h
+        utility.h \
+    output.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+include(../configs.pri)

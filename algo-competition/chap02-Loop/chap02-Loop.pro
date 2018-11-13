@@ -1,3 +1,4 @@
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS += aabb 
+SUBDIRS += aabb \ 
+    fab28
