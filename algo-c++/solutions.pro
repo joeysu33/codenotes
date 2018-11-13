@@ -1,4 +1,6 @@
 TEMPLATE = subdirs
 CONFIG *= ordered
-SUBDIRS += btree \
-        stack
+SUBDIRS += utility \
+        btree \
+        stack \
+        tests
