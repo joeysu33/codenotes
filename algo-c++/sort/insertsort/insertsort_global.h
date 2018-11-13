@@ -1,0 +1,12 @@
+#ifndef INSERTSORT_GLOBAL_H
+#define INSERTSORT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(INSERTSORT_LIBRARY)
+#  define INSERTSORTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define INSERTSORTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // INSERTSORT_GLOBAL_H
