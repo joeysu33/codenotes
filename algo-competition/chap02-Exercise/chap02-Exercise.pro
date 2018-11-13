@@ -5,4 +5,5 @@ SUBDIRS += \
     hanxin \
     triangle \
     subseq \
-    decimal
+    decimal \
+    permutation
