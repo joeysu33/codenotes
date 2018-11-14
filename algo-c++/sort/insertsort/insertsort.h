@@ -3,7 +3,7 @@
 
 #include "insertsort_global.h"
 
-class INSERTSORTSHARED_EXPORT InsertSort
+class InsertSort
 {
 
 public:
