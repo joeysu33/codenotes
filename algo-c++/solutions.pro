@@ -3,4 +3,5 @@ CONFIG *= ordered
 SUBDIRS += utility \
         btree \
         stack \
-        tests
+        tests \
+    sort

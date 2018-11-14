@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       -= core gui
+CONFIG -= qt
 
 TARGET = insertsort
 TEMPLATE = lib
@@ -33,3 +34,5 @@ unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+include(../../configs.pri)
