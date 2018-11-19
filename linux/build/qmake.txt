@@ -1,0 +1,8 @@
+qmake工具中
+qmake -query
+QMAKE_SPEC默认值的设置，是通过编译来实现的
+使用qtsrc中的configure的编译参数来设置QMAKE_SPEC的默认设置
+./configure --platform=linux-icc-64 设置编译指定为Intel编译器
+./configure --platform=linux-g++-64 设置编译器指定为g++编译器
+
+
