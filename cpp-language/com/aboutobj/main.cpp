@@ -32,8 +32,20 @@ public:
 };
 void C1::bb() { cout << "C1::bb()" <<endl; }
 
+class X {
+
+};
+
+class Y {
+public:
+    virtual ~Y() { cout <<"Y::~Y()"<<endl; }
+};
+
 int main()
 {
+    cout<<"sizeof(X)="<<sizeof(X)<<endl;
+    cout<<"sizeof(Y)="<<sizeof(Y)<<endl;
+
     Base *b1 = new Derived();
     b1->foo();
 

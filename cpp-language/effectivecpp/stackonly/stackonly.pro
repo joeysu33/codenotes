@@ -5,4 +5,4 @@ CONFIG -= qt
 
 SOURCES += main.cpp
 
-include (../../configs.pri)
+include(../../configs.pri)
