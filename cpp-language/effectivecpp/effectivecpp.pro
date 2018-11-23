@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     heaponly \
     stackonly \
-    countedobj
+    countedobj \
+    iostream

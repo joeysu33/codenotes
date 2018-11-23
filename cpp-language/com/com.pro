@@ -4,4 +4,6 @@ SUBDIRS += \
     chap01 \
     aboutobj \
     constructor \
-    vtblprice
+    vtblprice \
+    copyconstructor \
+    vptr
