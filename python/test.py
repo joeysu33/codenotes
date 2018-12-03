@@ -1,6 +1,5 @@
-#!/bin/bash
 #coding=utf-8
+import libtest
 
 if __name__ == '__main__':
-    print 'abc'
-    print 'efg'
+    print('result=',libtest.add(5,6))

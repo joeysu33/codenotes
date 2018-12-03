@@ -5,4 +5,5 @@ SUBDIRS += utility \
     chap02-Exercise \
     chap03-ArrayString \
     chap03-Exercise \
-    chap04-FnRecursive
+    chap04-FnRecursive \
+    chap04-Exercise
