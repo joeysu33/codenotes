@@ -4,4 +4,5 @@ SUBDIRS += utility \
         btree \
         stack \
         tests \
-    sort
+    sort \
+    graph

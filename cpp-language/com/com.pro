@@ -6,4 +6,5 @@ SUBDIRS += \
     constructor \
     vtblprice \
     copyconstructor \
-    vptr
+    vptr \
+    vtbl
