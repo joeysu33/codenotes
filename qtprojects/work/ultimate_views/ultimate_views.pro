@@ -29,3 +29,6 @@ SOURCES += main.cpp \
 
 RESOURCES += \
     utlis.qrc
+
+
+include(../../configs.pri)

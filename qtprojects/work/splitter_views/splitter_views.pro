@@ -16,3 +16,4 @@ HEADERS += ngpspview.h \
     ngpminisplitter.h \
     ispview.h
 
+include(../../configs.pri)
