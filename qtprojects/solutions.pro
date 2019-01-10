@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS += examples \
-            tests \
+SUBDIRS += \
+            itemviews \
             work
 
 CONFIG += ordered
