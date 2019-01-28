@@ -80,6 +80,7 @@ public:
     void cacheMore(const QModelIndex & index);
     virtual void fetchMore(const QModelIndex &parent);
     virtual bool canFetchMore(const QModelIndex &parent) const;
+    void testCacheMore(const QModelIndex& index);
 
     TreeNode* indexToItem(const QModelIndex & index) const ;
     const QModelIndex itemToIndex(TreeNode* n) const ;

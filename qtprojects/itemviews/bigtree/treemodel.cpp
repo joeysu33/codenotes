@@ -81,6 +81,10 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 
     TreeNode *tn = indexToItem(index);
     Q_ASSERT(tn);
+
+    if(tn->text() == "s2" && rowCount(index.parent()) < 10) {
+        const_cast<TreeModel*>(this)->testCacheMore(index);
+    }
     return tn->text();
 }
 
@@ -119,6 +123,7 @@ void TreeModel::fetchMore(const QModelIndex &parent)
 
 bool TreeModel::canFetchMore(const QModelIndex &parent) const
 {
+    return false;
     TreeNode *tn;
     if(!parent.isValid()) {
         //fetch more for root node
@@ -132,6 +137,17 @@ bool TreeModel::canFetchMore(const QModelIndex &parent) const
         return true;
     }
     return false;
+}
+
+void TreeModel::testCacheMore(const QModelIndex &index)
+{
+    beginInsertRows(index.parent(), rowCount(index.parent()), rowCount(index.parent()) + 1000 -1);
+        TreeNode *p = indexToItem(index.parent());
+        for(int i=0; i<1000; ++i) {
+            p->addChild(new TreeNode(QString("new-%1").arg(i+1), p));
+        }
+        endInsertRows();
+
 }
 
 TreeNode *TreeModel::indexToItem(const QModelIndex &index) const
