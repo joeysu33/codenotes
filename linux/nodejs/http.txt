@@ -1,0 +1,5 @@
+http 1.1 传输结束的标志
+(1)根据Content-Length
+(2)如果是Transfer-Encoding:chunked,每次传输一个chunk(16进制),和内容，直到chunk的大小为0
+
+http 1.0 如果TCP的连接中断则不再传输数据
