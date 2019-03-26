@@ -21,3 +21,6 @@ https://github.com/libevent/libevent.git
 https://github.com/nmathewson/libevent-book.git
 https://github.com/secdev/scapy.git
 https://github.com/aoapc-book/aoapc-bac2nd.git
+https://github.com/pellegre/libcrafter
+https://github.com/pellegre/libcrafter-examples
+https://github.com/secdev/scapy
