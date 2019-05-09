@@ -5,4 +5,5 @@ SUBDIRS += utility \
         stack \
         tests \
     sort \
-    graph
+    graph \
+    string
