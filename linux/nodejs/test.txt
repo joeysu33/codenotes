@@ -1,0 +1,27 @@
+process.on("SIGINT", ()=> {console.log("Ignore Ctrl+C"); });
+
+
+
+process.listeners('SIGINT');
+process.on('SIGINT', ()=> {console.log("Ignore Ctrl+C"); });
+process.versions
+process.title
+process.pid
+process.ppid
+process.getgid()
+process.listenerCount('SIGINT');
+process.on('SIGINT', ()=> { console.log("SIGINT"); });
+process.on("foo", ()=> {console.log("AAA"); });
+process.listeners('foo');
+process.listeners('SIGINT');
+process.emit('foo');
+process.on('SIGTERM', ()=> {console.log("SIGTERM");});
+process.kill(process.pid);
+
+process.kill(process.pid);
+process.kill(process.pid);
+process.kill(process.pid);
+
+process.listeners('SIGTERM')
+process.listeners('SIGTERM').toString()
+process.listeners('SIGINT').toString()
