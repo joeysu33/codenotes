@@ -1,0 +1,41 @@
+<html>
+<head>
+    <script type="text/javascript">
+    function load() {
+    var test = document.querySelector('#test');
+    if(!test) 
+        alert("test is not find!");
+    test.addEventListener('click', function () {
+      var url = `/test?test=${txt.value}`   // 1. 发送一个GET请求
+      var xhr = new XMLHttpRequest()
+      console.log(`test.value=${txt.value}`);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+            // 3. 客户端解析JSON，并执行
+            var str = JSON.parse(xhr.responseText).test
+            var node = `${str}`
+            document.body.insertAdjacentHTML('beforeend', node)
+          } else {
+            console.log('error', xhr.responseText)
+          }
+        }
+      }
+      xhr.open('GET', url, true)
+      xhr.send(null)
+    }, false) ;
+    }
+    window.addEventListener("load", load);
+    </script>
+</head>
+
+<body>
+    <div>
+        <textarea name="txt" id="txt" cols="80" rows="10" ></textarea>
+        <br/>
+        <button type="button" id="test">测试</button>
+    </div>
+</body>
+</html>
+
+
