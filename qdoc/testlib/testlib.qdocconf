@@ -1,0 +1,28 @@
+project = testlib
+description = This is a example for qdoc
+version = 1.0
+
+sourcedirs = .
+headerdirs = .
+outputdir = html
+sources.fileextensions = *.cc *.cpp *.cxx
+headers.fileextensions = *.h *.hpp
+sourceencoding = UTF-8
+
+#sources = testlib.cpp
+#headers = testlib.h
+#outputencoding = UTF-8
+
+qhp.projects = TestLib
+qhp.TestLib.file = testlib.qhp
+qhp.TestLib.namespace = org.Testing.TestLib
+qhp.TestLib.virtualFolder = testlib
+qhp.TestLib.indexTitle = TestLib Modulor
+qhp.TestLib.indexRoot = 
+
+qhp.TestLib.subprojects.classes.title = Classes
+qhp.TestLib.subprojects.classes.title = TestLib Classes
+qhp.TestLib.subprojects.classes.indexTitle = Qt Quick C++ Classes
+qhp.TestLib.subprojects.classes.selectors = class fake:headerfile
+qhp.TestLib.subprojects.classes.sortPages = true
+
