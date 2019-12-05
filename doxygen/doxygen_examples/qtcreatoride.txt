@@ -1,0 +1,397 @@
+/*!
+\page qtcreatoride NGP-QtCreator 的使用
+NGP-QtCreator 的使用主要包含如下内容:
+- \subpage newproj
+- \subpage projstruct
+- \subpage rightmenu
+- \subpage debugger
+
+\page newproj 新建项目
+新平台的项目主要分为三种，分别是应用程序项目、库项目和插件项目。三种项目模板<br/>
+分别针对不同的开发需要，应用程序项目用来开发一个应用的可执行码，库项目用来开发一个库程序，插件项目用来开发新平台上的插件。
+- \subpage newproj_gui
+- \subpage newproj_lib
+- \subpage newproj_plug
+
+\page projstruct 项目内容
+包含项目文件在项目视图上的树形结构以及关键项目变量
+- \subpage proj_file_struc
+- \subpage proj_file_desc
+
+\page rightmenu 右键菜单
+NGP-QtCreator的右键菜单是针对新平台项目所开发的，该菜单功能仅在新平台的
+项目类型下有效，对于Qt所自带的项目不生效。主要功能包括
+- \subpage edit_config
+- \subpage add_extpt
+- \subpage add_ext
+- \subpage edit_modules
+- \subpage update_res
+
+\page debugger 项目调试
+调试功能是软件开发中一个重要环节，便捷的调试功能会很大程度上提高开发效率，
+新平台项目的调试主要包括应用程序项目的调试和插件项目的调试，NGP-QtCreator对
+插件的调试进行了定制，使得插件的调试变得很轻松。
+- \subpage app_debug
+- \subpage plug_debug
+
+\page newproj_gui 应用程序
+应用程序项目是新平台方式的启动程序项目，每一个应用软件必须包含一个应用程序项目。应用程序项目 <br/>
+包含多方面的功能配置，主要有：启动画面图片设置、Dock窗口属性设置、配置文件basename设置等。 <br/>
+\tableofcontents
+\section gui_1 1.打开QtCreator的新建项目对话框
+    <img src="images/qt-newproj.png" />
+<br/><br/>
+\section gui_2 2.选择项目类型模板的类型GeoEast，项目类别为Application
+    <img src="images/newproj/newproj-step1.png" />
+<br/><br/>
+\section gui_3 3.设置项目名称，并指定项目所在路径
+    <img src="images/newproj/newproj-step2.png" />
+<br/><br/>
+\section gui_4 4.设置项目选项
+    <img src="images/newproj/newproj-step3.png" />
+<br/><br/>
+\section gui_5 5.设置编译套件
+    <img src="images/newproj/newproj-step4.png" />
+<br/><br/>
+\section gui_6 6.设置版本控制软件
+    <img src="images/newproj/newproj-step5.png" />
+
+\page newproj_lib 库项目
+库项目是一个标准的Qt动态库项目，针对新平台应用的开发，可以便捷的配置动态库所需要新平台的编译模块，<br>
+库项目的创建步骤：
+\tableofcontents
+应用程序项目是新平台方式的启动程序项目，每一个应用软件必须包含一个应用程序项目。应用程序项目 <br/>
+\section lib_1 1.打开QtCreator的新建项目对话框
+    <img src="images/qt-newproj.png" />
+<br/><br/>
+\section lib_2 2.选择项目类型模板的类型GeoEast，项目类别为Library，如下图所示： 
+    <img src="images/newproj-lib/newproj-lib1.png" />
+<br/><br/>
+\section lib_3 3.设置项目名称，并指定项目所在路径
+    <img src="images/newproj-lib/newproj-lib2.png" />
+<br/><br/>
+\section lib_4 4.设置项目所需要编译的模块
+    <img src="images/newproj-lib/newproj-lib3.png" />
+<br/><br/>
+\section lib_5 5.设置项目所需要的Qt模块
+    <img src="images/newproj-lib/newproj-lib4.png" />
+<br/><br/>
+\section lib_6 6.设置项目的默认导出类
+    <img src="images/newproj-lib/newproj-lib5.png" />
+<br/><br/>
+\section lib_7 7.设置项目的编译套件集
+    <img src="images/newproj-lib/newproj-lib6.png" />
+<br/><br/>
+\section lib_8 8.设置项目当前使用的版本控制工具
+    <img src="images/newproj-lib/newproj-lib7.png" />
+
+\page newproj_plug 插件项目
+插件项目是GeoEast新平台所特有的项目类型，GeoEast新平台的开发基准均是从插件开始进行，通过<br/>
+将相对独立的功能分解到各个插件中，使得应用程序的功能能通过插件的组合来完成，提高插件的<br/>
+复用度和低耦合性。创建插件项目的步骤如下：
+\tableofcontents
+\section plug_1 1.打开QtCreator的新建项目对话框
+    <img src="images/qt-newproj.png" />
+<br/><br/>
+\section plug_2 2.选择项目类型模板的类型GeoEast，项目类别为Plugin
+    <img src="images/newproj-plug/newproj-plug1.png" />
+<br/><br/>
+\section plug_3 3.设置项目名称，并指定项目所在路径
+    <img src="images/newproj-plug/newproj-plug2.png" />
+<br/><br/>
+\section plug_4 4.选择插件项目所需要的扩展点，并根据用户需要来设置扩展点的属性
+    <img src="images/newproj-plug/newproj-plug3.png" />
+<br/><br/>
+\section plug_5 5.给选中的扩展点来指定扩展的类名称，类名称建议采用驼峰形式
+    <img src="images/newproj-plug/newproj-plug3-1.png" />
+<br/><br/>
+\section plug_6 6.对于扩展的创建可以设置如下选项
+    (1)增加扩展的配置到manifest.xml文件中，该选项会将选中扩展点的配置加入到manifest.xml配置文件中。<br/>
+    (2)在插件类中对指定的扩展进行注册。<br/>
+    <img src="images/newproj-plug/newproj-plug3-2.png" />
+<br/><br/>
+\section plug_7 7.选择项目使用的新平台模块
+    <img src="images/newproj-plug/newproj-plug4.png" />
+<br/><br/>
+\section plug_8 8.设置项目所需要的Qt模块
+    <img src="images/newproj-plug/newproj-plug5.png" />
+<br/><br/>
+\section plug_9 9.设置项目的编译套件集
+    <img src="images/newproj-plug/newproj-plug6.png" />
+<br/><br/>
+\section plug_10 10.设置项目当前使用的版本控制工具
+    <img src="images/newproj-plug/newproj-plug7.png" />
+
+
+\page proj_file_struc 项目文件结构
+\tableofcontents
+\section filestruct_1 1.项目文件结构图
+    <img src="images/proj-struct/app-struct.png" />
+    <br/>
+\section filestruct_10 1.源文件
+    <br/>对应项目目录结构中Sources目录中的文件，可以在项目文件，SOURCES变量上配置。
+    <br/>
+\section filestruct_2 2.头文件
+    <br/>对应项目目录结构中Headers目录中的文件，可以在项目文件，HEADERS变量上配置。
+    <br/>
+\section filestruct_3 3.配置文件
+    <br/>对应项目目录结构中Other files目录中的文件，一般分为两种，一种是应用程序配置文件，<br/>
+    文件名称是&lt;project_name&gt;.xml，另外一种是插件配置文件，文件名称是manifest.xml。
+    <br/>
+\section filestruct_4 4.资源文件
+    <br/>对应项目目录结构中Resouces目录中的文件，详细请参考Qt Resouces部分。
+    <br/>
+\section filestruct_5 5.用户项目文件(<project_name>_user.pri)
+    <br/>用户可自定义配置进行文件拷贝的配置文件，可以将项目中的某些文件，例如导出的头文件，导出 <br/>
+    的资源等，拷贝至指定的目录，详细请参见&lt;project_name&gt;_user.pri中的示例。
+    <br/>
+\section filestruct_6 6.ngp_config
+    <br/>用来实现新平台自定义功能的配置文件，该文件不可编辑，不可删除。
+    <br/>
+\section filestruct_7 7.ngp_define
+    <br/>用来实现新平台自定义功能的配置文件，该文件不可编辑，不可删除。
+
+\page proj_file_desc 项目内容
+\tableofcontents
+\section projcontent_1 1.USE_SPLASH
+    是否使用启动画面，该选项仅适用于应用程序项目,该参数设置为true，则使用启动画面，留空不使用。
+    <br/><br/>
+\section projcontent_2 2.SOURCES
+    Qt项目标准的源文件内置变量，详细请参考qmake Variable Reference。
+    <br/><br/>
+\section projcontent_3 3.HEADERS
+    Qt项目标准的头文件内置变量，详细请参考qmake Variable Reference。
+    <br/><br/>
+\section projcontent_4 4.DEFINES
+    Qt项目标准的宏定义内置变量，详细请参考qmake Variable Reference。
+    <br/><br/>
+\section projcontent_5 5.NGP_PROJECT_TYPE
+    内置变量，用来设置新平台的项目类型，该变量在新建项目时指定，用户不可修改,<br/>
+    三种类型的项目值分别是:application(应用程序),library(库程序),plugin(插件程序)
+    <br/><br/>
+\section projcontent_6 6.NGP_PROJECT_CONFIG_FILE
+    项目所使用的配置文件，如果是应用程序，则使用的是<project_base_name>.xml，插件是manifest.xml。
+    <br/><br/>
+\section projcontent_7 7.NGP_MODULES
+    项目所依赖的模块列表，用户可以通过在项目上点击右键菜单，打开"Edit Modules..."菜单项来进行编辑，不建议在项目文件中进行修改。
+    <br/><br/>
+\section projcontent_8 8.NGP_PROJECT_PRO_DEBUG
+    项目文件调试功能，将该变量赋值为true，可以在qmake过程中看到项目文件中具体包含那些源文件、头文件和库文件等。
+    <br/><br/>
+\section projcontent_9 9.NGP_ROOTDIR
+    新平台开发包的根目录，用来提供项目文件的编译和链接，默认使用系统环境变量的，用户不可更改。
+    <br/><br/>
+\section projcontent_10 10. NGP_CONFIG_PRI_FILE
+    项目配置文件，由项目创建时指定，用户不可修改,这个文件的默认名称是&lt;project_name&gt;_user.pri，<br/>
+    该文件中具体的内置变量如下所示：<br/>
+\subsection projcontent_11 10.1 NGP_EXPORT_HEADERS
+    指定导出的文件，该文件位于&lt;project_name&gt;_user.pri文件中，可以配置该选项来自动导出头文件
+    <br/><br/>
+\subsection projcontent_12 10.2 NGP_EXPORT_RESOURCES
+    指定导出的资源文件，例如images等，默认拷贝至bin目录中
+    <br/><br/>
+\subsection projcontent_13 10.3 NGP_COPY_OBJECTS
+    定制化拷贝，可以将文件拷贝至任意目录，用法如下：<br/>
+    \code
+    objectA.filename = aa.dat 
+    objectA.srcdir = .  #相对项目目录而言 
+    objectA.destdir = targetdir1 #相对bin目录而言 
+    NPG_COPY_OBJECTS += objectA 
+    \endcode
+    <br/><br/>
+
+\page edit_config 配置文件编辑
+新平台的项目的配置文件主要是指应用程序项目中的&lt;project_name&gt;.xml和插件项目中的manifest.xml，
+这两个文件分别对应使用应用程序配置文件编辑器和插件配置文件编辑器打开。
+- \subpage editconfig_1 
+- \subpage editconfig_2 
+- \subpage editconfig_3 
+
+\page editconfig_1 编辑器的打开方式
+- 1.在应用程序项目/插件项目上点击右键，点击“Edit Config File"的菜单项，如下图所示
+
+    <img src="images/proj-struct/plug-rightmenu.png">
+    <br/>
+- 2.在文件树视图下，在文件上右击打开菜单项，选择其他方式打开,如下图所示
+
+    <img src="images/proj-struct/plug-plugeditor.png">
+    <br/>
+- 3.在配置文件上，直接双击左键，自动关联编辑器打开
+
+\page editconfig_2 应用程序配置文件编辑器
+\subsection editconfig_21 主要功能
+- 1.增加插件目录，编辑会自动从该目录中遍历所有的插件文件夹，并导入到"Unselected Plugins"列表中
+- 2.通过环境变量增加，通过环境变量名称来增加插件目录，例如$$NGP/bin/nap/plugins
+- 3.删除插件目录
+- 4.编辑加载插件的属性
+- 5.显示编辑插件的描述信息，主要包含插件名称、插件所在的全路径、插件的描述信息
+\subsection editconfig_22 功能图解
+    <img src="images/rightmenu/editor/appeditor.png">
+    <br/><br/>
+
+\page editconfig_3 插件配置文件编辑器
+\subsection editconfig_31 主要功能
+插件配置文件编辑器的主要功能由内部扩展点编辑、外部扩展点编辑、扩展编辑、通用扩展编辑器、<br/>
+属性编辑器和文件描述编辑组成。其中内部扩展点编辑器和外部扩展点编辑器的区别在于内部扩展点<br/>
+编辑器会将扩展点在文件中存储，外部扩展点编辑器不会将扩展点存储到编辑文件。通过扩展编辑器用来<br/>
+编辑所有的XML片段。属性编辑器用来配置每个XML片段上节点的属性。
+
+- 1.内部扩展点编辑 [Extension Point (Internal)]
+\li 增加扩展点 [Add ExtPt]
+\li 对当前选中的扩展点创建扩展，并增加到扩展列表 [Create To Ext]
+\li 删除当前选中的扩展点 [Delete]
+\li 扩展点重命名 [Rename]
+\li 对当前的扩展点排序 [Sort]
+
+- 2.外部扩展点编辑 [Extension Point (External)]
+\li 导入外部扩展点，选择manifest.xml文件并选择需要导入的配置文件 [Import ExtPt]
+    <img src="images/rightmenu/editor/plugeditor-importext.png">
+    <br/>
+\li 对当前选中的扩展点创建扩展，并增加到扩展列表 [Create To Ext]
+\li 删除当前选中的扩展点 [Remove]
+\li 对当前扩展点排序 [Sort]
+
+- 3.扩展编辑器 [Extensions]
+\li 克隆当前选中的扩展 [Clone]
+\li 拷贝当前选中扩展 [Copy]
+\li 粘贴剪贴板中的扩展 [Paste]
+\li 删除选中扩展 [Delete]
+\li 重命名扩展 [Rename]
+\li 对当前扩展排序 [Sort]
+
+- 4.通用扩展编辑器 [Extension Editor]
+\li 克隆当前选中的XML节点 [Clone]
+\li 拷贝当前选中的XML节点 [Copy]
+\li 粘贴剪贴板中的XML节点 [Paste]
+\li 删除当前选中的XML节点及其子节点 [Delete]
+\li 重命名当前选中的XML节点 [Rename]
+\li 对当前选中编辑的节点增加子节点 [Add Child]
+
+- 5.属性编辑器 [Property Editor]
+\li 增加一条属性 [Add]
+    <img src="images/rightmenu/editor/plugeditor-addprop.png">
+    <br/>
+\li 删除当前选中的属性 [Delete]
+\li 拷贝当前选中的属性 [Copy]
+\li 粘贴当前的属性 [Paste]
+
+- 6.节点注释编辑 [Description]
+- 7.文件注释编辑
+
+\subsection editconfig_32 功能图解
+    <img src="images/rightmenu/editor/plugeditor.png">
+    <br/><br/>
+
+\page add_extpt 增加扩展点
+\tableofcontents
+\section addextpt_1 1.在新平台的项目节点上右击，选择“Add Extension Point...”
+    <img src="images/rightmenu/editor/extension-pt/extpt0.png">
+    <br/>
+\section addextpt_2 2.指定扩展点的名称、类名称和类别，默认名称和类名称相同
+    <img src="images/rightmenu/editor/extension-pt/extpt1.png">
+    <br/>
+\section addextpt_3 3.指定扩展点类中的函数、虚函数声明，每行一个函数
+    <img src="images/rightmenu/editor/extension-pt/extpt2.png">
+    <br/>
+\section addextpt_4 4.指定扩展点的XML模板片段
+    <img src="images/rightmenu/editor/extension-pt/extpt3.png">
+    <br/>
+\section addextpt_5 5.指定扩展点的详细描述信息
+    <img src="images/rightmenu/editor/extension-pt/extpt4.png">
+    <br/>
+\section addextpt_6 6.指定扩展点中各个接口的用法
+    <img src="images/rightmenu/editor/extension-pt/extpt5.png">
+    <br/>
+ 
+
+\page add_ext 增加扩展
+\tableofcontents
+\section addext_1 1.选择需要的扩展点，并设置扩展点的相关属性
+特别提醒：扩展属性的“class”属性一般不需要用户填写，在下一步指定类名称的时候会自动填入
+<img src="images/rightmenu/editor/add-extension/ext1.png" />
+<br/>
+\section addext_2 2.指定扩展类的名称
+<img src="images/rightmenu/editor/add-extension/ext2.png" />
+<br/>
+\section addext_3 3.配置扩展选项
+<img src="images/rightmenu/editor/add-extension/ext3.png" />
+<br/>
+\subsection addext_31 3.1增加扩展配置到XML配置文件
+<img src="images/rightmenu/editor/add-extension/ext31.png" />
+<br/>
+\subsection addext_32 3.2在插件项目中注册扩展
+<img src="images/rightmenu/editor/add-extension/ext32.png" />
+<br/>
+
+\page edit_modules 编辑模块
+GeoEast新平台项目的编译均基于模块，通过设置模块来自己配置程序的编译选项
+- 图中上半部分列出的是模块包，该模块依赖其他模块
+- 图中下半部分列出的是原子模块
+<img src="images/rightmenu/editor/edit-modules/mod.png" />
+
+\page update_res 更新资源
+更新资源主要是将项目相关的配置文件和资源文件在编译链接期拷贝至指定的目录中
+- 1.对于插件项目，会在链接阶段自动将manifest文件拷贝至bin/plugins/&lt;project_name&gt; 目录下
+- 2.对于应用程序项目，会自动将配置文件拷贝至bin/plugins目录下
+- 3.可以在&lt;project_name&gt;_user.pri中配置用户自定制的编译期拷贝操作,详细参考\ref proj_file_desc
+
+\page app_debug 应用程序调试
+应用程序的调试和普通Qt应用程序的调试方法相同，在项目中配置好运行设置后就可以进行项目调试。
+- 1.使用应用程序配置编辑器，编辑xml文件，编辑需要参加执行的插件
+    <img src="images/debug/appdbg2.png" />
+    <br/>
+- 2.点击调试按钮并启动调试，如下图：
+    <img src="images/debug/appdbg1.png" />
+    <br/>
+        
+\page plug_debug 插件调试
+\tableofcontents
+\section plugdbg_1 1.主要功能
+\subsection plugdbg_11 1.1 选择插件调试所使用的应用程序可执行文件。
+\subsection plugdbg_12 1.2 增加调试的辅助插件
+    \li 通过“Add” 按钮选择一个插件目录，例如插件目录是bin/plugins/plugin1，则选择到plugin1目录
+    \li 通过“Add By File..” 按钮选择一个app.xml文件（应用程序配置文件），从配置文件中导入调试所需要的插件
+\subsection plugdbg_13 1.3 移除调试插件（注：调试的自身插件不可以删除)。
+\subsection plugdbg_14 1.4 调试配置信息的保存和加载
+    \li 通过“Load Config”加载已经存储的调试配置
+    \li 通过“Save Config”保存当前所有的调试配置
+\subsection plugdbg_15 1.5 编辑插件的属性
+\subsection plugdbg_16 1.6 显示当前调试插件的所有信息汇总
+<br/><br/>
+\section plugdbg_2 2.操作流程
+\subsection plugdbg_21 2.1 在插件项目上右击打开Plugin Debug Options...
+<img src="images/debug/plugdbg2.png" />
+<br/>
+\subsection plugdbg_22 2.2 选择调试用的可执行程序
+<img src="images/debug/plugdbg3.png" />
+<br/>
+\subsection plugdbg_23 2.3 增加调试用的插件
+- 2.3.1 添加单个插件
+<img src="images/debug/plugdbg4.png" />
+<br/>
+- 2.3.2 通过应用程序配置文件导入
+\li 点击“Add By File...”增加插件
+<img src="images/debug/plugdbg5.png" />
+<br/>
+\li 选择调试需要使用的插件
+<img src="images/debug/plugdbg6.png" />
+<br/>
+\subsection plugdbg_24 4.编辑插件的调试属性
+<img src="images/debug/plugdbg7.png" />
+<br/>
+\subsection plugdbg_25 5.设置插件项目为当前激活项目
+<img src="images/debug/plugdbg8.png" />
+<br/>
+\subsection plugdbg_26 6.确认当前的调试选项为插件调试
+<img src="images/debug/plugdbg9.png" />
+<br/>
+\subsection plugdbg_27 7.点击调试按钮
+<img src="images/debug/plugdbg10.png" />
+<br/>
+<br/><br/>
+\section plugdbg_3 3.功能图解
+<img src="images/debug/plugdbg1.png" />
+<br/>
+*/
+
+

@@ -1,0 +1,23 @@
+/*!
+\mainpage NGP-QtCreator用户手册
+
+\tableofcontents
+\section summary 概述
+NGP-QtCreator是一个应用于QtCreator IDE上的工具插件，该工具是基于新平台项目组的实际开发需求,以简单易实用用为目的编写而成。<br/>
+本工具主要特点如下：
+- 1.和GeoEast新平台紧密结合，适应新平台的插件、扩展点机制。
+- 2.与QtCreator无缝衔接，使得在使用QtCreator便利的同时也能兼顾新平台的开发。
+- 3.新建项目模板
+- 4.项目构建模块化
+- 5.配置文件编辑
+- 6.创建扩展点
+- 7.创建扩展
+- 6.插件调试
+
+\section content 主要内容
+- \subpage qtcreatoride 
+- \subpage makeapp 
+- \subpage introtree 
+
+*/
+

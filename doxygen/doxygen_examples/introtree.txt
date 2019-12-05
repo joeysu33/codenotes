@@ -1,0 +1,329 @@
+/*!
+\page introtree 数据树用法
+
+- \subpage addplugtree
+- \subpage intro
+
+\page addplugtree 1.添加数据树插件
+\tableofcontents
+\section addplug_1 1.打开应用程序项目的配置文件
+    <img src="images/datatree/addtreeplug1.png" />
+    <br/>
+\section addplug_2 2.从$NGP/bin/nap/plugins中选择
+    <img src="images/datatree/addtreeplug2.png" />
+    <br/>
+\section addplug_3 3.找到plugngptree的插件，并双击选择
+    <img src="images/datatree/addtreeplug3.png" />
+    <br/>
+\section addplug_4 4.数据树插件选择到“Selected Plugins”列表中
+    <img src="images/datatree/addtreeplug4.png" />
+    <br/>
+
+\page intro 2.基于数据树的开发
+- \subpage tree_addnew
+- \subpage tree_scene
+
+\page tree_addnew 增加新的数据类型
+\tableofcontents
+在数据树中添加新的数据类型包含以下几个部分
+\section treeadd_1 1.准备用户自定义的数据类
+\code
+#ifndef EXTENDDATA_H
+#define EXTENDDATA_H
+
+#include "extenddata_global.h"
+
+#include <QString>
+#include <QPixmap>
+
+//基类数据类型
+class EXTENDDATASHARED_EXPORT ExtendData
+{
+public:
+    ExtendData(const QString& fileName);
+    virtual ~ExtendData() ;
+    virtual QString getClassName() const = 0;
+    QString getFileName() const;
+    virtual void setFileName(const QString& fileName) ;
+    virtual bool loadData() { return false; }
+protected:
+    bool hasDirty() const  { return m_dirty; }
+    void setDirty(bool dirty = true) { m_dirty = dirty; }
+protected:
+    //数据源的文件名称
+    QString m_fileName;
+private:
+    //数据是否发生修改 
+    bool m_dirty { true };
+};
+
+//扩展数据类型ExtendC
+class EXTENDDATASHARED_EXPORT ExtendC : public ExtendData {
+public:
+    ExtendC(const QString& fileName) : ExtendData(fileName) {}
+    virtual QString getClassName() const { return "ExtendC"; }
+    virtual bool loadData() Q_DECL_OVERRIDE;
+
+    QString getContent() const  { return m_content; }
+private:
+    QString loadContent(QString & errorMsg) ;
+
+private:
+    //数据体内容
+    QString m_content;
+};
+
+//扩展数据类型ExtendD
+class EXTENDDATASHARED_EXPORT ExtendD : public ExtendData {
+public:
+    ExtendD(const QString& fileName) :ExtendData(fileName) {}
+    virtual QString getClassName() const { return "ExtendD"; }
+    virtual bool loadData() Q_DECL_OVERRIDE;
+    QPixmap getContent() const { return m_image; }
+
+private:
+    QPixmap loadContent(QString &errorMsg) ;
+
+private:
+    //数据体内容
+    QPixmap m_image;
+};
+
+#endif // EXTENDDATA_H
+\endcode
+\section treeadd_2 2.从数据树提供的模板数据类型中选择合适的基类
+根据个人需要裸指针从NGPTreeTDataNode派生，智能指针从NGPTreeSPTDataNode派生
+\code
+#ifndef NGPTREEEXTENDNODE_H
+#define NGPTREEEXTENDNODE_H
+
+#include "../ngpbasetree/ngptreesptdatanode.h"
+class ExtendData;
+typedef NGPTreeSPTDataNode<ExtendData, INGPTreeNode::NDT_Custom+1>  NGPTreeExtendNode;
+
+#endif // NGPTREEEXTENDNODE_H
+\endcode
+\section treeadd_3 3.编写数据树节点的派生类，如果数据需要延迟加载，则重写loadData接口
+\code
+class ExtendNode : public  NGPTreeExtendNode {
+public:
+    //基类构造函数自动展开宏定义
+    NGPTREESPTNODE_CONSTRUCTOR(ExtendNode, NGPTreeExtendNode, ExtendData)
+    //重写数据导入接口，可延迟加载数据
+    bool loadData() Q_DECL_OVERRIDE {
+        std::shared_ptr<ExtendData> ed = getData();
+        if(ed) {
+        if(!ed->loadData()) {
+            qDebug()<<"load error:"<<getAncillaryConstData()->getName();
+                            return false;
+        }
+        return true;
+                }
+
+        return false;
+    }
+};
+\endcode
+\section treeadd_4 4.将数据树节点加入到数据树上
+\subsection treeadd_41 4.1 通过数据类型注册添加
+\code
+void TreeExtend::addNodeByRegister()
+{
+    QStringList path;
+    //初始化数据类型的路径
+    path << DT_EXTENDA << DT_EXTENDB << DT_EXTENDC;
+    QIcon icond (":/treeextend/datad.png");
+
+    //在数据树上注册新的数据类型
+    if(!m_inst->registerType(DT_EXTENDD, path, icond)) {
+        qDebug()<<"register D is failed";
+    }
+
+    //注册虚拟数据类型
+    m_inst->registerVType(DT_EXTENDA, "ExtendA");
+    m_inst->registerVType(DT_EXTENDB, "ExtendB");
+    m_inst->registerVType(DT_EXTENDC, "ExtendC");
+
+    //注册数据类型的创建器
+    m_inst->registerNodeMaker(DT_EXTENDD, this);
+}
+\endcode
+\subsection treeadd_42 4.2 直接通过代码添加
+\code
+void TreeExtend::addNodeByCode()
+{
+    //节点使用的图标
+    QIcon icone (":/treeextend/datac.png");
+    QIcon iconf (":/treeextend/datad.png");
+    QIcon icong (":/treeextend/datad.png");
+
+    //获取数据树的根节点
+    INGPTreeNode * root = m_inst->getTreeRoot(), *node {Q_NULLPTR};
+    //在根节点上增加节点ExtendE1
+    node = m_inst->appendVData("ExtendE1", DT_EXTENDE, root, icone);
+
+    //在根节点上增加ExtendE2节点
+    node = m_inst->appendVData("ExtendE2", DT_EXTENDE, root, icone);
+    //在ExtendE2节点上增加ExtendF节点
+    node = m_inst->appendVData("ExtendF", DT_EXTENDF, node, iconf);
+
+    for(const QString & s : m_files ) {
+        std::shared_ptr<ExtendData> d (new ExtendC(getFullPath(s)));
+        m_inst->addNode(new ExtendNode(d , s, DT_EXTENDG, s, icong), node);
+    }
+}
+\endcode
+\section treeadd_5 5.数据类型常量以头文件形式导出
+\code
+#ifndef TREEEXTENDCONSTANT_H
+#define TREEEXTENDCONSTANT_H
+
+#include <QString>
+
+static const QString DT_EXTENDA = "DT_EXTENDA";
+static const QString DT_EXTENDB = "DT_EXTENDB";
+static const QString DT_EXTENDC = "DT_EXTENDC";
+static const QString DT_EXTENDD = "DT_EXTENDD";
+
+static const QString DT_EXTENDE = "DT_EXTENDE";
+static const QString DT_EXTENDF = "DT_EXTENDF";
+static const QString DT_EXTENDG = "DT_EXTENDG";
+static const QString DT_EXTENDH = "DT_EXTENDH";
+
+#endif // TREEEXTENDCONSTANT_H
+\endcode
+
+\page tree_scene  基于新数据类型场景的开发
+\tableofcontents
+\section treescene_1 1.创建场景的插件项目
+请参考插件项目的创建\ref newproj_plug
+\section treescene_2 2.从ToggleWindow和QWidget多重继承
+\code
+#ifndef BASESCENE_H
+#define BASESCENE_H
+
+#include <togglewindow_inc.h>
+#include "treeextend/ngptreeextendnode.h"
+#include <utility>
+
+class QWidget;
+class ExtendData;
+//场景处理基类，从QWidget和ToggleWindow派生
+class BaseScene : public QWidget , public ToggleWindow
+{
+public:
+    BaseScene();
+    void initScene();
+    bool hasData() const { return !!m_ext; }
+
+    template<class T>
+    std::shared_ptr<T> getExtendData() const {
+        return dynamic_pointer_cast<T>(m_ext);
+    }
+
+    template<class T>
+    void setExtendData(const std::shared_ptr<T> & d) {
+        m_ext = dynamic_pointer_cast<ExtendData>(d);
+    }
+
+protected:
+    virtual void initForm() = 0;
+    void setContent(QWidget *content);
+protected:
+    QWidget * m_content {Q_NULLPTR};
+    std::shared_ptr<ExtendData> m_ext;
+};
+
+#endif // BASESCENE_H
+\endcode
+\section treescene_3 3.实现ToggleWindow的核心接口
+\code
+//将数据附加到当前的场景窗口中
+void ImageScene::attachData(DataWrapper wrapper)
+{
+    //初始化场景
+    initScene();
+    std::shared_ptr<ExtendD> d = getExtendD(wrapper);
+    setImage(d->getContent());
+    setWindowTitle(wrapper.getDisplayText());
+    //显示场景数据
+    setExtendData(d);
+}
+
+bool ImageScene::canAttach(DataWrapper wrapper)
+{
+    return !!getExtendD(wrapper);
+}
+
+//判断DataWrapper中是否包含所需要处理的数据
+bool ImageScene::containsData(DataWrapper wrapper)
+{
+    return (getExtendData<ExtendD>() == getExtendD(wrapper)) ;
+}
+
+//初始化Ribbon菜单
+void ImageScene::createMyAction(RibbonPage *rp)
+{
+    if(!rp) return ;
+    RibbonGroup * grp = new RibbonGroup(NULL, "Test");
+    static const QString fmt("test%1");
+    for(int i=0; i<5; ++i) {
+        grp->addAction(QIcon(), fmt.arg(QChar('A' + i)), Qt::ToolButtonTextOnly);
+    }
+    m_local_groups.push_back(QSharedPointer<Qtitan::RibbonGroup>(grp));
+}
+\endcode
+\section treescene_4 4.在attachData接口中取出用户数据
+\code
+namespace {
+    //从DataWrapper中取出数据
+    std::shared_ptr<ExtendD> getExtendD(DataWrapper & wrapper) {
+        INGPTreeNode *n = wrapper.getData<INGPTreeNode>();
+        return NGPTreeTools::getSharedPointer<NGPTreeExtendNode,ExtendD>(n);
+    }
+}
+void ImageScene::attachData(DataWrapper wrapper)
+{
+    //初始化场景
+    initScene();
+    //从DataWrapper中取出数据
+    std::shared_ptr<ExtendD> d = getExtendD(wrapper);
+    setImage(d->getContent());
+    setWindowTitle(wrapper.getDisplayText());
+    //显示场景数据
+    setExtendData(d);
+}
+\endcode
+\section treescene_5 5.根据用户需要显示或处理数据
+\code
+//显示图片
+void ImageScene::setImage(const QPixmap &img)
+{
+    getLabel()->setPixmap(img);
+}
+//显示文本
+void TextScene::setText(const QString &content)
+{
+    getTxtEdit()->setText(content);
+}
+\endcode
+\section treescene_6 6.在插件中注册多窗口扩展
+\code
+PLUGIN_BEGIN_MANIFEST_IMPL()
+//注册图片场景插件
+PLUGIN_EXPORT_CLASS(ImageScene, IToggleWindow)
+//注册文本编辑器插件
+PLUGIN_EXPORT_CLASS(TextScene, IToggleWindow)
+PLUGIN_END_MANIFEST_IMPL
+REGISTER_PLUGIN(ExtendScene)
+\endcode
+\section treescene_7 7.在插件配置文件中增加扩展
+通过配置文件编辑器增加ToggleWindow的扩展
+\subsection treescene_71 7.1文本场景
+    <img src="images/datatree/addtreeplug5.png" />
+    <br/>
+\subsection treescene_72 7.2图片场景
+    <img src="images/datatree/addtreeplug6.png" />
+    <br/>
+
+*/

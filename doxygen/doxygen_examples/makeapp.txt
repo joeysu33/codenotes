@@ -1,0 +1,22 @@
+/*!
+\page makeapp 创建一个初始软件
+创建应用程序是基于插件式开发流程中最基本的一个环节，我们需要首先利用IDE工具来创建一个应用程序<br/>
+在该应用程序的基础上来开发插件。
+- 1.打开QtCreator的新建项目对话框,如下图所示：
+    <img src="images/qt-newproj.png" />
+    <br/>
+- 2.选择项目类型模板的类型GeoEast，项目类别为Application，如下图所示： <br/>
+    <img src="images/newproj/newproj-step1.png" />
+    <br/>
+- 3.设置项目名称，并指定项目所在路径，如下图所示： <br/>
+    <img src="images/newproj/newproj-step2-2.png" />
+    <br/>
+- 4.设置项目选项，如下图所示： <br/>
+    <img src="images/newproj/newproj-step3.png" />
+    <br/>
+- 5.设置编译套件，如下图所示： <br/>
+    <img src="images/newproj/newproj-step4.png" />
+    <br/>
+- 6.设置版本控制软件，如下图所示： <br/>
+    <img src="images/newproj/newproj-step5.png" />
+*/
