@@ -34,3 +34,28 @@ DISABLE_INDEX设置NO,则显示导航栏，否则不显示
 
 在生成qch文档的时候，图片的设置一定是\image html XXXX.png
 去掉html,图片不会加入到qch中，在assistant中无法正常显示
+\image rtf XXX.png 可以加入到rtf中
+
+
+可以使用DoxygenLayout.xml文件来配置doxygen文档的组织方式
+
+可以使用\page和\subpage来将多页以文档结构进行组合
+
+可以使用 INPUT变量来控制page在文档结构中的顺序，例如
+INPUT = main.dox \
+        page1.dox \
+        page2.dox
+
+
+如果要将page1的顺序调整到上面，则
+INPUT = main.dox \
+        page2.dox \
+        page1.dox
+
+
+
+
+
+
+
+
