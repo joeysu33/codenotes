@@ -1,0 +1,6 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource>
+    <file>jquery-3.4.1.min.js</file>
+</qresource>
+</RCC>

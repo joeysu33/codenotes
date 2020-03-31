@@ -1,7 +1,7 @@
 TEMPLATE = app
 
-TARGET = splitter_views
-CONFIG += c++11
+TARGET = splitterviews
+CONFIG += c++11 c++14
 QT += core gui widgets
 
 SOURCES += ngpspview.cpp \
@@ -16,4 +16,8 @@ HEADERS += ngpspview.h \
     ngpminisplitter.h \
     ispview.h
 
-include(../../configs.pri)
+MIDDIR=./middir
+MOC_DIR=$$MIDDIR/moc
+UI_DIR =$$MIDDIR/ui
+OBJECTS_DIR = $$MIDDIR/obj
+DESTDIR = ./bin
