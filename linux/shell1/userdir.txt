@@ -1,0 +1,10 @@
+/bin/bash
+/usr/sbin/nologin
+/usr/sbin/nologin
+/usr/sbin/nologin
+/bin/sync
+/usr/sbin/nologin
+/usr/sbin/nologin
+/usr/sbin/nologin
+/usr/sbin/nologin
+/usr/sbin/nologin

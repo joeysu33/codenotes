@@ -1,0 +1,38 @@
+   0 -      08:28 ?        00:00:00 [ktpacpid]
+1 I root         397       2  0  60 -20 -     0 -      08:28 ?        00:00:00 [kmemstick]
+1 I root         406       2  0  60 -20 -     0 -      08:28 ?        00:00:00 [kworker/u17:2-hci0]
+1 I root         410       2  0  60 -20 -     0 -      08:28 ?        00:00:00 [rmi4-poller]
+1 S root         411       2  1   9   - -     0 -      08:28 ?        00:00:29 [irq/51-rmi4_smb]
+1 S root         635       2  0  80   0 -     0 -      08:28 ?        00:00:00 [jbd2/sda8-8]
+1 I root         636       2  0  60 -20 -     0 -      08:28 ?        00:00:00 [ext4-rsv-conver]
+4 S systemd+     655       1  0  80   0 -  5980 -      08:28 ?        00:00:00 /lib/systemd/systemd-resolved
+1 I root         663       2  0  80   0 -     0 -      08:28 ?        00:00:01 [kworker/2:3-events]
+4 S root         683       1  0  80   0 - 60421 -      08:28 ?        00:00:00 /usr/lib/accountsservice/accounts-daemon
+4 S root         684       1  0  80   0 -   635 -      08:28 ?        00:00:00 /usr/sbin/acpid
+4 S avahi        687       1  0  80   0 -  2128 -      08:28 ?        00:00:00 avahi-daemon: running [ds-ThinkPad-T440s.local]
+4 S root         688       1  0  80   0 -  2087 -      08:28 ?        00:00:00 /usr/lib/bluetooth/bluetoothd
+4 S root         689       1  0  80   0 -  3122 -      08:28 ?        00:00:00 /usr/sbin/cron -f
+4 S root         690       1  0  80   0 -  7843 -      08:28 ?        00:00:00 /usr/sbin/cupsd -l
+4 S message+     691       1  0  80   0 -  2465 -      08:28 ?        00:00:01 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+4 S root         692       1  0  80   0 - 66588 -      08:28 ?        00:00:00 /usr/sbin/NetworkManager --no-daemon
+4 S root         699       1  0  80   0 - 20472 -      08:28 ?        00:00:00 /usr/sbin/irqbalance --foreground
+4 S root         700       1  0  80   0 - 10611 -      08:28 ?        00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+4 S root         715       1  0  80   0 - 61241 -      08:28 ?        00:00:02 /usr/lib/policykit-1/polkitd --no-debug
+4 S syslog       717       1  0  80   0 - 56083 -      08:28 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+4 S root         719       1  0  80   0 - 364956 -     08:28 ?        00:00:01 /usr/lib/snapd/snapd
+4 S root         720       1  0  80   0 - 59686 -      08:28 ?        00:00:00 /usr/libexec/switcheroo-control
+4 S root         721       1  0  80   0 -  4230 -      08:28 ?        00:00:00 /lib/systemd/systemd-logind
+4 S root         722       1  0  80   0 - 32235 -      08:28 ?        00:00:00 /usr/sbin/thermald --no-daemon --dbus-enable
+4 S root         723       1  0  80   0 - 98411 -      08:28 ?        00:00:00 /usr/lib/udisks2/udisksd
+4 S root         724       1  0  80   0 -  3418 -      08:28 ?        00:00:00 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+1 S avahi        737     687  0  80   0 -  2082 -      08:28 ?        00:00:00 avahi-daemon: chroot helper
+4 S root         772       1  0  80   0 - 45093 -      08:28 ?        00:00:00 /usr/sbin/cups-browsed
+4 S root         791       1  0  80   0 - 60001 -      08:28 ?        00:00:00 /usr/sbin/ModemManager --filter-policy=strict
+4 S root         808       1  0  80   0 - 30294 -      08:28 ?        00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+4 S root         824       1  0  80   0 - 60665 -      08:28 ?        00:00:00 /usr/sbin/gdm3
+4 S rtkit        914       1  0  81   1 - 38231 -      08:28 ?        00:00:00 /usr/libexec/rtkit-daemon
+4 S whoopsie     985       1  0  80   0 - 43957 -      08:28 ?        00:00:00 /usr/bin/whoopsie -f
+1 S kernoops     986       1  0  80   0 -  2812 -      08:28 ?        00:00:00 /usr/sbin/kerneloops --test
+1 S kernoops     988       1  0  80   0 -  2812 -      08:28 ?        00:00:00 /usr/sbin/kerneloops
+4 S root        1019       1  0  80   0 - 63894 -      08:28 ?        00:00:00 /usr/lib/upower/upowerd
+4 S colord      1232       1  0  80   0 - 6249

@@ -1,0 +1,27 @@
+       1945    1615  0  80   0 -   652 do_wai 08:32 ?        00:00:00 /bin/sh /opt/apps/com.baidu.fcitx-baidupinyin/files/bin/bd-qimpanel.watchdog.sh
+1 S ds          1978    1366  0  80   0 - 102250 poll_s 08:32 ?       00:00:04 /usr/bin/sogouImeService-watchdog
+1 S ds          1989    1366  0  80   0 - 367890 poll_s 08:32 ?       00:00:02 /opt/apps/com.baidu.fcitx-baidupinyin/files/bin/baidu-qimpanel
+1 S ds          2027    1366  0  80   0 - 212087 poll_s 08:32 ?       00:00:00 /usr/bin/sogouImeService
+0 S ds          2066    1366  0  80   0 - 233987 poll_s 08:32 ?       00:00:17 /usr/libexec/gnome-terminal-server
+0 S ds          2095    2066  0  80   0 -  3488 do_wai 08:33 pts/0    00:00:00 bash
+4 S root        2111       1  0  80   0 - 95225 -      08:33 ?        00:00:00 /usr/libexec/fwupd/fwupd
+0 S ds          2497    1366  0  80   0 - 41364 poll_s 08:33 ?        00:00:00 /usr/libexec/gvfsd-metadata
+0 S ds          2498    1615  0  80   0 - 110230 poll_s 08:33 ?       00:00:00 update-notifier
+1 I root        3242       2  0  80   0 -     0 -      08:38 ?        00:00:00 [kworker/3:0-events]
+0 S ds          3255    2066  0  80   0 -  3488 poll_s 08:38 pts/1    00:00:00 bash
+0 S ds          3546    2095  0  80   0 -  3312 do_wai 08:41 pts/0    00:00:00 man dd
+0 S ds          3556    3546  0  80   0 -  2878 wait_w 08:41 pts/0    00:00:00 pager
+0 S ds          3655    2066  0  80   0 -  3488 do_wai 08:42 pts/2    00:00:00 bash
+0 S ds          3666    3655  0  80   0 -  3180 wait_w 08:42 pts/2    00:00:00 info dd
+0 S ds          3906    2066  0  80   0 -  3520 do_wai 08:44 pts/3    00:00:00 bash
+0 S ds          5022    3906  0  80   0 -  3312 do_wai 08:55 pts/3    00:00:00 man gzip
+0 S ds          5032    5022  0  80   0 -  2878 wait_w 08:55 pts/3    00:00:00 pager
+1 I root        5039       2  0  80   0 -     0 -      08:55 ?        00:00:00 [kworker/u16:1-events_unbound]
+0 S ds          5297    2066  0  80   0 -  3583 do_wai 08:57 pts/4    00:00:00 bash
+1 I root        5458       2  0  80   0 -     0 -      08:59 ?        00:00:00 [kworker/0:0-mm_percpu_wq]
+1 I root        5553       2  0  80   0 -     0 -      08:59 ?        00:00:00 [kworker/2:0-events]
+0 S ds          5963    2066  0  80   0 -  3521 poll_s 09:03 pts/5    00:00:00 bash
+1 I root        6425       2  0  80   0 -     0 -      09:06 ?        00:00:00 [kworker/u16:0-i915]
+1 I root        6626       2  0  80   0 -     0 -      09:08 ?        00:00:00 [kworker/u16:2-events_unbound]
+0 S ds          6924    1945  0  80   0 -  2788 hrtime 09:11 ?        00:00:00 sleep 3
+0 R ds          6925    5297  0  80   0 -  3642 -      09:11 pts/4    00:00:00 ps -elf

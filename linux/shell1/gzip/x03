@@ -1,0 +1,32 @@
+9 -      08:28 ?        00:00:00 /usr/libexec/colord
+4 S root        1353     824  0  80   0 - 42618 -      08:32 ?        00:00:00 gdm-session-worker [pam/gdm-password]
+4 S ds          1366       1  0  80   0 -  4828 ep_pol 08:32 ?        00:00:00 /lib/systemd/systemd --user
+5 S ds          1371    1366  0  80   0 - 42259 -      08:32 ?        00:00:00 (sd-pam)
+0 S ds          1376    1366  0  69 -11 - 371388 poll_s 08:32 ?       00:00:00 /usr/bin/pulseaudio --daemonize=no --log-target=journal
+0 S ds          1378    1366  0  99   - - 147142 poll_s 08:32 ?       00:00:00 /usr/libexec/tracker-miner-fs
+0 S ds          1381    1366  0  80   0 -  2065 ep_pol 08:32 ?        00:00:01 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+0 S ds          1385    1366  0  80   0 - 60726 poll_s 08:32 ?        00:00:00 /usr/libexec/gvfsd
+0 S ds          1390    1366  0  80   0 - 94636 futex_ 08:32 ?        00:00:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+0 S ds          1409    1366  0  80   0 - 97750 poll_s 08:32 ?        00:00:00 /usr/libexec/gvfs-udisks2-volume-monitor
+1 S ds          1416       1  0  80   0 - 60881 -      08:32 ?        00:00:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+0 S ds          1421    1366  0  80   0 - 59771 poll_s 08:32 ?        00:00:00 /usr/libexec/gvfs-goa-volume-monitor
+0 S ds          1425    1366  0  80   0 - 136390 poll_s 08:32 ?       00:00:00 /usr/libexec/goa-daemon
+0 S ds          1435    1366  0  80   0 - 79570 poll_s 08:32 ?        00:00:00 /usr/libexec/goa-identity-service
+5 S root        1439       2  0  70 -10 -     0 -      08:32 ?        00:00:00 [krfcommd]
+0 S ds          1441    1366  0  80   0 - 60322 poll_s 08:32 ?        00:00:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+0 S ds          1446    1366  0  80   0 - 79984 poll_s 08:32 ?        00:00:00 /usr/libexec/gvfs-afc-volume-monitor
+0 S ds          1451    1366  0  80   0 - 59719 poll_s 08:32 ?        00:00:00 /usr/libexec/gvfs-mtp-volume-monitor
+4 S ds          1457    1353  0  80   0 - 41799 poll_s 08:32 tty2     00:00:00 /usr/lib/gdm3/gdm-x-session --run-script env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --systemd --session=ubuntu
+4 R ds          1459    1457  0  80   0 - 183256 -     08:32 tty2     00:00:23 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -background none -noreset -keeptty -verbose 3
+0 S ds          1488    1457  0  80   0 - 47959 poll_s 08:32 tty2     00:00:00 /usr/libexec/gnome-session-binary --systemd --systemd --session=ubuntu
+1 S ds          1558    1488  0  80   0 -  1508 -      08:32 ?        00:00:00 /usr/bin/ssh-agent /usr/bin/sogouimebs-session /usr/bin/im-launch env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --systemd --session=ubuntu
+1 S ds          1562       1  0  80   0 - 80417 poll_s 08:32 ?        00:00:02 /usr/bin/fcitx
+0 S ds          1585    1366  0  80   0 - 76555 poll_s 08:32 ?        00:00:00 /usr/libexec/at-spi-bus-launcher
+0 S ds          1590    1585  0  80   0 -  1839 ep_pol 08:32 ?        00:00:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+1 S ds          1601       1  0  80   0 -  1773 ep_pol 08:32 ?        00:00:01 /usr/bin/dbus-daemon --syslog --fork --print-pid 5 --print-address 7 --config-file /usr/share/fcitx/dbus/daemon.conf
+1 S ds          1605       1  0  99  19 -  1345 poll_s 08:32 ?        00:00:00 /usr/bin/fcitx-dbus-watcher unix:abstract=/tmp/dbus-5g8A6yVCgH,guid=fa1158c74ac2f417f6fe997f601f352f 1601
+0 S ds          1608    1366  0  80   0 - 23320 poll_s 08:32 ?        00:00:00 /usr/libexec/gnome-session-ctl --monitor
+0 S ds          1615    1366  0  80   0 - 122062 poll_s 08:32 ?       00:00:00 /usr/libexec/gnome-session-binary --systemd-service --session=ubuntu
+0 S ds          1629    1366  0  80   0 - 1040452 poll_s 08:32 ?      00:00:20 /usr/bin/gnome-shell
+0 S ds          1656    1629  0  80   0 - 78614 poll_s 08:32 ?        00:00:00 ibus-daemon --panel disable --xim
+0 S
